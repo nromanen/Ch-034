@@ -7,6 +7,6 @@ $(function() {
     $( "#datepicker" ).datepicker({
       changeMonth: true,
       changeYear: true,
-      autoSize: true
+      yearRange: "1930:2015"
     });
   });
