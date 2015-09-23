@@ -7,3 +7,6 @@
 	display: none;
 	font-size: 20px;
 }
+.ui-datepicker-title {
+	color: #1c94c4;
+}
