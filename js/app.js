@@ -12,6 +12,8 @@ $(function() {
     });
 });
 
+$("input[name='phonenumber']").mask("(999) 999-99-99");
+
 $("#regform").validate({
 
         errorElement : 'div',
