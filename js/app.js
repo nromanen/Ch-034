@@ -4,15 +4,21 @@ $(function() {
        e.preventDefault();
     });
 
-    //Datepicker
+    // Datepicker
     $( "#datepicker" ).datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange: "1930:2015"
     });
-});
 
-$("input[name='phonenumber']").mask("(999) 999-99-99");
+    // localization
+    $(".lang").click(function(){
+        $(".lang").toggle();
+    });
+
+    // phone-mask
+    $("input[name='phonenumber']").mask("(999) 999-99-99");
+});
 
 $("#regform").validate({
 
@@ -23,7 +29,7 @@ $("#regform").validate({
         },
         onfocusin : function(element) {
             
-            // $(".error").remove();
+            //$(".error").remove();
         },
         rules : {
             firstname : {
@@ -31,6 +37,9 @@ $("#regform").validate({
                 minlength : 3,
                 maxlength : 30,
                 pattern : /^[A-ZА-ЯЄІЇ][\sA-ZА-ЯЄІЇa-zа-яєії'0-9]*$/
+            },
+            phonenumber : {
+                required : true
             }
         },
         messages : {
@@ -44,7 +53,7 @@ $("#regform").validate({
         errorPlacement : function(error, element) {
             console.log(error);
             $('#firstnameglyph').attr("title", error.toString);
-            error.appendTo(element.closest('div'));
+            error.appendTo(element.closest('div'));  alert(error.toString);
         }
     });
 

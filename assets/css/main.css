@@ -10,3 +10,24 @@
 .ui-datepicker-title {
 	color: #1c94c4;
 }
+.error{
+	color: #FD5A5A;
+	font-size: 12px;
+}
+a.lang {    
+    padding-left: 20px;
+    font-size: 14px;
+    color: #aaa;
+    float: right;
+}
+a.lang:hover {
+	color: #555;
+    text-transform: uppercase;
+}
+a.ua{
+	background: url(../img/flag_ua.gif) no-repeat 0 center;
+}
+a.en{
+	background: url(../img/flag_en.png) no-repeat 0 center;
+	display: none;
+}

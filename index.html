@@ -18,8 +18,10 @@
             <div class="panel-body">
                 <form action="" id="regform">
                 <fieldset>
-                    <legend>Форма реєстрації</legend>
-                
+                    <legend>Форма реєстрації
+                            <a class="lang ua" href="">Українська</a>
+                            <a class="lang en" href="">English</a>
+                    </legend>                
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="login">Логін</label></div>
                         <div class="col-lg-7"><input type="text" name="login" class="form-control input-sm" data-toggle="popover" title="Логін" data-content="And here's some amazing content. It's very engaging. Right?" data-trigger="focus"></div>
@@ -43,12 +45,12 @@
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="Birthdate">Дата народження</label></div>
                         <div class="col-lg-7"><input id="datepicker" type="text" name="Birthdate" class="form-control input-sm" data-toggle="popover" title="birthdate" data-content="Enter the date of birth" data-trigger="focus"></div>
-                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
+                        <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="phonenumber">Телефон</label></div>
                         <div class="col-lg-7"><input type="text" name="phonenumber" class="form-control input-sm" data-toggle="popover" title="Тільки оператора МТС:" data-content="(050)XXX-XX-XX  (066)XXX-XX-XX (095)XXX-XX-XX  (099)XXX-XX-XX" data-trigger="focus" placeholder="(XXX) XXX-XX-XX"></div>
-                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
+                        <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" id="phonenumberglyph" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="password">Пароль</label></div>
