@@ -11,6 +11,13 @@ $(function() {
         yearRange: "1930:2015"
     });
 
+    jQuery.validator.addMethod("edult", function(value, element) {
+        var currentDate = new Date();
+        var userAge = new Date(Date.parse(value))
+        return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
+    }, "You so young!!!");
+
+
     // localization
     $(".lang").click(function(){
         $(".lang").toggle();
@@ -40,6 +47,10 @@ $("#regform").validate({
             },
             phonenumber : {
                 required : true
+            },
+            birthdate : {
+                required : true,
+                edult    : true
             }
         },
         messages : {
@@ -48,12 +59,16 @@ $("#regform").validate({
                 minlength : $('productNameTooShort').html(),
                 maxlength : $('productNameTooLong').html(),
                 pattern : $('productNameIllegalCharacters').html()
+            },
+            birthdate : {
+                 required : $('I need date').html(),
+                 edult    : $('WTF').html()
             }
         },
         errorPlacement : function(error, element) {
             console.log(error);
             $('#firstnameglyph').attr("title", error.toString);
-            error.appendTo(element.closest('div'));  alert(error.toString);
+            error.appendTo(element.closest('div'));  console.log(error.toString);
         }
     });
 
