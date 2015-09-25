@@ -57,6 +57,16 @@ $(function() {
             phonenumber: {
                required: true,
                pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
+            },
+            password: {
+                required: true,
+                minlength: 8,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+            },
+            repeatpassword: {
+                required: true,
+                minlength: 8,
+                equalTo: "#password"
             }
         },
 
@@ -86,6 +96,8 @@ $(function() {
         }
 
     });
+
+
 
     new RegistrationApp.Router();
     Backbone.history.start();
