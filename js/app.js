@@ -2,7 +2,7 @@ $(function() {
     //Popover
     $('[data-toggle="popover"]').popover({container: 'body'});
 
-    // Datepicker
+    //Datepicker
     $( "#datepicker" ).datepicker({
         changeMonth: true,
         changeYear: true,
@@ -11,16 +11,18 @@ $(function() {
 
     //Phone number mask
     $("input[name='phonenumber']").mask("(999) 999-99-99");
+
     jQuery.validator.addMethod("edult", function(value, element) {
         var currentDate = new Date();
         var userAge = new Date(Date.parse(value))
         return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
     }, "You so young!!!");
 
-    // localization
+    //Localization
     $(".lang").click(function(){
         $(".lang").toggle();
     });
+
     //Form validation
     $("#regform").validate({
         
@@ -52,6 +54,10 @@ $(function() {
                 maxlength : 30,
                 pattern : /^[A-ZА-ЯЄІЇ][\sA-ZА-ЯЄІЇa-zа-яєії'0-9]*$/
             },
+            phonenumber: {
+               required: true,
+               pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
+            }
         },
 
         messages: {
