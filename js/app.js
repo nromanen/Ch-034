@@ -86,4 +86,7 @@ $(function() {
         }
 
     });
+
+    new RegistrationApp.Router();
+    Backbone.history.start();
 });
