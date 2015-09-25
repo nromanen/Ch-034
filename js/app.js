@@ -20,11 +20,7 @@ $(function() {
         return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
     }, "You so young!!!");
 
-    //Localization
-    $(".lang").click(function(){
-        $(".lang").toggle();
-    });
-
+    
     //Form validation
     $("#regform").validate({
         
@@ -116,7 +112,9 @@ $(function() {
        
     }).done(function(t) {
 
-        router = new RegistrationApp.Router();
+        $('#registrationApp').i18n();
+        console.log("done");
+        RegistrationApp.router = new RegistrationApp.Router();
         Backbone.history.start();
     });
     

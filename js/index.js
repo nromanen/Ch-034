@@ -8,14 +8,12 @@ RegistrationApp.Router = Backbone.Router.extend({
     },
 
     index: function (lang) {
-
+        var locale = window.localStorage.getItem("RegistrationFormLang");
         if (lang) {
-            
             this.language = lang;
             window.localStorage.setItem("RegistrationFormLang", lang);
-            console.log(this.language);
         } else {
-            window.localStorage.getItem("RegistrationFormLang") ? (this.language = window.localStorage.getItem("RegistrationFormLang")) :
+            locale ? (this.language = locale) :
             window.localStorage.setItem("RegistrationFormLang", "en");
         }
 
@@ -28,16 +26,16 @@ RegistrationApp.View = Backbone.View.extend({
     el: "#registrationApp",
 
     events: {
-
+        'click .lang': 'toggleLanguage'
     },
 
     initialize: function() {
-        this.render();
     },
 
-    render: function() {
+    toggleLanguage: function(e) {
+        e.preventDefault();
+        this.$('.lang').toggle();
         this.$el.i18n();
-        return this;
+        RegistrationApp.router.navigate($(e.target).attr('href'));
     }
-
 });
