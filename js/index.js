@@ -12,14 +12,15 @@ RegistrationApp.Router = Backbone.Router.extend({
         if (lang) {
             this.language = lang;
             localStorage.setItem("RegistrationFormLang", lang);
+            return;
+        } 
+        if (localStorage.getItem("RegistrationFormLang")) {
+            this.language = localStorage.getItem("RegistrationFormLang");
         } else {
-            this.language = "en";
             localStorage.setItem("RegistrationFormLang", "en");
-
         }
-        
-        new RegistrationApp.View(this.language);
-        
+
+        new RegistrationApp.View(this.language);  
     }
 });
 
@@ -27,9 +28,6 @@ RegistrationApp.View = Backbone.View.extend({
     el: "#registrationApp",
 
     initialize: function(language) {
-        //this.$el = this.$el.translator(language);
-        console.log(language);
-        this.render();
     },
 
 });
