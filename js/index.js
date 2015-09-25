@@ -24,6 +24,7 @@ RegistrationApp.View = Backbone.View.extend({
     el: "#registrationApp",
 
     initialize: function(language) {
+        $(this.$el).i18n();
     },
 
 });

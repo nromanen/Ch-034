@@ -86,7 +86,14 @@ $(function() {
         }
 
     });
-
-    new RegistrationApp.Router();
-    Backbone.history.start();
+    $.i18n.init({
+        useLocalStorage: false,
+        lng: "en",
+        resGetPath: 'locales/__ns__-__lng__.json',
+        
+    }, function(t) {
+        app = new RegistrationApp.Router();
+        Backbone.history.start();
+    });
+    
 });

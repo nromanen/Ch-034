@@ -1,0 +1,26 @@
+{
+    "regForm": {
+        "legend": "Registration Form",
+        "login": "Login",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthdate": "Birth Date",
+        "phonenumber": "Phone number",
+        "password": "Password",
+        "repeatpassword": "Repeat password",
+        "register": "Register",
+        "errors": {
+            "login": {
+                "required": "This field is required",
+                "minlength": "Please enter at least 5 characters",
+                "maxlength": "Please enter no more than 40 characters",
+                "invalidformat": "Please provide valid login"
+            },
+            "email": {
+                "required": "This field is required",
+                "invalidformat": "Please enter a valid email address."
+            }
+        }
+    }
+}
