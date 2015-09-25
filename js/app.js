@@ -18,6 +18,14 @@ $(function() {
         return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
     }, "You so young!!!");
 
+    jQuery.validator.addMethod("bigLetterName", function(value, element) {
+        return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
+    }, "Введіть ім'я з великої букви");
+
+    jQuery.validator.addMethod("bigLetterLastName", function(value, element) {
+        return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
+    }, "Введіть прізвище з великої букви");
+
     //Localization
     $(".lang").click(function(){
         $(".lang").toggle();
@@ -52,7 +60,15 @@ $(function() {
                 required : true,
                 minlength : 3,
                 maxlength : 30,
-                pattern : /^[A-ZА-ЯЄІЇ][\sA-ZА-ЯЄІЇa-zа-яєії'0-9]*$/
+                pattern : /([а-яєії']+$)|([а-яєії']+\-[а-яєії']+$)/,
+                bigLetterName : true
+            },
+            lastname: {
+                required : true,
+                minlength : 3,
+                maxlength : 30,
+                pattern : /([а-яєії']+$)|([а-яєії']+\-[а-яєії']+$)/,
+                bigLetterLastName : true
             },
             phonenumber: {
                required: true,
@@ -72,10 +88,18 @@ $(function() {
 
         messages: {
             firstname: {
-                required: $('enter your name').html(),
-                minlength: $('productNameTooShort').html(),
-                maxlength: $('productNameTooLong').html(),
-                pattern: $('productNameIllegalCharacters').html()
+                required: "Введіть своє ім'я",
+                minlength: "Ім'я має містити більше 3 символів",
+                maxlength: "Ім'я має містити не більше 30 символів",
+                pattern: "Введіть коректне ім'я",
+                bigLetterName: "Введіть ім'я з великої букви"
+            },
+           lastname: {
+                required: "Введіть своє прізвище",
+                minlength: "Прізвище має містити більше 3 символів",
+                maxlength: "Прізвище має містити не більше 30 символів",
+                pattern: "Введіть коректне прізвище",
+                bigLetterLastName: "Введіть прізвище з великої букви"
             },
             birthdate : {
                  required : $('I need date').html(),
