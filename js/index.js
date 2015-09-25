@@ -1,4 +1,4 @@
-var RegistrationApp = RegistrationApp || {};
+var RegistrationApp = {};
 
 RegistrationApp.Router = Backbone.Router.extend({
     
@@ -8,23 +8,36 @@ RegistrationApp.Router = Backbone.Router.extend({
     },
 
     index: function (lang) {
+
         if (lang) {
+            
             this.language = lang;
-            localStorage.setItem("RegistrationFormLang", lang);
+            window.localStorage.setItem("RegistrationFormLang", lang);
+            console.log(this.language);
         } else {
-            localStorage.getItem("RegistrationFormLang") ? (this.language = localStorage.getItem("RegistrationFormLang")) :
-            localStorage.setItem("RegistrationFormLang", "en");
+            window.localStorage.getItem("RegistrationFormLang") ? (this.language = window.localStorage.getItem("RegistrationFormLang")) :
+            window.localStorage.setItem("RegistrationFormLang", "en");
         }
 
-        new RegistrationApp.View(this.language);  
+        $.i18n.setLng(this.language);
+        new RegistrationApp.View();  
     }
 });
 
 RegistrationApp.View = Backbone.View.extend({
     el: "#registrationApp",
 
-    initialize: function(language) {
-        $(this.$el).i18n();
+    events: {
+
     },
+
+    initialize: function() {
+        this.render();
+    },
+
+    render: function() {
+        this.$el.i18n();
+        return this;
+    }
 
 });

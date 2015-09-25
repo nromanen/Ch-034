@@ -1,4 +1,6 @@
 $(function() {
+
+
     //Popover
     $('[data-toggle="popover"]').popover({container: 'body'});
 
@@ -12,7 +14,7 @@ $(function() {
     //Phone number mask
     $("input[name='phonenumber']").mask("(999) 999-99-99");
 
-    jQuery.validator.addMethod("edult", function(value, element) {
+    jQuery.validator.addMethod("adult", function(value, element) {
         var currentDate = new Date();
         var userAge = new Date(Date.parse(value))
         return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
@@ -57,10 +59,24 @@ $(function() {
             phonenumber: {
                required: true,
                pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
+            },
+            birthdate: {
+                required: true,
+                adult: true,
             }
         },
 
         messages: {
+            login: {
+                required: "regForm.errors.login.required",
+                minlength: "regForm.errors.login.minlength"
+            },
+
+            email: {
+                required: "regForm.errors.email.required",
+                email: "regForm.errors.email.invalidformat"
+            },
+
             firstname: {
                 required: $('enter your name').html(),
                 minlength: $('productNameTooShort').html(),
@@ -68,12 +84,13 @@ $(function() {
                 pattern: $('productNameIllegalCharacters').html()
             },
             birthdate : {
-                 required : $('I need date').html(),
+                 required : "I need date",
                  edult    : $('WTF').html()
             }
         },
 
         errorPlacement: function(error, element) {
+            error.attr("data-i18n", "");
             error.appendTo(element.closest('div'));
         },
 
@@ -83,16 +100,17 @@ $(function() {
 
         unhighlight: function (element) {
             $(element).closest('.form-group').removeClass('has-error');
+            $('[id$="-error"]').i18n();
         }
 
     });
     $.i18n.init({
-        useLocalStorage: false,
-        lng: "en",
+        lng: window.localStorage.getItem("RegistrationFormLang") || "en",
         resGetPath: 'locales/__ns__-__lng__.json',
-        
-    }, function(t) {
-        app = new RegistrationApp.Router();
+       
+    }).done(function(t) {
+
+        router = new RegistrationApp.Router();
         Backbone.history.start();
     });
     
