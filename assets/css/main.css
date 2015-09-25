@@ -22,12 +22,12 @@ a.lang {
 }
 a.lang:hover {
 	color: #555;
-    text-transform: uppercase;
+	cursor: pointer;    
 }
 a.ua{
 	background: url(../img/flag_ua.gif) no-repeat 0 center;
+	display: none;
 }
 a.en{
-	background: url(../img/flag_en.png) no-repeat 0 center;
-	display: none;
+	background: url(../img/flag_en.png) no-repeat 0 center;	
 }
