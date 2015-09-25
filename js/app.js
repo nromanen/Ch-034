@@ -30,6 +30,10 @@ $(function() {
         
         focusCleanup: true,
         onkeyup: false,
+        onfocusout: function(element){
+            $(element).valid();
+            $('[id$="-error"]').i18n();
+        },
 
         submitHandler: function(form) {
             
@@ -69,7 +73,9 @@ $(function() {
         messages: {
             login: {
                 required: "regForm.errors.login.required",
-                minlength: "regForm.errors.login.minlength"
+                minlength: "regForm.errors.login.minlength",
+                maxlength: "regForm.errors.login.maxlength",
+                pattern: "regForm.errors.login.invalidformat",
             },
 
             email: {
@@ -96,11 +102,11 @@ $(function() {
 
         highlight: function(element) {
             $(element).closest('.form-group').addClass('has-error');
+            
         },
 
         unhighlight: function (element) {
             $(element).closest('.form-group').removeClass('has-error');
-            $('[id$="-error"]').i18n();
         }
 
     });
