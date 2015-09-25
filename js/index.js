@@ -5,18 +5,14 @@ RegistrationApp.Router = Backbone.Router.extend({
     routes: {
         "": "index",
         ":lang": "index",
-
     },
 
     index: function (lang) {
         if (lang) {
             this.language = lang;
             localStorage.setItem("RegistrationFormLang", lang);
-            return;
-        } 
-        if (localStorage.getItem("RegistrationFormLang")) {
-            this.language = localStorage.getItem("RegistrationFormLang");
         } else {
+            localStorage.getItem("RegistrationFormLang") ? (this.language = localStorage.getItem("RegistrationFormLang")) :
             localStorage.setItem("RegistrationFormLang", "en");
         }
 
