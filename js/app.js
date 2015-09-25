@@ -28,7 +28,13 @@ $("#regform").validate({
                 required : true,
                 minlength : 3,
                 maxlength : 30,
-                pattern : /^[A-ZА-ЯЄІЇ][\sA-ZА-ЯЄІЇa-zа-яєії'0-9]*$/
+                pattern : /(^[A-ZА-ЯЄІЇ]{1}[a-zа-яєії']*[a-zа-яєії]$)|(^[A-ZА-ЯЄІЇ]{1}[a-zа-яєії']*[a-zа-яєії]$[\-]$)/
+            },
+            lastname : {
+                required : true,
+                minlength : 3,
+                maxlength : 30,
+                pattern : /^[A-ZА-ЯЄІЇ][\sA-ZА-ЯЄІЇa-zа-яєії']*$/
             }
         },
         messages : {
