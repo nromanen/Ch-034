@@ -1,11 +1,11 @@
-{
+{    
     "regForm": {
         "legend": "Registration Form",
         "login": {
             "label": "Login",
             "popover": {
                 "title": "Enter your login",
-                "content": "Login should be"
+                "content": "Login must contain: <ul><li>at least 5 characters</li><li>Only Latin letters and symbols <strong>. _ -</strong></li></ul>"
             }
         },
         "email": {
@@ -15,40 +15,94 @@
                 "content": "Enter e-mail by the following sample: name@domain.zone"
             }
         },
-        "firstName": "First Name",
-        "lastName": "Last Name",
-        "birthdate": "Birth Date",
-        "phonenumber": "Phone number",
-        "studiedAt": "Studied at",
-        "beginEdu": "Begin education",
-        "finishEdu": "Finish education",
-        "password": "Password",
-        "repeatpassword": "Repeat password",
+        "firstname": {
+            "label": "First Name",
+            "popover": {
+                "title": "Enter your name",
+                "content": "The name must begin with a capital letter"
+            }
+        },
+        "lastname": {
+            "label":  "Last Name",
+            "popover": {
+                "title": "Enter your Last Name",
+                "content": "Last name must begin with a capital letter"
+            }
+        },
+        "birthdate": {
+            "label": "Date of birth",
+            "popover": {
+                "title": "Choose your birth date",
+                "content": "Or enter it at the following format:<abbr title=\"12/31/2003\">mm/dd/yyyy</abbr>"
+            }
+        },
+        "phonenumber": {
+            "label": "Phone number",
+            "popover": {
+                "title": "Enter your phone number",
+                "content": "Just provider MTS: <ul class=\"list-unstyled row\"><li class=\"col-xs-6\">(050)XXX-XX-XX</li><li class=\"col-xs-6\">(066)XXX-XX-XX</li><li class=\"col-xs-6\">(095)XXX-XX-XX</li><li class=\"col-xs-6\">(099)XXX-XX-XX</li></ul>"
+            }
+        },
+        "graduated": {
+            "label": "Studied at",
+            "popover": {
+                "title": "Name of university",
+                "content": "Enter the name of the university, such as: <em>Chernivtsi National University</em>"
+            }
+        },
+        "beginEdu": {
+            "label": "Start education",
+            "popover": {
+                "title": "Start education",
+                "content": "Enter the year of admission to university"
+            }
+        },
+        "finishEdu": {
+            "label": "Finish education",
+            "popover": {
+                "title": "Finish education",
+                "content": "Enter the year of graduation"
+            }
+        },
+        "password": {
+            "label": "Password",
+            "popover": {
+                "title": "Enter your password",
+                "content": "Password must contain: <ul> <li> at least 8 characters </li> <li> only letters, numbers and symbols! @ # $% ^ & * </li> <li> at least one capital letter, a number, and one of characters! @ # $% ^ & * </li> </ul>"
+            }
+        },
+        "repeatpassword": {
+            "label": "Repeat password",
+            "popover": {
+                "title": "Repeat password",
+                "content": ""
+            }
+        },
         "register": "Register",
         "errors": {
             "login": {
                 "required": "This field is required",
-                "minlength": "Please enter at least 5 characters",
+                "minlength": "At least 5 characters",
                 "maxlength": "Please enter no more than 40 characters",
-                "invalidformat": "Please provide valid login"
+                "invalidformat": "Please enter the correct login"
             },
             "email": {
                 "required": "This field is required",
                 "invalidformat": "Please enter a valid email address."
             },
             "firstname": {
-                "required": "Введіть своє ім'я",
-                "minlength": "Ім'я має містити більше 3 символів",
-                "maxlength": "Ім'я має містити не більше 30 символів",
-                "pattern": "Введіть коректне ім'я",
-                "bigLetterName": "Введіть ім'я з великої букви"
+                "required": "This field is required",
+                "minlength": "Name must contain more than 3 symbols",
+                "maxlength": "The name must not contain more than 30 characters",
+                "pattern": "Please enter a valid name",
+                "bigLetterName": "Enter a name with a capital letter"
             },
-            "lastname": {
-                "required": "Введіть своє прізвище",
-                "minlength": "Прізвище має містити більше 3 символів",
-                "maxlength": "Прізвище має містити не більше 30 символів",
-                "pattern": "Введіть коректне прізвище",
-                "bigLetterLastName": "Введіть прізвище з великої букви"
+           "lastname": {
+                "required": "This field is required",
+                "minlength": "Name must contain more than 3 symbols",
+                "maxlength": "Name must not contain more than 30 characters",
+                "pattern": "Please enter a valid name",
+                "bigLetterLastName": "Enter the last name with a capital letter"
             },
             "birthdate" : {
                  "required"  : "I need date",
@@ -58,18 +112,28 @@
                  "adult"     : "You so yang"
             },
             "beginEdu": {
-                "required": "Введіть рік з діапазону 1950-2015",
-                "pattern": "Введіть рік з діапазону 1950-2015"
+                "required": "Enter the year in the range 1950-2015",
+                "pattern": "Enter the year in the range 1950-2015"
             },
             "finishEdu": {
-                "required": "Введіть рік з діапазону 1950-2020",
-                "pattern": "Введіть рік з діапазону 1950-2020",
-                "graduatedValue": "Термін навчання не повинен перевищувати 5-ти років",
-                "checkBegin": "Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ"
+                "required": "Enter the year in the range 1950-2020",
+                "pattern": "Enter the year in the range 1950-2020",
+                "graduatedValue": "Apprenticeship should not exceed 5 years",
+                "checkBegin": "Entry to university should not be greater than the date of graduation"
             },
             "graduated": {
-                "required": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>",
-                "pattern": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>"
+                "required": "Enter a name of university",
+                "pattern": "Enter the correct name of university"
+            },
+            "password": {
+                "required": "This field is required.",
+                "minlength": "Please enter at least 8 characters.",
+                "pattern": "Invalid format."
+            },
+            "repeatpassword": {
+                "required": "This field is required.",
+                "minlength": "Please enter at least 8 characters.",
+                "equalTo": "Please enter the same value again."
             }
         }
     }

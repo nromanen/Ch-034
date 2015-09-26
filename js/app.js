@@ -27,6 +27,9 @@ $(function() {
         $("#datepicker").blur();
     });;
 
+    //Phone number mask
+    $("input[name='phonenumber']").mask("(999) 999-99-99");
+
     $.validator.addMethod("adult", function(value, element) {
         var currentDate = new Date();
         var userAge = new Date(Date.parse(value))
@@ -46,9 +49,6 @@ $(function() {
 
         return this.optional( element ) || finish.getFullYear() > begin.getFullYear()
     }, 'Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ');
-
-    //Phone number mask
-    $("input[name='phonenumber']").mask("(999) 999-99-99");
 
     $.validator.addMethod("bigLetterName", function(value, element) {
         return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
@@ -207,6 +207,16 @@ $(function() {
             graduated: {
                 required: "regForm.errors.graduated.required",
                 pattern: "regForm.errors.graduated.pattern"
+            },
+            password: {
+                required: "regForm.errors.password.required",
+                minlength: "regForm.errors.password.minlength",
+                pattern: "regForm.errors.password.pattern",
+            },
+            repeatpassword: {
+                required: "regForm.errors.repeatpassword.required",
+                minlength: "regForm.errors.repeatpassword.minlength",
+                equalTo: "regForm.errors.repeatpassword.equalTo",
             }
         },
 

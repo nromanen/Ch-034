@@ -5,7 +5,7 @@
             "label": "Логін",
             "popover": {
                 "title": "Введіть логін",
-                "content": "<b>Логін має</b>"
+                "content": "Логін повинен містити: <ul><li>не менше 5 символів</li><li>лише латинські літери та символи <strong>. _ -</strong></li></ul>"
             }
         },
         "email": {
@@ -15,15 +15,69 @@
                 "content": "Введіть e-mail за наступним зразком: name@domain.zone"
             }
         },
-        "firstName": "Імя",
-        "lastName": "Фамілія",
-        "birthdate": "Дата народження",
-        "phonenumber": "Телефон",
-        "studiedAt": "Навчався в",
-        "beginEdu": "Початок навчання",
-        "finishEdu": "Кінець навчання",
-        "password": "Пароль",
-        "repeatpassword": "Повторіть пароль",
+        "firstname": {
+            "label": "І'мя",
+            "popover": {
+                "title": "Введіть ваше ім'я",
+                "content": "Ім'я повинно починатися з великої літери"
+            }
+        },
+        "lastname": {
+            "label":  "Прізвище",
+            "popover": {
+                "title": "Введіть ваше прізвище",
+                "content": "Прізвище повинно починатися з великої літери"
+            }
+        },
+        "birthdate": {
+            "label": "Дата народження",
+            "popover": {
+                "title": "Виберіть вашу дату народження",
+                "content": "Або введіть її за наступним форматом: <abbr title=\"12/31/2003\">mm/dd/yyyy</abbr>"
+            }
+        },
+        "phonenumber": {
+            "label": "Телефон",
+            "popover": {
+                "title": "Введіть номер телефону",
+                "content": "Тільки оператора МТС: <ul class=\"list-unstyled row\"><li class=\"col-xs-6\">(050)XXX-XX-XX</li><li class=\"col-xs-6\">(066)XXX-XX-XX</li><li class=\"col-xs-6\">(095)XXX-XX-XX</li><li class=\"col-xs-6\">(099)XXX-XX-XX</li></ul>"
+            }
+        },
+        "graduated": {
+            "label": "Навчався в",
+            "popover": {
+                "title": "Назва ВНЗ",
+                "content": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>"
+            }
+        },
+        "beginEdu": {
+            "label": "Початок навчання",
+            "popover": {
+                "title": "Початок навчання",
+                "content": "Введіть рік вступу до ВНЗ"
+            }
+        },
+        "finishEdu": {
+            "label": "Кінець навчання",
+            "popover": {
+                "title": "Кінець навчання",
+                "content": "Введіть рік закінчення ВНЗ"
+            }
+        },
+        "password": {
+            "label": "Пароль",
+            "popover": {
+                "title": "Введіть пароль",
+                "content": "Пароль повинен містити: <ul><li>не менше 8 символів</li><li>лише латинські літери, цифри, символи !@#$%^&*</li><li>хоча б одну велику літеру, цифру, та один з символів !@#$%^&*</li></ul>"
+            }
+        },
+        "repeatpassword": {
+            "label": "Повторіть пароль",
+            "popover": {
+                "title": "Повторіть пароль",
+                "content": ""
+            }
+        },
         "register": "Зареєструватися",
         "errors": {
             "login": {
@@ -51,11 +105,11 @@
                 "bigLetterLastName": "Введіть прізвище з великої букви"
             },
             "birthdate" : {
-                 "required"  : "I need date",
-                 "minlength" : "Wrong format",
-                 "maxlength" : "Wrong format",
-                 "pattern"   : "Wrong format",
-                 "adult"     : "You so yang"
+                 "required"  : "Введіть дату",
+                 "minlength" : "Неправильний формат",
+                 "maxlength" : "Неправильний формат",
+                 "pattern"   : "Неправильний формат",
+                 "adult"     : "Ви надто молодий"
             },
             "beginEdu": {
                 "required": "Введіть рік з діапазону 1950-2015",
@@ -68,8 +122,18 @@
                 "checkBegin": "Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ"
             },
             "graduated": {
-                "required": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>",
-                "pattern": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>"
+                "required": "Введіть назву ВНЗ",
+                "pattern": "Введіть правильну назву ВНЗ"
+            },
+            "password": {
+                "required": "Це поле є обов'язковим",
+                "minlength": "Будь ласка, введіть принаймні 8 символів",
+                "pattern": "Невірний формат"
+            },
+            "repeatpassword": {
+                "required": "Це поле є обов'язковим",
+                "minlength": "Будь ласка, введіть принаймні 8 символів",
+                "equalTo": "Будь ласка, введіть те ж значення знову"
             }
         }
     }
