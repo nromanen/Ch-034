@@ -1,6 +1,21 @@
 $(function() {
+
     //Popover
-    $('[data-toggle="popover"]').popover({container: 'body'});
+    $('#regform input').popover({
+        container: 'body',
+        html: true,
+        template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title" data-i18n></h3><div class="popover-content" data-i18n></div></div>',
+        title: function() {
+            return "regForm."+$(this).attr("name")+".popover.title";
+        },
+        content: function() {
+            return "[html]regForm."+$(this).attr("name")+".popover.content";
+        },
+        trigger: 'focus'
+    }).focus(function(){
+        var popover = $(this).data('bs.popover').tip();
+        $(popover).i18n();
+    });
 
     //Datepicker
     $( "#datepicker" ).datepicker({
@@ -12,7 +27,7 @@ $(function() {
         $("#datepicker").blur();
     });;
 
-    jQuery.validator.addMethod("adult", function(value, element) {
+    $.validator.addMethod("adult", function(value, element) {
         var currentDate = new Date();
         var userAge = new Date(Date.parse(value))
         return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
@@ -35,25 +50,23 @@ $(function() {
     //Phone number mask
     $("input[name='phonenumber']").mask("(999) 999-99-99");
 
-    jQuery.validator.addMethod("bigLetterName", function(value, element) {
+    $.validator.addMethod("bigLetterName", function(value, element) {
         return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
     }, "Введіть ім'я з великої букви");
 
-    jQuery.validator.addMethod("bigLetterLastName", function(value, element) {
+    $.validator.addMethod("bigLetterLastName", function(value, element) {
         return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
     }, "Введіть прізвище з великої букви");
-
-    //Localization
-    $(".lang").click(function(){
-        $(".lang").toggle();
-    });
-
+    
     //Form validation
     $("#regform").validate({
         
         focusCleanup: true,
         onkeyup: false,
         blur: true,
+        onfocusout: function(element){
+            $(element).valid();
+        },
 
         submitHandler: function(form) {
             
@@ -96,8 +109,32 @@ $(function() {
                 adult    : true
             },            
             phonenumber: {
-               required: true,
-               pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
+                required: true,
+                pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
+            },
+            graduated: {
+                required: true,
+                pattern: /^[А-ЯЄІЇ][а-яєії]+(\s?\-?\s?[А-ЯЄІЇ]?[а-яєії]+)*/
+            },
+            beginEdu: {
+                required: true,
+                pattern: /^19[5-9][0-9]$|^20[01][0-9]$/
+            },
+            finishEdu: {
+                required: true,
+                pattern: /^19[5-9][0-9]$|^20[01][0-9]$|^2020$/,
+                graduatedValue: '#beginEdu',
+                checkBegin: '#beginEdu'
+            },
+            password: {
+                required: true,
+                minlength: 8,
+                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+            },
+            repeatpassword: {
+                required: true,
+                minlength: 8,
+                equalTo: "#password"
             },
             graduated: {
                 required: true,
@@ -126,43 +163,60 @@ $(function() {
         },
 
         messages: {
-            firstname: {
-                required: "Введіть своє ім'я",
-                minlength: "Ім'я має містити більше 3 символів",
-                maxlength: "Ім'я має містити не більше 30 символів",
-                pattern: "Введіть коректне ім'я",
-                bigLetterName: "Введіть ім'я з великої букви"
+            login: {
+                required    : "regForm.errors.login.required",
+                minlength   : "regForm.errors.login.minlength",
+                maxlength   : "regForm.errors.login.maxlength",
+                pattern     : "regForm.errors.login.invalidformat",
             },
-           lastname: {
-                required: "Введіть своє прізвище",
-                minlength: "Прізвище має містити більше 3 символів",
-                maxlength: "Прізвище має містити не більше 30 символів",
-                pattern: "Введіть коректне прізвище",
-                bigLetterLastName: "Введіть прізвище з великої букви"
+            email: {
+                required: "regForm.errors.email.required",
+                email   : "regForm.errors.email.invalidformat"
+            },
+            firstname: {
+                required: "regForm.errors.firstname.required",
+                minlength: "regForm.errors.firstname.minlength",
+                maxlength: "regForm.errors.firstname.maxlength",
+                pattern: "regForm.errors.firstname.pattern",
+                bigLetterName: "regForm.errors.firstname.bigLetterName"
+            },
+            lastname: {
+                required: "regForm.errors.lastname.required",
+                minlength: "regForm.errors.lastname.minlength",
+                maxlength: "regForm.errors.lastname.maxlength",
+                pattern: "regForm.errors.lastname.pattern",
+                bigLetterLastName: "regForm.errors.lastname.bigLetterLastName"
             },
             birthdate : {
-                 required  : 'I need date',
-                 minlength : 'Wrong format',
-                 maxlength : 'Wrong format',
-                 pattern   : 'Wrong format',
-                 adult     : 'You so yang'
+                 required  : "regForm.errors.birthdate.required",
+                 minlength : "regForm.errors.birthdate.minlength",
+                 maxlength : "regForm.errors.birthdate.maxlength",
+                 pattern   : "regForm.errors.birthdate.pattern",
+                 adult     : "regForm.errors.birthdate.adult"
             },
             beginEdu: {
-                pattern: 'Введіть рік з діапазону 1950-2015'
+                required: "regForm.errors.beginEdu.required",
+                pattern: "regForm.errors.beginEdu.pattern"
             },
             finishEdu: {
-                pattern: 'Введіть рік з діапазону 1950-2020'
+                required: "regForm.errors.finishEdu.required",
+                pattern: "regForm.errors.finishEdu.pattern",
+                graduatedValue: "regForm.errors.finishEdu.graduatedValue",
+                checkBegin: "regForm.errors.finishEdu.checkBegin"
             },
             graduated: {
-                pattern: 'Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>'
+                required: "regForm.errors.graduated.required",
+                pattern: "regForm.errors.graduated.pattern"
             }
         },
 
         errorPlacement: function(error, element) {
+            $(error).attr("data-i18n", error.html()).i18n();
             error.appendTo(element.closest('div'));
         },
 
         highlight: function(element) {
+            $(element).parent().find('.error').remove();
             $(element).closest('.form-group').addClass('has-error');
         },
 
@@ -172,8 +226,10 @@ $(function() {
 
     });
 
-
-
-    new RegistrationApp.Router();
-    Backbone.history.start();
+    $.i18n.init({
+        lng: App.Helpers.getStoredLang()       
+    }).done(function(t) {
+        App.registrationView = new App.RegistrationView();
+    });
+    
 });

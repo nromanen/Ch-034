@@ -17,67 +17,74 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <form action="" id="regform">
+
                 <fieldset>
-                    <legend>Registration Form                            
-                            <a class="lang en">English</a>
-                            <a class="lang ua">Українська</a>
-                    </legend>                
+
+                    <legend>
+                    	<span data-i18n="regForm.legend">Registration Form</span>
+                    	<div class="pull-right" style=" width: 100px;">
+	                    	<a class="lang en" href="#" data-language="en">English</a>
+	            			<a class="lang ua" href="#" data-language="ua">Українська</a> 
+	            		</div>
+                    </legend>
+
+                              
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="login">Login</label></div>
-                        <div class="col-lg-7"><input type="text" name="login" class="form-control input-sm" data-toggle="popover" title="Login" data-content="And here's some amazing content. It's very engaging. Right?" data-trigger="focus"></div>
-                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-lg-4"><label for="email">E-mail</label></div>
-                        <div class="col-lg-7"><input type="text" name="email" class="form-control input-sm" data-toggle="popover" title="E-mail" data-content="And here's some amazing content. It's very engaging. Right?" data-trigger="focus"></div>
-                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col-lg-4"><label for="firstname">First Name</label></div>
-                        <div class="col-lg-7"><input type="text" name="firstname" id="first-name" class="form-control input-sm" data-toggle="popover" title="Введіть Ваше ім'я" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="login" data-i18n="regForm.login.label"></label></div>
+                        <div class="col-lg-7"><input type="text" name="login" class="form-control input-sm" data-toggle="popover" ></div>
                         <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" id="firstnameglyph" area-hidden="true" title="this is error"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="lastname">Last Name</label></div>
-                        <div class="col-lg-7"><input type="text" name="lastname" class="form-control input-sm" data-toggle="popover" title="Введіть ваше прізвище" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="email" data-i18n="regForm.email.label"></label></div>
+                        <div class="col-lg-7"><input type="text" name="email" class="form-control input-sm" data-toggle="popover"></div>
+                        <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" id="firstnameglyph" area-hidden="true" title="this is error"></span></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-4"><label for="firstname" data-i18n="regForm.firstName"></label></div>
+                        <div class="col-lg-7"><input type="text" name="firstname" id="first-name" class="form-control input-sm" data-toggle="popover" title="Enter your first name" ></div>
+                        <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" id="firstnameglyph" area-hidden="true" title="this is error"></span></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-4"><label for="lastname" data-i18n="regForm.lastName"></label></div>
+                        <div class="col-lg-7"><input type="text" name="lastname" class="form-control input-sm" data-toggle="popover" title="Enter your last name"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="birthdate">Birth Date</label></div>
-                        <div class="col-lg-7"><input id="datepicker" type="text" name="birthdate" class="form-control input-sm" maxlength="10" data-toggle="popover" title="Birthdate" data-content="Enter the date of birth" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="Birthdate" data-i18n="regForm.birthdate"></label></div>
+                        <div class="col-lg-7"><input id="datepicker" type="text" name="birthdate" class="form-control input-sm" data-toggle="popover" title="birthdate" data-content="Enter the date of birth"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="phonenumber">Phone number</label></div>
-                        <div class="col-lg-7"><input type="text" name="phonenumber" class="form-control input-sm" data-toggle="popover" title="Тільки оператора МТС:" data-content="(050)XXX-XX-XX  (066)XXX-XX-XX (095)XXX-XX-XX  (099)XXX-XX-XX" data-trigger="focus" placeholder="(XXX) XXX-XX-XX"></div>
+                        <div class="col-lg-4"><label for="phonenumber" data-i18n="regForm.phonenumber"></label></div>
+                        <div class="col-lg-7"><input type="text" name="phonenumber" class="form-control input-sm" data-toggle="popover" title="Тільки оператора МТС:" data-content="(050)XXX-XX-XX  (066)XXX-XX-XX (095)XXX-XX-XX  (099)XXX-XX-XX" placeholder="(XXX) XXX-XX-XX"></div>
                         <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" id="phonenumberglyph" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="begin-edu">Studied at:</label></div>
-                        <div class="col-lg-7"><input type="text" name="graduated" class="form-control input-sm" data-toggle="popover" title="Назва ВНЗ" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="begin-edu" data-i18n="regForm.studiedAt"></label></div>
+                        <div class="col-lg-7"><input type="text" name="graduated" class="form-control input-sm" data-toggle="popover" title="Назва ВНЗ"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="begin-edu">Begin education</label></div>
-                        <div class="col-lg-7"><input type="text" id='beginEdu' name="beginEdu" class="form-control input-sm" data-toggle="popover" title="Початок навчання" data-content="Введіть рік вступу до ВНЗ" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="begin-edu" data-i18n="regForm.beginEdu"></label></div>
+                        <div class="col-lg-7"><input type="text" id='beginEdu' name="beginEdu" class="form-control input-sm" data-toggle="popover" title="Початок навчання" data-content="Введіть рік вступу до ВНЗ"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="finish-edu">Finish education</label></div>
-                        <div class="col-lg-7"><input type="text" id='finishEdu' name="finishEdu" class="form-control input-sm" data-toggle="popover" title="Кінець навчання" data-content="Введіть рік закінчення ВНЗ" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="finish-edu" data-i18n="regForm.finishEdu"></label></div>
+                        <div class="col-lg-7"><input type="text" id='finishEdu' name="finishEdu" class="form-control input-sm" data-toggle="popover" title="Кінець навчання" data-content="Введіть рік закінчення ВНЗ"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="password">Password</label></div>
-                        <div class="col-lg-7"><input id="password" type="password" name="password" class="form-control input-sm" data-toggle="popover" title="Enter your password" data-content="Password must contain at least 1 lowercase and 1 uppercase character, 1 numeric, special character and must be eight characters or longer" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="password" data-i18n="regForm.password"></label></div>
+                        <div class="col-lg-7"><input type="password" name="password" class="form-control input-sm" data-toggle="popover" title="Reapeat password" data-content="And here's some amazing content. It's very engaging. Right?"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col-lg-4"><label for="repeatpassword">Repeat password</label></div>
-                        <div class="col-lg-7"><input type="password" name="repeatpassword" class="form-control input-sm" data-toggle="popover" title="Reapeat password" data-content="Passwords do not match" data-trigger="focus"></div>
+                        <div class="col-lg-4"><label for="repeatpassword" data-i18n="regForm.repeatpassword"></label></div>
+                        <div class="col-lg-7"><input type="password" name="repeatpassword" class="form-control input-sm" data-toggle="popover" title="Reapeat password" data-content="And here's some amazing content. It's very engaging. Right?"></div>
                         <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>                  
-                    <button type="submit" id="submit" class="btn btn-primary pull-right">Register</button>
+                    <button type="submit" id="submit" class="btn btn-primary pull-right" data-i18n="regForm.register"></button>
                 </fieldset>
                 </form>
             </div>
@@ -94,6 +101,7 @@
 <script type="text/javascript" src="assets/lib/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/lib/underscore.min.js"></script>
 <script type="text/javascript" src="assets/lib/backbone.min.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
+<script type="text/javascript" src="assets/lib/i18next-latest.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 </html>

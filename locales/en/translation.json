@@ -1,0 +1,76 @@
+{
+    "regForm": {
+        "legend": "Registration Form",
+        "login": {
+            "label": "Login",
+            "popover": {
+                "title": "Enter your login",
+                "content": "Login should be"
+            }
+        },
+        "email": {
+            "label": "E-mail",
+            "popover": {
+                "title": "Enter valid E-mail address",
+                "content": "Enter e-mail by the following sample: name@domain.zone"
+            }
+        },
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthdate": "Birth Date",
+        "phonenumber": "Phone number",
+        "studiedAt": "Studied at",
+        "beginEdu": "Begin education",
+        "finishEdu": "Finish education",
+        "password": "Password",
+        "repeatpassword": "Repeat password",
+        "register": "Register",
+        "errors": {
+            "login": {
+                "required": "This field is required",
+                "minlength": "Please enter at least 5 characters",
+                "maxlength": "Please enter no more than 40 characters",
+                "invalidformat": "Please provide valid login"
+            },
+            "email": {
+                "required": "This field is required",
+                "invalidformat": "Please enter a valid email address."
+            },
+            "firstname": {
+                "required": "Введіть своє ім'я",
+                "minlength": "Ім'я має містити більше 3 символів",
+                "maxlength": "Ім'я має містити не більше 30 символів",
+                "pattern": "Введіть коректне ім'я",
+                "bigLetterName": "Введіть ім'я з великої букви"
+            },
+            "lastname": {
+                "required": "Введіть своє прізвище",
+                "minlength": "Прізвище має містити більше 3 символів",
+                "maxlength": "Прізвище має містити не більше 30 символів",
+                "pattern": "Введіть коректне прізвище",
+                "bigLetterLastName": "Введіть прізвище з великої букви"
+            },
+            "birthdate" : {
+                 "required"  : "I need date",
+                 "minlength" : "Wrong format",
+                 "maxlength" : "Wrong format",
+                 "pattern"   : "Wrong format",
+                 "adult"     : "You so yang"
+            },
+            "beginEdu": {
+                "required": "Введіть рік з діапазону 1950-2015",
+                "pattern": "Введіть рік з діапазону 1950-2015"
+            },
+            "finishEdu": {
+                "required": "Введіть рік з діапазону 1950-2020",
+                "pattern": "Введіть рік з діапазону 1950-2020",
+                "graduatedValue": "Термін навчання не повинен перевищувати 5-ти років",
+                "checkBegin": "Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ"
+            },
+            "graduated": {
+                "required": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>",
+                "pattern": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>"
+            }
+        }
+    }
+}

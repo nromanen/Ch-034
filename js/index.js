@@ -1,29 +1,42 @@
-var RegistrationApp = RegistrationApp || {};
+var App = App || {};
 
-RegistrationApp.Router = Backbone.Router.extend({
-    
-    routes: {
-        "": "index",
-        ":lang": "index",
-    },
-
-    index: function (lang) {
-        if (lang) {
-            this.language = lang;
-            localStorage.setItem("RegistrationFormLang", lang);
+App.Helpers = {
+    getStoredLang: function() {
+        var lang;
+        if (!window.localStorage.getItem("RegistrationFormLang")) {
+            window.localStorage.setItem("RegistrationFormLang", "en");
+            lang = "en";
         } else {
-            localStorage.getItem("RegistrationFormLang") ? (this.language = localStorage.getItem("RegistrationFormLang")) :
-            localStorage.setItem("RegistrationFormLang", "en");
+            lang = window.localStorage.getItem("RegistrationFormLang");
         }
-
-        new RegistrationApp.View(this.language);  
+        return lang;
     }
-});
+}
 
-RegistrationApp.View = Backbone.View.extend({
+App.RegistrationView = Backbone.View.extend({
     el: "#registrationApp",
 
-    initialize: function(language) {
+    events: {
+        'click .lang': 'toggleLanguage'
     },
 
+    initialize: function() {
+        this.language = App.Helpers.getStoredLang();
+        this.$(".lang:visible").data("language") == this.language ? this.$(".lang").toggle() : false;
+        this.$el.i18n();
+    },
+
+    toggleLanguage: function(e) {
+        e.preventDefault();
+
+        this.language = $(e.target).data("language");
+        window.localStorage.setItem("RegistrationFormLang", this.language);
+        
+        $.i18n.init({
+            lng: this.language,
+        }).done($.proxy(function(t){
+            this.$el.i18n();
+        }, this));
+        this.$('.lang').toggle();
+    }
 });
