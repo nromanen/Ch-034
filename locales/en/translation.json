@@ -1,15 +1,27 @@
 {
     "regForm": {
         "legend": "Registration Form",
-        "login": "Login",
-        "email": "Email",
+        "login": {
+            "label": "Login",
+            "popover": {
+                "title": "Enter your login",
+                "content": "Login should be"
+            }
+        },
+        "email": {
+            "label": "E-mail",
+            "popover": {
+                "title": "Enter valid E-mail address",
+                "content": "Enter e-mail by the following sample: name@domain.zone"
+            }
+        },
         "firstName": "First Name",
         "lastName": "Last Name",
         "birthdate": "Birth Date",
         "phonenumber": "Phone number",
-        "studiedAt": "Навчався в",
-        "beginEdu": "Початок навчання",
-        "finishEdu": "Кінець навчання",
+        "studiedAt": "Studied at",
+        "beginEdu": "Begin education",
+        "finishEdu": "Finish education",
         "password": "Password",
         "repeatpassword": "Repeat password",
         "register": "Register",
@@ -31,7 +43,7 @@
                 "pattern": "Введіть коректне ім'я",
                 "bigLetterName": "Введіть ім'я з великої букви"
             },
-           "lastname": {
+            "lastname": {
                 "required": "Введіть своє прізвище",
                 "minlength": "Прізвище має містити більше 3 символів",
                 "maxlength": "Прізвище має містити не більше 30 символів",
@@ -51,7 +63,9 @@
             },
             "finishEdu": {
                 "required": "Введіть рік з діапазону 1950-2020",
-                "pattern": "Введіть рік з діапазону 1950-2020"
+                "pattern": "Введіть рік з діапазону 1950-2020",
+                "graduatedValue": "Термін навчання не повинен перевищувати 5-ти років",
+                "checkBegin": "Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ"
             },
             "graduated": {
                 "required": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>",

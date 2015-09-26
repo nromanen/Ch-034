@@ -1,7 +1,21 @@
 $(function() {
 
     //Popover
-    $('[data-toggle="popover"]').popover({container: 'body'});
+    $('#regform input').popover({
+        container: 'body',
+        html: true,
+        template: '<div class="popover"><div class="arrow"></div><h3 class="popover-title" data-i18n></h3><div class="popover-content" data-i18n></div></div>',
+        title: function() {
+            return "regForm."+$(this).attr("name")+".popover.title";
+        },
+        content: function() {
+            return "[html]regForm."+$(this).attr("name")+".popover.content";
+        },
+        trigger: 'focus'
+    }).focus(function(){
+        var popover = $(this).data('bs.popover').tip();
+        $(popover).i18n();
+    });
 
     //Datepicker
     $( "#datepicker" ).datepicker({

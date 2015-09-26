@@ -1,8 +1,20 @@
 {
     "regForm": {
         "legend": "Форма реєстрації",
-        "login": "Логін",
-        "email": "Email",
+        "login": {
+            "label": "Логін",
+            "popover": {
+                "title": "Введіть логін",
+                "content": "<b>Логін має</b>"
+            }
+        },
+        "email": {
+            "label": "E-mail",
+            "popover": {
+                "title": "Введіть E-mail",
+                "content": "Введіть e-mail за наступним зразком: name@domain.zone"
+            }
+        },
         "firstName": "Імя",
         "lastName": "Фамілія",
         "birthdate": "Дата народження",
@@ -15,7 +27,7 @@
         "register": "Зареєструватися",
         "errors": {
             "login": {
-                "required": "Це поле є обовязковим",
+                "required": "Це поле є обов'язковим",
                 "minlength": "Не менше 5 символів",
                 "maxlength": "Будь ласка, введіть не більше 40 символів",
                 "invalidformat": "Будь ласка, вкажіть правильний логін"
