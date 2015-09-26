@@ -21,7 +21,7 @@
                 <fieldset>
 
                     <legend>
-                    	<span data-i18n="regForm.legend"></span>
+                    	<span data-i18n="regForm.legend">Registration Form</span>
                     	<div class="pull-right" style=" width: 100px;">
 	                    	<a class="lang en" href="#" data-language="en">English</a>
 	            			<a class="lang ua" href="#" data-language="ua">Українська</a> 
@@ -58,6 +58,21 @@
                         <div class="col-lg-4"><label for="phonenumber" data-i18n="regForm.phonenumber"></label></div>
                         <div class="col-lg-7"><input type="text" name="phonenumber" class="form-control input-sm" data-toggle="popover" title="Тільки оператора МТС:" data-content="(050)XXX-XX-XX  (066)XXX-XX-XX (095)XXX-XX-XX  (099)XXX-XX-XX" data-trigger="focus" placeholder="(XXX) XXX-XX-XX"></div>
                         <div class="col-lg-1 error"><span class="glyphicon glyphicon-warning-sign" id="phonenumberglyph" area-hidden="true"></span></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-4"><label for="begin-edu" data-i18n="regForm.studiedAt">Studied at:</label></div>
+                        <div class="col-lg-7"><input type="text" name="graduated" class="form-control input-sm" data-toggle="popover" title="Назва ВНЗ" data-trigger="focus"></div>
+                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-4"><label for="begin-edu" data-i18n="regForm.beginEdu">Begin education</label></div>
+                        <div class="col-lg-7"><input type="text" id='beginEdu' name="beginEdu" class="form-control input-sm" data-toggle="popover" title="Початок навчання" data-content="Введіть рік вступу до ВНЗ" data-trigger="focus"></div>
+                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-lg-4"><label for="finish-edu" data-i18n="regForm.finishEdu">Finish education</label></div>
+                        <div class="col-lg-7"><input type="text" id='finishEdu' name="finishEdu" class="form-control input-sm" data-toggle="popover" title="Кінець навчання" data-content="Введіть рік закінчення ВНЗ" data-trigger="focus"></div>
+                        <div class="col-lg-1"><span class="glyphicon glyphicon-warning-sign" area-hidden="true"></span></div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="password" data-i18n="regForm.password"></label></div>

@@ -1,0 +1,62 @@
+{
+    "regForm": {
+        "legend": "Registration Form",
+        "login": "Login",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthdate": "Birth Date",
+        "phonenumber": "Phone number",
+        "studiedAt": "Навчався в",
+        "beginEdu": "Початок навчання",
+        "finishEdu": "Кінець навчання",
+        "password": "Password",
+        "repeatpassword": "Repeat password",
+        "register": "Register",
+        "errors": {
+            "login": {
+                "required": "This field is required",
+                "minlength": "Please enter at least 5 characters",
+                "maxlength": "Please enter no more than 40 characters",
+                "invalidformat": "Please provide valid login"
+            },
+            "email": {
+                "required": "This field is required",
+                "invalidformat": "Please enter a valid email address."
+            },
+            "firstname": {
+                "required": "Введіть своє ім'я",
+                "minlength": "Ім'я має містити більше 3 символів",
+                "maxlength": "Ім'я має містити не більше 30 символів",
+                "pattern": "Введіть коректне ім'я",
+                "bigLetterName": "Введіть ім'я з великої букви"
+            },
+           "lastname": {
+                "required": "Введіть своє прізвище",
+                "minlength": "Прізвище має містити більше 3 символів",
+                "maxlength": "Прізвище має містити не більше 30 символів",
+                "pattern": "Введіть коректне прізвище",
+                "bigLetterLastName": "Введіть прізвище з великої букви"
+            },
+            "birthdate" : {
+                 "required"  : "I need date",
+                 "minlength" : "Wrong format",
+                 "maxlength" : "Wrong format",
+                 "pattern"   : "Wrong format",
+                 "adult"     : "You so yang"
+            },
+            "beginEdu": {
+                "required": "Введіть рік з діапазону 1950-2015",
+                "pattern": "Введіть рік з діапазону 1950-2015"
+            },
+            "finishEdu": {
+                "required": "Введіть рік з діапазону 1950-2020",
+                "pattern": "Введіть рік з діапазону 1950-2020"
+            },
+            "graduated": {
+                "required": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>",
+                "pattern": "Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>"
+            }
+        }
+    }
+}
