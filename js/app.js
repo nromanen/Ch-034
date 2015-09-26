@@ -1,6 +1,5 @@
 $(function() {
 
-
     //Popover
     $('[data-toggle="popover"]').popover({container: 'body'});
 
@@ -68,35 +67,36 @@ $(function() {
 
         messages: {
             login: {
-                required: "regForm.errors.login.required",
-                minlength: "regForm.errors.login.minlength",
-                maxlength: "regForm.errors.login.maxlength",
-                pattern: "regForm.errors.login.invalidformat",
+                required    : "regForm.errors.login.required",
+                minlength   : "regForm.errors.login.minlength",
+                maxlength   : "regForm.errors.login.maxlength",
+                pattern     : "regForm.errors.login.invalidformat",
             },
 
             email: {
                 required: "regForm.errors.email.required",
-                email: "regForm.errors.email.invalidformat"
+                email   : "regForm.errors.email.invalidformat"
             },
 
             firstname: {
-                required: $('enter your name').html(),
-                minlength: $('productNameTooShort').html(),
-                maxlength: $('productNameTooLong').html(),
-                pattern: $('productNameIllegalCharacters').html()
+                required    : "regForm.errors.",
+                minlength   : "regForm.errors.",
+                maxlength   : "regForm.errors.",
+                pattern     : "regForm.errors."
             },
             birthdate : {
-                 required : "I need date",
-                 edult    : $('WTF').html()
+                 required : "regForm.errors.",
+                 edult    : "regForm.errors."
             }
         },
 
         errorPlacement: function(error, element) {
-            error.attr("data-i18n", "");
+            error.attr("data-i18n", error.html());
             error.appendTo(element.closest('div'));
         },
 
         highlight: function(element) {
+            $(element).parent().find('.error').remove();
             $(element).closest('.form-group').addClass('has-error');
             
         },
@@ -106,16 +106,11 @@ $(function() {
         }
 
     });
-    $.i18n.init({
-        lng: window.localStorage.getItem("RegistrationFormLang") || "en",
-        resGetPath: 'locales/__ns__-__lng__.json',
-       
-    }).done(function(t) {
 
-        $('#registrationApp').i18n();
-        console.log("done");
-        RegistrationApp.router = new RegistrationApp.Router();
-        Backbone.history.start();
+    $.i18n.init({
+        lng: App.Helpers.getStoredLang()       
+    }).done(function(t) {
+        App.registrationView = new App.RegistrationView();
     });
     
 });

@@ -15,15 +15,19 @@
     <div class="row">
         <div class="col-lg-6 col-md-offset-3">
         <div class="panel panel-default">
-            <a class="lang en" href="#/en">English</a>
-            <a class="lang ua" href="#/ua">Українська</a>
             <div class="panel-body">
                 <form action="" id="regform">
+
                 <fieldset>
 
-                    <legend data-i18n="regForm.legend">                       
-                              
-                    </legend>    
+                    <legend>
+                    	<span data-i18n="regForm.legend"></span>
+                    	<div class="pull-right" style=" width: 100px;">
+	                    	<a class="lang en" href="#" data-language="en">English</a>
+	            			<a class="lang ua" href="#" data-language="ua">Українська</a> 
+	            		</div>
+                    </legend>
+
                               
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="login" data-i18n="regForm.login"></label></div>
@@ -83,6 +87,6 @@
 <script type="text/javascript" src="assets/lib/underscore.min.js"></script>
 <script type="text/javascript" src="assets/lib/backbone.min.js"></script>
 <script type="text/javascript" src="assets/lib/i18next-latest.js"></script>
-<script type="text/javascript" src="js/app.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/app.js"></script>
 </html>
