@@ -18,6 +18,20 @@ $(function() {
         return this.optional(element) || ((currentDate.getFullYear() - userAge.getFullYear() ) > 18);
     }, "You so young!!!");
 
+    $.validator.addMethod('graduatedValue', function(value, element, param) {
+        var begin = new Date( Date.parse($(param).val() ) );
+        var finish = new Date( Date.parse( value ) );
+
+        return this.optional( element ) || finish.getFullYear() - begin.getFullYear() <= 5;
+    }, 'Термін навчання не повинен перевищувати 5-ти років');
+
+    $.validator.addMethod('checkBegin', function(value, element, param) {
+        var begin = new Date( Date.parse($(param).val() ) );
+        var finish = new Date( Date.parse( value ) );
+
+        return this.optional( element ) || finish.getFullYear() > begin.getFullYear()
+    }, 'Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ');
+
     //Phone number mask
     $("input[name='phonenumber']").mask("(999) 999-99-99");
 
@@ -85,6 +99,20 @@ $(function() {
                required: true,
                pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
             },
+            graduated: {
+                required: true,
+                pattern: /^[А-ЯЄІЇ][а-яєії]+(\s?\-?\s?[А-ЯЄІЇ]?[а-яєії]+)*/
+            },
+            beginEdu: {
+                required: true,
+                pattern: /^19[5-9][0-9]$|^20[01][0-9]$/
+                },
+            finishEdu: {
+                required: true,
+                pattern: /^19[5-9][0-9]$|^20[01][0-9]$|^2020$/,
+                graduatedValue: '#beginEdu',
+                checkBegin: '#beginEdu'
+            },
             password: {
                 required: true,
                 minlength: 8,
@@ -118,6 +146,15 @@ $(function() {
                  maxlength : 'Wrong format',
                  pattern   : 'Wrong format',
                  adult     : 'You so yang'
+            },
+            beginEdu: {
+                pattern: 'Введіть рік з діапазону 1950-2015'
+            },
+            finishEdu: {
+                pattern: 'Введіть рік з діапазону 1950-2020'
+            },
+            graduated: {
+                pattern: 'Введіть назву ВНЗ, наприклад: <em>Чернівецький Національний університет</em>'
             }
         },
 
