@@ -131,7 +131,7 @@ $(function() {
             },
             email: {
                 required: true,
-                email: true
+                pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/
             },
             firstname: {
                 required : true,
@@ -217,7 +217,7 @@ $(function() {
             },
             email: {
                 required: "regForm.errors.email.required",
-                email   : "regForm.errors.email.invalidformat"
+                pattern : "regForm.errors.email.invalidformat"
             },
             firstname: {
                 required: "regForm.errors.firstname.required",
