@@ -30,3 +30,7 @@ a.ua{
 a.en{
 	background: url(../img/flag_en.png) no-repeat 0 center;	
 }
+.open>.dropdown-menu {
+    overflow-y: scroll;
+    height: 300px;
+}
