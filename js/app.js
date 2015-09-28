@@ -272,7 +272,7 @@ $(function() {
             repeatpassword: {
                 required: "regForm.errors.repeatpassword.required",
                 minlength: "regForm.errors.repeatpassword.minlength",
-                equalTo: "regForm.errors.password.equalTo"
+                equalTo: "regForm.errors.repeatpassword.equalTo"
             }
         },
 
