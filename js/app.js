@@ -97,12 +97,13 @@ $(function() {
     }, 'Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ');
 
     $.validator.addMethod("bigLetterName", function(value, element) {
-        return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
-    }, "Введіть ім'я з великої букви");
+        return this.optional(element) || 
+        ((value.search(/^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/))!==-1);
+    });
 
     $.validator.addMethod("bigLetterLastName", function(value, element) {
-        return this.optional(element) || ((value.search(/(^[А-ЯЄІЇ]{1})|(^[А-ЯЄІЇ]{1}\-[А-ЯЄІЇ]{1})/))!==-1);
-    }, "Введіть прізвище з великої букви");
+        return this.optional(element) || 
+        ((value.search(/^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/))!==-1);});
     
     //Form validation
     $("#regform").validate({

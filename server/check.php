@@ -16,7 +16,7 @@ if(!empty($data)){
 	}	 	
 }
 else{
-	    echo "true";
+   echo "true";
 }
 
 ?>
