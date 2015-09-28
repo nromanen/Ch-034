@@ -36,4 +36,10 @@ a.en{
 }
 .open>.dropdown-menu li{
 	padding-left: 20px;
-}	
+}
+.dropdown-menu[name="country"] li {
+    cursor: pointer;
+}
+.dropdown-menu[name="country"] li:hover {
+    background-color: #CAE1F5;
+}

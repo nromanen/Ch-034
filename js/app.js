@@ -28,28 +28,25 @@ $(function() {
     });;
         
     //Selection of a country
-    $(function() {
-        var country = document.querySelector("#country");
+    var country = $("#country");
 
-        function formingCountriesList() { // this function builds a list of countries within a dropdown
-            for(var i = 0; i < 117; i++) {  
-                var el = document.createElement("li");
-                el.innerHTML = "<a role=\"menuitem\" tabindex=\"-1\" href=\"#\"></a>" + "</a>";                
-                $(el).attr("data-i18n", "regForm.country.list.id" + i).i18n();                
-                var container = document.getElementById("countriesList");
-                container.appendChild(el);
-                $(el).on("click", selectCountry);
-            }
-        };
+    function formingCountriesList() { // this function builds a list of countries within a dropdown
+        for(var i = 0; i < 117; i++) {  
+            var el = document.createElement("li");
+            $(el).html("<a role=\"menuitem\" tabindex=\"-1\" href=\"#\"></a>" + "</a>");
+            $(el).attr("data-i18n", "regForm.country.list.id" + i).i18n();                
+            $("#countriesList").append(el);
+            $(el).on("click", selectCountry);
+        }
+    };
 
-        $(country).one('click', formingCountriesList);
+    function selectCountry(event) { // displays name of the selected country in the dropdown title
+        event.preventDefault();
+        var selectedCountry = $(event.target);
+        $(country).html(selectedCountry.text()).attr('data-i18n', selectedCountry.attr('data-i18n'));
+    };
 
-        function selectCountry(event) { // displays name of the selected country in the dropdown title
-            var selectedCountry = $(event.target).text();
-            country.innerHTML = selectedCountry;
-        };
-
-    }());
+    $(country).one('click', formingCountriesList);
 
     //Phone number mask
     $("input[name='phonenumber']").mask("(999) 999-99-99");
