@@ -267,12 +267,12 @@ $(function() {
             password: {
                 required: "regForm.errors.password.required",
                 minlength: "regForm.errors.password.minlength",
-                pattern: "regForm.errors.password.pattern",
+                pattern: "regForm.errors.password.pattern"
             },
             repeatpassword: {
                 required: "regForm.errors.repeatpassword.required",
                 minlength: "regForm.errors.repeatpassword.minlength",
-                equalTo: "regForm.errors.repeatpassword.equalTo",
+                equalTo: "regForm.errors.password.equalTo"
             }
         },
 
