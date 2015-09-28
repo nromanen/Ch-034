@@ -127,11 +127,19 @@ $(function() {
                 required: true,
                 minlength: 5,
                 maxlength: 40,
-                pattern: /^[A-Za-z0-9\._\-]*$/
+                pattern: /^[A-Za-z0-9\._\-]*$/,
+                remote : {
+                    url:  "server/check.php",
+                    type: "post"
+                }
             },
             email: {
                 required: true,
-                email: true
+                email: true,
+                remote : {
+                    url:  "server/check.php",
+                    type: "post"
+                }
             },
             firstname: {
                 required : true,
@@ -214,10 +222,12 @@ $(function() {
                 minlength   : "regForm.errors.login.minlength",
                 maxlength   : "regForm.errors.login.maxlength",
                 pattern     : "regForm.errors.login.invalidformat",
+                remote      : "regForm.errors.login.isset"
             },
             email: {
                 required: "regForm.errors.email.required",
-                email   : "regForm.errors.email.invalidformat"
+                email   : "regForm.errors.email.invalidformat",
+                remote  : "regForm.errors.email.isset"
             },
             firstname: {
                 required: "regForm.errors.firstname.required",

@@ -84,11 +84,13 @@
                 "required": "This field is required",
                 "minlength": "At least 5 characters",
                 "maxlength": "Please enter no more than 40 characters",
-                "invalidformat": "Please enter the correct login"
+                "invalidformat": "Please enter the correct login",
+                "isset": "This login is already registered"
             },
             "email": {
                 "required": "This field is required",
-                "invalidformat": "Please enter a valid email address."
+                "invalidformat": "Please enter a valid email address.",
+                "isset": "This email is already registered"
             },
             "firstname": {
                 "required": "This field is required",
