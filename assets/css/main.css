@@ -34,3 +34,6 @@ a.en{
     overflow-y: scroll;
     height: 300px;
 }
+.open>.dropdown-menu li{
+	padding-left: 20px;
+}	
