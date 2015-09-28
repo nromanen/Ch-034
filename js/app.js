@@ -57,18 +57,24 @@ $(function() {
 
         var country = document.querySelector("#country");
 
-        function selectCountry() {
+        function formingCountriesList() { // this function builds a list of countries within a dropdown
             for(var i = 0; i < countriesList.length; i++) {
                 var el = document.createElement("li");
                 el.innerHTML = "<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">" + 
                     countriesList[i] + "</a>";
                 var container = document.getElementById("countriesList");
                 container.appendChild(el);
+                $(el).on("click", selectCountry);
             }
         };
 
-        $(country).one('click', selectCountry);
-        
+        $(country).one('click', formingCountriesList);
+
+        function selectCountry(event) { // displays name of the selected country in the dropdown title
+            var selectedCountry = $(event.target).text();
+            country.innerHTML = selectedCountry;
+        };
+
     }());
 
 
