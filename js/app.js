@@ -57,18 +57,23 @@ $(function() {
 
         var country = document.querySelector("#country");
 
-        function selectCountry() {
+        function formingCountriesList() { // this function builds a list of countries within a dropdown
             for(var i = 0; i < countriesList.length; i++) {
                 var el = document.createElement("li");
                 el.innerHTML = "<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">" + 
                     countriesList[i] + "</a>";
                 var container = document.getElementById("countriesList");
-                container.appendChild(el);    
+                container.appendChild(el);
+                $(el).on("click", selectCountry);
             }
         };
 
-        $(country).one('click', selectCountry);
-        
+        $(country).one('click', formingCountriesList);
+
+        function selectCountry(event) { // displays name of the selected country in the dropdown title
+            var selectedCountry = $(event.target).text();
+            country.innerHTML = selectedCountry;
+        };
 
     }());
 
@@ -136,7 +141,7 @@ $(function() {
             },
             email: {
                 required: true,
-                email: true,
+                pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
                 remote : {
                     url:  "server/check.php",
                     type: "post"
@@ -227,7 +232,7 @@ $(function() {
             },
             email: {
                 required: "regForm.errors.email.required",
-                email   : "regForm.errors.email.invalidformat",
+                pattern : "regForm.errors.email.invalidformat",
                 remote  : "regForm.errors.email.isset"
             },
             firstname: {
