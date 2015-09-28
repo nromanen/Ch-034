@@ -140,7 +140,7 @@ $(function() {
             },
             email: {
                 required: true,
-                email: true,
+                pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
                 remote : {
                     url:  "server/check.php",
                     type: "post"
@@ -231,7 +231,7 @@ $(function() {
             },
             email: {
                 required: "regForm.errors.email.required",
-                email   : "regForm.errors.email.invalidformat",
+                pattern : "regForm.errors.email.invalidformat",
                 remote  : "regForm.errors.email.isset"
             },
             firstname: {
