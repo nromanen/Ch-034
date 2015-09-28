@@ -63,13 +63,12 @@ $(function() {
                 el.innerHTML = "<a role=\"menuitem\" tabindex=\"-1\" href=\"#\">" + 
                     countriesList[i] + "</a>";
                 var container = document.getElementById("countriesList");
-                container.appendChild(el);    
+                container.appendChild(el);
             }
         };
 
         $(country).one('click', selectCountry);
         
-
     }());
 
 
