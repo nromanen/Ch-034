@@ -195,30 +195,6 @@ $(function() {
                 required: true,
                 minlength: 8,
                 equalTo: "#password"
-            },
-            graduated: {
-                required: true,
-                pattern: /^[А-ЯЄІЇ][а-яєії]+(\s?\-?\s?[А-ЯЄІЇ]?[а-яєії]+)*/
-            },
-            beginEdu: {
-                required: true,
-                pattern: /^19[5-9][0-9]$|^20[01][0-9]$/
-                },
-            finishEdu: {
-                required: true,
-                pattern: /^19[5-9][0-9]$|^20[01][0-9]$|^2020$/,
-                graduatedValue: '#beginEdu',
-                checkBegin: '#beginEdu'
-            },
-            password: {
-                required: true,
-                minlength: 8,
-                pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-            },
-            repeatpassword: {
-                required: true,
-                minlength: 8,
-                equalTo: "#password"
             }
         },
 
