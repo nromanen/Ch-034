@@ -31,7 +31,7 @@ $(function() {
     var country = $("#country");
 
     function formingCountriesList() { // this function builds a list of countries within a dropdown
-        for(var i = 0; i < 117; i++) {  
+        for(var i = 0; i < 198; i++) {  
             var el = document.createElement("li");
             $(el).html("<a role=\"menuitem\" tabindex=\"-1\" href=\"#\"></a>" + "</a>");
             $(el).attr("data-i18n", "regForm.country.list.id" + i).i18n();                
@@ -149,7 +149,10 @@ $(function() {
                 maxlength : 30,
                 pattern  : /(0[1-9]|1[012])[- \/.](0[1-9]|[12][0-9]|3[01])[- \/.](19|20)\d\d/,
                 adult    : true
-            },            
+            },
+            country: {
+                required : true
+            },
             phonenumber: {
                 required: true,
                 pattern: /^\(050\)|\(066\)|\(095\)|\(099\)/ 
@@ -214,6 +217,9 @@ $(function() {
                  maxlength : "regForm.errors.birthdate.maxlength",
                  pattern   : "regForm.errors.birthdate.pattern",
                  adult     : "regForm.errors.birthdate.adult"
+            },
+            country: {
+                required: "regForm.errors.email.required"
             },
             beginEdu: {
                 required: "regForm.errors.beginEdu.required",

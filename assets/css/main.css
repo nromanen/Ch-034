@@ -35,7 +35,7 @@ a.en{
 }
 .open>.dropdown-menu[name="country"] {
     overflow-y: scroll;
-    height: 300px;
+    height: 230px;
 }
 .dropdown-menu[name="country"] li {
     cursor: pointer;
