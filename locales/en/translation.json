@@ -38,6 +38,7 @@
         },
         "country": {
             "label": "Country",
+            "button": "Select your country",
             "list" : {
                 "id0": "Afghanistan",
                 "id1": "Albania",

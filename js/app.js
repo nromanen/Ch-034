@@ -106,7 +106,13 @@ $(function() {
                 pattern: /^[A-Za-z0-9\._\-]*$/,
                 remote : {
                     url:  "server/check.php",
-                    type: "post"
+                    type: "post",
+                    data: {
+                        email: function() {
+                            return $('#email').val();
+                        }
+                        
+                    }
                 }
             },
             email: {
@@ -114,7 +120,13 @@ $(function() {
                 pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
                 remote : {
                     url:  "server/check.php",
-                    type: "post"
+                    type: "post",
+                    data: {
+                        login: function() {
+                            return $('#login').val();
+                        }
+                        
+                    }
                 }
             },
             firstname: {
