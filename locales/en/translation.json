@@ -170,7 +170,7 @@
             "label": "Studied at",
             "popover": {
                 "title": "Name of university",
-                "content": "Enter the name of the university, such as: <em>Chernivtsi National University</em>"
+                "content": "Enter the name of the university, ex.: <em>Chernivtsi National University</em>"
             }
         },
         "beginEdu": {
@@ -248,7 +248,8 @@
             },
             "graduated": {
                 "required": "Enter a name of university",
-                "pattern": "Enter the correct name of university"
+                "pattern": "Enter the correct name of university",
+                "maxlength": "Please enter no more than 60 characters"
             },
             "password": {
                 "required": "This field is required.",

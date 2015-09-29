@@ -144,7 +144,8 @@ $(function() {
             },
             graduated: {
                 required: true,
-                pattern: /^[А-ЯЄІЇ][а-яєії]+(\s?\-?\s?[А-ЯЄІЇ]?[а-яєії]+)*/
+                maxlength: 60,
+                pattern: /^[А-ЯЄІЇ][а-яєії]{5,}(\s?\-?\s?[А-ЯЄІЇ]?[а-яєії]{5,})*$|^[A-Z][a-z]{5,}(\s?\-?\s?[A-Z]?[a-z]{5,})*$/
             },
             beginEdu: {
                 required: true,
@@ -214,7 +215,8 @@ $(function() {
             },
             graduated: {
                 required: "regForm.errors.graduated.required",
-                pattern: "regForm.errors.graduated.pattern"
+                pattern: "regForm.errors.graduated.pattern",
+                maxlength: "regForm.errors.graduated.maxlength"
             },
             password: {
                 required: "regForm.errors.password.required",
