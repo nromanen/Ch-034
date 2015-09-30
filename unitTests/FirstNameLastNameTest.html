@@ -12,6 +12,10 @@
     <!-- Link as many task files as required here -->
     <script type="text/javascript" src="FirstNameLastName.js"></script>
 	<script>
+   function testName(testName) {
+  var regexp = /^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/;
+  return regexp.test(testName);
+};
         QUnit.done(function (details) {
             var successRate = Math.round(details.passed / details.total * 100);
             var color = successRate >= 50 ? "green" : "red";
@@ -21,35 +25,54 @@
         });
         // PLACE YOUR TESTS BELOW
         // Use this manual to create tests: http://qunitjs.com/cookbook/
-        // Task 01
-		// module("some");
-        test("Test some: Checking true", function() {
+		module("FirstNameLastName");
+        test("Test Names: Checking true", function() {
 		    var expected = true; 
-        var actual = true;
-            deepEqual(expected, actual, "We expect value to be true");
+        var actual = testName("Андрій");
+            deepEqual(expected, actual, "One name true");
         });
-		
-		
-		
-		// module("Task 02");
-		// var myCat = new Cat("red", "Garfield");
-		
-		// QUnit.test("Test 02_1: Checking 5+3+2", function(assert) {
-		//     var actual = task02("red", "Garfield");
-  //           assert.deepEqual(actual, myCat, 'OK' );
-  //       });
-		
-					
-						
-		// module("Task 03");
-  //       test("Test 03_1: Checking 5+3+2", function() {
-		// 	var cat = new Cat("red", "Garfield");
-		// 	var expected = "red cat Garfield run!"
-		// 	var actual = cat.action();
-  //           //var value = task03b(val);
-  //           deepEqual(actual, expected, "We expect value to be equal 8");
-  //       });
-		
+
+        test("Test Names: Checking true", function() {
+        var expected = true; 
+        var actual = testName("Андрій-Іван");
+            deepEqual(expected, actual, "Double name pass");
+        });
+
+        test("Test Names: Checking false", function() {
+        var expected = false; 
+        var actual = testName("андрій");
+            deepEqual(expected, actual, "Double name with small letter in first name not pass");
+        });
+
+        test("Test Names: Checking false", function() {
+        var expected = false; 
+        var actual = testName("Андрій-iван");
+            deepEqual(expected, actual, "Double name with small letter in second name not pass");
+        });
+
+        test("Test Names: Checking false", function() {
+        var expected = false; 
+        var actual = testName("Андрій-Іван-Ігор");
+            deepEqual(expected, actual, "Triple name not pass");
+        });
+
+        test("Test Names: Checking false", function() {
+        var expected = false; 
+        var actual = testName(" Андрій");
+            deepEqual(expected, actual, "White space first char check");
+        });
+
+        test("Test Names: Checking false", function() {
+        var expected = false; 
+        var actual = testName("Анд рій");
+            deepEqual(expected, actual, "White space not first char check");
+        });
+
+        test("Test Names: Checking false", function() {
+        var expected = false; 
+        var actual = testName("Анд#рій");
+            deepEqual(expected, actual, "Invalid char check");
+        });
     </script>
 </body>
 </html>
