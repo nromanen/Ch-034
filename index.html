@@ -22,7 +22,7 @@
 
                     <legend>
                     	<span data-i18n="regForm.legend">Registration Form</span>
-                    	<div class="pull-right" style=" width: 100px;">
+                    	<div class="language-switcher pull-right">
 	                    	<a class="lang en" href="#" data-language="en">English</a>
 	            			<a class="lang ua" href="#" data-language="ua">Українська</a> 
 	            		</div>
@@ -31,12 +31,12 @@
                               
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="login" data-i18n="regForm.login.label"></label></div>
-                        <div class="col-lg-7"><input type="text" name="login" class="form-control input-sm" data-toggle="popover" ></div>
+                        <div class="col-lg-7"><input type="text" name="login" id="login" class="form-control input-sm" data-toggle="popover" ></div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="email" data-i18n="regForm.email.label"></label></div>
-                        <div class="col-lg-7"><input type="text" name="email" class="form-control input-sm" data-toggle="popover"></div>
+                        <div class="col-lg-7"><input type="text" name="email" id="email" class="form-control input-sm" data-toggle="popover"></div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row form-group">
@@ -57,7 +57,7 @@
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="country" data-i18n="regForm.country.label"></label></div>
                         <div class="dropdown col-lg-7"><button class="btn btn-default dropdown-toggle col-xs-12" type="button" 
-                            id="country" data-toggle="dropdown">Select your country <span class="caret"></span></button>
+                            name="country" id="country" data-toggle="dropdown" data-i18n="regForm.country.button">Select your country <span class="caret"></span></button>
                             <ul class="dropdown-menu col-xs-12" id="countriesList" role="menu" aria-labelledby="country"
                             name="country"></ul>
                         </div>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="row form-group">
                         <div class="col-lg-4"><label for="password" data-i18n="regForm.password.label"></label></div>
-                        <div class="col-lg-7"><input type="password" name="password" class="form-control input-sm" data-toggle="popover"></div>
+                        <div class="col-lg-7"><input id="password" type="password" name="password" class="form-control input-sm" data-toggle="popover"></div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row form-group">

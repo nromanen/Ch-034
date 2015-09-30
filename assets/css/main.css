@@ -1,5 +1,5 @@
 #registrationApp {
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 .glyphicon {
@@ -13,6 +13,9 @@
 .error{
 	color: #FD5A5A;
 	font-size: 12px;
+}
+.language-switcher {
+    width: 100px;
 }
 a.lang {    
     padding-left: 20px;
@@ -30,7 +33,14 @@ a.ua{
 a.en{
 	background: url(../img/flag_en.png) no-repeat 0 center;	
 }
-.open>.dropdown-menu {
+.open>.dropdown-menu[name="country"] {
     overflow-y: scroll;
-    height: 300px;
+    height: 230px;
+}
+.dropdown-menu[name="country"] li {
+    cursor: pointer;
+    padding-left: 20px;
+}
+.dropdown-menu[name="country"] li:hover {
+    background-color: #CAE1F5;
 }
