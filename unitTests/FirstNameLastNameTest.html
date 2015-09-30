@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SoftServe IT Academy Automated JavaScript hometask checker Module 01: Sample </title>
+    <link href="../assets/lib/qunit-1.19.0css.js" rel="stylesheet" />
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    <script src="../assets/lib/qunit-1.19.0.js"></script>
+    <!-- Link as many task files as required here -->
+    <script type="text/javascript" src="FirstNameLastName.js"></script>
+	<script>
+        QUnit.done(function (details) {
+            var successRate = Math.round(details.passed / details.total * 100);
+            var color = successRate >= 50 ? "green" : "red";
+            var successHTML = "<br><b>Success rate: <font color='"+ color +"'>" + successRate + "</font></b>";
+            var resultDiv = document.getElementById("qunit-testresult");
+            resultDiv.innerHTML += successHTML;
+        });
+        // PLACE YOUR TESTS BELOW
+        // Use this manual to create tests: http://qunitjs.com/cookbook/
+        // Task 01
+		// module("some");
+        test("Test some: Checking true", function() {
+		    var expected = true; 
+        var actual = true;
+            deepEqual(expected, actual, "We expect value to be true");
+        });
+		
+		
+		
+		// module("Task 02");
+		// var myCat = new Cat("red", "Garfield");
+		
+		// QUnit.test("Test 02_1: Checking 5+3+2", function(assert) {
+		//     var actual = task02("red", "Garfield");
+  //           assert.deepEqual(actual, myCat, 'OK' );
+  //       });
+		
+					
+						
+		// module("Task 03");
+  //       test("Test 03_1: Checking 5+3+2", function() {
+		// 	var cat = new Cat("red", "Garfield");
+		// 	var expected = "red cat Garfield run!"
+		// 	var actual = cat.action();
+  //           //var value = task03b(val);
+  //           deepEqual(actual, expected, "We expect value to be equal 8");
+  //       });
+		
+    </script>
+</body>
+</html>

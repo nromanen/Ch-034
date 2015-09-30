@@ -100,16 +100,7 @@ $(function() {
 
         return this.optional( element ) || finish.getFullYear() > begin.getFullYear()
     }, 'Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ');
-
-    $.validator.addMethod("bigLetterName", function(value, element) {
-        return this.optional(element) || 
-        ((value.search(/^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/))!==-1);
-    });
-
-    $.validator.addMethod("bigLetterLastName", function(value, element) {
-        return this.optional(element) || 
-        ((value.search(/^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/))!==-1);});
-    
+ 
     //Form validation
     $("#regform").validate({
         
@@ -151,14 +142,14 @@ $(function() {
                 required : true,
                 minlength : 3,
                 maxlength : 30,
-                pattern : /([а-яєії']+$)|([а-яєії']+\-[а-яєії']+$)/,
+                pattern : /^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/,
                 bigLetterName : true
             },
             lastname: {
                 required : true,
                 minlength : 3,
                 maxlength : 30,
-                pattern : /([а-яєії']+$)|([а-яєії']+\-[а-яєії']+$)/,
+                pattern : /^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/,
                 bigLetterLastName : true
             },
             birthdate: {
