@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SoftServe UI Course: testing of registration form</title>
+    <link href="qunit.css" rel="stylesheet" />
+    <script src="qunit.js"></script>
+</head>
+<body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+    
+   <script src="module4_musurivsky_hw.js"></script>
+    
+    <!-- testing of Module "Reg form" -->
+    <script type="text/javascript" src="../assets/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/additional-methods.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/jquery.maskedinput.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/underscore.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/backbone.min.js"></script>
+    <script type="text/javascript" src="../assets/lib/i18next-latest.js"></script>
+    <script type="text/javascript" src="../js/index.js"></script>
+    <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="qunit/test-rules.js"></script>
+
+    <!-- test rules -->
+    <script type="text/javascript" src="test.js"></script>
+    <script>
+        QUnit.done(function (details) {
+            var successRate = Math.round(details.passed / details.total * 100);
+            var color = successRate >= 50 ? "green" : "red";
+            var successHTML = "<br><b>Success rate: <font color='"+ color +"'>" + successRate + "</font></b>";
+            var resultDiv = document.getElementById("qunit-testresult");
+            resultDiv.innerHTML += successHTML;
+        });
+
+        // reg-form testing
+        module("Task 01: checking LOGIN");
+        QUnit.test("Test 01-1: checking of having needed rules' validation for field LOGIN", function() {
+            var actual = Object.keys(validateRules.rules.login).sort();
+            var expected  = ["required", "minlength", "maxlength", "pattern", "remote"].sort();
+            var actualNum = actual.length;
+
+            expect(2);
+            deepEqual(actual, expected, 'All needed validation rules\' for field LOGIN (required, minlength, maxlength, pattern, remote) must be written !');
+            ok(actualNum == 5, 'Validation rules\' count must be equal 5.');
+        });
+        QUnit.test("Test 01-2: validation rules for field LOGIN", function() {
+            var actualRequired = validateRules.rules.login.required;
+            var actualMinLength = validateRules.rules.login.minlength;
+            var actualMaxLength = validateRules.rules.login.maxlength;
+            var actualPattern = new RegExp();
+            actualPattern = validateRules.rules.login.pattern;
+
+            expect(4);
+            ok(actualRequired, 'Field LOGIN must be required!');
+            equal(actualMinLength, 5, 'Minimum length of field LOGIN must be equal 5.');
+            equal(actualMaxLength, 40, 'Max length of field LOGIN must be equal 40.');
+            deepEqual(actualPattern, /^[A-Za-z0-9\._\-]*$/, 'Field LOGIN must be in valid format.');
+        }); 
+
+
+        module("Task 02: checking FIRSTNAME");
+        QUnit.test("Test 02-1: checking of having needed rules' validation for field FIRSTNAME", function() {
+            var actual = Object.keys(validateRules.rules.firstname).sort();
+            var expected  = ["required", "minlength", "maxlength", "pattern", "bigLetterName"].sort();
+            var actualNum = actual.length;
+
+            expect(2);
+            deepEqual(actual, expected, 'All needed validation rules\' for field FIRSTNAME (required, minlength, maxlength, pattern, bigLetterName) must be written !');
+            ok(actualNum == 5, 'Validation rules\' count must be equal 5.');
+
+        });
+        QUnit.test("Test 02-2: validation rules for field FIRSTNAME", function() {
+            var actualRequired = validateRules.rules.firstname.required;
+            var actualMinLength = validateRules.rules.firstname.minlength;
+            var actualMaxLength = validateRules.rules.firstname.maxlength;
+            var actualPattern = new RegExp();
+            actualPattern = validateRules.rules.firstname.pattern;            
+            var expectedPattern =  /^[А-ЯЄІЇ]'?[а-яєії']*[а-яєії]*\-[А-ЯЄІЇ][а-яєії']+$|^[А-ЯЄІЇ][а-яєії']+$/;
+            var actualFistLetter = validateRules.rules.firstname.bigLetterName;
+
+            expect(5);
+            ok(actualRequired, 'Field FIRSTNAME must be required!');
+            equal(actualMinLength, 3, 'Minimum length of field FIRSTNAME must be equal 3.');
+            equal(actualMaxLength, 30, 'Max length of field FIRSTNAME must be equal 30.');
+            deepEqual(actualPattern, expectedPattern, 'Field FIRSTNAME must be in valid format.');
+            ok(actualFistLetter, 'Field FIRSTNAME must be written with a capital first letter!');
+        });
+
+
+      </script>  
+
+</body>
+</html>

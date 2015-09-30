@@ -1,4 +1,4 @@
-$(function() {
+//$(function() {
 
     //Popover
     $('#regform input').popover({
@@ -72,7 +72,8 @@ $(function() {
     }, 'Дата вступу до ВНЗ не повинна бути більшою, ніж дата закінчення ВНЗ');
  
     //Form validation
-    $("#regform").validate({
+    //$("#regform").validate({
+    validateRules = {    
         
         focusCleanup: true,
         onkeyup: false,
@@ -253,7 +254,9 @@ $(function() {
             $(element).closest('.form-group').removeClass('has-error');
         }
 
-    });
+    };
+    //});
+    $("#regform").validate(validateRules);
 
     $.i18n.init({
         lng: App.Helpers.getStoredLang()       
@@ -261,4 +264,4 @@ $(function() {
         App.registrationView = new App.RegistrationView();
     });
     
-});
+//});
