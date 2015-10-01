@@ -3,4 +3,5 @@ bower_components
 .sass-cache
 .tmp
 build
-/src/libs
+src/js/libs
+src/assets

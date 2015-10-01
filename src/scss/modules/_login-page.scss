@@ -1,10 +1,10 @@
 $white: #ffffff;
 $black: #000000;
 
-html,
-body,
-ul,
-ol {
-    margin: 0;
-    padding: 0;
+.login-form {
+    margin: 0 auto;
+}
+
+.login-form .input-group-addon {
+    width: 40px;
 }

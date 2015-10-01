@@ -72,8 +72,8 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['src/js/**', '!src/js/libs'],
-                tasks: ['jshint:dev']
+                files: ['src/**', '!src/js/libs', '!src/assets/css/*'],
+                tasks: ['jshint:dev', 'sass']
             }
         },
 
