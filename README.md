@@ -9,7 +9,7 @@ npm install -- to install node modules
 
 bower install -- to install vendors libraries
 
-grunt copy-bower -- to copy vendors libraries to dev environment
+grunt copy-libs -- to copy vendors libraries to dev environment
 
 grunt build:dev -- to build project for development
 

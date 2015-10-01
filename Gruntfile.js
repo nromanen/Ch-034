@@ -7,7 +7,7 @@ module.exports = function(grunt ) {
 
         jshint: {
             dev: {
-              src: ['src/js/*']
+              src: ['src/js/*', '!src/js/libs']
             },
         },
 
@@ -17,7 +17,7 @@ module.exports = function(grunt ) {
                 style: 'compressed'
               },
               files: {
-                'src/css/main.min.css': 'src/scss/index.scss',
+                'src/assets/css/main.min.css': 'src/scss/index.scss',
               }
             }
         },
@@ -32,66 +32,34 @@ module.exports = function(grunt ) {
                             'jquery/dist/jquery.min.js', 
                             'underscore/underscore-min.js', 
                             'backbone/backbone-min.js', 
-                            'bootstrap/dist/js/bootstrap.min.js'
-                        ], flatten: true, dest: 'src/libs/js/'
+                            'bootstrap/dist/js/bootstrap.min.js',
+                            '../node_modules/requirejs/require.js',
+                            'requirejs-text/text.js'
+                        ], flatten: true, dest: 'src/js/libs/'
                     },
 
                     {
                         expand: true, cwd: 'bower_components/', src: 
                         [
                             'bootstrap/dist/css/bootstrap.min.css'
-                        ], flatten: true, dest: 'src/libs/css/'
+                        ], flatten: true, dest: 'src/assets/css/'
                     },
 
                     {
                         expand: true, cwd: 'bower_components/', src: 
                         [
                             'bootstrap/dist/fonts/*'
-                        ], flatten: true, dest: 'src/libs/fonts/'
-                    },
+                        ], flatten: true, dest: 'src/assets/fonts/'
+                    }
                 ]
             },
 
             src: {
                 files: [
                     {expand: true, src: ['src/index.html'], flatten: true, dest: 'build/'},
-                    {expand: true, src: ['src/css/*'], flatten: true, dest: 'build/css/'},
-                    {expand: true, cwd: 'src/', src: ['libs/**'], dest: 'build/'},
+                    {expand: true, src: ['src/assets/css/*'], flatten: true, dest: 'build/assets/css/'},
+                    {expand: true, cwd: 'src/', src: ['js/libs/**'], dest: 'build/'},
                 ]
-            }
-        },
-
-        useminPrepare: {
-            html: 'src/index.html',
-            options: {
-                root: 'src/',
-                dest: 'build/',
-                flow: {
-                    steps: {
-                        js: ['concat', 'uglify'],
-                    },
-                    post: {
-                        js: [{
-                            name: 'uglify',
-                            createConfig: function(context, block){
-                                var generated = context.options.generated;
-                                generated.options = {
-                                    banner: '/*SoftServe ITA <%= pkg.name %> - v<%= pkg.version %> - ' +
-                                            '<%= grunt.template.today("yyyy-mm-dd") %> */\n',
-                                    beautify: {
-                                        ascii_only: true
-                                    },
-                                    compress: {
-                                        hoist_funs: false,
-                                        join_vars: true,
-                                        loops: false,
-                                        unused: true
-                                  }
-                                };
-                            }
-                        }]
-                    }
-                }
             }
         },
 
@@ -104,8 +72,19 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['src/js/**'],
+                files: ['src/js/**', '!src/js/libs'],
                 tasks: ['jshint:dev']
+            }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: "src/js",
+                    mainConfigFile: "src/js/require-conf.js",
+                    name: "app",
+                    out: "build/js/main.js"
+                }
             }
         },
 
@@ -129,12 +108,13 @@ module.exports = function(grunt ) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 
-    grunt.registerTask('copy-bower', ['copy:libs']);
-    grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
+    grunt.registerTask('copy-libs', ['copy:libs']);
+    grunt.registerTask('build:dev', ['copy-libs', 'jshint:dev', 'sass']);
     grunt.registerTask('serve', ['connect:dev', 'watch']);
-    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass', 'copy:src', 'useminPrepare', 'concat:generated', 'uglify:generated', 'usemin']);
+    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass', 'copy:src', 'requirejs:compile']);
     grunt.registerTask('default', []);
     
 };
