@@ -1,3 +1,7 @@
+![CRSMS](https://github.com/okrasn/Ch-034/app/img/github_header.png)
+# SoftServe Course Management System [Client Side Part]
+SSITA Ch-034 group
+
 ## Setup project
 *Note:* [Node.js](https://nodejs.org/en/) and [Ruby](http://rubyinstaller.org/downloads/) must be installed on you OS system
 
@@ -29,3 +33,5 @@ In project root folder
 
 
 ### Commit changes
+`git commit -am "<MESSAGE>"`  
+`git push`
