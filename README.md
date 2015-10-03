@@ -1,5 +1,5 @@
-![CRSMS](https://raw.githubusercontent.com/okrasn/Ch-034/master/app/img/github_header.png)
-# SoftServe Course Management System [Client Side Part]
+![SoftServe Course Management System](https://raw.githubusercontent.com/okrasn/Ch-034/master/app/img/github_header.png)
+[Client Side Part]
 SSITA Ch-034 group
 
 ## Setup project
