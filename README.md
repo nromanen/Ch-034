@@ -1,14 +1,10 @@
-## Config Git
+### Config Git
 `git config --global user.name "YOUR NAME"`
-
 `git config --global user.email "YOUR EMAIL ADDRESS"`
 
-
-# Clone repository
+### Clone repository
 `git clone https://github.com/YOUR-USERNAME/Ch-034.git`
 
-
-# Add upstream
+### Add upstream
 `git remote -v`
-
 `git remote add upstream https://github.com/okrasn/Ch-034.git`
