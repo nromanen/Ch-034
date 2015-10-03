@@ -10,8 +10,8 @@ module.exports = ->
     # development file path.
     "dist/styles.css":
 
-      # Point this to where your `index.css` file is location.
-      src: "app/styles/index.css"
+      # Point this to where your file is location.
+      src: "app/styles/styles.css"
 
       # The relative path to use for the @imports.
       paths: ["app/styles"]
