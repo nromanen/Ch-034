@@ -1,4 +1,4 @@
-![CRSMS](https://github.com/okrasn/Ch-034/app/img/github_header.png)
+![CRSMS](https://raw.githubusercontent.com/okrasn/Ch-034/master/app/img/github_header.png)
 # SoftServe Course Management System [Client Side Part]
 SSITA Ch-034 group
 
