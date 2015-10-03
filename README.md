@@ -1,5 +1,5 @@
 ![SoftServe Course Management System](https://raw.githubusercontent.com/okrasn/Ch-034/master/app/img/github_header.png)
-[Client Side Part]
+[Client Side Part]  
 SSITA Ch-034 group
 
 ## Setup project
