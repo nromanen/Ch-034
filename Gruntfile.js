@@ -69,7 +69,7 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['app/**', '!app/assets/css/*'],
+                files: ['app/**', '!app/assets/css/*', 'build/**'],
                 tasks: ['jshint:dev', 'sass']
             }
         },
@@ -112,7 +112,20 @@ module.exports = function(grunt ) {
                     ]
                 }
               }
-            }   
+            },
+
+            prod: {
+              options: {
+                livereload: true,
+                port: 8034,
+                //base: 'app',
+                middleware: function(connect) {
+                    return [
+                        serveStatic('build')
+                    ]
+                }
+              }
+            }
         }
     });
 
@@ -131,6 +144,7 @@ module.exports = function(grunt ) {
     grunt.registerTask('copy-libs', ['copy:libs']);
     grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
     grunt.registerTask('serve', ['connect:dev', 'watch']);
+    grunt.registerTask('serve:prod', ['connect:prod', 'watch']);
     grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'bowercopy', 'processhtml', 'requirejs:compile']);
     grunt.registerTask('default', []);
     

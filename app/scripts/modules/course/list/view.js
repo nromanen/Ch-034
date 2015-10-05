@@ -12,14 +12,13 @@ define(function(require, exports, module) {
         },
 
         render: function() {
-            console.log("fetched");
-            this.$el.html("");
-            this.collection.each(function(course) {
-                this.$el.append(new Item({
-                    model: course
-                }).render());
-            }, this);
-            console.log(this.$el);
+            this.collection.each(this.renderOne, this);
+        },
+
+        renderOne: function(model) {
+            this.$el.append(new Item({
+                model: model
+            }).render());
         }
 
         

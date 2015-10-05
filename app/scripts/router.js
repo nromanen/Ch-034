@@ -10,7 +10,7 @@ define(function(require, exports, module) {
 
     var Router = Backbone.Router.extend({
         initialize: function() {
-            console.log("inited");
+            
             this.courses = new Course.Collection();
             
             var MainLayout = Backbone.View.extend({
@@ -18,7 +18,7 @@ define(function(require, exports, module) {
                 template: _.template(require('text!./templates/main.html')),
 
                 render: function() {
-                    this.$el.html(this.template);
+                    this.$el.prepend(this.template);
                 }
             });
             this.container = new MainLayout();
@@ -33,7 +33,7 @@ define(function(require, exports, module) {
 
         index: function() {
             new Course.Views.List({collection: this.courses});
-            this.courses.fetch({reset: true});
+            this.courses.fetch();
         },
 
         five: function() {
