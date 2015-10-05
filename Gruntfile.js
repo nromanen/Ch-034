@@ -11,7 +11,7 @@ module.exports = function(grunt ) {
 
         jshint: {
             dev: {
-              src: ['app/scripts/*']
+              src: ['app/*', '!app/styles', '!app/index.html', '!app/templates']
             },
         },
 
@@ -21,7 +21,7 @@ module.exports = function(grunt ) {
                 style: 'compressed'
               },
               files: {
-                'app/assets/css/main.min.css': 'app/scss/index.scss',
+                'app/styles/main.min.css': 'app/styles/scss/index.scss',
               }
             },
 
@@ -30,7 +30,7 @@ module.exports = function(grunt ) {
                 style: 'compressed'
               },
               files: {
-                'build/assets/css/main.min.css': 'app/scss/index.scss',
+                'build/styles/main.min.css': 'app/styles/scss/index.scss',
               }
             }
 
@@ -38,16 +38,20 @@ module.exports = function(grunt ) {
 
         copy: {
             html: {
-                files: [
-                    {expand: true, src: ['app/index.html'], flatten: true, dest: 'build/'},
-                ]
+                files: 
+                    [{expand: true, src: ['app/index.html'], flatten: true, dest: 'build/'}]
+            },
+
+            images: {
+                files:
+                    [{expand: true, src: ['app/img/*'], flatten: true, dest: 'build/img'}]
             }
         },
 
         bowercopy: {
             css: {
                 options: {
-                    destPrefix: 'build/assets/css'
+                    destPrefix: 'build/styles'
                 },
                 files: {
                     'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
@@ -55,10 +59,10 @@ module.exports = function(grunt ) {
             },
             fonts: {
                 options: {
-                    destPrefix: 'build/assets/'
+                    destPrefix: 'build/'
                 },
                 files: {
-                    'build/assets/fonts': 'bootstrap/dist/fonts'
+                    'fonts': 'bootstrap/dist/fonts'
                 }
             }
 
@@ -69,7 +73,7 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['app/**', '!app/assets/css/*', 'build/**'],
+                files: ['app/**', '!app/styles/**', 'build/**'],
                 tasks: ['jshint:dev', 'sass']
             }
         },
@@ -77,12 +81,12 @@ module.exports = function(grunt ) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: "app/scripts",
+                    baseUrl: "app/",
                     include: ['main'],
                     insertRequire: ['main'],
-                    mainConfigFile: "app/scripts/config.js",
-                    name: "../../vendor/bower/almond/almond",
-                    out: "build/scripts/main.js"
+                    mainConfigFile: "app/config.js",
+                    name: "../vendor/bower/almond/almond",
+                    out: "build/main.js"
                 }
             }
         },
@@ -117,7 +121,7 @@ module.exports = function(grunt ) {
             prod: {
               options: {
                 livereload: true,
-                port: 8034,
+                port: 8834,
                 //base: 'app',
                 middleware: function(connect) {
                     return [
@@ -143,9 +147,9 @@ module.exports = function(grunt ) {
     
     grunt.registerTask('copy-libs', ['copy:libs']);
     grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
-    grunt.registerTask('serve', ['connect:dev', 'watch']);
-    grunt.registerTask('serve:prod', ['connect:prod', 'watch']);
-    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'bowercopy', 'processhtml', 'requirejs:compile']);
+    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'copy:images', 'bowercopy', 'processhtml', 'requirejs:compile']);
+    grunt.registerTask('server:dev', ['connect:dev', 'watch']);
+    grunt.registerTask('server:prod', ['connect:prod', 'watch']);
     grunt.registerTask('default', []);
     
 };
