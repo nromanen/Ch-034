@@ -1,0 +1,13 @@
+.navbar-centered {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 10px;
+    text-align: center;
+    margin: auto;
+    height:100%;
+    z-index:-1;
+}
+.navbar-centered>.navbar-brand {
+    float: none;
+}
