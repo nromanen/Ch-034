@@ -1,0 +1,46 @@
+
+.course {
+    background-color: $courseBgColor;
+    background-clip: content-box;
+    margin-bottom: 25px;
+}
+
+.course .course-img {
+    margin-top: 25%;
+    display: block;
+    width: 125px;
+    height: 125px;
+}
+
+.course .accordion {
+    color: $accordionTextColor
+}
+
+.course .accordion .accordion-heading {
+    border-bottom: 1px dashed $accordionTextColor;
+    text-align: right;
+}
+
+.course .accordion .accordion-heading .accordion-toggle {
+    text-decoration: none; 
+    color: $accordionTextColor;
+}
+
+.course .accordion .accordion-inner {
+    border-bottom: 1px dashed $accordionTextColor;
+}
+
+.course .course-action {
+    margin-top: 25px;
+}
+
+.course .course-action .course-schedule {
+    height: 40px;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+.course .course-schedule span {
+    display: table-cell;
+    vertical-align: middle;
+    height: 40px;
+}

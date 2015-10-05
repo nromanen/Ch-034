@@ -1,7 +1,7 @@
 node_modules
-bower_components
 .sass-cache
 .tmp
 build
-src/js/libs
-src/assets
+vendor
+app/assets/css
+app/assets/fonts

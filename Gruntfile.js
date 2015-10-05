@@ -1,70 +1,67 @@
 module.exports = function(grunt ) {
     "use strict";
     
+    var serveStatic = require('serve-static');
+    var connect = require('connect');
+
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: ['build'],
 
         jshint: {
             dev: {
-              src: ['src/js/*', '!src/js/libs']
+              src: ['app/scripts/*']
             },
         },
 
         sass: {
-            dist: {
+            dev: {
               options: {
                 style: 'compressed'
               },
               files: {
-                'src/assets/css/main.min.css': 'src/scss/index.scss',
+                'app/assets/css/main.min.css': 'app/scss/index.scss',
+              }
+            },
+
+            prod: {
+              options: {
+                style: 'compressed'
+              },
+              files: {
+                'build/assets/css/main.min.css': 'app/scss/index.scss',
               }
             }
+
         },
 
         copy: {
-            libs: {
-                files:
-                [
-                    {
-                        expand: true, cwd: 'bower_components/', src: 
-                        [
-                            'jquery/dist/jquery.min.js', 
-                            'underscore/underscore-min.js', 
-                            'backbone/backbone-min.js', 
-                            'bootstrap/dist/js/bootstrap.min.js',
-                            '../node_modules/requirejs/require.js',
-                            'requirejs-text/text.js'
-                        ], flatten: true, dest: 'src/js/libs/'
-                    },
-
-                    {
-                        expand: true, cwd: 'bower_components/', src: 
-                        [
-                            'bootstrap/dist/css/bootstrap.min.css'
-                        ], flatten: true, dest: 'src/assets/css/'
-                    },
-
-                    {
-                        expand: true, cwd: 'bower_components/', src: 
-                        [
-                            'bootstrap/dist/fonts/*'
-                        ], flatten: true, dest: 'src/assets/fonts/'
-                    }
-                ]
-            },
-
-            src: {
+            html: {
                 files: [
-                    {expand: true, src: ['src/index.html'], flatten: true, dest: 'build/'},
-                    {expand: true, src: ['src/assets/css/*'], flatten: true, dest: 'build/assets/css/'},
-                    {expand: true, cwd: 'src/', src: ['js/libs/**'], dest: 'build/'},
+                    {expand: true, src: ['app/index.html'], flatten: true, dest: 'build/'},
                 ]
             }
         },
 
-        usemin: {
-            html: ['build/index.html']
+        bowercopy: {
+            css: {
+                options: {
+                    destPrefix: 'build/assets/css'
+                },
+                files: {
+                    'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+                }
+            },
+            fonts: {
+                options: {
+                    destPrefix: 'build/assets/'
+                },
+                files: {
+                    'build/assets/fonts': 'bootstrap/dist/fonts'
+                }
+            }
+
         },
 
         watch: {
@@ -72,7 +69,7 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['src/**', '!src/js/libs', '!src/assets/css/*'],
+                files: ['app/**', '!app/assets/css/*'],
                 tasks: ['jshint:dev', 'sass']
             }
         },
@@ -80,10 +77,20 @@ module.exports = function(grunt ) {
         requirejs: {
             compile: {
                 options: {
-                    baseUrl: "src/js",
-                    mainConfigFile: "src/js/require-conf.js",
-                    name: "app",
-                    out: "build/js/main.js"
+                    baseUrl: "app/scripts",
+                    include: ['main'],
+                    insertRequire: ['main'],
+                    mainConfigFile: "app/scripts/config.js",
+                    name: "../../vendor/bower/almond/almond",
+                    out: "build/scripts/main.js"
+                }
+            }
+        },
+
+        processhtml: {
+            dist: {
+                files: {
+                    'build/index.html': ['app/index.html']
                 }
             }
         },
@@ -93,7 +100,17 @@ module.exports = function(grunt ) {
               options: {
                 livereload: true,
                 port: 8034,
-                base: 'src/'
+                //base: 'app',
+                middleware: function(connect) {
+                    return [
+                        serveStatic('.tmp'),
+                        connect().use(
+                            '/vendor/bower',
+                            serveStatic('./vendor/bower')
+                        ),
+                        serveStatic('app')
+                    ]
+                }
               }
             }   
         }
@@ -102,19 +119,19 @@ module.exports = function(grunt ) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-bowercopy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-usemin');
+    grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 
+    
     grunt.registerTask('copy-libs', ['copy:libs']);
-    grunt.registerTask('build:dev', ['copy-libs', 'jshint:dev', 'sass']);
+    grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
     grunt.registerTask('serve', ['connect:dev', 'watch']);
-    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass', 'copy:src', 'requirejs:compile']);
+    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'bowercopy', 'processhtml', 'requirejs:compile']);
     grunt.registerTask('default', []);
     
 };
