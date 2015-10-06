@@ -2,6 +2,7 @@ define(function(require, exports, module) {
     "use strict";
 
     var Backbone = require("backbone");
+    
     var CourseItemView = Backbone.View.extend({
         template: _.template(require("text!./template.html")),
 

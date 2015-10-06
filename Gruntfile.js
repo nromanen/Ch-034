@@ -4,7 +4,6 @@ module.exports = function(grunt ) {
     var serveStatic = require('serve-static');
     var connect = require('connect');
 
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: ['build'],

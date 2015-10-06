@@ -1,8 +1,8 @@
 require(["app", "router"], function (app, Router) {
 
         app.router = new Router();
-
-        Backbone.history.start({ pushState: true, root: app.root });
+        //{ pushState: true, root: app.root }
+        Backbone.history.start();
         $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
             // Get the absolute anchor href.
             var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };

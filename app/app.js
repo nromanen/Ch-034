@@ -12,4 +12,5 @@ define(function(require, exports, module) {
 
     app.root = "/";
     app.api = "http://localhost:3000/";
+    app.pageSize = 5;
 });
