@@ -1,19 +1,47 @@
 define(function(require, exports, module) {
-  "use strict";
+    "use strict";
+    var app = require("app");
 
-  // External dependencies.
-  var Backbone = require("backbone");
+    var Login = require("modules/login/index");
+    var Course = require("modules/course/index");
+    //require("bootstrap");
 
-  // Defining the application router.
-  var Router = Backbone.Router.extend({
-    routes: {
-      "": "index"
-    },
+    var Backbone = require("backbone");
 
-    index: function() {
-      console.log("Welcome to your / route.");
-    }
-  });
+    var Router = Backbone.Router.extend({
+        initialize: function() {
+            
+            this.courses = new Course.Collection();
+            
+            var MainLayout = Backbone.View.extend({
+                el: "body",
+                template: _.template(require('text!./templates/main.html')),
 
-  module.exports = Router;
+                render: function() {
+                    this.$el.prepend(this.template);
+                }
+            });
+            this.container = new MainLayout();
+            this.container.render();
+
+        },
+
+        routes: {
+            "": "index",
+            "five": "five"
+        },
+
+        index: function() {
+            new Course.Views.List({collection: this.courses});
+            this.courses.fetch();
+        },
+
+        five: function() {
+            this.container.render();
+            console.log("Five route");
+        }
+    });
+
+    module.exports = Router;
+
 });

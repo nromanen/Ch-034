@@ -1,14 +1,30 @@
 {
-  "name": "ss_crsms",
+  "name": "crsms",
+  "version": "0.0.1",
+  "homepage": "https://github.com/nromanen/ch-034",
+  "description": "SSITA Course Management System",
+  "main": "",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src",
+    "test",
+    "tests"
+  ],
   "dependencies": {
-    "almond": "~0.2.9",
-    "lodash": "~2.4.1",
-    "lodash-template-loader": "~0.1.6",
-    "backbone": "~1.1.2",
-    "jquery": "~2.1.1",
-    "requirejs": "~2.1.14"
-  },
-  "devDependencies": {
-    "layoutmanager": "~0.9.5"
+    "backbone": "~1.2.3",
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "bootstrap": "~3.3.5",
+    "requirejs-text": "~2.0.14",
+    "lodash": "~3.10.1",
+    "requirejs": "~2.1.20",
+    "almond": "~0.3.1"
   }
 }

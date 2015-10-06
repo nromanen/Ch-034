@@ -1,11 +1,26 @@
 require.config({
-  paths: {
-    "underscore": "../bower_components/lodash/dist/lodash.underscore",
-    "lodash": "../bower_components/lodash/dist/lodash",
-    "template": "../bower_components/lodash-template-loader/loader",
-    "jquery": "../bower_components/jquery/dist/jquery",
-    "backbone": "../bower_components/backbone/backbone"
-  },
+    baseUrl: '/',
+    paths: {        
+        'jquery': '../vendor/bower/jquery/dist/jquery.min',
+        'underscore': '../vendor/bower/lodash/lodash.min',
+        'backbone': '../vendor/bower/backbone/backbone-min',
+        'bootstrap': '../vendor/bower/bootstrap/dist/js/bootstrap.min',
+        'text': '../vendor/bower/requirejs-text/text',
+    },
 
-  deps: ["main"]
+    shim: {
+
+        'backbone': {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
+
+        'bootstrap': {
+            deps: ['jquery']
+        },
+
+    },
+
+    deps: ['main']
+
 });

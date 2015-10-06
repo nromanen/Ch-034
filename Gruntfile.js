@@ -1,193 +1,155 @@
-/*global module, require*/
-
-(function () {
+module.exports = function(grunt ) {
     "use strict";
-    var LIVERELOAD_PORT = 35729;
-    var SERVER_PORT = 9000;
-    var lrSnippet = require('connect-livereload')({port: LIVERELOAD_PORT});
-    var mountFolder = function (connect, dir) {
-        return connect.static(require('path').resolve(dir));
-    };
+    
+    var serveStatic = require('serve-static');
+    var connect = require('connect');
 
-    module.exports = function (grunt) {
 
-        var proxySnippet = require("grunt-connect-proxy/lib/utils.js").proxyRequest;
+    grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+        clean: ['build'],
 
-        // load all grunt tasks
-        require('load-grunt-tasks')(grunt);
+        jshint: {
+            dev: {
+              src: ['app/*', '!app/styles', '!app/index.html', '!app/templates']
+            },
+        },
 
-        grunt.initConfig({
-            watch: {
+        sass: {
+            dev: {
+              options: {
+                style: 'compressed'
+              },
+              files: {
+                'app/styles/main.min.css': 'app/styles/scss/index.scss',
+              }
+            },
+
+            prod: {
+              options: {
+                style: 'compressed'
+              },
+              files: {
+                'build/styles/main.min.css': 'app/styles/scss/index.scss',
+              }
+            }
+
+        },
+
+        copy: {
+            html: {
+                files: 
+                    [{expand: true, src: ['app/index.html'], flatten: true, dest: 'build/'}]
+            },
+
+            images: {
+                files:
+                    [{expand: true, src: ['app/img/*'], flatten: true, dest: 'build/img'}]
+            }
+        },
+
+        bowercopy: {
+            css: {
                 options: {
-                    nospawn: true,
+                    destPrefix: 'build/styles'
+                },
+                files: {
+                    'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+                }
+            },
+            fonts: {
+                options: {
+                    destPrefix: 'build/'
+                },
+                files: {
+                    'fonts': 'bootstrap/dist/fonts'
+                }
+            }
+
+        },
+
+        watch: {
+            dev: {
+                options: {
                     livereload: true
                 },
-                compass: {
-                    files: ['app/styles/scss/{,*/}*.{scss}'],
-                    tasks: ['compass']
-                },
-                livereload: {
-                    options: {
-                        livereload: LIVERELOAD_PORT
-                    },
-                    files: [
-                        'app/{,*/}*.css',
-                        'app/{,*/}*.js',
-                        'app/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                        'app/scripts/templates/{,*/}*.ejs'
+                files: ['app/**', '!app/styles/**', 'build/**'],
+                tasks: ['jshint:dev', 'sass']
+            }
+        },
+
+        requirejs: {
+            compile: {
+                options: {
+                    baseUrl: "app/",
+                    include: ['main'],
+                    insertRequire: ['main'],
+                    mainConfigFile: "app/config.js",
+                    name: "../vendor/bower/almond/almond",
+                    out: "build/main.js"
+                }
+            }
+        },
+
+        processhtml: {
+            dist: {
+                files: {
+                    'build/index.html': ['app/index.html']
+                }
+            }
+        },
+
+        connect: {
+            dev: {
+              options: {
+                livereload: true,
+                port: 8034,
+                //base: 'app',
+                middleware: function(connect) {
+                    return [
+                        serveStatic('.tmp'),
+                        connect().use(
+                            '/vendor/bower',
+                            serveStatic('./vendor/bower')
+                        ),
+                        serveStatic('app')
                     ]
-                },
-                jst: {
-                    files: [
-                        'app/scripts/templates/{,*/}*.ejs'
-                    ],
-                    tasks: ['jst']
                 }
+              }
             },
-            connect: {
-                options: {
-                    port: SERVER_PORT,
-                    hostname: '0.0.0.0'
-                },
-                livereload: {
-                    options: {
-                        middleware: function (connect) {
-                            return [
-                                lrSnippet,
-                                mountFolder(connect, 'app'),
-                                proxySnippet
-                            ];
-                        }
-                    }
-                }
-                dist: {
-                    options: {
-                        middleware: function (connect) {
-                            return [
-                                mountFolder(connect, 'dist')
-                            ];
-                        }
-                    }
-                }
-            },
-            open: {
-                server: {
-                    path: 'http://localhost:<%= connect.options.port %>'
-                }
-            },
-            clean: {
-                dist: ['dist/*'],
-            },
-            jshint: {
-                options: {
-                    jshintrc: '.jshintrc',
-                    reporter: require('jshint-stylish')
-                },
-                all: {
-                    src: [
-                        'Gruntfile.js',
-                        'app/scripts/{,*/}*.js',
-                        '!vendor/*',
-                        'test/spec/{,*/}*.js'
-                    ],
-                    filter: function( filepath ) {
-                        var index, file = grunt.option( 'file' );
-                        // Don't filter when no target file is specified
-                        if ( !file ) {
-                            return true;
-                        }
 
-                        // Normalize filepath for Windows
-                        filepath = filepath.replace( /\\/g, '/' );
-                        index = filepath.lastIndexOf( '/' + file );
-
-                        // Match only the filename passed from cli
-                        if ( filepath === file || ( -1 !== index && index === filepath.length - ( file.length + 1 ) ) ) {
-                            return true;
-                        }
-
-                        return false;
-                    }
+            prod: {
+              options: {
+                livereload: true,
+                port: 8834,
+                //base: 'app',
+                middleware: function(connect) {
+                    return [
+                        serveStatic('build')
+                    ]
                 }
-            },
-            compass: {
-                options: {
-                    sassDir: 'app/styles/scss',
-                    cssDir: 'app/styles',
-                    imagesDir: 'app/images',
-                    javascriptsDir: 'app/modules/',
-                    importPath: 'bower_components',
-                    relativeAssets: true
-                },
-                dist: {},
-                server: {
-                    options: {
-                        debugInfo: true
-                    }
-                }
-            },
-            useminPrepare: {
-                html: 'index.html',
-                options: {
-                    dest: 'dist'
-                }
-            },
-            usemin: {
-                html: ['dist/{,*/}*.html'],
-                css: ['dist/styles/{,*/}*.css'],
-                options: {
-                    dirs: ['dist']
-                }
-            },
-            imagemin: {
-                dist: {
-                    files: [{
-                        expand: true,
-                        cwd: 'app/images',
-                        src: '{,*/}*.{png,jpg,jpeg,svg}',
-                        dest: 'dist/app/images'
-                    }]
-                }
+              }
             }
-        });
+        }
+    });
 
-        grunt.registerTask('server', function (target) {
-            if (target === 'dist') {
-                return grunt.task.run(['build', 'open', 'connect:dist:keepalive']);
-            }
-
-
-
-            grunt.task.run([
-                'clean:server',
-                'createDefaultTemplate',
-                'jst',
-                'compass:server',
-                'configureProxies:localhost',
-                'connect:livereload',
-                'open',
-                'watch'
-            ]);
-        });
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-bowercopy');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 
-        grunt.registerTask('build', [
-            'clean:dist',
-            'compass:dist',
-            'useminPrepare',
-            'imagemin',
-            'htmlmin',
-            'concat',
-            'cssmin',
-            'uglify',
-            'copy:dist',
-            'usemin'
-        ]);
-
-        grunt.registerTask('default', [
-            'jshint',
-            'test',
-            'build'
-        ]);
-    };
-})();
+    
+    grunt.registerTask('copy-libs', ['copy:libs']);
+    grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
+    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'copy:images', 'bowercopy', 'processhtml', 'requirejs:compile']);
+    grunt.registerTask('server:dev', ['connect:dev', 'watch']);
+    grunt.registerTask('server:prod', ['connect:prod', 'watch']);
+    grunt.registerTask('default', []);
+    
+};

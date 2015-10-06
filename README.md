@@ -5,7 +5,6 @@ SSITA Ch-034 group
 ## Setup project
 *Note:* [Node.js](https://nodejs.org/en/) and [Ruby](http://rubyinstaller.org/downloads/) must be installed on you OS system
 
-
 1. Install global components
 In any folder  
 `npm install -g grunt-cli`  
@@ -16,7 +15,10 @@ In any folder
 In project root folder  
 `npm install`  
 `bower install`  
-`grunt server:<TYPE>`
+`grunt copy-libs` - to copy vendors libraries to dev environment  
+`grunt build:dev` - to build project for development  
+`grunt serve` - to run local server on port 8084 with livereload  
+`grunt build:prod` - to build production version of project
 
 ## Contribute to project
 
