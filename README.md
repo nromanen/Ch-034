@@ -1,18 +1,39 @@
-SoftServe Course Management System [Frontend]
-======
+![SoftServe Course Management System](https://raw.githubusercontent.com/okrasn/Ch-034/tmp/github_header.png)
+[Client Side Part]  
 SSITA Ch-034 group
 
-Before use you must have ruby with installed SASS gem, nodejs, bower, grunt-cli
+## Setup project
+*Note:* [Node.js](https://nodejs.org/en/) and [Ruby](http://rubyinstaller.org/downloads/) must be installed on you OS system
 
-To build project use:
-npm install -- to install node modules
+1. Install global components
+In any folder  
+`npm install -g grunt-cli`  
+`npm install -g bower`  
+`gem install compass`  
 
-bower install -- to install vendors libraries
+2. Install project components:
+In project root folder  
+`npm install`  
+`bower install`  
+`grunt copy-libs` - to copy vendors libraries to dev environment  
+`grunt build:dev` - to build project for development  
+`grunt serve` - to run local server on port 8084 with livereload  
+`grunt build:prod` - to build production version of project
 
-grunt copy-libs -- to copy vendors libraries to dev environment
+## Contribute to project
 
-grunt build:dev -- to build project for development
+### Config Git
+`git config --global user.name "<YOUR NAME>"`  
+`git config --global user.email "<YOUR EMAIL ADDRESS>"`
 
-grunt serve -- to run local server on port 8084 with livereload
+### Clone repository
+`git clone https://github.com/<YOUR-USERNAME>/Ch-034.git`
 
-grunt build:prod -- to build production version of project
+### Add upstream
+`git remote -v`  
+`git remote add upstream https://github.com/okrasn/Ch-034.git`
+
+
+### Commit changes
+`git commit -am "<MESSAGE>"`  
+`git push`
