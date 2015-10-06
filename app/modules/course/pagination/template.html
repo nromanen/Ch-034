@@ -1,0 +1,22 @@
+<div class="row">
+   <div class="col-lg-12 text-center">
+       <nav>
+          <ul class="pagination">
+            <li>
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <% for (var i = paginationBegin; i <= paginationEnd; i++ ) { %>
+
+            <li><a href="#courses/page/<%= i %>"><%= i %></a></li>
+            <% } %>
+            <li>
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+   </div>
+</div>

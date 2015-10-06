@@ -5,22 +5,20 @@ define(function(require, exports, module) {
 
     var Layout = Backbone.View.extend({
 
-        el: ".courses",
+        tagName: "div",
 
-        initialize: function() {
-            this.listenTo(this.collection, "reset sync request", this.render);
-        },
+        className: "row",
 
         render: function() {
             this.collection.each(this.renderOne, this);
+            return this;
         },
 
         renderOne: function(model) {
             this.$el.append(new Item({
                 model: model
             }).render());
-        }
-
+        },
         
     });
 

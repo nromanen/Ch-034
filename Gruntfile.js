@@ -72,7 +72,7 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['app/**', '!app/styles/**', 'build/**'],
+                files: ['app/**', '!app/styles/'],
                 tasks: ['jshint:dev', 'sass']
             }
         },

@@ -11,7 +11,7 @@ define(function(require, exports, module) {
     var Router = Backbone.Router.extend({
         initialize: function() {
             
-            
+            this.courses = new Course.Collection();
             
             var MainLayout = Backbone.View.extend({
                 el: "body",
@@ -21,6 +21,7 @@ define(function(require, exports, module) {
                     this.$el.prepend(this.template);
                 }
             });
+
             this.container = new MainLayout();
             this.container.render();
 
@@ -28,17 +29,17 @@ define(function(require, exports, module) {
 
         routes: {
             "": "index",
-            "courses(/:pageNumber)": "courses"
+            "courses(/page/:pageNumber)": "courses"
         },
 
         index: function() {
         },
 
         courses: function(pageNumber) {
-            this.courses = new Course.Collection(pageNumber);
-            console.log(this.courses);
+            this.courses.reset();
+            this.courses.pageNumber = (pageNumber ? pageNumber : 1);
             this.courses.fetch();
-            new Course.Views.List({collection: this.courses});  
+            new Course.Views.Index({collection: this.courses});
         }
     });
 

@@ -4,10 +4,6 @@ define(function(require, exports, module) {
     var app = require("app");
 
     var Collection = Backbone.Collection.extend({
-        initialize: function(pageNumber) {
-            this.pageNumber = pageNumber ? pageNumber : 1;
-            console.log(this.pageNumber);
-        },
 
         pageSize: app.pageSize,
 
@@ -23,9 +19,11 @@ define(function(require, exports, module) {
             return this.currUrl();
         },
 
-        parse: function(resp) {
-            console.log(resp);
-        }
+        parse: function(data, options) {
+            this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.pageSize);
+            
+            return data;
+        },
 
     });
 
