@@ -13,13 +13,13 @@
 ### 1. Install ruby&sass(scss)
 
 1) Download [rubyinstaller] (http://rubyinstaller.org/downloads) and install (don’t forget about path!)
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/ruby-path.png "Don't forget about ruby path")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/ruby-path.png "Don't forget about ruby path")
 
 Check installation through Start Command Prompt with Ruby or any cmd: 
 
 	ruby -v
 
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/ruby-check.png "Checking ruby installing")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/ruby-check.png "Checking ruby installing")
 
 > Uninstall: via windows control panel
 
@@ -28,7 +28,7 @@ Check installation through Start Command Prompt with Ruby or any cmd:
 	gem install sass
 
 
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/sass-check.png "Checking sass installing")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/sass-check.png "Checking sass installing")
 
 Check installation through any cmd: 
 
@@ -44,7 +44,7 @@ Check installation through any cmd:
 
 	node –v
  
- ![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/node-check.png "Checking node.js installing")
+ ![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/node-check.png "Checking node.js installing")
 
 > Uninstall: via windows control panel, then check and remove the next folders  
 >            C:\Program Files (x86)\Nodejs  
@@ -65,7 +65,7 @@ Check installation through any cmd:
      
      grunt --help
       
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/grunt-check.png "Checking grunt installing")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/grunt-check.png "Checking grunt installing")
 
 > Uninstall: via cmd: npm uninstall –g grunt
 
@@ -107,12 +107,12 @@ Check installation through any cmd:
 
 	json-server -v
 
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/json-server-check.png "Checking json-server installing")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/json-server-check.png "Checking json-server installing")
 
 ### 5. Install Git
 
 1) Download [gitinstaller] (http://git-scm.com/download/win) and install (don’t forget about path!)
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/git-install.png "Don't forget about git path")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/git-install.png "Don't forget about git path")
 
 
 2) Config git:
@@ -131,7 +131,7 @@ Check installation through any cmd:
 
 	bower –v
  
-![alt text](https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/bower-check.png "Checking bower installing")
+![alt text](https://github.com/nromanen/Ch-034/blob/master/docs/src/img/bower-check.png "Checking bower installing")
 
 Create bower.json in the project folder via cmd:
 
