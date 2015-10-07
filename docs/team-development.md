@@ -12,7 +12,7 @@ It is necessary to install all programm set on Windows OS according to the [help
 
 Model «Fork + Pull» is a popular for open source projects and allows developers work independently.
 
-# Start
+### Start
 
 1) Create your own repo "fork" from [main repository] (https://github.com/nromanen/Ch-034) on GitHub clicking ![alt text] (https://github.com/alenkasun/Ch-034/blob/viewdocs/docs/src/img/fork-button.png "Create fork") 
 
@@ -28,7 +28,7 @@ Model «Fork + Pull» is a popular for open source projects and allows developer
 ```
   git checkout -b feature
 ```
-# Pull all (npm and bower) dependencies
+### Pull all (npm and bower) dependencies
 
 Do it via any cmd:
 ```
@@ -36,7 +36,7 @@ Do it via any cmd:
   npm install
 ```  
 
-# Working with project
+### Working with project
  
 In a separate window run json-server and grunt task:
 ```
