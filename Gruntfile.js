@@ -142,9 +142,6 @@ module.exports = function(grunt ) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
 
-
-    
-    grunt.registerTask('copy-libs', ['copy:libs']);
     grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
     grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'copy:images', 'bowercopy', 'processhtml', 'requirejs:compile']);
     grunt.registerTask('server:dev', ['connect:dev', 'watch']);

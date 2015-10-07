@@ -3,8 +3,8 @@ define(function(require, exports, module) {
 
     var app = require("app");
     
-    var CourseItemView = Backbone.View.extend({
-        template: _.template(require("text!./template.html")),
+    var CourseView = Backbone.View.extend({
+        template: _.template(require("text!../templates/courseTemplate.html")),
 
         el: false,
 
@@ -13,5 +13,5 @@ define(function(require, exports, module) {
         }
     });
 
-    module.exports = CourseItemView;
+    module.exports = CourseView;
 });

@@ -2,7 +2,7 @@ require.config({
     baseUrl: '/',
     paths: {        
         'jquery': '../vendor/bower/jquery/dist/jquery.min',
-        'underscore': '../vendor/bower/lodash/lodash.min',
+        'lodash': '../vendor/bower/lodash/lodash.min',
         'backbone': '../vendor/bower/backbone/backbone-min',
         'bootstrap': '../vendor/bower/bootstrap/dist/js/bootstrap.min',
         'text': '../vendor/bower/requirejs-text/text',
@@ -11,7 +11,7 @@ require.config({
     shim: {
 
         'backbone': {
-            deps: ['underscore', 'jquery'],
+            deps: ['lodash', 'jquery'],
             exports: 'Backbone'
         },
 
@@ -19,6 +19,12 @@ require.config({
             deps: ['jquery']
         },
 
+    },
+    
+    map: {
+        '*': {
+            'underscore': 'lodash'
+        }
     },
 
     deps: ['main']

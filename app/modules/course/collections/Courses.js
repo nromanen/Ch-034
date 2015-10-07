@@ -2,8 +2,10 @@ define(function(require, exports, module) {
     "use strict";
 
     var app = require("app");
+    var Course = require("../models/Course");
 
-    var Collection = Backbone.Collection.extend({
+    var Courses = Backbone.Collection.extend({
+        model: Course,
 
         pageSize: app.pageSize,
 
@@ -27,5 +29,5 @@ define(function(require, exports, module) {
 
     });
 
-    module.exports = Collection;
+    module.exports = Courses;
 });
