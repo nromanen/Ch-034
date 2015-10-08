@@ -1,27 +1,14 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
-    var app = require("app");
 
-    var CoreModule = require("modules/core/index");
-    var CourseModule = require("modules/course/index");
+    var CMS = require("app");
+
+    var Courses = require("modules/course/index");
 
     var Router = Backbone.Router.extend({
         initialize: function() {
-            this.core = CourseModule;
-            this.courses = new CourseModule.Collection();
-            /*
-            var MainLayout = Backbone.View.extend({
-                el: "body",
-                template: _.template(require('text!./templates/main.html')),
-
-                render: function() {
-                    this.$el.prepend(this.template);
-                }
-            });
-
-            this.container = new MainLayout();
-            this.container.render();
-*/
+            this.core = CMS.CoreView;
+            this.courses = new Courses.Collection();
         },
 
         routes: {
@@ -33,14 +20,15 @@ define(function(require, exports, module) {
             
         },
 
-        courses: function(pageNumber) {
+        courses: function(currentPage) {
             this.courses.reset();
-            this.courses.pageNumber = (pageNumber ? pageNumber : 1);
+            this.courses.setCurrentPage(currentPage);
             this.courses.fetch();
-            new CourseModule.Views.Courses({collection: this.courses});
+            new Courses.Views.Courses({collection: this.courses});
+            
         }
     });
 
-    module.exports = Router;
+    return Router;
 
 });

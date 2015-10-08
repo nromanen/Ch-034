@@ -1,10 +1,10 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
 
     var CourseView = require("./CourseView");
     var PaginationView = require("./PaginationView");
 
-    var CoursesView = Backbone.View.extend({
+    var View = Backbone.View.extend({
         el: ".courses",
 
         initialize: function() {
@@ -12,8 +12,10 @@ define(function(require, exports, module) {
         },
 
         render: function() {
+            this.$el.html("");
             this.collection.each(this.renderOne, this);
-            this.$el.append(new PaginationView({pageNumber: this.collection.pageNumber, totalPages: this.collection.totalPages}).render());
+
+            this.$el.append(new PaginationView(this.collection).render());
         },
 
         renderOne: function(model) {
@@ -24,5 +26,5 @@ define(function(require, exports, module) {
         
     });
 
-    module.exports = CoursesView;
+    return View;
 });

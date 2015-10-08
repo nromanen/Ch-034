@@ -1,9 +1,9 @@
-define(function(require, exports, module) {
+define(function(require) {
    "use strict";
 
-   var app = require("app");
+   var View = require("../view");
 
-   var MainView = Backbone.View.extend({
+   var CoreView = View.extend({
         template: _.template(require("text!../templates/coreTemplate.html")),
         
         el: "#CrsMSContainer",
@@ -22,5 +22,5 @@ define(function(require, exports, module) {
         }
    });
 
-   module.exports = new MainView();
+   return new CoreView();
 });

@@ -1,11 +1,10 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
 
-    module.exports = {
-        Collection: require("./collections/Courses"),
-        Model: require("./models/Course"),
+    return {
+        Collection: require("./collections/CoursesCollection"),
+        Model: require("./models/CourseModel"),
         Views: {
-            Index: require("./views/ModuleView"),
             Course: require("./views/CourseView"),
             Courses: require("./views/CoursesView")
         }

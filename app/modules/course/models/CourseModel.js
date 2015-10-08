@@ -1,9 +1,9 @@
-define(function(require, exports, module){
+define(function(require){
     "use strict";
 
-    var app = require("app");
+    var CMS = require("app");
 
-    var Course = Backbone.Model.extend({
+    var Model = CMS.Model.extend({
         defaults: {
             id: null,
             isPublished: null,
@@ -20,6 +20,6 @@ define(function(require, exports, module){
         }
     });
 
-    module.exports = Course;
+    return Model;
 
 });

@@ -1,9 +1,9 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
 
-    var app = require("app");
+    var CMS = require("app");
     
-    var CourseView = Backbone.View.extend({
+    var View = CMS.View.extend({
         template: _.template(require("text!../templates/courseTemplate.html")),
 
         el: false,
@@ -13,5 +13,5 @@ define(function(require, exports, module) {
         }
     });
 
-    module.exports = CourseView;
+    return View;
 });
