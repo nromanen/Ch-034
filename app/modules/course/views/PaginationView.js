@@ -1,13 +1,16 @@
 define(function(require) {
     "use strict";
-    var CMS = require("app");
+    
+    var CMS = require("CMS");
 
     var View = CMS.PaginationView.extend({
 
         el: ".pagination",
 
-        paginationSize: CMS.paginationSize
-
+        render: function() {
+            this.$el.html(this.template(this.collection.info()));
+            return this;
+        }
 
     });
 

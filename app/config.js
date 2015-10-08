@@ -6,6 +6,7 @@ require.config({
         'backbone': '../vendor/bower/backbone/backbone-min',
         'bootstrap': '../vendor/bower/bootstrap/dist/js/bootstrap.min',
         'text': '../vendor/bower/requirejs-text/text',
+        'CMS': './app'
     },
 
     shim: {

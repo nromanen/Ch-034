@@ -1,10 +1,12 @@
 define(function(require) {
     "use strict";
 
+    var CMS = require("CMS");
+
     var CourseView = require("./CourseView");
     var PaginationView = require("./PaginationView");
 
-    var View = Backbone.View.extend({
+    var View = CMS.View.extend({
         el: ".courses",
 
         initialize: function() {
@@ -14,8 +16,7 @@ define(function(require) {
         render: function() {
             this.$el.html("");
             this.collection.each(this.renderOne, this);
-
-            this.$el.append(new PaginationView(this.collection).render());
+            this.$el.append(new PaginationView({collection: this.collection}).render());
         },
 
         renderOne: function(model) {

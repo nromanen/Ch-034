@@ -1,7 +1,7 @@
 define(function(require){
     "use strict";
 
-    var CMS = require("app");
+    var CMS = require("CMS");
 
     var Model = CMS.Model.extend({
         defaults: {

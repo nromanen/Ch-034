@@ -1,7 +1,7 @@
 define(function(require) {
     "use strict";
 
-    var CMS = require("app");
+    var CMS = require("CMS");
 
     var Courses = require("modules/course/index");
 
@@ -13,7 +13,7 @@ define(function(require) {
 
         routes: {
             "": "index",
-            "courses(/page/:pageNumber)": "courses"
+            "courses(/)(/page/:pageNumber)": "courses"
         },
 
         index: function() {
@@ -22,10 +22,9 @@ define(function(require) {
 
         courses: function(currentPage) {
             this.courses.reset();
-            this.courses.setCurrentPage(currentPage);
+            this.courses.setCurrentPage(parseInt(currentPage));
             this.courses.fetch();
             new Courses.Views.Courses({collection: this.courses});
-            
         }
     });
 

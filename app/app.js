@@ -10,7 +10,7 @@ define(function(require) {
 
     CMS.root = "/";
     CMS.api = "http://localhost:3000/";
-    CMS.pageSize = 5;
+    CMS.perPage = 5;
     CMS.paginationSize = 5;
 
     return CMS;
