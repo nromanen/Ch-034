@@ -22,12 +22,6 @@ require.config({
 
     },
     
-    map: {
-        '*': {
-            'underscore': 'lodash'
-        }
-    },
-
     deps: ['main']
 
 });

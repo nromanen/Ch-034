@@ -46,34 +46,25 @@ define(function(require) {
         return Math.floor(this.paginationSize/2);
     },
 
-    getLeft: function() {
-        return (this.currentPage - this.getRange());
-    },
-
-    getRight: function() {
-        return this.totalPages - (this.currentPage + this.getRange());
-    },
-
     getPageSet: function() {
         var pages = [];
         var totalPages = this.totalPages;
         var min = 1;
         var max = this.totalPages;
 
-        if (this.getLeft() && this.getRight()) {
-            min = this.currentPage - this.getRange();
-            max = this.currentPage + this.getRange();
+        
+        min = this.currentPage - this.getRange();
+        max = this.currentPage + this.getRange();
 
-            if (min < 1) {
-                max = max + (1 - min);
-                min = 1;
-            }
+        if (min < 1) {
+            max = max + (1 - min);
+            min = 1;
+        }
 
-            if (max >= totalPages) {
-                min = min - (max - totalPages);
-                if (min < 1) min = 1;
-                max = totalPages;
-            }
+        if (max >= totalPages) {
+            min = min - (max - totalPages);
+            if (min < 1) min = 1;
+            max = totalPages;
         }
 
         pages = _.range(min, max+1);
