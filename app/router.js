@@ -4,6 +4,7 @@ define(function(require, exports, module) {
 
     var Login = require("modules/login/index");
     var Course = require("modules/course/index");
+    var Module = require("modules/module/index");
     //require("bootstrap");
 
     var Backbone = require("backbone");
@@ -12,6 +13,7 @@ define(function(require, exports, module) {
         initialize: function() {
             
             this.courses = new Course.Collection();
+            this.module = new Module.Model();
             
             var MainLayout = Backbone.View.extend({
                 el: "body",
@@ -28,7 +30,8 @@ define(function(require, exports, module) {
 
         routes: {
             "": "index",
-            "five": "five"
+            "five": "five",
+            "module": "module"
         },
 
         index: function() {
@@ -39,7 +42,12 @@ define(function(require, exports, module) {
         five: function() {
             this.container.render();
             console.log("Five route");
-        }
+        },
+
+        module: function() {
+            this.module.fetch();
+            new Module.Views.Item({model: this.module});
+        },
     });
 
     module.exports = Router;

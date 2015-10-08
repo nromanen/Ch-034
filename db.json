@@ -1400,5 +1400,21 @@
       "minStudents": 7,
       "image": "ragYgnU2fJmVK8AbDN69isi6kyC8A1zR0Fe171lX"
     }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Модуль 1.Теги: поняття, типи, підтримка",
+      "description": "&lt;ol&gt;&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;&lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;&lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;&lt;li&gt;Phasellus iaculis neque&lt;/li&gt;&lt;li&gt;Purus sodales ultricies&lt;/li&gt;&lt;li&gt;Vestibulum l&lt;/li&gt;&lt;/ol&gt;",
+      "video": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "title": "Module 2",
+      "description": "This module 2 is about:",
+      "video": ""
+    }
   ]
 }
