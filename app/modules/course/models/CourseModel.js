@@ -1,9 +1,9 @@
 define(function(require){
     "use strict";
 
-    var CMS = require("CMS");
+    var CMS = require("CMS"),
 
-    var Model = CMS.Model.extend({
+    Model = CMS.Model.extend({
         defaults: {
             id: null,
             isPublished: null,

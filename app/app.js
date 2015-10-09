@@ -1,12 +1,12 @@
 define(function(require) {
     "use strict";
 
-    var _ = require("lodash");
-    var $ = require("jquery");
-    var Backbone = require("backbone");
-    var CMS = require("./modules/core/index");
+    var _ = require("lodash"),
+        $ = require("jquery"),
+        Backbone = require("backbone"),
+        CMS = require("./modules/core/index");
 
-    require("bootstrap");
+        require("bootstrap");
 
     CMS.root = "/";
     CMS.api = "http://localhost:3000/";

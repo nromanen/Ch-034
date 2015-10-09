@@ -1,21 +1,16 @@
 define(function(require) {
     "use strict";
 
-    var CMS = require("CMS");
+    var CMS = require("CMS"),
+        Course = require("../models/CourseModel"),
 
-    var Course = require("../models/CourseModel");
-
-    var Collection = CMS.PageableCollection.extend({
+    Collection = CMS.PageableCollection.extend({
         
         model: Course,
-
         api: CMS.api,
-
         perPage: CMS.perPage,
-
         paginationSize: CMS.paginationSize,
-
-        resourse: "courses",
+        resourse: "courses"
 
     });
 

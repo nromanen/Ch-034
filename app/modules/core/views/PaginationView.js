@@ -1,17 +1,14 @@
 define(function(require) {
     "use strict";
 
-    var CoreView = require("../view");
+    var CoreView = require("../view"),
 
-    var View = CoreView.extend({
+    View = CoreView.extend({
 
         template: _.template(require("text!../templates/paginationTemplate.html")),
-
-        el: ".pagination",
+        el: ".pagination"
 
     });
-
-
 
     return View;
 });

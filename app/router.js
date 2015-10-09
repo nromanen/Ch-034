@@ -1,11 +1,10 @@
 define(function(require) {
     "use strict";
 
-    var CMS = require("CMS");
+    var CMS = require("CMS"),
+        Courses = require("modules/course/index"),
 
-    var Courses = require("modules/course/index");
-
-    var Router = Backbone.Router.extend({
+    Router = Backbone.Router.extend({
         initialize: function() {
             this.core = CMS.CoreView;
             this.courses = new Courses.Collection();

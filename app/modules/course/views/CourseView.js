@@ -1,9 +1,9 @@
 define(function(require) {
     "use strict";
 
-    var CMS = require("CMS");
+    var CMS = require("CMS"),
     
-    var View = CMS.View.extend({
+    View = CMS.View.extend({
         template: _.template(require("text!../templates/courseTemplate.html")),
 
         el: false,

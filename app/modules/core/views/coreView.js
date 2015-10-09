@@ -1,9 +1,9 @@
 define(function(require) {
    "use strict";
 
-   var View = require("../view");
+   var View = require("../view"),
 
-   var CoreView = View.extend({
+   CoreView = View.extend({
         template: _.template(require("text!../templates/coreTemplate.html")),
         
         el: "#CrsMSContainer",

@@ -1,12 +1,11 @@
 define(function(require) {
     "use strict";
 
-    var CMS = require("CMS");
+    var CMS = require("CMS"),
+        CourseView = require("./CourseView"),
+        PaginationView = require("./PaginationView"),
 
-    var CourseView = require("./CourseView");
-    var PaginationView = require("./PaginationView");
-
-    var View = CMS.View.extend({
+    View = CMS.View.extend({
         el: ".courses",
 
         initialize: function() {
@@ -23,7 +22,7 @@ define(function(require) {
             this.$el.append(new CourseView({
                 model: model
             }).render());
-        },
+        }
         
     });
 
