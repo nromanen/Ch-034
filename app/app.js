@@ -1,15 +1,17 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
 
+    var _ = require("lodash"),
+        $ = require("jquery"),
+        Backbone = require("backbone"),
+        CMS = require("./modules/core/index");
 
-    var _ = require("underscore");
-    var $ = require("jquery");
-    var Backbone = require("backbone");
-    
-    require("bootstrap");
+        require("bootstrap");
 
-    var app = module.exports;
+    CMS.root = "/";
+    CMS.api = "http://localhost:3000/";
+    CMS.perPage = 5;
+    CMS.paginationSize = 5;
 
-    app.root = "/";
-    app.api = "http://localhost:3000/";
+    return CMS;
 });

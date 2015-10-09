@@ -1,18 +1,15 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
-    var app = require("app");
 
-    var Login = require("modules/login/index");
-    var Course = require("modules/course/index");
-    var Module = require("modules/module/index");
-    //require("bootstrap");
+    var CMS = require("CMS"),
+    Courses = require("modules/course/index"),
+    Module = require("modules/module/index"),
 
-    var Backbone = require("backbone");
-
-    var Router = Backbone.Router.extend({
+    Router = Backbone.Router.extend({
         initialize: function() {
-            
-            this.courses = new Course.Collection();
+
+            this.core = CMS.CoreView;
+            this.courses = new Courses.Collection();
             this.module = new Module.Model();
             
             var MainLayout = Backbone.View.extend({
@@ -30,26 +27,27 @@ define(function(require, exports, module) {
 
         routes: {
             "": "index",
-            "five": "five",
+            "courses(/)(/page/:pageNumber)": "courses",
             "module": "module"
         },
 
         index: function() {
-            new Course.Views.List({collection: this.courses});
+            
+        },
+
+        courses: function(currentPage) {
+            this.courses.reset();
+            this.courses.setCurrentPage(parseInt(currentPage));
             this.courses.fetch();
+            new Courses.Views.Courses({collection: this.courses});
         },
-
-        five: function() {
-            this.container.render();
-            console.log("Five route");
-        },
-
         module: function() {
             this.module.fetch();
             new Module.Views.Item({model: this.module});
-        },
+        }
+
     });
 
-    module.exports = Router;
+    return Router;
 
 });

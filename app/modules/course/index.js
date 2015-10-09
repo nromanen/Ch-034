@@ -1,11 +1,12 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
 
-    module.exports = {
-        Collection: require("./collection"),
+    return {
+        Collection: require("./collections/CoursesCollection"),
+        Model: require("./models/CourseModel"),
         Views: {
-            Item: require("./item/view"),
-            List: require("./list/view")
+            Course: require("./views/CourseView"),
+            Courses: require("./views/CoursesView")
         }
     };
 });
