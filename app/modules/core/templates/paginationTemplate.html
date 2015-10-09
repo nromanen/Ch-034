@@ -1,0 +1,32 @@
+<% if (currentPage != 1) { %>
+<li>
+    <a href="#courses/page/1" aria-label="First">
+        <span aria-hidden="true">&laquo;</span>
+    </a>
+</li>
+<% } else { %>
+
+<li class="disabled">
+    <span aria-hidden="true">&laquo;</span>
+</li>
+<% } %>
+
+<% _.each(pageSet, function(p) { %>
+  <% if (currentPage == p) { %>
+    <li class="active"><a href="#courses/page/<%= p %>"><%= p %></a></li>
+  <% } else { %>
+    <li><a href="#courses/page/<%= p %>"><%= p %></a></li>
+  <% } %>
+<% }); %>
+
+<% if (currentPage != lastPage) { %>
+<li>
+    <a href="#courses/page/<%= lastPage %>" aria-label="Last">
+        <span aria-hidden="true">&raquo;</span>
+    </a>
+</li>
+<% } else { %>
+<li class="disabled">
+    <span aria-hidden="true">&raquo;</span>
+</li>
+<% } %>

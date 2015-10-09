@@ -4,7 +4,6 @@ module.exports = function(grunt ) {
     var serveStatic = require('serve-static');
     var connect = require('connect');
 
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         clean: ['build'],
@@ -73,7 +72,7 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['app/**', '!app/styles/**', 'build/**'],
+                files: ['app/**', '!app/styles/'],
                 tasks: ['jshint:dev', 'sass']
             }
         },
@@ -86,6 +85,7 @@ module.exports = function(grunt ) {
                     insertRequire: ['main'],
                     mainConfigFile: "app/config.js",
                     name: "../vendor/bower/almond/almond",
+                    findNestedDependencies:  true,
                     out: "build/main.js"
                 }
             }
@@ -130,9 +130,20 @@ module.exports = function(grunt ) {
                 }
               }
             }
+        },
+
+        lodash: {
+            build: {
+                dest: 'vendor/bower/lodash/lodash.min.js'
+            },
+            options: {
+                'moduleId': 'underscore',
+                'flags': ['--production']
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-lodash');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -143,10 +154,7 @@ module.exports = function(grunt ) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
 
-
-    
-    grunt.registerTask('copy-libs', ['copy:libs']);
-    grunt.registerTask('build:dev', ['jshint:dev', 'sass']);
+    grunt.registerTask('build:dev', ['lodash:build','jshint:dev', 'sass']);
     grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'copy:images', 'bowercopy', 'processhtml', 'requirejs:compile']);
     grunt.registerTask('server:dev', ['connect:dev', 'watch']);
     grunt.registerTask('server:prod', ['connect:prod', 'watch']);
