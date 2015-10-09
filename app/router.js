@@ -7,27 +7,16 @@ define(function(require) {
 
     Router = Backbone.Router.extend({
         initialize: function() {
-
             this.core = CMS.CoreView;
             this.courses = new Courses.Collection();
-            this.module = new Module.Model();
-            
-            var MainLayout = Backbone.View.extend({
-                el: "body",
-                template: _.template(require('text!./templates/main.html')),
-
-                render: function() {
-                    this.$el.prepend(this.template);
-                }
-            });
-            this.container = new MainLayout();
-            this.container.render();
-
+            this.modules = new Module.Collection();
+            this.module = new Module.Model();            
         },
 
         routes: {
             "": "index",
             "courses(/)(/page/:pageNumber)": "courses",
+            "modules(/)(/page/:pageNumber)": "modules",
             "module": "module"
         },
 
@@ -41,11 +30,18 @@ define(function(require) {
             this.courses.fetch();
             new Courses.Views.Courses({collection: this.courses});
         },
-        module: function() {
-            this.module.fetch();
-            new Module.Views.Item({model: this.module});
-        }
+        
+        modules: function() {
+            this.modules.reset();
+            this.modules.fetch();
+            new Module.Views.Modules({collection: this.modules});
+        },
 
+        module: function() {
+//            this.module.reset();
+            this.module.fetch();
+            new Module.Views.Module({model: this.module});
+        }
     });
 
     return Router;

@@ -2,11 +2,11 @@ define(function(require, exports, module) {
     "use strict";
 
     module.exports = {
-        Model: require("./item/model"),
-        Collection: require("./collection"),
+        Model: require("./models/ModuleModel"),
+        Collection: require("./collections/ModulesCollection"),
         Views: {
-            Item: require("./item/view"),
-            List: require("./list/view")
+            Module: require("./views/ModuleView"),
+            Modules: require("./views/ModulesView")
         }
     };
 });
