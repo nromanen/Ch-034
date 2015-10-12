@@ -12,18 +12,26 @@ define(function(require) {
 
         routes: {
             "": "index",
-            "courses(/)(/page/:pageNumber)": "courses"
+            "courses(/)(/page/:pageNumber)": "showCoursesList",
+            "courses/:id": "showCourseDetails"
         },
 
         index: function() {
             
         },
 
-        courses: function(currentPage) {
+        showCoursesList: function(currentPage) {
             this.courses.reset();
             this.courses.setCurrentPage(parseInt(currentPage));
             this.courses.fetch();
             new Courses.Views.Courses({collection: this.courses});
+        },
+
+        showCourseDetails: function(id) {
+            this.course = new Courses.Model({id: id});
+            this.course.fetch();
+            new Courses.Views.CourseDetails({model: this.course});
+
         }
     });
 

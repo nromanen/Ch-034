@@ -1,0 +1,18 @@
+<div id="course-container" class="container-fluid padding">
+
+    <div id="course-info">
+        <h3><%= name %></h3>
+        <div><%= description %></div>
+    </div>
+</div>
+ <% _.each(modules, function(module) { %>
+<div id="module-container" class="container-fluid padding">
+    <div class="col-md-2 col-sm-3 text-center">
+        <a class="module-img" href="#"><img src="//placehold.it/100"></a>
+    </div>
+    <div class="col-md-10 col-sm-9">
+        <h3><%= module.title %></h3>
+        <a href="" class="left-side">методичні матеріали</a>
+    </div>
+</div>
+<% }); %>

@@ -17,7 +17,14 @@ define(function(require){
             schedule: null,
             minStudents: null,
             image: null
+        },
+        
+        urlRoot: CMS.api+'courses',
+
+        url: function() {
+            return this.urlRoot + '/' + this.id + "?_embed=modules";
         }
+
     });
 
     return Model;
