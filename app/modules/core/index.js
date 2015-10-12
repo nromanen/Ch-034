@@ -7,7 +7,7 @@ define(function(require) {
         Model: require("./model"),
 
         CoreView: require("./views/CoreView"),
-        ModalView: require("./views/popupView"),
+        ModalView: require("./views/modalView"),
 
         PageableCollection: require("./collections/PageableCollection"),
         PaginationView: require("./views/PaginationView")
