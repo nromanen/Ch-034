@@ -2,10 +2,10 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-
         CoursesModule = require("modules/course/index"),
         ModulesModule = require("modules/module/index"),
         TestsModule = require("modules/test/index"),
+        Login = require("modules/login/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -23,8 +23,8 @@ define(function(require) {
                 this.containerView,
                 this.footerView
             ]); 
-            this.appView.render(); 
-        },
+            this.appView.render();        
+
 
         routes: {
             "": "index",
@@ -35,7 +35,7 @@ define(function(require) {
         },
 
         index: function() {
-            
+            this.appView.setView( new Login.View() );
         },
 
         showCoursesList: function(currentPage) {
