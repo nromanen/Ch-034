@@ -10,7 +10,7 @@ define(function(require, extend, module) {
             courseId: null,
             title: null,
             description: null,
-            video: null
+            resources: {}
         },
 
         api: CMS.api,

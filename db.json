@@ -1407,14 +1407,51 @@
       "courseId": 1,
       "title": "Модуль 1.Теги: поняття, типи, підтримка",
       "description": "&lt;ol&gt;&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;&lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;&lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;&lt;li&gt;Phasellus iaculis neque&lt;/li&gt;&lt;li&gt;Purus sodales ultricies&lt;/li&gt;&lt;li&gt;Vestibulum l&lt;/li&gt;&lt;/ol&gt;",
-      "video": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+      "resources": [
+        {
+          "id": 1,
+          "moduleId": 1,
+          "type": "video",
+          "name": "Video for Module 1",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 2,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 1)",
+          "url": ""
+        },
+        {
+          "id": 3,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 2)",
+          "url": ""
+        }
+      ]
     },
     {
       "id": 2,
       "courseId": 1,
       "title": "Module 2",
       "description": "This module 2 is about:",
-      "video": ""
+      "resources": [
+        {
+          "id": 4,
+          "moduleId": 2,
+          "type": "video",
+          "name": "Video for Module 2",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 5,
+          "moduleId": 2,
+          "type": "pdf",
+          "name": "Notes for Module 2",
+          "url": ""
+        }
+      ]
     }
   ]
 }
