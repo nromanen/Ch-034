@@ -1,6 +1,6 @@
 <% if (currentPage != 1) { %>
 <li>
-    <a href="#courses/page/1" aria-label="First">
+    <a href="<%=currentUrl %>1" aria-label="First">
         <span aria-hidden="true">&laquo;</span>
     </a>
 </li>
@@ -13,15 +13,15 @@
 
 <% _.each(pageSet, function(p) { %>
   <% if (currentPage == p) { %>
-    <li class="active"><a href="#courses/page/<%= p %>"><%= p %></a></li>
+    <li class="active"><a href="<%=currentUrl %><%= p %>"><%= p %></a></li>
   <% } else { %>
-    <li><a href="#courses/page/<%= p %>"><%= p %></a></li>
+    <li><a href="<%=currentUrl %><%= p %>"><%= p %></a></li>
   <% } %>
 <% }); %>
 
 <% if (currentPage != lastPage) { %>
 <li>
-    <a href="#courses/page/<%= lastPage %>" aria-label="Last">
+    <a href="<%=currentUrl %><%= lastPage %>" aria-label="Last">
         <span aria-hidden="true">&raquo;</span>
     </a>
 </li>

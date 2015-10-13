@@ -1400,5 +1400,55 @@
       "minStudents": 7,
       "image": "ragYgnU2fJmVK8AbDN69isi6kyC8A1zR0Fe171lX"
     }
+  ],
+  "tests": [
+    {
+      "id": 1,
+      "num": 1,
+      "idModule": 1,
+      "nameModule": "1. Теги: поняття, типи підтримки",
+      "answer": "Введіть класичний варіант написання тегу",
+      "typeVariant": "list",
+      "variants": {
+        "variant1": "&lt;name&gt;&lt;/name&gt;",
+        "variant2": "other variant"
+      }
+    },
+    {
+      "id": 2,
+      "num": 2,
+      "idModule": 1,
+      "nameModule": "1. Теги: поняття, типи підтримки",
+      "answer": "Введіть doctype HTML5 без &lt;&gt;",
+      "typeVariant": "answer"
+    },
+    {
+      "id": 3,
+      "num": 3,
+      "idModule": 1,
+      "nameModule": "1. Теги: поняття, типи підтримки",
+      "answer": "Відмітьте теги, які не підтримуються HTML 4.0",
+      "typeVariant": "few",
+      "variants": {
+        "variant1": "header",
+        "variant2": "img",
+        "variant3": "footer",
+        "variant4": "span"
+      }
+    },
+    {
+      "id": 4,
+      "num": 1,
+      "idModule": 2,
+      "nameModule": "2. Другий модуль",
+      "answer": "Перше питання",
+      "typeVariant": "few",
+      "variants": {
+        "variant1": "variant1",
+        "variant2": "variant2",
+        "variant3": "variant3",
+        "variant4": "variant4"
+      }
+    }
   ]
 }
