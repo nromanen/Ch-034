@@ -9,24 +9,22 @@
 </div>
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <div class="error-message text-center bg-danger">
-            <h5 class="text-danger"><b>Помилка!</b>Заповніть підсвічені поля та спробуйте знову.</h5>
+        <div class="error-message text-center">
+            <h5><strong>Помилка!</strong>Заповніть підсвічені поля та спробуйте знову.</h5>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-lg-10 col-lg-offset-1">
+    <div class="col-lg-8 col-lg-offset-2">
         <form action="" class="login-form" id="loginForm">
-            <div class="form-group email">
+            <div class="form-group email-input">
                 <div class="input-group">
-                    <span class="input-group-addon bold">@</span>
-                    <input type="text" class="form-control" id="email" placeholder="E-mail">
+                    <span class="input-group-addon"><strong>@</strong></span>
+                    <input type="text" class="form-control" id="email" placeholder="E-mail" value="<%= email %>">
                 </div>
             </div>
-            <div class="form-group password">
+            <div class="form-group password-input">
                 <div class="input-group">
-                    <span class="input-group-addon bold">*</span>
-                    <input type="password" class="form-control" id="password" placeholder="Пароль">
+                    <span class="input-group-addon"><strong>*</strong></span>
+                    <input type="text" class="form-control" id="password" placeholder="Пароль" value="<%= password %>">
                 </div>
             </div>
             <div class="form-group">
