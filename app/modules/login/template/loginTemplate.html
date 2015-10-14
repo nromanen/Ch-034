@@ -8,13 +8,24 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2">
-        <form action="" class="login-form">
-            <div class="form-group">
-                <div class="input-group"><span class="input-group-addon"><strong>@</strong></span><input type="text" class="form-control" id="email" placeholder="E-mail" value="<%= email %>"></div>
+    <div class="col-lg-8 col-lg-offset-2">
+        <div class="error-message text-center">
+            <h5><strong>Помилка!</strong>Заповніть підсвічені поля та спробуйте знову.</h5>
+        </div>
+    </div>
+    <div class="col-lg-8 col-lg-offset-2">
+        <form action="" class="login-form" id="loginForm">
+            <div class="form-group email-input">
+                <div class="input-group">
+                    <span class="input-group-addon"><strong>@</strong></span>
+                    <input type="text" class="form-control" id="email" placeholder="E-mail" value="<%= email %>">
+                </div>
             </div>
-            <div class="form-group">
-                <div class="input-group"><span class="input-group-addon"><strong>*</strong></span><input type="text" class="form-control" id="password" placeholder="Пароль" value="<%= password %>"></div>
+            <div class="form-group password-input">
+                <div class="input-group">
+                    <span class="input-group-addon"><strong>*</strong></span>
+                    <input type="text" class="form-control" id="password" placeholder="Пароль" value="<%= password %>">
+                </div>
             </div>
             <div class="form-group">
                 <a href="#forgot_password">відновлення паролю</a>
