@@ -11,9 +11,17 @@ define(function(require){
 
 	        validate: function(attr, options) {
 	        	
+	        	var errors = [];
+
 	        	if ( !attr.email ) {
-	        		return "Помилка! заповніть підсвічені поля та спробуйте знову.";
+	        		errors.push( { name: "email" } );
 	        	} 
+
+	        	if ( !attr.password ) {
+	        		errors.push( {name: "password" } );
+	        	}
+
+	        	return errors.length > 0 ? errors : false;
 	        }
 	    });
 
