@@ -40,10 +40,12 @@ define( function ( require ) {
 				this.model.set( { password : newPassword }, { validate: true } );
 			},
 				
-			errorMessage: function ( error ) {
-				console.log( error );
+			errorMessage: function ( errors ) {
+				_.each( errors, function ( error ) {
+					console.log(error.name);
 				this.$el.find( "." + error.name + "-input" ).addClass( "has-error" ); 
 				this.$el.find( ".error-message" ).show();
+				});
 			}
 		});
 
