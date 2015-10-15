@@ -43,7 +43,7 @@ define( function ( require ) {
 
 			errorMessage: function ( error ) {
 				console.log( error );
-				this.$el.find( "." + error[0].name + "-input" ).addClass( "has-error" ); 
+				this.$el.find( "." + error.name + "-input" ).addClass( "has-error" ); 
 				this.$el.find( ".error-message" ).show();
 			}
 		});
