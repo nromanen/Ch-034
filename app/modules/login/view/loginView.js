@@ -28,7 +28,7 @@ define( function ( require ) {
 			events: {
 				"submit" : "submitHandler"
 			},
-
+			
 			submitHandler: function (e) {
 				e.preventDefault();
 				
