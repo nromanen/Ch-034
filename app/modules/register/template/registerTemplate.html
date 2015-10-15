@@ -1,63 +1,57 @@
-<div class="container">
-    <div class="row">
-        <form role="form" id="registerForm">
-            <div class="col-lg-6">
-                <div class="CMStext"><p>Course Managment System<br>Реєстрація</p></div>
-                <div class="attention"><strong>Увага! </strong>Всі поля є обов'язковими для заповнення.</div>
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span><strong>І</strong></span></span>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Ім'я">
-                       
-                    </div>
-                </div>
+<div class="row col-lg-8 col-lg-offset-2">
 
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span><strong>П</strong></span></span>
-                        <input type="text" class="form-control" name="surname" id="surname" placeholder="Прізвище" required>
-                       
-                    </div>
-                </div>                
+    <div class="text-center">
+        <img src="img\ss_logo2.png" alt="SoftServe IT Academy">
+        <h1> <strong> <strong>Course Management System</strong></strong></h1> <h3> <strong>Реєстрація</strong></h3>
 
-                <div class="form-group ">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span><strong>@</strong></span></span>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
-                        
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        <input type="password" class="form-control" id="pass" name="pass" placeholder="Пароль (мін. 6 символів)" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
-                        <input type="password" class="form-control" id="repeatPass" name="repeatPass" placeholder="Підтвердженя паролю" required>
-                    </div>
-                </div>                
-
-            
-                <input type="submit" name="submit" id="submit" value="Реєстрація" class="btn btn-info center-block">
-
-            </div>
-
-        <!--</form>
-        <div class="col-lg-5 col-md-push-1">
-            <div class="col-md-12">
-                <div class="alert alert-success">
-                    <strong><span class="glyphicon glyphicon-ok"></span> Success! Message sent.</strong>
-                </div>
-                <div class="alert alert-danger">
-                    <span class="glyphicon glyphicon-remove"></span><strong> Error! Please check all page inputs.</strong>
-                </div>
-            </div>
-        </div> -->
     </div>
-</div>
+    <div class="error-message text-center bg-warning text-warning">
+        <h5><strong>Увага! </strong>Всі поля мають бути заповнені.</h5>
+    </div>
+
+
+    <form action="" class="registerForm" id="registerForm">
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span><strong>І</strong></span></span>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Ім'я">
+                   
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span><strong>П</strong></span></span>
+                    <input type="text" class="form-control" name="surname" id="surname" placeholder="Прізвище" required>
+                   
+                </div>
+            </div>                
+
+            <div class="form-group ">
+                <div class="input-group">
+                    <span class="input-group-addon"><span><strong>@</strong></span></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
+                    
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    <input type="password" class="form-control" id="pass" name="pass" placeholder="Пароль (мін. 6 символів)" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    <input type="password" class="form-control" id="repeatPass" name="repeatPass" placeholder="Підтвердженя паролю" required>
+                </div>
+            </div>                
+
+            <input type="submit" name="submit" id="submit" value="Реєстрація" class="btn btn-info center-block">
+
+    </form>
+</div>     
