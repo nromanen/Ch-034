@@ -11,9 +11,17 @@ define(function(require){
 
 	        validate: function(attr, options) {
 	        	
-	        	if ( !attr.email ) {
-	        		return "Помилка! заповніть підсвічені поля та спробуйте знову.";
-	        	} 
+	        	var errors = [];
+
+	        	if ( !attr.email || attr.email.match( /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/ ) ) {
+	        		errors.push( { title: "email", message: "Помилка!Заповніть підсвічені поля та спробуйте знову." } )
+	        	}
+
+	        	if ( !attr.password || attr.password.match( /^\d{6}$/ ) ) {
+	        		errors.push( { title: "password", message: "Помилка!Заповніть підсвічені поля та спробуйте знову." } )
+	        	}
+
+	        	return errors.length > 0 ? errors : false;
 	        }
 	    });
 

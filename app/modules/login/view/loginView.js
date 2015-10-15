@@ -9,7 +9,7 @@ define(function(require) {
 			initialize: function() {
 				this.render();
 				this.$el.find( ".error-message" ).hide();
-				this.listenTo( this.model, "invalid", this.errorMessage() );
+				this.listenTo( this.model, "invalid", this.errorMessage );
 			},
 
 			template: _.template( require( "text!../template/loginTemplate.html" ) ),
