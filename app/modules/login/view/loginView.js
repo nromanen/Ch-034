@@ -5,11 +5,10 @@ define( function ( require ) {
 		Model = require( "modules/login/model/loginModel" ),
 		View = CMS.View.extend({
 
-			initialize: function () {
-				this.model = new Model();
-				this.listenTo( this.model, "invalid", function ( model, error ) {
-					this.errorMessage( model, error );
-				} );
+			initialize: function() {
+				this.render();
+				this.$el.find( ".error-message" ).hide();
+				this.listenTo( this.model, "invalid", this.errorMessage );
 			},
 
 			el: false,
