@@ -32,8 +32,7 @@ define(function(require) {
 			},
 
 			validPassword: function() {
-				//var form = $( "#loginForm" ).serializeObject();
-				//this.model.set( form, { validate: true } );
+				
 			},
 
 			errorMessage: function() {
