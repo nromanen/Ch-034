@@ -19,7 +19,6 @@ define(function(require){
 
 	        	if ( !attr.password ) {
 	        		errors.push( "password" );
-	        	}
 
 	        	return errors.length > 0 ? errors : false;
 	        }
