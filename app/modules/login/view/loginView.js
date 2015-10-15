@@ -13,7 +13,7 @@ define( function ( require ) {
 					this.errorMessage( error );
 				} );
 			},
-
+				
 			template: _.template( require( "text!../template/loginTemplate.html" ) ),
 
 			render: function () {
@@ -27,7 +27,6 @@ define( function ( require ) {
 			},
 
 			validEmail: function () {
-				
 				this.$el.find( ".email-input" ).removeClass( "has-error" );
 				this.$el.find( ".error-message" ).hide();
 				var newEmail = $( "#email" ).val();
@@ -40,7 +39,7 @@ define( function ( require ) {
 				var newPassword = $( "#password" ).val();
 				this.model.set( { password : newPassword }, { validate: true } );
 			},
-
+				
 			errorMessage: function ( error ) {
 				console.log( error );
 				this.$el.find( "." + error.name + "-input" ).addClass( "has-error" ); 
