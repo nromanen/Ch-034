@@ -16,7 +16,8 @@ define(function(require){
             duration: null,
             schedule: null,
             minStudents: null,
-            image: null
+            image: null,
+            modules: []
         },
         
         urlRoot: CMS.api+'courses',

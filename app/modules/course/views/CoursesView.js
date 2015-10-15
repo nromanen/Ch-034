@@ -6,22 +6,34 @@ define(function(require) {
         PaginationView = require("./PaginationView"),
 
     View = CMS.View.extend({
-        el: ".courses",
+        template: _.template(require("text!../templates/coursesTemplate.html")),
+        el: false,
 
         initialize: function() {
-            this.listenTo(this.collection, "reset sync request", this.render);
+            //this.listenTo(this.collection, "reset sync request", this.render);
+            this.collection.on("fetch", function() {
+                console.log("fetch");
+                this.html("SPIIIIIINNNNNNERRR");
+            }, this);
         },
 
-        render: function() {
-            this.$el.html("");
+        serialize: function() {
+            return { courses: this.collection };
+        },
+
+        beforeRender: function() {
+            console.log("turn");
             this.collection.each(this.renderOne, this);
-            this.$el.append(new PaginationView({collection: this.collection}).render());
+            this.insertView("nav", new PaginationView({
+                collection: this.collection
+            }));
+            
         },
 
         renderOne: function(model) {
-            this.$el.append(new CourseView({
+            this.insertView(".courses", new CourseView({
                 model: model
-            }).render());
+            }));
         }
         
     });

@@ -7,6 +7,7 @@ define(function(require) {
     Collection = CMS.PageableCollection.extend({
         
         model: Course,
+        currentPage: 1,
         api: CMS.api,
         perPage: CMS.perPage,
         paginationSize: CMS.paginationSize,

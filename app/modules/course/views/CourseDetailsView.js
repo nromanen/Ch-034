@@ -3,19 +3,19 @@ define(function(require) {
 
     var CMS = require("CMS"),
     
-    View = Backbone.View.extend({
+    View = CMS.View.extend({
         template: _.template(require("text!../templates/courseDetailsTemplate.html")),
 
-        el: ".main-container",
+        el: false,
 
         initialize: function() {
-            this.listenTo(this.model, "fetch reset sync", this.render);
+            //this.listenTo(this.model, "reset sync request", this.render);
         },
 
-        render: function() {
-            this.$el.html(this.template(this.model.toJSON()));
-            return this;
+        serialize: function() {
+            return { course: this.model };
         }
+
     });
 
     return View;

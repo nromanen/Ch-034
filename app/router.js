@@ -2,12 +2,25 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-        Courses = require("modules/course/index"),
+        CoursesModule = require("modules/course/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
-            this.core = CMS.CoreView;
-            this.courses = new Courses.Collection();
+            
+            this.appView = new CMS.CoreView();
+
+            this.headerView = new CMS.Views.Header();
+            this.containerView = new CMS.Views.Container();
+            this.footerView = new CMS.Views.Footer();
+            this.courses = new CoursesModule.Collection();
+
+            this.appView.setViews({"": [
+                this.headerView,
+                this.containerView,
+                this.footerView
+            ]});
+            this.appView.render();
+
         },
 
         routes: {
@@ -21,17 +34,28 @@ define(function(require) {
         },
 
         showCoursesList: function(currentPage) {
-            this.courses.reset();
+            this.containerView.removeView();
+            
+            if (this.courses) this.courses.reset();
             this.courses.setCurrentPage(parseInt(currentPage));
-            this.courses.fetch();
-            new Courses.Views.Courses({collection: this.courses});
+            this.courses.fetch().done($.proxy(function(data) {
+                this.containerView.setViews({
+                    ".wrapper": [new CMS.Views.Sidebar(), new CoursesModule.Views.Courses({collection: this.courses})]
+                });
+                this.containerView.render();
+            }, this));
+            
         },
 
         showCourseDetails: function(id) {
-            this.course = new Courses.Model({id: id});
-            this.course.fetch();
-            new Courses.Views.CourseDetails({model: this.course});
+            this.containerView.removeView();
 
+            this.course = new CoursesModule.Model({id: id});
+
+            this.course.fetch().done($.proxy(function(data) {
+                this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+                this.containerView.render();
+            }, this));
         }
     });
 
