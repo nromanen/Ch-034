@@ -6,9 +6,11 @@ define(function(require) {
         ModulesModule = require("modules/module/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
+        ResetPassword = require("modules/reset/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
+<<<<<<< HEAD
             
             this.appView = new CMS.CoreView();
 
@@ -36,6 +38,26 @@ define(function(require) {
 
         index: function() {
             this.appView.setView( new Login.View() );
+=======
+            this.core = CMS.CoreView;
+            this.courses = new Courses.Collection();
+            this.login = new Login.Model();
+            this.reset = new ResetPassword.Model();
+        },
+
+        routes: {
+            "": "index",
+            "reset" : "reset",
+            "courses(/)(/page/:pageNumber)": "courses"
+        },
+
+        index: function () {
+            new Login.View( { model: this.login } );
+        },
+
+        reset: function () {
+            new ResetPassword.View( { model: this.reset } );
+>>>>>>> add resetPassword module
         },
 
         showCoursesList: function(currentPage) {
