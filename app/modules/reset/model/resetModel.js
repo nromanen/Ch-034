@@ -10,10 +10,6 @@ define( function ( require ) {
 			validate: function ( attr, options ) {
 				var errors = [];
 
-				if ( !attr.email ) {
-					errors.push( { name: "email", message: "Помилка!Введіть e-mail." } );
-				}
-
 				if ( !attr.email.match( /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/ ) ) {
 					errors.push( { name: "email", message: "Помилка!Введіть валідний e-mail." } );
 				}
