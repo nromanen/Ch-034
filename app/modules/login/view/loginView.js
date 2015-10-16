@@ -6,8 +6,7 @@ define( function ( require ) {
 		View = CMS.View.extend({
 
 			initialize: function () {
-				this.render();
-				this.$el.find( ".error-message" ).hide();
+				this.$el.find( ".error-message" ).addClass( "hidden" );
 				this.listenTo( this.model, "invalid", function ( model, error ) {
 					this.errorMessage( model, error );
 				} );
