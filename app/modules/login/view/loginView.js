@@ -27,21 +27,22 @@ define( function ( require ) {
 			},
 
 			validEmail: function () {
-				this.$el.find( ".email-input" ).removeClass( "has-error" );
+				this.$el.find( ".email" ).removeClass( "has-error" );
 				this.$el.find( ".error-message" ).hide();
 				var newEmail = $( "#email" ).val();
 				this.model.set( { email : newEmail }, { validate: true } );
+				console.log( this.model.get( "email" ) );
 			},
 
 			validPassword: function () {
-				this.$el.find( ".password-input" ).removeClass( "has-error" );
+				this.$el.find( ".password" ).removeClass( "has-error" );
 				this.$el.find( ".error-message" ).hide();
 				var newPassword = $( "#password" ).val();
-				this.model.set( { password : newPassword }, { validate: true } );
+				this.model.save( { password : newPassword } );
 			},
 				
 			errorMessage: function ( model, errors ) {
-				_.each( errors, function ( error ) {
+				_.forEach( errors, function ( error ) {
 					console.log(error.name);
 				this.$el.find( "." + error.name ).addClass( "has-error" ); 
 				}, this );
