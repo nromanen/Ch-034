@@ -9,7 +9,7 @@ define( function ( require ) {
 				this.render();
 				this.$el.find( ".error-message" ).hide();
 				this.listenTo( this.model, "invalid", function ( model, error ) {
-					this.errorMessage( error );
+					this.errorMessage( model, error );
 				} );
 			},
 
@@ -34,7 +34,7 @@ define( function ( require ) {
 				
 				this.$el.find( ".form-group" ).removeClass( "error" );
 				this.$el.find( ".error-message" ).addClass( "hidden" );
-				
+
 				var dataObj = {
 					email : this.$el.find( "#email" ).val(), 
 					password: this.$el.find( "#password" ).val()
