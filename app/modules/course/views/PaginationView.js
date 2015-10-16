@@ -5,11 +5,12 @@ define(function(require) {
 
     View = CMS.PaginationView.extend({
 
-        el: ".pagination",
+        el: false,
 
-        render: function() {
-            this.$el.html(this.template(this.collection.info()));
-            return this;
+        serialize: function() {
+            return {
+                info: this.collection.info()
+            };
         }
 
     });

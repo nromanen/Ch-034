@@ -4,22 +4,18 @@ define(function(require) {
     var CMS = require("CMS"),
     
     View = CMS.View.extend({
-        template: _.template(require("text!../templates/courseTemplate.html")),
+        template: _.template(require("text!../templates/courseDetailsTemplate.html")),
 
         el: false,
 
-        events: {
-            'click .btn': "check"
+        initialize: function() {
+            this.listenTo(this.model, "reset sync request", this.render);
         },
 
         serialize: function() {
             return { course: this.model };
-        },
-
-        check: function(ev){
-            console.log(this.model);
-            console.log($(ev.target));
         }
+
     });
 
     return View;
