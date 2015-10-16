@@ -9,7 +9,7 @@ define(function(require) {
         el: false,
 
         initialize: function() {
-            //this.listenTo(this.model, "reset sync request", this.render);
+            this.listenTo(this.model, "reset sync request", this.render);
         },
 
         serialize: function() {

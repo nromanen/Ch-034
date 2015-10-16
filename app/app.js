@@ -5,12 +5,12 @@ define(function(require) {
         $ = require("jquery"),
         Backbone = require("backbone"),
         CMS = require("./modules/core/index"),
-        Layout = require("layoutmanager");
+        Layout = require("backbone.layoutmanager");
         require("bootstrap");
-        
+
     CMS.root = "/";
     CMS.api = "http://localhost:3000/";
-    CMS.perPage = 5;
+    CMS.perPage = 3;
     CMS.paginationSize = 5;
 
     return CMS;

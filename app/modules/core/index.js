@@ -10,7 +10,6 @@ define(function(require) {
         Views: {
             Header: require("./views/HeaderView"),
             Container: require("./views/ContainerView"),
-            Sidebar: require("./views/SidebarView"),
             Footer: require("./views/FooterView")
         },
 

@@ -5,6 +5,8 @@ $footerBgColor: #DFDFDF;
 $courseBgColor: #ffffff;
 $padding-top-50: 50px;
 $accordionTextColor: #8E8E8E;
+$courseColor: #191919;
+$moduleLinkColor: #006597;
 
 html,
 body,
@@ -17,6 +19,8 @@ ol {
 html {
     height: 100%;
     box-sizing: border-box;
+    overflow-y: -moz-scrollbars-vertical;
+    overflow-y: scroll;
 }
 
 *,

@@ -4,30 +4,34 @@ define(function(require) {
     var CMS = require("CMS"),
         CourseView = require("./CourseView"),
         PaginationView = require("./PaginationView"),
+        SidebarView = require("./SidebarView"),
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
+
         el: false,
 
         initialize: function() {
-            //this.listenTo(this.collection, "reset sync request", this.render);
-            this.collection.on("fetch", function() {
-                console.log("fetch");
-                this.html("SPIIIIIINNNNNNERRR");
-            }, this);
+            console.log();
+            this.listenTo(this.collection, "reset sync request", this.render);
         },
 
         serialize: function() {
-            return { courses: this.collection };
+            return {
+                collection: this.collection
+            };
         },
 
         beforeRender: function() {
-            console.log("turn");
+            this.renderList();
+            this.insertViews({
+                ".sidebar-a": new SidebarView({collection: this.collection}),
+                "nav": new PaginationView({collection: this.collection})
+            });
+        },
+
+        renderList: function() {
             this.collection.each(this.renderOne, this);
-            this.insertView("nav", new PaginationView({
-                collection: this.collection
-            }));
-            
         },
 
         renderOne: function(model) {

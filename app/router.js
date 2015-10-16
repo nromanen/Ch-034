@@ -14,11 +14,11 @@ define(function(require) {
             this.footerView = new CMS.Views.Footer();
             this.courses = new CoursesModule.Collection();
 
-            this.appView.setViews({"": [
+            this.appView.insertViews([
                 this.headerView,
                 this.containerView,
                 this.footerView
-            ]});
+            ]);
             this.appView.render();
 
         },
@@ -34,28 +34,22 @@ define(function(require) {
         },
 
         showCoursesList: function(currentPage) {
-            this.containerView.removeView();
             
             if (this.courses) this.courses.reset();
             this.courses.setCurrentPage(parseInt(currentPage));
-            this.courses.fetch().done($.proxy(function(data) {
-                this.containerView.setViews({
-                    ".wrapper": [new CMS.Views.Sidebar(), new CoursesModule.Views.Courses({collection: this.courses})]
-                });
-                this.containerView.render();
-            }, this));
             
+            this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
+            this.courses.fetch();
+
         },
 
         showCourseDetails: function(id) {
-            this.containerView.removeView();
 
             this.course = new CoursesModule.Model({id: id});
-
-            this.course.fetch().done($.proxy(function(data) {
-                this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
-                this.containerView.render();
-            }, this));
+            
+            this.course.fetch();
+            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+            
         }
     });
 
