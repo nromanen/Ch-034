@@ -15,12 +15,12 @@ define(function(require){
 
 	        	if ( !attr.email ) {
 	        		errors.push( { name: "email" } );
-	        	} 
+	        	}
 
 	        	if ( !attr.password ) {
 	        		errors.push( { name: "password" } );
 	        	}
-				
+	        				
 	        	return errors.length > 0 ? errors : false;
 	        }
 	    });

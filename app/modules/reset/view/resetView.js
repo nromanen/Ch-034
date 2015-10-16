@@ -1,7 +1,7 @@
 define( function ( require ) {
 	"use strict";
 
-	var CMS = require("CMS"),
+	var CMS = require( "CMS" ),
 		View = CMS.View.extend({
 
 			el: "#CrsMSContainer",
@@ -13,41 +13,32 @@ define( function ( require ) {
 					this.errorMessage( model, error );
 				} );
 			},
-				
-			template: _.template( require( "text!../template/loginTemplate.html" ) ),
+
+			template: _.template( require( "text!../template/resetTemplate.html" ) ),
 
 			render: function () {
 				this.$el.html( this.template( this.model.toJSON() ) );
-				return this;
 			},
 
 			events: {
-				"blur #email" : "validEmail",
-				"blur #password" : "validPassword"
+				"blur #email" : "checkEmail"
 			},
 
-			validEmail: function () {
+			checkEmail: function () {
 				this.$el.find( ".email" ).removeClass( "has-error" );
 				this.$el.find( ".error-message" ).hide();
-				var newEmail = $( "#email" ).val();
-				this.model.set( { email : newEmail }, { validate: true } );
+				this.model.set( { email : $( "#email" ).val().trim() }, { validate : true } );
 			},
 
-			validPassword: function () {
-				this.$el.find( ".password" ).removeClass( "has-error" );
-				this.$el.find( ".error-message" ).hide();
-				var newPassword = $( "#password" ).val();
-				this.model.set( { password : newPassword }, { validate: true } );
-			},
-				
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
-				this.$el.find( "." + error.name ).addClass( "has-error" ); 
+					this.$el.find( "." + error.name ).addClass( "has-error" );
+					this.$el.find( "#error-message" ).text( error.message );
 				}, this );
 
 				this.$el.find( ".error-message" ).show();
 			}
 		});
 
-	return View;
+		return View;
 });
