@@ -10,7 +10,7 @@ define( function ( require ) {
 				this.render();
 				this.$el.find( ".error-message" ).hide();
 				this.listenTo( this.model, "invalid", function ( model, error ) {
-					this.errorMessage( error );
+					this.errorMessage( model, error );
 				} );
 			},
 				
@@ -40,12 +40,13 @@ define( function ( require ) {
 				this.model.set( { password : newPassword }, { validate: true } );
 			},
 				
-			errorMessage: function ( errors ) {
+			errorMessage: function ( model, errors ) {
 				_.each( errors, function ( error ) {
 					console.log(error.name);
-				this.$el.find( "." + error.name + "-input" ).addClass( "has-error" ); 
+				this.$el.find( "." + error.name ).addClass( "has-error" ); 
+				}, this );
+
 				this.$el.find( ".error-message" ).show();
-				});
 			}
 		});
 
