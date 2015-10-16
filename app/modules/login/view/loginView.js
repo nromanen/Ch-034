@@ -22,22 +22,14 @@ define( function ( require ) {
 			},
 
 			events: {
-				"blur #email" : "validEmail",
-				"blur #password" : "validPassword"
+				"submit" : "submit"
 			},
 
-			validEmail: function () {
-				this.$el.find( ".email" ).removeClass( "has-error" );
+			submit: function (e) {
+				e.preventDefault();
+				this.$el.find( ".form-group" ).removeClass( "has-error" );
 				this.$el.find( ".error-message" ).hide();
-				var newEmail = $( "#email" ).val();
-				this.model.set( { email : newEmail }, { validate: true } );
-			},
-
-			validPassword: function () {
-				this.$el.find( ".password" ).removeClass( "has-error" );
-				this.$el.find( ".error-message" ).hide();
-				var newPassword = $( "#password" ).val();
-				this.model.set( { password : newPassword }, { validate: true } );
+				this.model.set( { email : $( "#email" ).val(), password: $( "#password" ).val() }, { validate: true } );
 			},
 				
 			errorMessage: function ( model, errors ) {
