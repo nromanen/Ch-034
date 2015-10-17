@@ -1,6 +1,7 @@
 var low = require('lowdb');
 var jsonServer = require('json-server');
 
+
 var db = low('db.json');
 var server = jsonServer.create();
 var router = jsonServer.router(db.object);
@@ -9,8 +10,65 @@ router.render = function(req,res) {
     setTimeout((function() {res.jsonp(
    res.locals.data
   )}), 2000);};*/
+server.post("/register", function(req, res) {
+
+})
+
 
 server.use(jsonServer.defaults());
+server.get("/courses/filter", function(req, res) {
+    var collection = db("courses"),
+        areas = [], groups = [], queries = [], results = [];
+    if (req.query.area) {
+        areas = db("areas").chain().filter(function(n) {
+            return req.query.area.indexOf(n.name) != -1;
+        }).reduce(function(result, n, key, arr) {
+            result[key] = n.id;
+            return result;
+        }, {}).map(function(val, i){
+            return val;
+        }).value();
+        areas ? queries["areas"] = areas : false;
+    }
+
+    if (req.query.group) {
+        groups = db("course_groups").chain().filter(function(n){
+            return req.query.group.indexOf(n.name) != -1;
+        }).sortBy("courseId").reduce(function(result, n, key, arr ) {
+            if (req.query.group instanceof Array) {
+                if (arr[key+1] && n.courseId == arr[key+1].courseId) {
+                    result[n.courseId] = n.courseId;
+                }
+            } else {
+                result[n.courseId] = n.courseId;
+            }
+            return result;
+        }, {}).map(function(val, i){
+            return val;
+        }).value();
+        groups ? queries["groups"] = groups : false;
+    }
+    
+    if (queries.hasOwnProperty) {
+        results = collection.chain()
+            .filter(function(n) {
+                if (queries["areas"]) {
+                    return queries["areas"].indexOf(n.areaId) != -1
+                    
+                } else return true;
+            })
+            .filter(function(n){
+                if (queries["groups"]) {
+                    return queries["groups"].indexOf(n.id) != -1
+                } else return true;
+            })
+            .value();  
+    }
+    res.setHeader('Content-Type', 'application/json');
+
+    res.send(JSON.stringify(results, null, 3)).status(200);
+    
+});
 server.use(router);
 
 server.listen(3000);
