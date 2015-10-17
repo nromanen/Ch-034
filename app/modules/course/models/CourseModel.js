@@ -16,8 +16,16 @@ define(function(require){
             duration: null,
             schedule: null,
             minStudents: null,
-            image: null
+            image: null,
+            modules: []
+        },
+        
+        urlRoot: CMS.api+'courses',
+
+        url: function() {
+            return this.urlRoot + '/' + this.id + "?_embed=modules";
         }
+
     });
 
     return Model;

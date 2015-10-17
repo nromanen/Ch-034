@@ -16,9 +16,8 @@ define( function ( require ) {
 				
 			template: _.template( require( "text!../template/loginTemplate.html" ) ),
 
-			render: function () {
-				this.$el.html( this.template( this.model.toJSON() ) );
-				return this;
+			serialize: function () {
+				return { login: this.model };
 			},
 
 			events: {

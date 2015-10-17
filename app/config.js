@@ -6,7 +6,8 @@ require.config({
         'backbone': '../vendor/bower/backbone/backbone-min',
         'bootstrap': '../vendor/bower/bootstrap/dist/js/bootstrap.min',
         'text': '../vendor/bower/requirejs-text/text',
-        'CMS': './app'
+        'CMS': './app',
+        'backbone.layoutmanager': '../vendor/bower/layoutmanager/backbone.layoutmanager'
     },
 
     shim: {
@@ -18,7 +19,7 @@ require.config({
 
         'bootstrap': {
             deps: ['jquery']
-        },
+        }
 
     },
     
