@@ -6,7 +6,7 @@ define(function(require) {
     View = CoreView.extend({
     	className:"modal fade",
 
-        template: _.template(require("text!../templates/popupTemplate.html")),
+        template: _.template(require("text!../templates/modalTemplate.html")),
 
         events:{
         	"hidden.bs.modal #applyModal": closePopup,
