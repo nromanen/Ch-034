@@ -1,23 +1,27 @@
 define( function ( require ) {
 	"use strict";
 
-	var CMS = require("CMS"),
+	var CMS = require( "CMS" ),
+		Model = require( "modules/login/model/loginModel" ),
 		View = CMS.View.extend({
 
-			el: "#CrsMSContainer",
-
 			initialize: function () {
-				this.render();
-				this.$el.find( ".error-message" ).hide();
+				this.model = new Model();
 				this.listenTo( this.model, "invalid", function ( model, error ) {
 					this.errorMessage( model, error );
 				} );
 			},
+
+			el: "#CrsMSContainer",
 				
 			template: _.template( require( "text!../template/loginTemplate.html" ) ),
 
 			serialize: function () {
-				return { login: this.model };
+				return { model: this.model };
+			},
+
+			afterRender: function () {
+				this.$el.find( ".error-message" ).hide();
 			},
 
 			events: {

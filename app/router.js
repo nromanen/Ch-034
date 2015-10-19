@@ -15,8 +15,6 @@ define(function(require) {
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
             this.courses = new CoursesModule.Collection();
-            this.login = new Login.Model();
-            this.reset = new ResetPassword.Model();
 
             this.appView.insertViews([
                 this.headerView,
@@ -34,7 +32,7 @@ define(function(require) {
         },
 
         index: function () {
-            new Login.View({model: this.login});
+            this.appView.insertView( "#CrsMSContainer", new Login.View() );
         },
 
         reset: function () {
