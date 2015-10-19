@@ -7,17 +7,23 @@ define( function ( require ) {
 
 			initialize: function () {
 				this.$el.find( ".error-message" ).addClass( "hidden" );
+				this.model = new Model();
 				this.listenTo( this.model, "invalid", function ( model, error ) {
 					this.errorMessage( model, error );
 				} );
 			},
 
 			el: false,
-				
+
 			template: _.template( require( "text!../template/loginTemplate.html" ) ),
 
 			serialize: function () {
 				return { model: this.model };
+
+			},
+
+			afterRender: function () {
+				this.$el.find( ".error-message" ).hide();
 			},
 
 			afterRender: function () {
