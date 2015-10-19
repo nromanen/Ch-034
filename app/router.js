@@ -3,6 +3,7 @@ define(function(require) {
 
     var CMS = require("CMS"),
         CoursesModule = require("modules/course/index"),
+        ModulesModule = require("modules/module/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -26,8 +27,8 @@ define(function(require) {
         routes: {
             "": "index",
             "courses(/)(/page/:pageNumber)": "showCoursesList",
-            "courses/:id": "showCourseDetails"
-
+            "courses/:id": "showCourseDetails",
+            "courses/:courseId/module/:id": "showModuleDetails"
         },
 
         index: function() {
@@ -41,7 +42,6 @@ define(function(require) {
             
             this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
             
-            
             this.courses.fetch();
             
             console.log(this.courses);
@@ -53,6 +53,19 @@ define(function(require) {
             
             this.course.fetch();
             this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+        },
+
+        modules: function() {
+            this.modules.reset();
+            this.modules.fetch();
+            new Module.Views.Modules({collection: this.modules});
+        },
+
+        showModuleDetails: function(courseId, id) {
+            this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
+            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
+            this.module.fetch();
+            
         }
     });
 

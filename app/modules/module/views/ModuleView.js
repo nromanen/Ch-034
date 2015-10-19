@@ -6,16 +6,18 @@ define(function(require, exports, module) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/moduleTemplate.html")),
 
-        el: "#page-container",
+        el: false,
 
         initialize: function() {
             this.listenTo(this.model, "reset sync request", this.render);
         },
 
-        render: function() {
-            this.$el.html(this.template(this.model.toJSON() ));
-            return this;
+
+
+        afterRender: function() {
+            console.log(this.model.toJSON());
         }
+
     });
 
     return View;
