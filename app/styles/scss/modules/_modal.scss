@@ -1,0 +1,40 @@
+  #applyModal .modal-header, #applyModal .modal-footer {
+        border: none;
+    }
+
+    #applyModal .modal-header {
+        margin-bottom: 25px;
+    }
+
+    #applyModal .close{
+        color: #787878;
+        font-size: 34px;
+        /*opacity: ;*/
+    }
+    #applyModal .modal-body {
+        text-align: center;
+        font-size: 24px;
+        color: #787878;
+    }
+    #applyModal .modal-body .course-title {
+        color: #191919;
+        font-weight: bold;
+    }
+
+    #applyModal .modal-footer {
+        text-align: center;
+    }
+
+    #applyModal .btn-apply {
+        background-color: #00b859;
+        border: #00ae47;
+        padding: 7px 20px;
+        color: #FFF;
+    }
+
+    #applyModal .btn-cancel {
+        padding: 7px 20px;
+        margin-right: 78px;
+        color: #007bbb;
+        text-decoration:  underline;
+    }
