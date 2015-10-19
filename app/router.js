@@ -27,6 +27,7 @@ define(function(require) {
             "": "index",
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails"
+
         },
 
         index: function() {
@@ -52,7 +53,6 @@ define(function(require) {
             
             this.course.fetch();
             this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
-            
         }
     });
 
