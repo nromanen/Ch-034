@@ -10,18 +10,40 @@ define(function(require){
 	            email      : null,
 	            pass       : null,
 	            repeatPass : null
-	        }
+	        },
 
-            validate: function(attrs) {
-                var me = this;
-                var options = {
+            validate: function(attr, options) {
+                
+                var errors = [];
+
+                if(!attr.name) {
+                    errors.push({name: 'name', message: 'Please, enter your name.'});
+                }
+                if(!attr.surname) {
+                    errors.push({name: 'surname', message: 'Please, enter your surname.'});
+                }
+                if(!attr.email) {
+                    errors.push({name: 'email', message: 'Please, fill email field.'});
+                }
+                if(!attr.pass) {
+                    errors.push({name: 'pass', message: 'Please, enter your password.'});
+                }
+                if(!attr.email) {
+                    errors.push({name: 'repeatPass', message: 'Please, enter your password.'});
+                }
+
+                return errors.length > 0 ? errors : false;
+            },
+
+         /*var options = $.proxy({
                     success: function () {
-                        me.hideErrors();
+                        this.hideErrors();
                     },
                     error: function (model, errors) {
-                        me.showErrors(errors);
+                        this.showErrors(errors);
                     }
-                };
+                }, this);
+
 
                 showErrors: function(errors) {
                     _.each(errors, function (error) {
@@ -35,28 +57,10 @@ define(function(require){
                     this.$('.control-group').removeClass('error');
                     this.$('.help-inline').text('');
                 }
+*/
+                
 
-                var errors = [];
-
-                if(!attrs.name) {
-                    errors.push({name: 'name', message: 'Please, enter your name.'});
-                }
-                if(!attrs.surname) {
-                    errors.push({name: 'surname', message: 'Please, enter your surname.'});
-                }
-                if(!attrs.email) {
-                    errors.push({name: 'email', message: 'Please, fill email field.'});
-                }
-                if(!attrs.pass) {
-                    errors.push({name: 'pass', message: 'Please, enter your password.'});
-                }
-                if(!attrs.email) {
-                    errors.push({name: 'repeatPass', message: 'Please, enter your password.'});
-                }
-
-                return errors.length > 0 ? errors : false;
-
-            }
+            
 	    });
 
     return Model;
