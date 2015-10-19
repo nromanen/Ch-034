@@ -29,7 +29,7 @@ define(function(require) {
             new Courses.Views.Courses({collection: this.courses});
         },
 
-        tests: function(moduleTest, currentQuestion){   ;  
+        tests: function(moduleTest, currentQuestion){     
             this.tests.reset();
             this.tests.setCurrentPage(parseInt(currentQuestion));
             this.tests.currentUrl =  '#tests/' + moduleTest + '/'; 
