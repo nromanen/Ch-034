@@ -10,6 +10,7 @@ define(function(require){
 	            email      : null,
 	            pass       : null,
 	            repeatPass : null
+<<<<<<< HEAD
 	        },
 
             validate: function(attr, options) {
@@ -61,6 +62,12 @@ define(function(require){
                 
 
             
+=======
+	        }
+
+           
+           
+>>>>>>> 68a5f6b9f9b8b773a0a0cb56f87e7b5f4f8b8690
 	    });
 
     return Model;

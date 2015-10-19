@@ -1,41 +1,44 @@
-#registerForm{
-    .input-group{
-        width:300px;
-        margin: 0 auto;
-    }
+#general-form{
 
-    .form-group{
-        margin-bottom: 25px;
-    }
+	#registerForm{
+		max-width:300px;
+		margin: 0 auto;
+	}
 
-    .attention{
-        max-width:470px;
-        height:45px;
-        padding:15px;
-        margin: 0 auto;
-        margin-bottom: 25px;
-        color: #DBA901;
-        background: #F1F8E0;
-        boarder: 0px;
+	.input-group{
+		width:310px;
+		margin-bottom: 20px;
+		height: 40px;
 
-    }
+		.form-control{
+			height:40px;
+		}
 
-    .CMStext {
-        max-width:470px;
-        height:45px;
-        padding:15px;
-        margin: 0 auto;
-        margin-bottom: 55px;
-        text-align: center;
-        font: bold 30px Georgia, serif;
-    }
+		.input-group-addon{
+			width: 40px;
 
-     #submit{
-        width: 140px;
-        margin-top: 40px;
-    }   
+			span{
+				font-size: 120%
+			}
+		}
+	}
 
-    .input-group-addon{
-        width: 39px
-    }
+
+	.error-message{
+		width: 420px;
+		padding: 10px 20px;
+		margin: 20px auto;
+		
+	}
+
+	.warning{
+		color:#CD9953;
+		background: #FEF7E4;
+	}
+
+	#submit{
+		width:140px;
+		background-color:#00C1DE;
+		margin-top: 35px;
+	}	
 }
