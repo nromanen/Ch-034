@@ -28,7 +28,7 @@ define(function(require) {
             "": "index",
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails",
-            "courses/:courseId/module/:id": "showModuleDetails"
+            "courses/:courseId/module/:id": "showCourseModuleDetails"
         },
 
         index: function() {
@@ -36,36 +36,24 @@ define(function(require) {
         },
 
         showCoursesList: function(currentPage) {
-            
             if (this.courses) this.courses.reset();
+
             this.courses.setCurrentPage(parseInt(currentPage));
-            
             this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
-            
             this.courses.fetch();
-            
             console.log(this.courses);
         },
 
         showCourseDetails: function(id) {
-
             this.course = new CoursesModule.Model({id: id});
-            
             this.course.fetch();
             this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
         },
 
-        modules: function() {
-            this.modules.reset();
-            this.modules.fetch();
-            new Module.Views.Modules({collection: this.modules});
-        },
-
-        showModuleDetails: function(courseId, id) {
+        showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
-            this.module.fetch();
-            
+            this.module.fetch();  
         }
     });
 

@@ -12,20 +12,14 @@ define(function(require, extend, module) {
             description: null,
             resources: {}
         },
-        urlRoot: function() {
-            return CMS.api+"courses/" + this.courseId + "/modules?id=";
-        },
-
-        url: function() {
-            return this.urlRoot()+this.id;
-        },
 
         initialize: function(attributes, options) {
             this.courseId = options.courseId;
         },
-        parse: function(resp, options) {
-            return resp[0];
+        urlRoot: function() {
+            return CMS.api + "courses/"+this.courseId+"/modules";
         }
+        
 
     });
 

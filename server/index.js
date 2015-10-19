@@ -10,12 +10,18 @@ router.render = function(req,res) {
     setTimeout((function() {res.jsonp(
    res.locals.data
   )}), 2000);};*/
-server.post("/register", function(req, res) {
-
-})
-
 
 server.use(jsonServer.defaults());
+server.get("/courses/:courseId/modules/:id", function(req, res) {
+    var response = db("modules").find({id: parseInt(req.params.id), courseId: parseInt(req.params.courseId)});
+    if (response) {
+        res.send(JSON.stringify(response));
+    } else {
+        res.status(404);
+        res.send(JSON.stringify({message: "Not Found"}));
+    }
+    
+});
 server.get("/courses/filter", function(req, res) {
     var collection = db("courses"),
         areas = [], groups = [], queries = [], results = [];
@@ -65,8 +71,8 @@ server.get("/courses/filter", function(req, res) {
             .value();  
     }
     res.setHeader('Content-Type', 'application/json');
-
-    res.send(JSON.stringify(results, null, 3)).status(200);
+    res.status(200);
+    res.jsonp(JSON.stringify(results, null, 3));
     
 });
 server.use(router);

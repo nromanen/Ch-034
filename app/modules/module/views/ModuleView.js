@@ -10,12 +10,6 @@ define(function(require, exports, module) {
 
         initialize: function() {
             this.listenTo(this.model, "reset sync request", this.render);
-        },
-
-
-
-        afterRender: function() {
-            console.log(this.model.toJSON());
         }
 
     });
