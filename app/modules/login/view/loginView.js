@@ -30,14 +30,26 @@ define( function ( require ) {
 
 			submit: function (e) {
 				e.preventDefault();
-				this.$el.find( ".form-group" ).removeClass( "has-error" );
+				this.$el.find( ".form-group" ).removeClass( "error" );
 				this.$el.find( ".error-message" ).hide();
-				this.model.set( { email : $( "#email" ).val(), password: $( "#password" ).val() }, { validate: true } );
+				
+				var data = {
+					email : $( "#email" ).val(), 
+					password: $( "#password" ).val()
+				};
+
+				this.model.set( data , { validate: true } );
+/*
+				$.ajax({
+					url: "Ch-034/db",
+					dataType: "json",
+					data: data
+				});*/
 			},
 				
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
-				this.$el.find( "." + error.name ).addClass( "has-error" ); 
+				this.$el.find( "." + error.name ).addClass( "error" ); 
 				}, this );
 
 				this.$el.find( ".error-message" ).show();

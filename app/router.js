@@ -32,11 +32,11 @@ define(function(require) {
         },
 
         index: function () {
-            this.appView.insertView( "#CrsMSContainer", new Login.View() );
+            this.appView.setView( new Login.View() );
         },
 
         reset: function () {
-            new ResetPassword.View( { model: this.reset } );
+            this.appView.setView( new ResetPassword.View() );
         },
 
         showCoursesList: function(currentPage) {

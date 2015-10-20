@@ -2,30 +2,31 @@ define( function ( require ) {
 	"use strict";
 
 	var CMS = require( "CMS" ),
+		Model = require( "modules/reset/model/resetModel" ),
 		View = CMS.View.extend({
 
-			el: "#CrsMSContainer",
-
 			initialize: function () {
-				this.render();
-				this.$el.find( ".error-message" ).hide();
+				this.model = new Model();
 				this.listenTo( this.model, "invalid", function ( model, error ) {
 					this.errorMessage( model, error );
 				} );
 			},
 
+			el: "#CrsMSContainer",
+
 			template: _.template( require( "text!../template/resetTemplate.html" ) ),
 
-			render: function () {
-				this.$el.html( this.template( this.model.toJSON() ) );
+			serialize: function () {
+				return { model: this.model };
 			},
 
 			events: {
-				"blur #email" : "checkEmail"
+				"submit" : "submit"
 			},
 
-			checkEmail: function () {
-				this.$el.find( ".email" ).removeClass( "has-error" );
+			submit: function (e) {
+				e.preventDefault();
+				this.$el.find( ".input-group" ).removeClass( "has-error" );
 				this.$el.find( ".error-message" ).hide();
 				this.model.set( { email : $( "#email" ).val().trim() }, { validate : true } );
 			},
@@ -33,7 +34,7 @@ define( function ( require ) {
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
 					this.$el.find( "." + error.name ).addClass( "has-error" );
-					this.$el.find( "#error-message" ).text( error.message );
+					this.$el.find( "#text-error-message" ).text( error.message );
 				}, this );
 
 				this.$el.find( ".error-message" ).show();
