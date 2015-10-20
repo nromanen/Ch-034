@@ -1,9 +1,11 @@
 var low = require('lowdb');
 var jsonServer = require('json-server');
-
+var express = require('json-server/node_modules/express');
+var bodyParser = require('json-server/node_modules/body-parser');
 
 var db = low('db.json');
 var server = jsonServer.create();
+
 var router = jsonServer.router(db.object);
 /*
 router.render = function(req,res) {
@@ -12,6 +14,22 @@ router.render = function(req,res) {
   )}), 2000);};*/
 
 server.use(jsonServer.defaults());
+server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({ extended: true }));
+server.post("/check_email", function(req, res) {
+    var users = db("users");
+    var email = req.body.email;
+    
+    if (users.find({email: email})) {
+        res.status(409);
+        res.send(JSON.stringify({message: "User with this email is already registered."}));
+        return false;
+    }
+
+    res.status(200);
+    res.send(JSON.stringify({message: "success"}));
+
+});
 server.get("/courses/:courseId/modules/:id", function(req, res) {
     var response = db("modules").find({id: parseInt(req.params.id), courseId: parseInt(req.params.courseId)});
     if (response) {
