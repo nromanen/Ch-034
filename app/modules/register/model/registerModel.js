@@ -34,30 +34,6 @@ define(function(require){
 
                 return errors.length > 0 ? errors : false;
             },
-
-         /*var options = $.proxy({
-                    success: function () {
-                        this.hideErrors();
-                    },
-                    error: function (model, errors) {
-                        this.showErrors(errors);
-                    }
-                }, this);
-
-
-                showErrors: function(errors) {
-                    _.each(errors, function (error) {
-                        var controlGroup = this.$('.' + error.name);
-                        controlGroup.addClass('error');
-                        controlGroup.find('.help-inline').text(error.message);
-                    }, this);
-                },
-
-                hideErrors: function () {
-                    this.$('.control-group').removeClass('error');
-                    this.$('.help-inline').text('');
-                }
-	        }*/
 	    });
     return Model;
 
