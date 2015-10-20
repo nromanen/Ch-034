@@ -41,7 +41,6 @@ define(function(require) {
             this.courses.setCurrentPage(parseInt(currentPage));
             this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
             this.courses.fetch();
-            console.log(this.courses);
         },
 
         showCourseDetails: function(id) {
