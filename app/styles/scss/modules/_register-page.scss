@@ -5,27 +5,33 @@
 		margin: 0 auto;
 	}
 
+	img{
+		margin-bottom: -10px
+	}
+
 	.input-group{
-		width:310px;
+		width:300px;
 		margin-bottom: 20px;
-		height: 40px;
+		height: 38px;
 
 		.form-control{
-			height:40px;
+			height:38px;
 		}
 
 		.input-group-addon{
 			width: 40px;
 
 			span{
-				font-size: 120%
+				font-size: 110;
+				color: 333333;
 			}
 		}
 	}
 
 
 	.error-message{
-		width: 420px;
+		width: 460px;
+		height: 50px;
 		padding: 10px 20px;
 		margin: 20px auto;
 		
@@ -37,8 +43,8 @@
 	}
 
 	#submit{
-		width:140px;
+		width:139px;
 		background-color:#00C1DE;
-		margin-top: 35px;
+		margin-top: 40px;
 	}	
 }
