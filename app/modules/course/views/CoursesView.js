@@ -12,7 +12,6 @@ define(function(require) {
         el: false,
 
         initialize: function() {
-            console.log();
             this.listenTo(this.collection, "reset sync request", this.render);
         },
 
@@ -23,19 +22,19 @@ define(function(require) {
         },
 
         beforeRender: function() {
-            this.renderList();  /*
+            this.renderList();
             this.insertViews({
                 ".sidebar-a": new SidebarView({collection: this.collection}),
                 "nav": new PaginationView({collection: this.collection})
-            }); */
+            });
         },
 
-        renderList: function() { console.log('list');
+        renderList: function() {
             this.collection.each(this.renderOne, this);
         },
 
         renderOne: function(model) {
-            this.insertView(".test", new TestView({
+            this.insertView(".courses", new CourseView({
                 model: model
             }));
         }

@@ -10,7 +10,7 @@ define(function(require) {
         currentPage: 1,
         api: CMS.api,
         perPage: 1, 
-        paginationSize: 4,
+        paginationSize: 12,
         currentUrl: '#tests/',
         resourse: "tests" 
 

@@ -4,9 +4,8 @@ define(function(require) {
     var CMS = require("CMS"),
     
     View = CMS.View.extend({
-        template: _.template(require("text!../templates/testTemplate.html")),
-        
-        el: false, 
+        template: _.template(require("text!../templates/testTemplate.html")),        
+        el: false,
 
         serialize: function(){
             return {

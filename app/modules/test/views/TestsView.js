@@ -7,15 +7,15 @@ define(function(require) {
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testsTemplate.html")),
-        el: false, 
-
+        el: false,
+        
         initialize: function() {
             this.listenTo(this.collection, "reset sync request", this.render);
         },
 
         beforeRender: function(){  
             this.insertView(
-                '.pagination', new PaginationView({collection: this.collection})
+                'nav', new PaginationView({collection: this.collection})
             ); 
             this.collection.each(this.renderOne, this);            
         },
@@ -24,7 +24,6 @@ define(function(require) {
             this.insertView('.test', new TestView({
                     model: model
             }).render());  
-
         }
 
     });
