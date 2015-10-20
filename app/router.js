@@ -6,7 +6,6 @@ define(function(require) {
         ModulesModule = require("modules/module/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
-        ResetPassword = require("modules/reset/index"),
         ModulesModule = require("modules/module/index"),
 
     Router = Backbone.Router.extend({
