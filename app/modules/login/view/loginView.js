@@ -12,7 +12,7 @@ define( function ( require ) {
 				} );
 			},
 
-			el: "#CrsMSContainer",
+			el: false,
 				
 			template: _.template( require( "text!../template/loginTemplate.html" ) ),
 
@@ -22,6 +22,7 @@ define( function ( require ) {
 
 			afterRender: function () {
 				this.$el.find( ".error-message" ).hide();
+
 			},
 
 			events: {
@@ -33,18 +34,22 @@ define( function ( require ) {
 				this.$el.find( ".form-group" ).removeClass( "error" );
 				this.$el.find( ".error-message" ).hide();
 				
-				var data = {
+				var dataObj = {
 					email : $( "#email" ).val(), 
 					password: $( "#password" ).val()
 				};
 
-				this.model.set( data , { validate: true } );
-/*
+				this.model.set( dataObj , { validate: true } );
+
 				$.ajax({
-					url: "Ch-034/db",
+					url: CMS.api + "users/",
 					dataType: "json",
-					data: data
-				});*/
+					data: dataObj,
+					type: "POST",
+					success: function (data) {
+						console.log(data);
+					}
+				});
 			},
 				
 			errorMessage: function ( model, errors ) {
