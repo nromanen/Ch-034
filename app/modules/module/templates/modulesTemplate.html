@@ -1,0 +1,17 @@
+<div class="">
+    <% modules.each(function(module) { %>
+    <div id="module-container" class="row course module">
+        <div class="col-md-2 col-sm-3 text-center">
+            <a class="module-img" href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><img src="//placehold.it/100"></a>
+        </div>
+        <div class="col-md-10 col-sm-9">
+            <span class="module-title"><strong><a href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><%= module.get('title') %></a></strong></span>
+            
+            <div class="bottom-line">
+                <a href="" class="left-side pull-left">методичні матеріали</a>
+                <button class="btn btn-success pull-right">Take the test</button>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+</div>
