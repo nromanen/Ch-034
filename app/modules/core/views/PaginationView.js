@@ -6,7 +6,6 @@ define(function(require) {
     View = CoreView.extend({
 
         template: _.template(require("text!../templates/paginationTemplate.html")),
-        el: ".pagination"
 
     });
 

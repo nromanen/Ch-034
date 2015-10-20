@@ -1,4 +1,5 @@
 /*   footer is located at the bottom   */
+/*
 html {
   position: relative;
   min-height: 100%;  
@@ -24,8 +25,9 @@ body {
     text-align: center;
     color: #727272;	
 } 
-
+*/
 /*    header style     */
+/*
 .header{
 	background-color: #fff; 
 	min-height: 30px;
@@ -62,12 +64,11 @@ body {
 .user-menu{
 	left: -30px;
 }
-
+*/
 /*  main area style   */
 .tests{
 	background-color: #fff;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin: 20px auto;
 	padding: 25px 35px;
 	max-width: 630px;
 	min-height: 100%;	

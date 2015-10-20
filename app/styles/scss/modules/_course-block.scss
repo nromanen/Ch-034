@@ -1,3 +1,6 @@
+#course-container {
+    padding: 0px 70px;
+}
 
 .course {
     background-color: $courseBgColor;
@@ -43,4 +46,20 @@
     display: table-cell;
     vertical-align: middle;
     height: 40px;
+}
+
+.row.course {
+    background-clip: inherit;
+    padding: 10px 20px 20px 20px;
+    color: $courseColor;
+}
+.module .module-title {
+    display: block;
+    font-size: 1.2em;
+}
+.module .bottom-line {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
 }

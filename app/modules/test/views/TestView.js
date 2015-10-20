@@ -6,15 +6,14 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testTemplate.html")),
         
-        el: '.test', 
+        el: false, 
 
-        initialize: function(){
-            this.render();                
-        },
-
-        render: function() {  
-            return this.template(this.model.toJSON());
+        serialize: function(){
+            return {
+                'test': this.model
+            };
         }
+
     });
 
     return View;

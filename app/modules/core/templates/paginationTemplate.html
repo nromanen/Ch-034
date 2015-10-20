@@ -1,32 +1,34 @@
-<% if (currentPage != 1) { %>
-<li>
-    <a href="<%=currentUrl %>1" aria-label="First">
-        <span aria-hidden="true">&laquo;</span>
-    </a>
-</li>
-<% } else { %>
-
-<li class="disabled">
-    <span aria-hidden="true">&laquo;</span>
-</li>
-<% } %>
-
-<% _.each(pageSet, function(p) { %>
-  <% if (currentPage == p) { %>
-    <li class="active"><a href="<%=currentUrl %><%= p %>"><%= p %></a></li>
+<ul class="pagination">
+  <% if (info.currentPage != 1) { %>
+  <li>
+      <a href="<%=info.currentUrl %>1" aria-label="First">
+          <span aria-hidden="true">&laquo;</span>
+      </a>
+  </li>
   <% } else { %>
-    <li><a href="<%=currentUrl %><%= p %>"><%= p %></a></li>
+
+  <li class="disabled">
+      <span aria-hidden="true">&laquo;</span>
+  </li>
+  <% } %>
+ 
+<% _.each(info.pageSet, function(p) { %>
+  <% if (info.currentPage == p) { %>
+    <li class="active"><a href="<%=info.currentUrl %><%= p %>"><%= p %></a></li>
+  <% } else { %>
+    <li><a href="<%=info.currentUrl %><%= p %>"><%= p %></a></li>
   <% } %>
 <% }); %>
 
-<% if (currentPage != lastPage) { %>
-<li>
-    <a href="<%=currentUrl %><%= lastPage %>" aria-label="Last">
-        <span aria-hidden="true">&raquo;</span>
-    </a>
-</li>
-<% } else { %>
-<li class="disabled">
-    <span aria-hidden="true">&raquo;</span>
-</li>
-<% } %>
+  <% if (info.currentPage != info.lastPage) { %>
+  <li>
+      <a href="<%=info.currentUrl %><%= info.lastPage %>" aria-label="Last">
+          <span aria-hidden="true">&raquo;</span>
+      </a>
+  </li>
+  <% } else { %>
+  <li class="disabled">
+      <span aria-hidden="true">&raquo;</span>
+  </li>
+  <% } %>
+</ul>

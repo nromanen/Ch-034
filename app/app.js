@@ -4,13 +4,13 @@ define(function(require) {
     var _ = require("lodash"),
         $ = require("jquery"),
         Backbone = require("backbone"),
-        CMS = require("./modules/core/index");
-
+        CMS = require("./modules/core/index"),
+        Layout = require("backbone.layoutmanager");
         require("bootstrap");
 
     CMS.root = "/";
     CMS.api = "http://localhost:3000/";
-    CMS.perPage = 5;
+    CMS.perPage = 3;
     CMS.paginationSize = 5;
 
     return CMS;
