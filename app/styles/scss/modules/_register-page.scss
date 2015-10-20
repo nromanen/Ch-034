@@ -1,5 +1,6 @@
 #general-form{
 
+<<<<<<< HEAD
 	#registerForm{
 		max-width:300px;
 		margin: 0 auto;
@@ -47,4 +48,46 @@
 		background-color:#00C1DE;
 		margin-top: 40px;
 	}	
+=======
+    #registerForm{
+        max-width:300px;
+        margin: 0 auto;
+    }
+
+    .input-group{
+        width:310px;
+        margin-bottom: 20px;
+        height: 40px;
+
+        .form-control{
+            height:40px;
+        }
+
+        .input-group-addon{
+            width: 40px;
+            font-size: 116%;
+            font-weight: bold;
+        }
+
+    }
+
+
+    .error-message{
+        width: 420px;
+        padding: 10px 20px;
+        margin: 20px auto;
+        
+    }
+
+    .warning{
+        color:#CD9953;
+        background: #FEF7E4;
+    }
+
+    #submit{
+        width:140px;
+        background-color:#00C1DE;
+        margin-top: 35px;
+    }   
+>>>>>>> ca06c09451ac4bfdc9bf7c95ea0a4f261beaea09
 }

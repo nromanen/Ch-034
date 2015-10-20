@@ -1,17 +1,18 @@
 define(function(require) {
-	"use strict";
+    "use strict";
 
-	var CMS = require("CMS"),
-		View = CMS.View.extend({
+    var CMS = require("CMS"),
+        View = CMS.View.extend({
 
-			el: "#CrsMSContainer",
+            el: "#CrsMSContainer",
 
-			initialize: function() {
-				this.render();
-			},
+            initialize: function() {
+                this.render();
+            },
 
-			template: _.template( require("text!../template/registerTemplate.html") ),
+            template: _.template( require("text!../template/registerTemplate.html") ),
 
+<<<<<<< HEAD
 			render: function() {
 				console.log("this.model");
 				this.$el.html( this.template( this.model.toJSON() ) );
@@ -58,4 +59,14 @@ define(function(require) {
 		});
 	
 	return View;
+=======
+            render: function() {
+                console.log("this.model");
+                this.$el.html( this.template( this.model.toJSON() ) );
+                return this;
+            }
+        });
+
+    return View;
+>>>>>>> ca06c09451ac4bfdc9bf7c95ea0a4f261beaea09
 });
