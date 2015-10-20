@@ -13,7 +13,7 @@ define(function(require){
 	        	
 	        	var errors = [];
 
-	        	if ( !attr.email ) {
+	        	if ( !attr.email) {
 	        		errors.push( { name: "email" } );
 	        	}
 

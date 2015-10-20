@@ -4,7 +4,6 @@ define(function(require) {
     var CMS = require("CMS"),
         CoursesModule = require("modules/course/index"),
         Login = require("modules/login/index"),
-        ResetPassword = require("modules/reset/index"),
         ModulesModule = require("modules/module/index"),
 
     Router = Backbone.Router.extend({
@@ -35,10 +34,6 @@ define(function(require) {
 
         index: function () {
             this.appView.setView( new Login.View() );
-        },
-
-        reset: function () {
-            this.appView.setView( new ResetPassword.View() );
         },
 
         showCoursesList: function(currentPage) {

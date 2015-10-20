@@ -40,27 +40,7 @@ define( function ( require ) {
 				};
 
 				this.model.set( dataObj , { validate: true } );
-
-				var request = $.ajax({
-					url: CMS.api + "users/",
-					dataType: "json",
-					data: dataObj,
-					type: "POST"
-				});
-				request
-					.complete(function(data){
-
-					})
-					.done(function(data) {
-
-
-					})
-					.error(function(data){
-
-					});
-				
-			},
-				
+			
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
 				this.$el.find( "." + error.name ).addClass( "error" ); 
