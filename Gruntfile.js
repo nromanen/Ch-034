@@ -159,5 +159,4 @@ module.exports = function(grunt ) {
     grunt.registerTask('server:dev', ['connect:dev', 'watch']);
     grunt.registerTask('server:prod', ['connect:prod', 'watch']);
     grunt.registerTask('default', []);
-    
 };
