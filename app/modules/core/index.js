@@ -8,6 +8,8 @@ define(function(require) {
 
         CoreView: require("./views/CoreView"),
 
+        ModalView: require("./views/modalView"),
+        
         Views: {
             Header: require("./views/HeaderView"),
             Container: require("./views/ContainerView"),
