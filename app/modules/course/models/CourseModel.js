@@ -23,7 +23,7 @@ define(function(require){
         urlRoot: CMS.api+'courses',
 
         url: function() {
-            return this.urlRoot + '/' + this.id + "?_embed=modules";
+            return this.urlRoot + '/' + this.id;
         }
 
     });
