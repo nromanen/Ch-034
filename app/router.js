@@ -4,12 +4,13 @@ define(function(require) {
     var CMS = require("CMS"),
         CoursesModule = require("modules/course/index"),
         ModulesModule = require("modules/module/index"),
+        RegisterModule = require("modules/register/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
             
             this.appView = new CMS.CoreView();
-
+            this.register = new RegisterModule.Model();
             this.headerView = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
@@ -28,11 +29,12 @@ define(function(require) {
             "": "index",
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails",
-            "courses/:courseId/module/:id": "showCourseModuleDetails"
+            "courses/:courseId/module/:id": "showCourseModuleDetails",
+            "register" : "showRegisterModule"
         },
 
         index: function() {
-            
+            new RegisterModule.View( {model: this.register} );
         },
 
         showCoursesList: function(currentPage) {
@@ -54,6 +56,10 @@ define(function(require) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
             this.module.fetch();  
+        },
+
+        showRegisterModule: function(){
+            this.module = new RegisterModule.View( {model: this.register} );
         }
     });
 
