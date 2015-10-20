@@ -12,7 +12,6 @@ define(function(require) {
         el: false,
 
         initialize: function() {
-            console.log();
             this.listenTo(this.collection, "reset sync request", this.render);
         },
 
