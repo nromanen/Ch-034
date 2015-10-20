@@ -42,7 +42,6 @@ define( function ( require ) {
 				};
 
 				this.model.set( dataObj , { validate: true } );
-			
 			},
 				
 			errorMessage: function ( model, errors ) {
