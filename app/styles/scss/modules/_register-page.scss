@@ -1,44 +1,43 @@
 #general-form{
 
-	#registerForm{
-		max-width:300px;
-		margin: 0 auto;
-	}
+    #registerForm{
+        max-width:300px;
+        margin: 0 auto;
+    }
 
-	.input-group{
-		width:310px;
-		margin-bottom: 20px;
-		height: 40px;
+    .input-group{
+        width:310px;
+        margin-bottom: 20px;
+        height: 40px;
 
-		.form-control{
-			height:40px;
-		}
+        .form-control{
+            height:40px;
+        }
 
-		.input-group-addon{
-			width: 40px;
+        .input-group-addon{
+            width: 40px;
+            font-size: 116%;
+            font-weight: bold;
+        }
 
-			span{
-				font-size: 120%
-			}
-		}
-	}
+    }
 
 
-	.error-message{
-		width: 420px;
-		padding: 10px 20px;
-		margin: 20px auto;
-		
-	}
+    .error-message{
+        width: 420px;
+        padding: 10px 20px;
+        margin: 20px auto;
+        
+    }
 
-	.warning{
-		color:#CD9953;
-		background: #FEF7E4;
-	}
+    .warning{
+        color:#CD9953;
+        background: #FEF7E4;
+    }
 
-	#submit{
-		width:140px;
-		background-color:#00C1DE;
-		margin-top: 35px;
-	}	
+    #submit{
+        width:140px;
+        background-color:#00C1DE;
+        margin-top: 35px;
+    }   
 }

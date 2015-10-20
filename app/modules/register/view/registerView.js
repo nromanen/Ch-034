@@ -1,23 +1,23 @@
 define(function(require) {
-	"use strict";
+    "use strict";
 
-	var CMS = require("CMS"),
-		View = CMS.View.extend({
+    var CMS = require("CMS"),
+        View = CMS.View.extend({
 
-			el: "#CrsMSContainer",
+            el: "#CrsMSContainer",
 
-			initialize: function() {
-				this.render();
-			},
+            initialize: function() {
+                this.render();
+            },
 
-			template: _.template( require("text!../template/registerTemplate.html") ),
+            template: _.template( require("text!../template/registerTemplate.html") ),
 
-			render: function() {
-				console.log("this.model");
-				this.$el.html( this.template( this.model.toJSON() ) );
-				return this;
-			}
-		});
+            render: function() {
+                console.log("this.model");
+                this.$el.html( this.template( this.model.toJSON() ) );
+                return this;
+            }
+        });
 
-	return View;
+    return View;
 });
