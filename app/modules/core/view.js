@@ -2,10 +2,11 @@ define(function(require) {
     "use strict";
 
     var Backbone = require("backbone"),
-
-    View = Backbone.View.extend({
+        Layout = require("backbone.layoutmanager"),
         
+    CoreLayout = Backbone.Layout.extend({
+        manage: true
     });
 
-    return View;
+    return CoreLayout;
 });

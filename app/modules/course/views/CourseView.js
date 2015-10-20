@@ -8,8 +8,17 @@ define(function(require) {
 
         el: false,
 
-        render: function() {
-            return this.template(this.model.toJSON());
+        events: {
+            'click .btn': "check"
+        },
+
+        serialize: function() {
+            return { course: this.model };
+        },
+
+        check: function(ev){
+            console.log(this.model);
+            console.log($(ev.target));
         }
     });
 
