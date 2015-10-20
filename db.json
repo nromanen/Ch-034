@@ -2411,6 +2411,48 @@
     },
     {
       "id": 4,
+      "num": 4,
+      "idModule": 1,
+      "nameModule": "1. Теги: поняття, типи підтримки",
+      "answer": "Яка форма запису є коректною ? (два варіанти)",
+      "typeVariant": "few",
+      "variants": {
+        "variant1": "&lt;input required=on&gt;",
+        "variant2": "&lt;input required=yes&gt;",
+        "variant3": "&lt;input required&gt;",
+        "variant4": "&lt;input required=required&gt;"
+      }
+    },
+    {
+      "id": 5,
+      "num": 5,
+      "idModule": 1,
+      "nameModule": "1. Теги: поняття, типи підтримки",
+      "answer": "Як встановити кодировку документа?",
+      "typeVariant": "list",
+      "variants": {
+        "variant1": "&lt;body charset=&#34;utf-8&#34;&gt;",
+        "variant2": "&lt;meta charset=&#34;utf-8&#34;&gt;",
+        "variant3": "&lt;meta codebase=&#34;utf-8&#34;&gt;"
+      }
+    },
+    {
+      "id": 6,
+      "num": 6,
+      "idModule": 1,
+      "nameModule": "1. Теги: поняття, типи підтримки",
+      "answer": "Який елемент у секції &lt;head&gt; є обов'язковим?",
+      "typeVariant": "list",
+      "variants": {
+        "variant1": "&lt;meta&gt;",
+        "variant2": "&lt;link&gt;",
+        "variant3": "&lt;style&gt;",
+        "variant4": "&lt;base&gt;",
+        "variant5": "&lt;title&gt;"
+      }
+    },  
+    {
+      "id": 7,
       "num": 1,
       "idModule": 2,
       "nameModule": "2. Другий модуль",
