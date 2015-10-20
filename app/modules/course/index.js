@@ -6,6 +6,7 @@ define(function(require) {
         Model: require("./models/CourseModel"),
         Views: {
             Course: require("./views/CourseView"),
+            CourseDetails: require("./views/CourseDetailsView"),
             Courses: require("./views/CoursesView")
         }
     };
