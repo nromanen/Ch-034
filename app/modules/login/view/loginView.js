@@ -23,17 +23,13 @@ define( function ( require ) {
 			},
 
 			afterRender: function () {
-				this.$el.find( ".error-message" ).hide();
-			},
-
-			afterRender: function () {
 				this.$el.find( ".error-message" ).addClass( "hidden" );
 			},
 
 			events: {
 				"submit" : "submitHandler"
 			},
-			
+
 			submitHandler: function (e) {
 				e.preventDefault();
 				

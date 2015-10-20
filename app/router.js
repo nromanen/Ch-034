@@ -10,18 +10,14 @@ define(function(require) {
 
     Router = Backbone.Router.extend({
         initialize: function() {
-<<<<<<< HEAD
-            
+
             this.appView = new CMS.CoreView();
 
             this.headerView = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
             this.courses = new CoursesModule.Collection();
-<<<<<<< HEAD
             this.tests = new TestsModule.Collection();
-=======
->>>>>>> login module
 
             this.appView.insertViews([
                 this.headerView,
@@ -39,32 +35,8 @@ define(function(require) {
             "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
         },
 
-        index: function() {
-            this.appView.setView( new Login.View() );
-=======
-            this.core = CMS.CoreView;
-            this.courses = new Courses.Collection();
-            this.login = new Login.Model();
-            this.reset = new ResetPassword.Model();
-        },
-
-        routes: {
-            "": "index",
-            "reset" : "reset",
-            "courses(/)(/page/:pageNumber)": "courses"
-        },
-
         index: function () {
-<<<<<<< HEAD
-            new Login.View( { model: this.login } );
-=======
-            this.appView.insertView( "#CrsMSContainer", new Login.View() );
->>>>>>> login module
-        },
-
-        reset: function () {
-            new ResetPassword.View( { model: this.reset } );
->>>>>>> add resetPassword module
+            this.appView.setView( new Login.View() );
         },
 
         showCoursesList: function(currentPage) {
@@ -100,5 +72,4 @@ define(function(require) {
     });
 
     return Router;
-
 });
