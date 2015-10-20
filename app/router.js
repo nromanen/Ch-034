@@ -31,7 +31,7 @@ define(function(require) {
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/module/:id": "showCourseModuleDetails",
-            "tests/:moduleId/:testId": "showTestModule"
+            "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
         },
 
         index: function() {
@@ -58,10 +58,10 @@ define(function(require) {
             this.module.fetch();  
         },
 
-        showTestModule: function(moduleTest, currentQuestion){    
+        showTestModule: function(courseModule, moduleTest, currentQuestion){    
             this.tests.reset();
             this.tests.setCurrentPage(parseInt(currentQuestion));
-            this.tests.currentUrl =  '#tests/' + moduleTest + '/'; 
+            this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/';
             this.tests.addFilter = '&idModule=' + moduleTest;            
 
             this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));

@@ -9,7 +9,7 @@ define(function(require) {
         resourse: "",
         perPage: 5,
         currentPage: 1,
-        currentUrl: '',
+        hrefPath: '',
         addFilter: '',
 
         setCurrentPage: function(page) {
@@ -37,7 +37,7 @@ define(function(require) {
 
         info: function() {
             return {
-                currentUrl: this.currentUrl,
+                hrefPath: this.hrefPath,
                 currentPage: this.currentPage,
                 totalPages: this.totalPages,
                 lastPage: this.totalPages,
