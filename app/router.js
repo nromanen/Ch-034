@@ -7,6 +7,7 @@ define(function(require) {
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
         ResetPassword = require("modules/reset/index"),
+        ModulesModule = require("modules/module/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -31,8 +32,12 @@ define(function(require) {
             "": "index",
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails",
+<<<<<<< HEAD
             "courses/:courseId/module/:id": "showCourseModuleDetails",
             "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
+=======
+            "courses/:courseId/module/:id": "showCourseModuleDetails"
+>>>>>>> check email
         },
 
         index: function () {
@@ -50,13 +55,18 @@ define(function(require) {
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({id: id});
             this.course.fetch();
+<<<<<<< HEAD
             this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));  
+=======
+            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+>>>>>>> check email
         },
 
         showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
             this.module.fetch();  
+<<<<<<< HEAD
         },
 
         showTestModule: function(courseModule, moduleTest, currentQuestion){    
@@ -67,6 +77,8 @@ define(function(require) {
 
             this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
             this.tests.fetch();                        
+=======
+>>>>>>> check email
         }
         
     });

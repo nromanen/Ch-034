@@ -17,4 +17,13 @@ define(function(require, exports, module) {
     });
 
     return Collection;
+<<<<<<< HEAD
 });
+=======
+});
+
+
+
+
+    
+>>>>>>> check email

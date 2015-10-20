@@ -12,7 +12,7 @@ define( function ( require ) {
 				} );
 			},
 
-			el: "#CrsMSContainer",
+			el: false,
 
 			template: _.template( require( "text!../template/resetTemplate.html" ) ),
 

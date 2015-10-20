@@ -1,20 +1,36 @@
 <div id="module-container" class="container-fluid padding">
+<<<<<<< HEAD
     <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
     <a href="#course/<%= courseId %>/module/<%= id %>/test" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
         <h3><%= title %></h3>
         <div class="text-justify"><%= description %></div>
+=======
+    <a href="" class="left-side">&lt; повернутись до курсу</a>
+    <a href="" class="right-side">пройти тест &gt;</a>
+    <div id="module-info">
+        <h3><%= title %></h3>
+        <div><%= description %></div>
+>>>>>>> check email
         <ul class="h4"><% _.each(resources, function(resource){ %>
                 <% if (resource.type == "video") { %>
                     <li class="h4"><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="videoWrapper">
                         <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
                     </div></li>
+<<<<<<< HEAD
                 <% } else if (resource.type == "pdf" | resource.type == "zip") { %>
+=======
+                <% } else if (resource.type == "pdf") { %>
+>>>>>>> check email
                     <li><%= resource.name %>&nbsp<a href="<%= resource.url %>"><span class="glyphicon glyphicon-file"></a></li>
                     <% } %>
                 <% }); %>
         </ul>
+<<<<<<< HEAD
         <div class="text-center"><button class="button">Пройти тест</button></div>
+=======
+        <div class="align-center"><button class="button">Пройти тест</button></div>
+>>>>>>> check email
     </div>
 </div>

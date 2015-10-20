@@ -24,4 +24,9 @@ define(function(require, extend, module) {
     });
 
     return Model;
+<<<<<<< HEAD
 });
+=======
+});
+
+>>>>>>> check email

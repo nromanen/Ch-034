@@ -15,10 +15,17 @@ define(function(require, exports, module) {
 
         serialize: function() {
             return {
+<<<<<<< HEAD
                 modules: this.collection,
                 imgUrl: this.imgUrl
             };
         }     
+=======
+                modules: this.collection
+            };
+        }
+        
+>>>>>>> check email
     });
 
     return View;

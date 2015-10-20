@@ -43,6 +43,8 @@ define( function ( require ) {
 
 				this.model.set( dataObj , { validate: true } );
 			
+			},
+				
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
 					this.$el.find( "." + error ).addClass( "error" ); 
