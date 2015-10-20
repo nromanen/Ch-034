@@ -41,15 +41,24 @@ define( function ( require ) {
 
 				this.model.set( dataObj , { validate: true } );
 
-				$.ajax({
+				var request = $.ajax({
 					url: CMS.api + "users/",
 					dataType: "json",
 					data: dataObj,
-					type: "POST",
-					success: function (data) {
-						console.log(data);
-					}
+					type: "POST"
 				});
+				request
+					.complete(function(data){
+
+					})
+					.done(function(data) {
+
+
+					})
+					.error(function(data){
+
+					});
+				
 			},
 				
 			errorMessage: function ( model, errors ) {
