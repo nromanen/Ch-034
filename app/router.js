@@ -7,12 +7,6 @@ define(function(require) {
 
     Router = Backbone.Router.extend({
         initialize: function() {
-            this.core = CMS.CoreView;
-            this.courses = new Courses.Collection();
-            this.register = new Register.Model();
-
-    Router = Backbone.Router.extend({
-        initialize: function() {
             
             this.appView = new CMS.CoreView();
 
@@ -38,7 +32,7 @@ define(function(require) {
         },
 
         index: function() {
-            new Register.View( {model: this.register} );
+            
         },
 
         showCoursesList: function(currentPage) {
