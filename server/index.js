@@ -18,9 +18,10 @@ router.render = function(req,res) {
 server.use(jsonServer.defaults());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+
 server.post("/check_email", function(req, res) {
-    var users = db("users");
-    var email = req.body.email;
+    var users = db("users"),
+        email = req.body.email;
     
     if (users.find({email: email})) {
         res.status(409);

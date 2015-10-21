@@ -11,7 +11,8 @@ define(function(require) {
         api: CMS.api,
         perPage: CMS.perPage,
         paginationSize: CMS.paginationSize,
-        resourse: "courses"
+        resourse: "courses",
+        hrefPath: "#courses/page/"
 
     });
 
