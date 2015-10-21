@@ -11,8 +11,8 @@ define(function(require) {
 
         events:{
         	"hidden.bs.modal #applyModal": "closePopup",
-        	"click .btn-apply": "submit",
-        	"click .btn-cancel": "decline"
+        	"click .btn-apply": "submitHandlerClick",
+        	"click .btn-cancel": "declinePopup"
 
         },
 
@@ -26,10 +26,10 @@ define(function(require) {
         closePopup: function(){
         	this.remove();
         },
-        submit: function(){
+        submitHandlerClick: function(){
 
         },
-        decline: function(){
+        declinePopup: function(){
         	this.$el.modal(hide);
         }
 

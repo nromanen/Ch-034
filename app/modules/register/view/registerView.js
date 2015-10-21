@@ -24,29 +24,28 @@ define(function(require) {
 
             template: _.template( require("text!../template/registerTemplate.html") ),
 
-			events: {
-				'click #submit': "submitClicked"
-			},
+            events: {
+                'click #submit': "submitClicked"
+            },
 
-			submitClicked: function(e) {
-				e.preventDefault();
+            submitClicked: function(e) {
+                e.preventDefault();
 
                 var feedback = {
-                	name: this.$el.find('#name').val(),
-                	surname: this.$el.find('#surname').val(),
-                	email: this.$el.find('#email').val(),
-                	pass: this.$el.find('#pass').val(),
-                	repeatPass: this.$el.find('#repeatPass').val()
+                    name: this.$el.find('#name').val(),
+                    surname: this.$el.find('#surname').val(),
+                    email: this.$el.find('#email').val(),
+                    pass: this.$el.find('#pass').val(),
+                    repeatPass: this.$el.find('#repeatPass').val()
                 };
 
                 this.hideErrors();
                 this.model.set( feedback, {validate: true} );
-			},
+            },
 
-			showErrors: function(model, errors) {
+            showErrors: function(model, errors) {
                 _.each(errors, function (error) {
                     this.$el.find('.' + error).addClass('error');
-                    // to be modified: controlGroup.find('.help-inline').text(error.message);
                 }, this);
                 this.$el.find(".warning").addClass("hidden");
                 this.$el.find( ".error-message" ).removeClass( "hidden" );
@@ -55,7 +54,6 @@ define(function(require) {
             hideErrors: function () {
                 this.$el.find('.error-message').addClass('hidden');
                 this.$el.find(".input-group").removeClass("error");
-                // to be modified: this.$('.help-inline').text('');
             }
         });
 
