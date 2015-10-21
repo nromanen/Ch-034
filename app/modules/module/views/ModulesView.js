@@ -15,10 +15,10 @@ define(function(require, exports, module) {
 
         serialize: function() {
             return {
-                modules: this.collection
+                modules: this.collection,
+                imgUrl: this.imgUrl
             };
-        }
-        
+        }     
     });
 
     return View;
