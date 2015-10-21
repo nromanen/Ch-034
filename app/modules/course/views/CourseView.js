@@ -9,16 +9,20 @@ define(function(require) {
         el: false,
 
         events: {
-            'click .btn': "check"
+            'click .btn': "subscribe"
+        },
+
+        initialize: function() {
+            this.subscribeModal = new CMS.ModalView({model: this.model});
         },
 
         serialize: function() {
             return { course: this.model };
         },
 
-        check: function(ev){
-            console.log(this.model);
-            console.log($(ev.target));
+        subscribe: function(ev){
+            this.subscribeModal.render();
+            this.subscribeModal.show();
         }
     });
 

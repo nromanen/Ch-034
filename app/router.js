@@ -4,9 +4,10 @@ define(function(require) {
     var CMS = require("CMS"),
 
         CoursesModule = require("modules/course/index"),
-        RegisterModule = require("modules/register/index"),
         ModulesModule = require("modules/module/index"),
+        RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
+        Login = require("modules/login/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -37,7 +38,7 @@ define(function(require) {
         },
 
         index: function() {
-            this.appView.setView( new RegisterModule.View() );
+            this.appView.setView( new Login.View() );
         },
 
         showCoursesList: function(currentPage) {
@@ -60,11 +61,11 @@ define(function(require) {
             this.module.fetch();  
         },
 
-        showRegisterModule: function(){
+        showRegisterModule: function() {
             this.module = new RegisterModule.View( {model: this.register} );
         },
 
-        showTestModule: function(courseModule, moduleTest, currentQuestion){    
+        showTestModule: function(courseModule, moduleTest, currentQuestion) {    
             this.tests.reset();
             this.tests.setCurrentPage(parseInt(currentQuestion));
             this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/';
@@ -77,5 +78,4 @@ define(function(require) {
     });
 
     return Router;
-
 });

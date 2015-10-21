@@ -4,40 +4,55 @@ define(function(require) {
     var CoreView = require("../view"),
 
     View = CoreView.extend({
-    	className:"modal fade",
+
         id: "applyModal",
+
+        className: "modal fade",
 
         template: _.template(require("text!../templates/modalTemplate.html")),
 
         events:{
-        	"hidden.bs.modal #applyModal": "closePopup",
-        	"click .btn-apply": "submitHandlerClick",
-        	"click .btn-cancel": "declinePopup"
+            "hidden.bs.modal #applyModal": "closePopup",
+            "click .btn-apply": "submitHandlerClick",
+            "click .btn-cancel": "declinePopup"
 
         },
-
-        render: function(){
-        	this.$el.html(this.template(this.model.toJSON()));
-        	this.$el.modal({show:false});
+        initialize: function(options) {
+            if (!options.modalHeader) 
+                this.modalHeader = "Я підтверджую подачу заявки на курс:";
+            if (!options.submitButton) 
+                this.submitButton = "Подати заявку";
         },
+
+        serialize: function() {
+            return {
+                model: this.model,
+                modalHeader: this.modalHeader,
+                submitButton: this.submitButton,
+            };
+        },
+
+        afterRender: function() {
+            this.$el.modal({show:false});
+        },
+
         show: function(){
-        	this.$el.modal(show);
+            this.$el.modal("show");
         },
+
         closePopup: function(){
-        	this.remove();
+            this.remove();
         },
+
         submitHandlerClick: function(){
 
         },
+
         declinePopup: function(){
-        	this.$el.modal(hide);
+            this.$el.modal("hide");
         }
 
     });
 
     return View;
 });
-
-
-//var modal = new CMS.ModalView({model: this.model, id: "#subscribe"}).render();
-//modal.show

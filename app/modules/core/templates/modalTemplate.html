@@ -4,12 +4,12 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
-            Я підтверджую подачу заявки на курс:<br />
-            <span class="course-title"><%= name %></span>
+            <%= modalHeader %><br />
+            <span class="course-title"><%= model.get('name') %></span>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-link btn-cancel" data-dismiss="modal">Відміна</button>
-            <button type="button" class="btn btn-apply">Подати заявку</button>
+            <button type="button" class="btn btn-apply"><%= submitButton %></button>
         </div>
     </div>
 </div>
