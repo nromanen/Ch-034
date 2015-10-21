@@ -9,6 +9,8 @@ define(function(require) {
         resourse: "",
         perPage: 5,
         currentPage: 1,
+        hrefPath: '',
+        addFilter: '',
 
         setCurrentPage: function(page) {
             if (page)
@@ -20,7 +22,7 @@ define(function(require) {
         },
 
         currUrl: function() {
-            return this.api + this.resourse + '?_start=' + this.pageOffset() + '&_limit=' + this.perPage;
+            return this.api + this.resourse + '?_start=' + this.pageOffset() + '&_limit=' + this.perPage + this.addFilter;
         },
 
         url: function() {
@@ -35,6 +37,7 @@ define(function(require) {
 
         info: function() {
             return {
+                hrefPath: this.hrefPath,
                 currentPage: this.currentPage,
                 totalPages: this.totalPages,
                 lastPage: this.totalPages,

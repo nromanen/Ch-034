@@ -7,7 +7,6 @@ define(function(require) {
         Model: require("./model"),
 
         CoreView: require("./views/CoreView"),
-        ModalView: require("./views/modalView"),
 
         Views: {
             Header: require("./views/HeaderView"),
