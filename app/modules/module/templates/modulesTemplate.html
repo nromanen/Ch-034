@@ -3,17 +3,13 @@
     <div id="module-container" class="row course module">
         <div class="col-md-2 col-sm-3 text-center">
             <a class="module-img" href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><img src="<%= imgUrl %>"></a>
-            <a class="module-img" href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><img src="//placehold.it/100"></a>
         </div>
         <div class="col-md-8 col-sm-7">
             <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><%= module.get('title') %></a></strong></div>
             
             <div class="bottom-line clearfix">
                 <a href="" class="left-side pull-left">методичні матеріали</a>
-
                 <button class="btn btn-success pull-right">Пройти тест</button>
-
-                <button class="btn btn-success pull-right">Take the test</button>
             </div>
         </div>
     </div>

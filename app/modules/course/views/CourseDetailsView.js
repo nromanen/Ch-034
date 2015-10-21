@@ -16,11 +16,7 @@ define(function(require) {
 
         beforeRender: function() {
             this.modules.fetch();
-<<<<<<< HEAD
             this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image')}));
-=======
-            this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules}));
->>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
         },
 
         serialize: function() {

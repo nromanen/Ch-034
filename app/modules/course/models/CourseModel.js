@@ -25,6 +25,7 @@ define(function(require){
         url: function() {
             return this.urlRoot + '/' + this.id;
         }
+
     });
 
     return Model;
