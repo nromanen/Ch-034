@@ -1,6 +1,6 @@
 <div id="module-container" class="container-fluid padding">
     <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
-    <a href="#course/<%= courseId %>/module/<%= id %>/test" class="right-side">пройти тест &gt;</a>
+    <a href="#courses/<%= courseId %>/module/<%= id %>/test/1" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
         <h3><%= title %></h3>
         <div class="text-justify"><%= description %></div>
@@ -11,10 +11,10 @@
                         <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
                     </div></li>
                 <% } else if (resource.type == "pdf" | resource.type == "zip") { %>
-                    <li><%= resource.name %>&nbsp<a href="<%= resource.url %>"><span class="glyphicon glyphicon-file"></a></li>
+                    <li><%= resource.name %>&nbsp<a href="<%= resource.url %>" data-bypass="true"><span class="glyphicon glyphicon-file"></a></li>
                     <% } %>
                 <% }); %>
         </ul>
-        <div class="text-center"><button class="button">Пройти тест</button></div>
+        <div class="text-center"><a href="#courses/<%= courseId %>/module/<%= id %>/test/1" class="btn btn-success">Пройти тест</a></div>
     </div>
 </div>
