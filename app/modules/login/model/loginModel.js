@@ -14,11 +14,11 @@ define(function(require){
 	        	var errors = [];
 
 	        	if ( !attr.email) {
-	        		errors.push( { name: "email" } );
+	        		errors.push( "email" );
 	        	}
 
 	        	if ( !attr.password ) {
-	        		errors.push( { name: "password" } );
+	        		errors.push( "password" );
 	        	}
 	        				
 	        	return errors.length > 0 ? errors : false;
