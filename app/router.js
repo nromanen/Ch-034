@@ -2,21 +2,7 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-<<<<<<< HEAD
-<<<<<<< HEAD
-        Courses = require("modules/course/index"),
-        Register = require("modules/register/index"),
-
-    Router = Backbone.Router.extend({
-        initialize: function() {
-            this.core = CMS.CoreView;
-            this.courses = new Courses.Collection();
-            this.register = new Register.Model();
-=======
-=======
->>>>>>> ca06c09451ac4bfdc9bf7c95ea0a4f261beaea09
         CoursesModule = require("modules/course/index"),
-        ModulesModule = require("modules/module/index"),
         RegisterModule = require("modules/register/index"),
 
     Router = Backbone.Router.extend({
@@ -36,10 +22,6 @@ define(function(require) {
             ]);
             this.appView.render();
 
-<<<<<<< HEAD
->>>>>>> 38d99b5a9016c42ecd3c834bb79436fa7aa9da76
-=======
->>>>>>> ca06c09451ac4bfdc9bf7c95ea0a4f261beaea09
         },
 
         routes: {
@@ -51,7 +33,7 @@ define(function(require) {
         },
 
         index: function() {
-            //new RegisterModule.View( {model: this.register} );
+            this.appView.setView( new RegisterModule.View() );
         },
 
         showCoursesList: function(currentPage) {

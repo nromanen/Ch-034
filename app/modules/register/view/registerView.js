@@ -2,58 +2,60 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
+        Model = require("modules/register/model/registerModel"),
         View = CMS.View.extend({
 
             el: "#CrsMSContainer",
 
             initialize: function() {
-                this.render();
+                this.model = new Model();
+                this.listenTo(this.model, "invalid", function (model, error) {
+                    this.showErrors(model, error);
+                });
+            },
+
+            serialize: function () {
+                return {model : this.model};
+            },
+
+            afterRender: function () {
+                this.$el.find(".error-message").addClass("hidden");
             },
 
             template: _.template( require("text!../template/registerTemplate.html") ),
 
 			events: {
-				'click #submit': submitClicked
+				'click #submit': "submitClicked"
 			},
 
 			submitClicked: function(e) {
 				e.preventDefault();
 
-				var options = $.proxy({
-                    success: function () {
-                        this.hideErrors();
-                    },
-                    error: function (model, errors) {
-                        this.showErrors(errors);
-                    }
-                }, this);
-
                 var feedback = {
-                	name: this.$('#name').val();
-                	surname: this.$('#surname').val();
-                	email: this.$('#email').val();
-                	pass: this.$('#pass').val();
-                	repeatPass: this.$('#repeatPass').val();
-                }
+                	name: this.$el.find('#name').val(),
+                	surname: this.$el.find('#surname').val(),
+                	email: this.$el.find('#email').val(),
+                	pass: this.$el.find('#pass').val(),
+                	repeatPass: this.$el.find('#repeatPass').val()
+                };
+
+                this.hideErrors();
+                this.model.set( feedback, {validate: true} );
 			},
 
-			showErrors: function(errors) {
+			showErrors: function(model, errors) {
                 _.each(errors, function (error) {
-                    var controlGroup = this.$('.' + error.name);
-                    controlGroup.addClass('error');
+                    this.$el.find('.' + error).addClass('error');
                     // to be modified: controlGroup.find('.help-inline').text(error.message);
                 }, this);
+                this.$el.find(".warning").addClass("hidden");
+                this.$el.find( ".error-message" ).removeClass( "hidden" );
             },
 
             hideErrors: function () {
-                this.$('.control-group').removeClass('error');
+                this.$el.find('.error-message').addClass('hidden');
+                this.$el.find(".input-group").removeClass("error");
                 // to be modified: this.$('.help-inline').text('');
-            },
-
-            render: function() {
-                console.log("this.model");
-                this.$el.html( this.template( this.model.toJSON() ) );
-                return this;
             }
         });
 
