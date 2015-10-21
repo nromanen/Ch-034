@@ -1,14 +1,11 @@
+$white: #ffffff;
+$black: #000000;
+
 .login-form {
     display: table;
     margin: 0 auto;
 }
 
-#register {
-	background: #00C1DE;
-	text-decoration: none;
+.login-form .input-group-addon {
+    width: 40px;
 }
-
-a {
-	text-decoration: underline;
-}
-

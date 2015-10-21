@@ -33,7 +33,7 @@ In project root folder
 
 ### Add upstream
 `git remote -v`  
-`git remote add upstream https://github.com/nromanen/Ch-034.git`  
+`git remote add upstream https://github.com/okrasn/Ch-034.git`  
 
 
 ### Commit changes

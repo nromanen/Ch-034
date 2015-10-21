@@ -1,50 +1,20 @@
 <div id="module-container" class="container-fluid padding">
-<<<<<<< HEAD
-<<<<<<< HEAD
     <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
     <a href="#course/<%= courseId %>/module/<%= id %>/test" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
         <h3><%= title %></h3>
         <div class="text-justify"><%= description %></div>
-=======
-=======
->>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
-    <a href="" class="left-side">&lt; повернутись до курсу</a>
-    <a href="" class="right-side">пройти тест &gt;</a>
-    <div id="module-info">
-        <h3><%= title %></h3>
-        <div><%= description %></div>
-<<<<<<< HEAD
->>>>>>> check email
-=======
->>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
         <ul class="h4"><% _.each(resources, function(resource){ %>
                 <% if (resource.type == "video") { %>
                     <li class="h4"><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="videoWrapper">
                         <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
                     </div></li>
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <% } else if (resource.type == "pdf" | resource.type == "zip") { %>
-=======
-                <% } else if (resource.type == "pdf") { %>
->>>>>>> check email
-=======
-                <% } else if (resource.type == "pdf") { %>
->>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
                     <li><%= resource.name %>&nbsp<a href="<%= resource.url %>"><span class="glyphicon glyphicon-file"></a></li>
                     <% } %>
                 <% }); %>
         </ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <div class="text-center"><button class="button">Пройти тест</button></div>
-=======
-        <div class="align-center"><button class="button">Пройти тест</button></div>
->>>>>>> check email
-=======
-        <div class="align-center"><button class="button">Пройти тест</button></div>
->>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
     </div>
 </div>

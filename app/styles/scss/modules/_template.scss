@@ -39,42 +39,12 @@ body {
     background-color: $mainBgColor;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 a {
     color: #5b8bac;
     text-decoration: underline;
 }
 
-.error-message {
-    width: 460px;
-    height: 50px;
-    padding: 10px 20px;
-    margin: 20px auto;
-}
-
-.error {
-    outline: 1px solid #AA3838;
-}
-
-.input-group {
-    width:300px;
-    margin-bottom: 20px;
-    height: 38px;
-
-    .form-control {
-        height:38px;
-    }
-
-    .input-group-addon {
-        width: 40px;
-    }
-}
-
-.submit {
-    width:139px;
-    background: #00B859;
-    margin-top: 20px;
-}
-
-.bold {
-    font-weight: bold;
-}
