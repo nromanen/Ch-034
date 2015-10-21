@@ -1,43 +1,41 @@
-#general-form{
+#general-form {
 
-    #registerForm{
+    #registerForm {
         max-width:300px;
         margin: 0 auto;
     }
 
-    .input-group{
+    .input-group {
         width:310px;
         margin-bottom: 20px;
         height: 40px;
-
-        .form-control{
-            height:40px;
-        }
-
-        .input-group-addon{
-            width: 40px;
-            font-size: 116%;
-            font-weight: bold;
-        }
-
     }
 
+    .form-control {
+        height:40px;
+    }
 
-    .error-message{
-        width: 420px;
-        padding: 10px 20px;
-        margin: 20px auto;
+    .input-group-addon {
+        width: 40px;
+        font-size: 116%;
+        font-weight: bold;
+    }
+
+}
+
+    .error {
+        border: 1px solid red;
         
     }
 
-    .warning{
+    .warning {
         color:#CD9953;
         background: #FEF7E4;
     }
 
-    #submit{
+    #submit {
         width:140px;
         background-color:#00C1DE;
         margin-top: 35px;
     }   
-}
+

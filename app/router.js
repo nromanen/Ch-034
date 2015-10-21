@@ -35,7 +35,6 @@ define(function(require) {
             "courses/:courseId/module/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
             "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
-
         },
 
         index: function() {
@@ -62,19 +61,18 @@ define(function(require) {
             this.module.fetch();  
         },
 
-
-        showRegisterModule: function(){
+        showRegisterModule: function() {
             this.module = new RegisterModule.View( {model: this.register} );
-        },    
+        },
 
-        showTestModule: function(courseModule, moduleTest, currentQuestion){    
+        showTestModule: function(courseModule, moduleTest, currentQuestion) {    
             this.tests.reset();
             this.tests.setCurrentPage(parseInt(currentQuestion));
             this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/';
             this.tests.addFilter = '&idModule=' + moduleTest;            
 
             this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
-            this.tests.fetch();                        
+            this.tests.fetch();
         }
         
     });

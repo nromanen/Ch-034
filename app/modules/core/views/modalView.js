@@ -6,14 +6,15 @@ define(function(require) {
     View = CoreView.extend({
 
         id: "applyModal",
-    	className: "modal fade",
+
+        className: "modal fade",
 
         template: _.template(require("text!../templates/modalTemplate.html")),
 
         events:{
-        	"hidden.bs.modal #applyModal": "closePopup",
-        	"click .btn-apply": "submit",
-        	"click .btn-cancel": "decline"
+            "hidden.bs.modal #applyModal": "closePopup",
+            "click .btn-apply": "submitHandlerClick",
+            "click .btn-cancel": "declinePopup"
 
         },
         initialize: function(options) {
@@ -36,16 +37,19 @@ define(function(require) {
         },
 
         show: function(){
-        	this.$el.modal("show");
+            this.$el.modal("show");
         },
+
         closePopup: function(){
-        	this.remove();
+            this.remove();
         },
-        submit: function(){
+
+        submitHandlerClick: function(){
 
         },
-        decline: function(){
-        	this.$el.modal("hide");
+
+        declinePopup: function(){
+            this.$el.modal("hide");
         }
 
     });
