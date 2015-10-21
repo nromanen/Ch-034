@@ -4,6 +4,7 @@ define(function(require) {
     var CoreView = require("../view"),
 
     View = CoreView.extend({
+
         id: "applyModal",
     	className: "modal fade",
 

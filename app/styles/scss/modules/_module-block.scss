@@ -12,6 +12,13 @@ a:link {
     margin-left: auto;
     max-width: 700px ;
 }
+a.module-item-name {
+  color: #000;
+  text-decoration: none;
+}
+.module-item-name:hover {
+  text-decoration: underline;
+}
 .left-side {
     float: left;
 }
@@ -20,6 +27,9 @@ a:link {
 }
 #module-info {
     padding-top: 20px;
+}
+.bottom-line {
+    padding-top: 25px;
 }
 .button {
     border-radius: 5px;
@@ -31,6 +41,10 @@ a:link {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     margin-top: 20px;
+}
+.btn.btn-success.disable {
+    background-color: #959595;
+    border: 1px solid #ccc;
 }
 .videoWrapper {
     position: relative;

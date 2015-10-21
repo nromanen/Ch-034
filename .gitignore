@@ -5,3 +5,5 @@ build
 vendor
 app/assets/css
 app/assets/fonts
+app/styles/main.min.css
+app/styles/main.min.css.map

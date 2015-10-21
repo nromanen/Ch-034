@@ -7,14 +7,22 @@
     background-clip: content-box;
     margin-bottom: 25px;
 }
-
+.course .course-name {
+	color: #000;
+	text-decoration: none;
+}
+.course .course-name:hover {
+	text-decoration: underline;
+}
 .course .course-img {
     margin-top: 25%;
     display: block;
-    width: 125px;
-    height: 125px;
+    width: 100%;
 }
-
+.course .course-img img {
+	max-width: 155px;
+	max-height: 210px;
+}
 .course .accordion {
     color: $accordionTextColor
 }
@@ -31,6 +39,7 @@
 
 .course .accordion .accordion-inner {
     border-bottom: 1px dashed $accordionTextColor;
+	margin-bottom: 10px;
 }
 
 .course .course-action {
@@ -43,11 +52,18 @@
     margin-bottom: 25px;
 }
 .course .course-schedule span {
+    color: #787878;
+    font-style: italic;
     display: table-cell;
     vertical-align: middle;
     height: 40px;
 }
-
+.course .btn-success {
+    background-color: #60b760;
+}
+.course .accordion-inner li span {
+    font-style: italic;
+}
 .row.course {
     background-clip: inherit;
     padding: 10px 20px 20px 20px;
@@ -56,10 +72,5 @@
 .module .module-title {
     display: block;
     font-size: 1.2em;
-}
-.module .bottom-line {
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
+    padding-top: 35px;
 }
