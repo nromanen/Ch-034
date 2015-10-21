@@ -51,7 +51,7 @@ define(function(require) {
         },
 
         index: function() {
-            new RegisterModule.View( {model: this.register} );
+            //new RegisterModule.View( {model: this.register} );
         },
 
         showCoursesList: function(currentPage) {
