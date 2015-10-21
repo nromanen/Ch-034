@@ -7,6 +7,7 @@ define(function(require) {
         ModulesModule = require("modules/module/index"),
         RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
+        Login = require("modules/login/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -38,7 +39,7 @@ define(function(require) {
         },
 
         index: function() {
-            //new RegisterModule.View( {model: this.register} );
+            this.appView.setView( new Login.View() );
         },
 
         showCoursesList: function(currentPage) {
@@ -79,5 +80,4 @@ define(function(require) {
     });
 
     return Router;
-
 });
