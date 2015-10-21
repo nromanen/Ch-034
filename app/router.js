@@ -62,7 +62,8 @@ define(function(require) {
         },
 
         showRegisterModule: function() {
-            this.module = new RegisterModule.View( {model: this.register} );
+            this.register = new RegisterModule.View( {model: this.register} );
+            this.register.render();
         },
 
         showTestModule: function(courseModule, moduleTest, currentQuestion) {    
