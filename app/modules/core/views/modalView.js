@@ -5,13 +5,14 @@ define(function(require) {
 
     View = CoreView.extend({
     	className:"modal fade",
+        id: "applyModal",
 
         template: _.template(require("text!../templates/modalTemplate.html")),
 
         events:{
-        	"hidden.bs.modal #applyModal": closePopup,
-        	"click .btn-apply": submit,
-        	"click .btn-cancel": decline
+        	"hidden.bs.modal #applyModal": "closePopup",
+        	"click .btn-apply": "submit",
+        	"click .btn-cancel": "decline"
 
         },
 
