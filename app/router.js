@@ -23,12 +23,14 @@ define(function(require) {
                 this.headerView,
                 this.containerView,
                 this.footerView
-            ]); 
-            this.appView.render();        
+            ]);
 
+            this.appView.render();
+        },
 
         routes: {
             "": "index",
+            "reset" : "reset",            
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/module/:id": "showCourseModuleDetails"
@@ -51,13 +53,12 @@ define(function(require) {
             this.course.fetch();
 
             this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
-
         },
 
         showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
-            this.module.fetch();  
+            this.module.fetch();
         },
 
         showTestModule: function(courseModule, moduleTest, currentQuestion){    

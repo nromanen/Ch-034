@@ -19,6 +19,7 @@ define(function(require, exports, module) {
     return Collection;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 =======
 });
@@ -31,3 +32,6 @@ define(function(require, exports, module) {
 =======
 });
 >>>>>>> fixed
+=======
+});
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf

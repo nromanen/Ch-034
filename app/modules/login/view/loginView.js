@@ -7,6 +7,7 @@ define( function ( require ) {
 
 			initialize: function () {
 				this.$el.find( ".error-message" ).addClass( "hidden" );
+
 				this.model = new Model();
 				this.listenTo( this.model, "invalid", function ( model, error ) {
 					this.errorMessage( model, error );
@@ -19,7 +20,6 @@ define( function ( require ) {
 
 			serialize: function () {
 				return { model: this.model };
-
 			},
 
 			afterRender: function () {
@@ -35,7 +35,7 @@ define( function ( require ) {
 
 				this.$el.find( ".form-group" ).removeClass( "error" );
 				this.$el.find( ".error-message" ).addClass( "hidden" );
-
+				
 				var dataObj = {
 					email : this.$el.find( "#email" ).val(), 
 					password: this.$el.find( "#password" ).val()
@@ -43,7 +43,7 @@ define( function ( require ) {
 
 				this.model.set( dataObj , { validate: true } );
 			},
-
+			
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
 					this.$el.find( "." + error ).addClass( "error" ); 

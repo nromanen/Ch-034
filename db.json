@@ -5,9 +5,12 @@
       "isPublished": true,
       "areaId": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": "Flat UI",
       "description": "Даний курс вивчає мінімалістичний підхід до дизайну об'єктів, який підкреслює зручність використання, більшою мірою орієнтований на кінцевого користувача. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
 =======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "name": "Gleason Marketing",
       "description": "nullam et nec mattis tortor lacus sed dui morbi dui aliquam nunc etiam aliquam nullam elementum at amet magna ipsum",
 >>>>>>> check email
@@ -23,9 +26,12 @@
       "isPublished": true,
       "areaId": 4,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": "CSS",
       "description": "Будуть розглянуті сучасні можливості каскадних таблиць стилів і їхню підтримку востанніх популярних браузерах",
 =======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "name": "Puri Shipping",
       "description": "massa mattis non magna adipiscing libero at aliquam et amet sit id amet amet curabitur lectus sollicitudin pulvinar velit lacus",
 >>>>>>> check email
@@ -41,9 +47,12 @@
       "isPublished": true,
       "areaId": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": "HTML",
       "description": "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
 =======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "name": "Lazcano Marketing",
       "description": "amet morbi libero sit dui tincidunt vestibulum magna magna ac scelerisque placerat pulvinar aliquam morbi curabitur egestas massa vitae mattis",
 >>>>>>> check email
@@ -59,9 +68,12 @@
       "isPublished": true,
       "areaId": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": "Java",
       "description": "Даний курс орієнтований на вивчення Java як людьми з мінімальним рівнем знання програмування так і людей, які хочуть покращити свої знання з певних нюансів мови.",
 =======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "name": "Frazee Shipping",
       "description": "lacus tempor etiam pretium eros placerat ac nullam pulvinar eros sed malesuada pharetra consequat non tortor massa libero amet amet",
 >>>>>>> check email
@@ -77,9 +89,12 @@
       "isPublished": true,
       "areaId": 2,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": ".Net",
       "description": "У Вас буде можливість вивчити технології та підходи до розробки Web-програм з багаторівневою архітектурою. Ви отримаєте досвід побудови Web-програм засобами ASP.NET MVC, Silverlight, побудови десктопних програм засобами WPF, реалізацію ORM засобами ADO.NET Entity, а також розробки Web-сервісів з допомогою WСF.",
 =======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "name": "Rosenberg Industries",
       "description": "lacus nec ipsum pharetra tincidunt placerat sapien pulvinar magna amet convallis augue amet massa sed etiam consectetur suspendisse quis augue",
 >>>>>>> check email
@@ -95,9 +110,12 @@
       "isPublished": true,
       "areaId": 4,
 <<<<<<< HEAD
+<<<<<<< HEAD
       "name": "UX",
       "description": "Програма навчання сформована відповідно до вимог провідних ІТ компаній, що підтверджує Львівський Кластер ІТ-BPO. Це можливість всім починаючим дизайнерам та архітекторам з головою поринути в світ найперспективнішої сфери – дизайну в ІТ. Ринок потребує нових спеціалістів і Lviv UI/UX School ставить собі за мету підготувати справжніх професіоналів дизайну.",
 =======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "name": "Lopez Computing",
       "description": "tincidunt velit porttitor in sed vitae sed quis libero etiam et tincidunt vitae nec vitae aliquam augue sollicitudin scelerisque molestie",
 >>>>>>> check email
@@ -567,6 +585,7 @@
     }
   ],
   "modules": [
+<<<<<<< HEAD
     {
       "id": 1,
       "courseId": 1,
@@ -613,10 +632,39 @@
           "type": "zip",
           "name": "Модуль 4. Конспект.",
           "url": "../web-resources/forms.zip"
+=======
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Модуль 1.Теги: поняття, типи, підтримка",
+      "description": "&lt;ol&gt;&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;&lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;&lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;&lt;li&gt;Phasellus iaculis neque&lt;/li&gt;&lt;li&gt;Purus sodales ultricies&lt;/li&gt;&lt;li&gt;Vestibulum l&lt;/li&gt;&lt;/ol&gt;",
+      "resources": [
+        {
+          "id": 1,
+          "moduleId": 1,
+          "type": "video",
+          "name": "Video for Module 1",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 2,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 1)",
+          "url": ""
+        },
+        {
+          "id": 3,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 2)",
+          "url": ""
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
         }
       ]
     },
     {
+<<<<<<< HEAD
       "id": 5,
       "courseId": 3,
       "title": "Модуль 5. Побудова оптимізованого DOM дерева",
@@ -1340,6 +1388,257 @@
       "isActive": false
     },
     {
+=======
+      "id": 2,
+      "courseId": 1,
+      "title": "Module 2",
+      "description": "This module 2 is about:",
+      "resources": [
+        {
+          "id": 4,
+          "moduleId": 2,
+          "type": "video",
+          "name": "Video for Module 2",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 5,
+          "moduleId": 2,
+          "type": "pdf",
+          "name": "Notes for Module 2",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "course_groups": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "name": "Early"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "name": "Evening"
+    },
+    {
+      "id": 3,
+      "courseId": 2,
+      "name": "Early"
+    },
+    {
+      "id": 4,
+      "courseId": 2,
+      "name": "Evening"
+    },
+    {
+      "id": 5,
+      "courseId": 3,
+      "name": "Daily"
+    },
+    {
+      "id": 6,
+      "courseId": 3,
+      "name": "Early"
+    },
+    {
+      "id": 7,
+      "courseId": 4,
+      "name": "Early"
+    },
+    {
+      "id": 8,
+      "courseId": 4,
+      "name": "Evening"
+    },
+    {
+      "id": 9,
+      "courseId": 5,
+      "name": "Evening"
+    },
+    {
+      "id": 10,
+      "courseId": 6,
+      "name": "Daily"
+    },
+    {
+      "id": 11,
+      "courseId": 6,
+      "name": "Early"
+    },
+    {
+      "id": 12,
+      "courseId": 7,
+      "name": "Evening"
+    },
+    {
+      "id": 13,
+      "courseId": 8,
+      "name": "Daily"
+    },
+    {
+      "id": 14,
+      "courseId": 8,
+      "name": "Early"
+    },
+    {
+      "id": 15,
+      "courseId": 9,
+      "name": "Early"
+    },
+    {
+      "id": 16,
+      "courseId": 10,
+      "name": "Evening"
+    },
+    {
+      "id": 17,
+      "courseId": 11,
+      "name": "Evening"
+    },
+    {
+      "id": 18,
+      "courseId": 12,
+      "name": "Evening"
+    },
+    {
+      "id": 19,
+      "courseId": 12,
+      "name": "Early"
+    },
+    {
+      "id": 20,
+      "courseId": 13,
+      "name": "Evening"
+    },
+    {
+      "id": 21,
+      "courseId": 13,
+      "name": "Daily"
+    },
+    {
+      "id": 22,
+      "courseId": 14,
+      "name": "Evening"
+    },
+    {
+      "id": 23,
+      "courseId": 14,
+      "name": "Early"
+    },
+    {
+      "id": 24,
+      "courseId": 15,
+      "name": "Evening"
+    },
+    {
+      "id": 25,
+      "courseId": 15,
+      "name": "Daily"
+    },
+    {
+      "id": 26,
+      "courseId": 16,
+      "name": "Evening"
+    },
+    {
+      "id": 27,
+      "courseId": 17,
+      "name": "Early"
+    },
+    {
+      "id": 28,
+      "courseId": 18,
+      "name": "Evening"
+    },
+    {
+      "id": 29,
+      "courseId": 19,
+      "name": "Daily"
+    },
+    {
+      "id": 30,
+      "courseId": 20,
+      "name": "Daily"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1,
+      "name": "UI"
+    },
+    {
+      "id": 2,
+      "name": "Java"
+    },
+    {
+      "id": 3,
+      "name": ".Net"
+    },
+    {
+      "id": 4,
+      "name": "Design"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Munazza",
+      "lastname": "Arivett",
+      "email": "BBouchard@consequat.com",
+      "password": "JzjI4e1X",
+      "city": "Bella Vista",
+      "address": "5662 Turpis Ln",
+      "phone": "(881)627-4670",
+      "isActive": false
+    },
+    {
+      "id": 2,
+      "name": "Jeri",
+      "lastname": "Geouque",
+      "email": "GBowen@consectetur.gov",
+      "password": "tgXDXRIf",
+      "city": "Middletown",
+      "address": "6910 Vestibulum Ct",
+      "phone": "(161)571-7447",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Salomon",
+      "lastname": "Ellingwood",
+      "email": "KCrete@pulvinar.com",
+      "password": "vCae1PCG",
+      "city": "Chicago",
+      "address": "8900 Suspendisse Dr",
+      "phone": "(285)797-4136",
+      "isActive": false
+    },
+    {
+      "id": 4,
+      "name": "Ora",
+      "lastname": "Reith",
+      "email": "SHawkins@dolor.gov",
+      "password": "dcHwQLPW",
+      "city": "Saltilo",
+      "address": "9559 Molestie St",
+      "phone": "(125)958-8389",
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Vanita",
+      "lastname": "Scheppe",
+      "email": "CHaga@lacus.ly",
+      "password": "XmT7kFv7",
+      "city": "Brookville",
+      "address": "8548 Magna Ct",
+      "phone": "(737)204-1899",
+      "isActive": false
+    },
+    {
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "id": 6,
       "name": "Renita",
       "lastname": "Haft",
@@ -1351,7 +1650,10 @@
       "isActive": false
     },
     {
+<<<<<<< HEAD
 >>>>>>> check email
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "id": 7,
       "name": "Elzbieta",
       "lastname": "Stevenson",
@@ -1384,6 +1686,9 @@
       "phone": "(209)218-1687",
       "isActive": false
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
     },
     {
       "id": 10,
@@ -1396,6 +1701,7 @@
       "phone": "(733)369-5183",
       "isActive": false
     }
+<<<<<<< HEAD
   ],
   "tests": [
     {
@@ -1501,5 +1807,7 @@
       "isActive": false
 >>>>>>> check email
     }
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
   ]
 }
