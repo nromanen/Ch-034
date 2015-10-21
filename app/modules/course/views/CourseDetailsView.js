@@ -15,14 +15,8 @@ define(function(require) {
         },
 
         beforeRender: function() {
-<<<<<<< HEAD
             this.modules.fetch();
             this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image')}));
-=======
-            console.log("before");
-            this.modules.fetch();
-            this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules}));
->>>>>>> check email
         },
 
         serialize: function() {
