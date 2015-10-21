@@ -63,7 +63,7 @@ define(function(require) {
 
 
         showRegisterModule: function(){
-            this.module = new RegisterModule.View( {model: this.register} )
+            this.module = new RegisterModule.View( {model: this.register} );
         },    
 
         showTestModule: function(courseModule, moduleTest, currentQuestion){    
