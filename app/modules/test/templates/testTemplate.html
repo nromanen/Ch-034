@@ -1,0 +1,23 @@
+ <li value="<%= test.get('num') %>"><p><%= test.get('answer') %></p> 
+  <% if ( test.get('typeVariant') == 'list'  ){ %>
+      <p class="variant">
+      <select class="form-control">
+            <% _.each(test.get('variants'), function(variants, index){ %>
+                <option value="<%= index %>"><%= variants %></option>
+            <% }); %>
+        </select>
+        </p>
+    <% } %>
+    <% if ( test.get('typeVariant') == 'answer'  ){ %>
+        <p class="variant"><input type="text" class="form-control" placeholder="Input answer"></p>
+    <% } %>
+    <% if ( test.get('typeVariant')  == 'few'  ){ %>
+        <div class="checkboxes variant"> 
+            <% _.each(test.get('variants'), function(variants, index) {%>
+                <div class="inline"><input type="checkbox" id="<%= index %>" />
+                    <label for="<%= index %>"><%= variants %></label>
+                </div>
+            <% }); %>
+        </div>
+    <% } %> 
+ </li>

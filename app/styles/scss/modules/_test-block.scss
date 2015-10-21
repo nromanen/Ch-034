@@ -1,0 +1,57 @@
+/*  main area style   */
+.tests {
+	background-color: #fff;
+	margin: 20px auto;
+	padding: 25px 35px;
+	max-width: 630px;
+	min-height: 100%;	
+}
+
+/* style for page: course-test   */
+h1 {
+	font-size: 22px;
+	text-align: center;
+	font-weight: 800;
+	padding-bottom: 10px;
+}
+
+ol {
+	list-style: decimal inside;
+}
+
+.form-control {
+	width: 300px;
+}
+
+#test-submit {
+	text-align: center;
+} 
+ 
+/* checkbox style*/
+.inline {
+    margin: 0 0 10px;
+    min-height: 20px;
+    font-size: inherit;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    width: 21px;
+    height: 20px;
+    margin: 0;
+    top: 5px;
+    position: relative;
+}
+
+input[type="checkbox"] + label {
+    min-height: 20px;
+    display: inline-block;
+    margin-left: -20px;
+    padding: 0 0 0 30px;
+	background: url(../img/checkboxes.png) no-repeat 0 0;  
+    font-weight: normal;
+}
+
+input[type="checkbox"]:checked + label {
+    background-position: 0 -20px;
+}
