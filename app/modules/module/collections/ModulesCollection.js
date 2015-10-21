@@ -17,4 +17,21 @@ define(function(require, exports, module) {
     });
 
     return Collection;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 });
+=======
+});
+
+
+
+
+    
+>>>>>>> check email
+=======
+});
+>>>>>>> fixed
+=======
+});
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf

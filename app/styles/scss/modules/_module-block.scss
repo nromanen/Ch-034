@@ -4,6 +4,11 @@
 a:link {
     text-decoration: underline;
 }
+
+.align-center {
+    text-align: center;
+}
+
 #module-container {
     margin-top: 20px;
     margin-bottom: 40px;
@@ -41,6 +46,17 @@ a.module-item-name {
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     margin-top: 20px;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  border: none;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 14px;
+  background: #00B859;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  margin-top: 20px;
 }
 .btn.btn-success.disable {
     background-color: #959595;

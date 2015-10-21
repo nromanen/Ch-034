@@ -6,8 +6,6 @@ define(function(require, exports, module) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/moduleTemplate.html")),
 
-        el: false,
-
         initialize: function() {
             this.listenTo(this.model, "reset sync request", this.render);
         }

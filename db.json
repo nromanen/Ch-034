@@ -4,8 +4,16 @@
       "id": 1,
       "isPublished": true,
       "areaId": 2,
+<<<<<<< HEAD
+<<<<<<< HEAD
       "name": "Flat UI",
       "description": "Даний курс вивчає мінімалістичний підхід до дизайну об'єктів, який підкреслює зручність використання, більшою мірою орієнтований на кінцевого користувача. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
+=======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "name": "Gleason Marketing",
+      "description": "nullam et nec mattis tortor lacus sed dui morbi dui aliquam nunc etiam aliquam nullam elementum at amet magna ipsum",
+>>>>>>> check email
       "start": "2034-08-12T13:09:28.547Z",
       "end": "2032-08-11T12:31:42.556Z",
       "duration": 1,
@@ -17,8 +25,16 @@
       "id": 2,
       "isPublished": true,
       "areaId": 4,
+<<<<<<< HEAD
+<<<<<<< HEAD
       "name": "CSS",
       "description": "Будуть розглянуті сучасні можливості каскадних таблиць стилів і їхню підтримку востанніх популярних браузерах",
+=======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "name": "Puri Shipping",
+      "description": "massa mattis non magna adipiscing libero at aliquam et amet sit id amet amet curabitur lectus sollicitudin pulvinar velit lacus",
+>>>>>>> check email
       "start": "2052-10-12T02:10:47.705Z",
       "end": "2034-01-27T03:51:46.154Z",
       "duration": 0,
@@ -30,8 +46,16 @@
       "id": 3,
       "isPublished": true,
       "areaId": 1,
+<<<<<<< HEAD
+<<<<<<< HEAD
       "name": "HTML",
       "description": "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
+=======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "name": "Lazcano Marketing",
+      "description": "amet morbi libero sit dui tincidunt vestibulum magna magna ac scelerisque placerat pulvinar aliquam morbi curabitur egestas massa vitae mattis",
+>>>>>>> check email
       "start": "2002-05-31T20:56:00.792Z",
       "end": "2039-02-11T16:56:15.907Z",
       "duration": 1,
@@ -43,8 +67,16 @@
       "id": 4,
       "isPublished": true,
       "areaId": 1,
+<<<<<<< HEAD
+<<<<<<< HEAD
       "name": "Java",
       "description": "Даний курс орієнтований на вивчення Java як людьми з мінімальним рівнем знання програмування так і людей, які хочуть покращити свої знання з певних нюансів мови.",
+=======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "name": "Frazee Shipping",
+      "description": "lacus tempor etiam pretium eros placerat ac nullam pulvinar eros sed malesuada pharetra consequat non tortor massa libero amet amet",
+>>>>>>> check email
       "start": "2050-05-31T19:22:30.324Z",
       "end": "2059-09-26T06:33:01.409Z",
       "duration": 2,
@@ -56,8 +88,16 @@
       "id": 5,
       "isPublished": true,
       "areaId": 2,
+<<<<<<< HEAD
+<<<<<<< HEAD
       "name": ".Net",
       "description": "У Вас буде можливість вивчити технології та підходи до розробки Web-програм з багаторівневою архітектурою. Ви отримаєте досвід побудови Web-програм засобами ASP.NET MVC, Silverlight, побудови десктопних програм засобами WPF, реалізацію ORM засобами ADO.NET Entity, а також розробки Web-сервісів з допомогою WСF.",
+=======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "name": "Rosenberg Industries",
+      "description": "lacus nec ipsum pharetra tincidunt placerat sapien pulvinar magna amet convallis augue amet massa sed etiam consectetur suspendisse quis augue",
+>>>>>>> check email
       "start": "2003-11-04T23:35:01.566Z",
       "end": "2047-12-09T13:39:14.477Z",
       "duration": 2,
@@ -69,8 +109,16 @@
       "id": 6,
       "isPublished": true,
       "areaId": 4,
+<<<<<<< HEAD
+<<<<<<< HEAD
       "name": "UX",
       "description": "Програма навчання сформована відповідно до вимог провідних ІТ компаній, що підтверджує Львівський Кластер ІТ-BPO. Це можливість всім починаючим дизайнерам та архітекторам з головою поринути в світ найперспективнішої сфери – дизайну в ІТ. Ринок потребує нових спеціалістів і Lviv UI/UX School ставить собі за мету підготувати справжніх професіоналів дизайну.",
+=======
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "name": "Lopez Computing",
+      "description": "tincidunt velit porttitor in sed vitae sed quis libero etiam et tincidunt vitae nec vitae aliquam augue sollicitudin scelerisque molestie",
+>>>>>>> check email
       "start": "2080-04-08T02:10:23.863Z",
       "end": "2097-10-28T15:41:32.442Z",
       "duration": 4,
@@ -81,6 +129,7 @@
   ],
   "modules": [
     {
+<<<<<<< HEAD
       "id": 1,
       "courseId": 1,
       "title": "Модуль 1. Introduction to Flat User Interface Design.",
@@ -352,10 +401,223 @@
           "type": "zip",
           "name": "Модуль 3. Конспект.",
           "url": "../web-resources/forms.zip"
+=======
+      "id": 7,
+      "isPublished": true,
+      "areaId": 1,
+      "name": "Speck Services",
+      "description": "mattis orci odio consectetur eros vel nullam odio lorem sed facilisis dolor aliquam hendrerit rutrum dolor mattis sagittis sapien augue",
+      "start": "2013-08-12T08:16:40.755Z",
+      "end": "2045-11-12T07:18:49.341Z",
+      "duration": 4,
+      "schedule": "Th",
+      "minStudents": 4,
+      "image": "h6n4tSgPldlMGbDqSeUmonGWS5K3aQ0GHBoNufHZ"
+    },
+    {
+      "id": 8,
+      "isPublished": true,
+      "areaId": 3,
+      "name": "Chang Brothers",
+      "description": "aliquam porttitor nullam convallis dolor et suspendisse nec placerat dolor aliquam et rutrum molestie pretium dolor facilisis pharetra fringilla tincidunt",
+      "start": "2048-11-23T17:22:02.997Z",
+      "end": "2087-12-09T19:17:56.753Z",
+      "duration": 4,
+      "schedule": "Th",
+      "minStudents": 0,
+      "image": "ZR5VCSFMimnhjqhvtvxlhr6ZeHsfeb8kRuNYO7vV"
+    },
+    {
+      "id": 9,
+      "isPublished": true,
+      "areaId": 4,
+      "name": "Souther Corporation",
+      "description": "magna pharetra dolor vestibulum curabitur ac malesuada consequat vitae pulvinar placerat elit tellus sit magna turpis sollicitudin pharetra aenean molestie",
+      "start": "2056-10-19T12:24:23.082Z",
+      "end": "2086-11-20T14:08:25.305Z",
+      "duration": 1,
+      "schedule": "Mo",
+      "minStudents": 13,
+      "image": "bYeGegcGkHCs1hL75TpCPc7K2IJhATDGPdna4gXM"
+    },
+    {
+      "id": 10,
+      "isPublished": true,
+      "areaId": 1,
+      "name": "Bartley International",
+      "description": "at sit amet ac lorem risus mi quis malesuada morbi lacus odio massa lacus nunc dui vestibulum magna amet tellus",
+      "start": "2064-08-06T13:12:50.276Z",
+      "end": "2076-11-16T02:00:08.518Z",
+      "duration": 0,
+      "schedule": "We",
+      "minStudents": 15,
+      "image": "xajUYbgInrkrKW686NC0G6jG5OKnHaK0DaCl59EV"
+    },
+    {
+      "id": 11,
+      "isPublished": true,
+      "areaId": 3,
+      "name": "Vanderlinden Computing",
+      "description": "lectus risus orci amet consectetur placerat sed at etiam consequat molestie hendrerit pulvinar malesuada eget tincidunt facilisis vitae massa sit",
+      "start": "2097-11-29T16:24:48.768Z",
+      "end": "2033-06-27T01:11:50.034Z",
+      "duration": 2,
+      "schedule": "Su",
+      "minStudents": 5,
+      "image": "RVvQYQlYfgKwPqKLd3gB9D2qfnvHVh5MipHmpNOd"
+    },
+    {
+      "id": 12,
+      "isPublished": true,
+      "areaId": 2,
+      "name": "Castrucci Technologies",
+      "description": "sit mattis dolor amet lacus fringilla tortor rutrum porta mi molestie pulvinar sed risus massa lectus tellus pretium rutrum ipsum",
+      "start": "2052-04-11T14:15:16.193Z",
+      "end": "2096-04-27T05:07:56.870Z",
+      "duration": 3,
+      "schedule": "Th",
+      "minStudents": 3,
+      "image": "IcaOZClqcaEHI4wDPHysbIa0bkgtxCQBmwZ6A2C0"
+    },
+    {
+      "id": 13,
+      "isPublished": true,
+      "areaId": 2,
+      "name": "Sergent Computing",
+      "description": "augue sed lacus mattis lectus mattis massa egestas risus fringilla tellus augue vestibulum velit et amet sit amet amet libero",
+      "start": "2037-03-01T14:42:31.428Z",
+      "end": "2097-12-24T17:28:23.693Z",
+      "duration": 3,
+      "schedule": "Sa",
+      "minStudents": 17,
+      "image": "2POq3ShbHrNCYXI5aP1FkozoIBTYK3rFztRZzEiD"
+    },
+    {
+      "id": 14,
+      "isPublished": true,
+      "areaId": 4,
+      "name": "Jacobs Services",
+      "description": "odio ipsum nec aenean etiam lectus id fringilla magna sit placerat elementum sollicitudin libero risus amet dolor elementum consectetur molestie",
+      "start": "2065-05-05T05:48:33.622Z",
+      "end": "2033-06-12T07:26:21.831Z",
+      "duration": 0,
+      "schedule": "Tu",
+      "minStudents": 10,
+      "image": "A7vu5P8ZDqWKNncD3waQ2BJJbdWmlDhgq6qh85MW"
+    },
+    {
+      "id": 15,
+      "isPublished": true,
+      "areaId": 1,
+      "name": "Christopher Brothers",
+      "description": "sit quis rutrum neque tincidunt curabitur aenean sed massa vitae massa amet dolor aenean vitae mattis amet ipsum adipiscing sit",
+      "start": "2045-08-19T11:25:20.895Z",
+      "end": "2036-08-19T19:59:47.191Z",
+      "duration": 1,
+      "schedule": "Mo",
+      "minStudents": 12,
+      "image": "Ih30YCn9DKMQROrat2TXzn6PpwapxOU47UT3aNCC"
+    },
+    {
+      "id": 16,
+      "isPublished": true,
+      "areaId": 3,
+      "name": "Star LLC",
+      "description": "amet mi odio tortor porta rutrum augue lorem lectus sed vestibulum morbi lacus nullam ac etiam vitae in consectetur dolor",
+      "start": "2018-02-26T08:05:00.807Z",
+      "end": "2096-07-27T09:36:28.515Z",
+      "duration": 2,
+      "schedule": "Fr",
+      "minStudents": 9,
+      "image": "3zxsRgznGKnevfhck4JjdzqnUFGLXXf0r4habHrW"
+    },
+    {
+      "id": 17,
+      "isPublished": true,
+      "areaId": 3,
+      "name": "Bullock Global",
+      "description": "sed sed tempor aenean id non morbi ac tellus turpis elementum eget pharetra nunc sit dui augue placerat nunc et",
+      "start": "2022-11-05T18:46:09.989Z",
+      "end": "2062-07-04T02:39:07.987Z",
+      "duration": 0,
+      "schedule": "Sa",
+      "minStudents": 8,
+      "image": "xLo11NOY5Ow4JpQ74uWQXm6eT7jt7p1TjS7c8qWJ"
+    },
+    {
+      "id": 18,
+      "isPublished": true,
+      "areaId": 3,
+      "name": "Kensmoe LLC",
+      "description": "massa hendrerit aliquam tortor nunc sollicitudin et convallis dui sagittis massa magna aenean in consectetur libero morbi sit elit scelerisque",
+      "start": "2093-02-24T21:18:45.016Z",
+      "end": "2064-05-17T20:11:55.620Z",
+      "duration": 1,
+      "schedule": "Fr",
+      "minStudents": 19,
+      "image": "GWOMaROyd6gMO1jIYU9JmXAy3w9oSNRXenXOzgrI"
+    },
+    {
+      "id": 19,
+      "isPublished": true,
+      "areaId": 3,
+      "name": "Emery Industries",
+      "description": "dolor velit nec aliquam dolor fringilla orci ante nec pharetra amet magna placerat vitae malesuada magna vitae porttitor mattis pulvinar",
+      "start": "2050-05-14T03:45:53.753Z",
+      "end": "2022-09-21T21:26:21.010Z",
+      "duration": 2,
+      "schedule": "Th",
+      "minStudents": 3,
+      "image": "87baLk22bDooCRJ66mmg7yFdoeROzLF6OmEi1b65"
+    },
+    {
+      "id": 20,
+      "isPublished": true,
+      "areaId": 4,
+      "name": "Vasquez and Sons",
+      "description": "vitae malesuada turpis sit ac dui fringilla pulvinar odio nunc et molestie nec nunc nec dolor odio amet amet placerat",
+      "start": "2044-07-22T10:15:37.908Z",
+      "end": "2068-06-03T17:09:03.480Z",
+      "duration": 0,
+      "schedule": "Mo",
+      "minStudents": 4,
+      "image": "qRwIWSXrpO8qdZcde3FyfBMISlSY1DGiyF8JQaK2"
+    }
+  ],
+  "modules": [
+<<<<<<< HEAD
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Модуль 1.Теги: поняття, типи, підтримка",
+      "description": "&lt;ol&gt;&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;&lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;&lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;&lt;li&gt;Phasellus iaculis neque&lt;/li&gt;&lt;li&gt;Purus sodales ultricies&lt;/li&gt;&lt;li&gt;Vestibulum l&lt;/li&gt;&lt;/ol&gt;",
+      "resources": [
+        {
+          "id": 1,
+          "moduleId": 1,
+          "type": "video",
+          "name": "Video for Module 1",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 2,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 1)",
+          "url": ""
+        },
+        {
+          "id": 3,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 2)",
+          "url": ""
+>>>>>>> check email
         }
       ]
     },
     {
+<<<<<<< HEAD
       "id": 4,
       "courseId": 3,
       "title": "Модуль 4. Спеціальні теги HTML 5",
@@ -370,10 +632,39 @@
           "type": "zip",
           "name": "Модуль 4. Конспект.",
           "url": "../web-resources/forms.zip"
+=======
+    {
+      "id": 1,
+      "courseId": 1,
+      "title": "Модуль 1.Теги: поняття, типи, підтримка",
+      "description": "&lt;ol&gt;&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;&lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;&lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;&lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;&lt;li&gt;Phasellus iaculis neque&lt;/li&gt;&lt;li&gt;Purus sodales ultricies&lt;/li&gt;&lt;li&gt;Vestibulum l&lt;/li&gt;&lt;/ol&gt;",
+      "resources": [
+        {
+          "id": 1,
+          "moduleId": 1,
+          "type": "video",
+          "name": "Video for Module 1",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 2,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 1)",
+          "url": ""
+        },
+        {
+          "id": 3,
+          "moduleId": 1,
+          "type": "pdf",
+          "name": "Notes for Module 1 (Part 2)",
+          "url": ""
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
         }
       ]
     },
     {
+<<<<<<< HEAD
       "id": 5,
       "courseId": 3,
       "title": "Модуль 5. Побудова оптимізованого DOM дерева",
@@ -847,6 +1138,522 @@
       "isActive": false
     },
     {
+=======
+      "id": 2,
+      "courseId": 1,
+      "title": "Module 2",
+      "description": "This module 2 is about:",
+      "resources": [
+        {
+          "id": 4,
+          "moduleId": 2,
+          "type": "video",
+          "name": "Video for Module 2",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 5,
+          "moduleId": 2,
+          "type": "pdf",
+          "name": "Notes for Module 2",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "course_groups": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "name": "Early"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "name": "Evening"
+    },
+    {
+      "id": 3,
+      "courseId": 2,
+      "name": "Early"
+    },
+    {
+      "id": 4,
+      "courseId": 2,
+      "name": "Evening"
+    },
+    {
+      "id": 5,
+      "courseId": 3,
+      "name": "Daily"
+    },
+    {
+      "id": 6,
+      "courseId": 3,
+      "name": "Early"
+    },
+    {
+      "id": 7,
+      "courseId": 4,
+      "name": "Early"
+    },
+    {
+      "id": 8,
+      "courseId": 4,
+      "name": "Evening"
+    },
+    {
+      "id": 9,
+      "courseId": 5,
+      "name": "Evening"
+    },
+    {
+      "id": 10,
+      "courseId": 6,
+      "name": "Daily"
+    },
+    {
+      "id": 11,
+      "courseId": 6,
+      "name": "Early"
+    },
+    {
+      "id": 12,
+      "courseId": 7,
+      "name": "Evening"
+    },
+    {
+      "id": 13,
+      "courseId": 8,
+      "name": "Daily"
+    },
+    {
+      "id": 14,
+      "courseId": 8,
+      "name": "Early"
+    },
+    {
+      "id": 15,
+      "courseId": 9,
+      "name": "Early"
+    },
+    {
+      "id": 16,
+      "courseId": 10,
+      "name": "Evening"
+    },
+    {
+      "id": 17,
+      "courseId": 11,
+      "name": "Evening"
+    },
+    {
+      "id": 18,
+      "courseId": 12,
+      "name": "Evening"
+    },
+    {
+      "id": 19,
+      "courseId": 12,
+      "name": "Early"
+    },
+    {
+      "id": 20,
+      "courseId": 13,
+      "name": "Evening"
+    },
+    {
+      "id": 21,
+      "courseId": 13,
+      "name": "Daily"
+    },
+    {
+      "id": 22,
+      "courseId": 14,
+      "name": "Evening"
+    },
+    {
+      "id": 23,
+      "courseId": 14,
+      "name": "Early"
+    },
+    {
+      "id": 24,
+      "courseId": 15,
+      "name": "Evening"
+    },
+    {
+      "id": 25,
+      "courseId": 15,
+      "name": "Daily"
+    },
+    {
+      "id": 26,
+      "courseId": 16,
+      "name": "Evening"
+    },
+    {
+      "id": 27,
+      "courseId": 17,
+      "name": "Early"
+    },
+    {
+      "id": 28,
+      "courseId": 18,
+      "name": "Evening"
+    },
+    {
+      "id": 29,
+      "courseId": 19,
+      "name": "Daily"
+    },
+    {
+      "id": 30,
+      "courseId": 20,
+      "name": "Daily"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1,
+      "name": "UI"
+    },
+    {
+      "id": 2,
+      "name": "Java"
+    },
+    {
+      "id": 3,
+      "name": ".Net"
+    },
+    {
+      "id": 4,
+      "name": "Design"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Munazza",
+      "lastname": "Arivett",
+      "email": "BBouchard@consequat.com",
+      "password": "JzjI4e1X",
+      "city": "Bella Vista",
+      "address": "5662 Turpis Ln",
+      "phone": "(881)627-4670",
+      "isActive": false
+    },
+    {
+      "id": 2,
+      "name": "Jeri",
+      "lastname": "Geouque",
+      "email": "GBowen@consectetur.gov",
+      "password": "tgXDXRIf",
+      "city": "Middletown",
+      "address": "6910 Vestibulum Ct",
+      "phone": "(161)571-7447",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Salomon",
+      "lastname": "Ellingwood",
+      "email": "KCrete@pulvinar.com",
+      "password": "vCae1PCG",
+      "city": "Chicago",
+      "address": "8900 Suspendisse Dr",
+      "phone": "(285)797-4136",
+      "isActive": false
+    },
+    {
+      "id": 4,
+      "name": "Ora",
+      "lastname": "Reith",
+      "email": "SHawkins@dolor.gov",
+      "password": "dcHwQLPW",
+      "city": "Saltilo",
+      "address": "9559 Molestie St",
+      "phone": "(125)958-8389",
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Vanita",
+      "lastname": "Scheppe",
+      "email": "CHaga@lacus.ly",
+      "password": "XmT7kFv7",
+      "city": "Brookville",
+      "address": "8548 Magna Ct",
+      "phone": "(737)204-1899",
+      "isActive": false
+    },
+    {
+=======
+      "id": 2,
+      "courseId": 1,
+      "title": "Module 2",
+      "description": "This module 2 is about:",
+      "resources": [
+        {
+          "id": 4,
+          "moduleId": 2,
+          "type": "video",
+          "name": "Video for Module 2",
+          "url": "https://www.youtube.com/embed/6Fn6bl5Zq1k"
+        },
+        {
+          "id": 5,
+          "moduleId": 2,
+          "type": "pdf",
+          "name": "Notes for Module 2",
+          "url": ""
+        }
+      ]
+    }
+  ],
+  "course_groups": [
+    {
+      "id": 1,
+      "courseId": 1,
+      "name": "Early"
+    },
+    {
+      "id": 2,
+      "courseId": 1,
+      "name": "Evening"
+    },
+    {
+      "id": 3,
+      "courseId": 2,
+      "name": "Early"
+    },
+    {
+      "id": 4,
+      "courseId": 2,
+      "name": "Evening"
+    },
+    {
+      "id": 5,
+      "courseId": 3,
+      "name": "Daily"
+    },
+    {
+      "id": 6,
+      "courseId": 3,
+      "name": "Early"
+    },
+    {
+      "id": 7,
+      "courseId": 4,
+      "name": "Early"
+    },
+    {
+      "id": 8,
+      "courseId": 4,
+      "name": "Evening"
+    },
+    {
+      "id": 9,
+      "courseId": 5,
+      "name": "Evening"
+    },
+    {
+      "id": 10,
+      "courseId": 6,
+      "name": "Daily"
+    },
+    {
+      "id": 11,
+      "courseId": 6,
+      "name": "Early"
+    },
+    {
+      "id": 12,
+      "courseId": 7,
+      "name": "Evening"
+    },
+    {
+      "id": 13,
+      "courseId": 8,
+      "name": "Daily"
+    },
+    {
+      "id": 14,
+      "courseId": 8,
+      "name": "Early"
+    },
+    {
+      "id": 15,
+      "courseId": 9,
+      "name": "Early"
+    },
+    {
+      "id": 16,
+      "courseId": 10,
+      "name": "Evening"
+    },
+    {
+      "id": 17,
+      "courseId": 11,
+      "name": "Evening"
+    },
+    {
+      "id": 18,
+      "courseId": 12,
+      "name": "Evening"
+    },
+    {
+      "id": 19,
+      "courseId": 12,
+      "name": "Early"
+    },
+    {
+      "id": 20,
+      "courseId": 13,
+      "name": "Evening"
+    },
+    {
+      "id": 21,
+      "courseId": 13,
+      "name": "Daily"
+    },
+    {
+      "id": 22,
+      "courseId": 14,
+      "name": "Evening"
+    },
+    {
+      "id": 23,
+      "courseId": 14,
+      "name": "Early"
+    },
+    {
+      "id": 24,
+      "courseId": 15,
+      "name": "Evening"
+    },
+    {
+      "id": 25,
+      "courseId": 15,
+      "name": "Daily"
+    },
+    {
+      "id": 26,
+      "courseId": 16,
+      "name": "Evening"
+    },
+    {
+      "id": 27,
+      "courseId": 17,
+      "name": "Early"
+    },
+    {
+      "id": 28,
+      "courseId": 18,
+      "name": "Evening"
+    },
+    {
+      "id": 29,
+      "courseId": 19,
+      "name": "Daily"
+    },
+    {
+      "id": 30,
+      "courseId": 20,
+      "name": "Daily"
+    }
+  ],
+  "areas": [
+    {
+      "id": 1,
+      "name": "UI"
+    },
+    {
+      "id": 2,
+      "name": "Java"
+    },
+    {
+      "id": 3,
+      "name": ".Net"
+    },
+    {
+      "id": 4,
+      "name": "Design"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Munazza",
+      "lastname": "Arivett",
+      "email": "BBouchard@consequat.com",
+      "password": "JzjI4e1X",
+      "city": "Bella Vista",
+      "address": "5662 Turpis Ln",
+      "phone": "(881)627-4670",
+      "isActive": false
+    },
+    {
+      "id": 2,
+      "name": "Jeri",
+      "lastname": "Geouque",
+      "email": "GBowen@consectetur.gov",
+      "password": "tgXDXRIf",
+      "city": "Middletown",
+      "address": "6910 Vestibulum Ct",
+      "phone": "(161)571-7447",
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Salomon",
+      "lastname": "Ellingwood",
+      "email": "KCrete@pulvinar.com",
+      "password": "vCae1PCG",
+      "city": "Chicago",
+      "address": "8900 Suspendisse Dr",
+      "phone": "(285)797-4136",
+      "isActive": false
+    },
+    {
+      "id": 4,
+      "name": "Ora",
+      "lastname": "Reith",
+      "email": "SHawkins@dolor.gov",
+      "password": "dcHwQLPW",
+      "city": "Saltilo",
+      "address": "9559 Molestie St",
+      "phone": "(125)958-8389",
+      "isActive": true
+    },
+    {
+      "id": 5,
+      "name": "Vanita",
+      "lastname": "Scheppe",
+      "email": "CHaga@lacus.ly",
+      "password": "XmT7kFv7",
+      "city": "Brookville",
+      "address": "8548 Magna Ct",
+      "phone": "(737)204-1899",
+      "isActive": false
+    },
+    {
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
+      "id": 6,
+      "name": "Renita",
+      "lastname": "Haft",
+      "email": "ACaines@consequat.ly",
+      "password": "K0TSujTN",
+      "city": "Leesburg",
+      "address": "9240 Id Dr",
+      "phone": "(309)429-9966",
+      "isActive": false
+    },
+    {
+<<<<<<< HEAD
+>>>>>>> check email
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
       "id": 7,
       "name": "Elzbieta",
       "lastname": "Stevenson",
@@ -878,6 +1685,10 @@
       "address": "2533 Porttitor Dr",
       "phone": "(209)218-1687",
       "isActive": false
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
     },
     {
       "id": 10,
@@ -890,6 +1701,7 @@
       "phone": "(733)369-5183",
       "isActive": false
     }
+<<<<<<< HEAD
   ],
   "tests": [
     {
@@ -981,6 +1793,21 @@
         "variant3": "variant3",
         "variant4": "variant4"
       }
+=======
+    },
+    {
+      "id": 10,
+      "name": "Antoine",
+      "lastname": "Elmuccio",
+      "email": "DEkekwe@lorem.ly",
+      "password": "FTJp0wug",
+      "city": "Leawood",
+      "address": "1900 Curabitur Ln",
+      "phone": "(733)369-5183",
+      "isActive": false
+>>>>>>> check email
     }
+=======
+>>>>>>> 0faba6121b88d639d4d484495f1cf106b1311bdf
   ]
 }
