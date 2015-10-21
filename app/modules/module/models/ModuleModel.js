@@ -25,8 +25,12 @@ define(function(require, extend, module) {
 
     return Model;
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 =======
 });
 
 >>>>>>> check email
+=======
+});
+>>>>>>> fixed

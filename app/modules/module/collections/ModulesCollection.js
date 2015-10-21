@@ -18,6 +18,7 @@ define(function(require, exports, module) {
 
     return Collection;
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 =======
 });
@@ -27,3 +28,6 @@ define(function(require, exports, module) {
 
     
 >>>>>>> check email
+=======
+});
+>>>>>>> fixed
