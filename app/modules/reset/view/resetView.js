@@ -20,24 +20,28 @@ define( function ( require ) {
 				return { model: this.model };
 			},
 
-			events: {
-				"submit" : "submit"
+			afterRender: function () {
+				this.$el.find( ".input-group" ).removeClass( "hidden" );
 			},
 
-			submit: function (e) {
+			events: {
+				"submit" : "submitEmail"
+			},
+
+			submitEmail: function (e) {
 				e.preventDefault();
-				this.$el.find( ".input-group" ).removeClass( "has-error" );
-				this.$el.find( ".error-message" ).hide();
-				this.model.set( { email : $( "#email" ).val().trim() }, { validate : true } );
+				this.$el.find( ".input-group" ).removeClass( ".error" );
+				this.$el.find( ".error-message" ).addClass( "hidden" );
+				this.model.set( { email : this.$el.find( "#email" ).val().trim() }, { validate : true } );
 			},
 
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
-					this.$el.find( "." + error.name ).addClass( "has-error" );
+					this.$el.find( "." + error.name ).addClass( ".error" );
 					this.$el.find( "#text-error-message" ).text( error.message );
 				}, this );
 
-				this.$el.find( ".error-message" ).show();
+				this.$el.find( ".error-message" ).removeClass( "hidden" );
 			}
 		});
 

@@ -21,32 +21,33 @@ define( function ( require ) {
 			},
 
 			afterRender: function () {
-				this.$el.find( ".error-message" ).hide();
+				this.$el.find( ".error-message" ).addClass( "hidden" );
 
 			},
 
 			events: {
-				"submit" : "submit"
+				"submit" : "submitHandler"
 			},
 
-			submit: function (e) {
+			submitHandler: function (e) {
 				e.preventDefault();
+				
 				this.$el.find( ".form-group" ).removeClass( "error" );
-				this.$el.find( ".error-message" ).hide();
+				this.$el.find( ".error-message" ).addClass( "hidden" );
 				
 				var dataObj = {
-					email : $( "#email" ).val(), 
-					password: $( "#password" ).val()
+					email : this.$el.find( "#email" ).val(), 
+					password: this.$el.find( "#password" ).val()
 				};
 
 				this.model.set( dataObj , { validate: true } );
 			
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
-				this.$el.find( "." + error.name ).addClass( "error" ); 
-				}, this );
+					this.$el.find( "." + error.name ).addClass( "error" ); 
+					}, this );
 
-				this.$el.find( ".error-message" ).show();
+				this.$el.find( ".error-message" ).removeClass( "hidden" );
 			}
 		});
 
