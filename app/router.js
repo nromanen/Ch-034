@@ -4,6 +4,7 @@ define(function(require) {
     var CMS = require("CMS"),
         CoursesModule = require("modules/course/index"),
         ModulesModule = require("modules/module/index"),
+        RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
         ModulesModule = require("modules/module/index"),
@@ -12,7 +13,7 @@ define(function(require) {
         initialize: function() {
 
             this.appView = new CMS.CoreView();
-
+            this.register = new RegisterModule.Model();
             this.headerView = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
@@ -60,6 +61,11 @@ define(function(require) {
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
             this.module.fetch();
         },
+
+
+        showRegisterModule: function(){
+            this.module = new RegisterModule.View( {model: this.register} )
+        },    
 
         showTestModule: function(courseModule, moduleTest, currentQuestion){    
             this.tests.reset();
