@@ -15,7 +15,6 @@ define(function(require) {
         },
 
         beforeRender: function() {
-            console.log("before");
             this.modules.fetch();
             this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules}));
         },
