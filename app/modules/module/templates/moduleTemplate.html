@@ -11,7 +11,7 @@
                         <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
                     </div></li>
                 <% } else if (resource.type == "pdf" | resource.type == "zip") { %>
-                    <li><%= resource.name %>&nbsp<a href="<%= resource.url %>"><span class="glyphicon glyphicon-file"></a></li>
+                    <li><%= resource.name %>&nbsp<a href="<%= resource.url %>" data-bypass="true"><span class="glyphicon glyphicon-file"></a></li>
                     <% } %>
                 <% }); %>
         </ul>
