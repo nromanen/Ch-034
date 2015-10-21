@@ -12,13 +12,6 @@ define(function(require) {
 
             template: _.template( require("text!../template/registerTemplate.html") ),
 
-<<<<<<< HEAD
-			render: function() {
-				console.log("this.model");
-				this.$el.html( this.template( this.model.toJSON() ) );
-				return this;
-			},
-
 			events: {
 				'click #submit': submitClicked
 			},
@@ -55,11 +48,8 @@ define(function(require) {
             hideErrors: function () {
                 this.$('.control-group').removeClass('error');
                 // to be modified: this.$('.help-inline').text('');
-            }
-		});
-	
-	return View;
-=======
+            },
+
             render: function() {
                 console.log("this.model");
                 this.$el.html( this.template( this.model.toJSON() ) );
@@ -68,5 +58,4 @@ define(function(require) {
         });
 
     return View;
->>>>>>> ca06c09451ac4bfdc9bf7c95ea0a4f261beaea09
 });
