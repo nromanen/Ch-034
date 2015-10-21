@@ -25,4 +25,3 @@ define(function(require, extend, module) {
 
     return Model;
 });
-

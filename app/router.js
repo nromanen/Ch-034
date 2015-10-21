@@ -2,8 +2,11 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
+
         CoursesModule = require("modules/course/index"),
         RegisterModule = require("modules/register/index"),
+        ModulesModule = require("modules/module/index"),
+        TestsModule = require("modules/test/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -14,14 +17,14 @@ define(function(require) {
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
             this.courses = new CoursesModule.Collection();
+            this.tests = new TestsModule.Collection();
 
             this.appView.insertViews([
                 this.headerView,
                 this.containerView,
                 this.footerView
-            ]);
-            this.appView.render();
-
+            ]); 
+            this.appView.render(); 
         },
 
         routes: {
@@ -29,7 +32,8 @@ define(function(require) {
             "courses(/)(/page/:pageNumber)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/module/:id": "showCourseModuleDetails",
-            "register" : "showRegisterModule"
+            "register" : "showRegisterModule",
+            "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
         },
 
         index: function() {
@@ -47,7 +51,7 @@ define(function(require) {
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({id: id});
             this.course.fetch();
-            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));  
         },
 
         showCourseModuleDetails: function(courseId, id) {
@@ -58,7 +62,18 @@ define(function(require) {
 
         showRegisterModule: function(){
             this.module = new RegisterModule.View( {model: this.register} );
+        },
+
+        showTestModule: function(courseModule, moduleTest, currentQuestion){    
+            this.tests.reset();
+            this.tests.setCurrentPage(parseInt(currentQuestion));
+            this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/';
+            this.tests.addFilter = '&idModule=' + moduleTest;            
+
+            this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
+            this.tests.fetch();
         }
+        
     });
 
     return Router;

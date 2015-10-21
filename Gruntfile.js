@@ -73,7 +73,7 @@ module.exports = function(grunt ) {
                     livereload: true
                 },
                 files: ['app/**', '!app/styles/'],
-                tasks: ['jshint:dev', 'sass']
+                tasks: ['jshint:dev', 'sass', 'autoprefixer']
             }
         },
 
@@ -140,7 +140,15 @@ module.exports = function(grunt ) {
                 'moduleId': 'underscore',
                 'flags': ['--production']
             }
-        }
+        },
+
+        autoprefixer: {
+            dist: {
+                files: {
+                    'build/styles/main.min.css': 'app/styles/scss/index.scss'
+                }
+            }
+        },
     });
 
     grunt.loadNpmTasks('grunt-lodash');
@@ -153,9 +161,11 @@ module.exports = function(grunt ) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-autoprefixer');
+
 
     grunt.registerTask('build:dev', ['lodash:build','jshint:dev', 'sass']);
-    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'copy:images', 'bowercopy', 'processhtml', 'requirejs:compile']);
+    grunt.registerTask('build:prod', ['clean', 'jshint:dev', 'sass:prod', 'autoprefixer', 'copy:images', 'bowercopy', 'processhtml', 'requirejs:compile']);
     grunt.registerTask('server:dev', ['connect:dev', 'watch']);
     grunt.registerTask('server:prod', ['connect:prod', 'watch']);
     grunt.registerTask('default', []);
