@@ -32,7 +32,7 @@ define( function ( require ) {
 
 			submitHandler: function (e) {
 				e.preventDefault();
-				
+
 				this.$el.find( ".form-group" ).removeClass( "error" );
 				this.$el.find( ".error-message" ).addClass( "hidden" );
 
@@ -42,12 +42,8 @@ define( function ( require ) {
 				};
 
 				this.model.set( dataObj , { validate: true } );
-<<<<<<< HEAD
 			},
 				
-=======
-			
->>>>>>> pull rqst
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
 					this.$el.find( "." + error ).addClass( "error" ); 
