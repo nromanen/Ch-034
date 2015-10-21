@@ -4,7 +4,6 @@ define(function(require, extend, module) {
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
-
         defaults: {
             id: null,
             courseId: null,
@@ -12,15 +11,12 @@ define(function(require, extend, module) {
             description: null,
             resources: {}
         },
-
         initialize: function(attributes, options) {
             this.courseId = options.courseId;
         },
         urlRoot: function() {
             return CMS.api + "courses/"+this.courseId+"/modules";
         }
-        
-
     });
 
     return Model;
