@@ -31,6 +31,9 @@ a.module-item-name {
 .bottom-line {
     padding-top: 25px;
 }
+.btn.btn-success {
+    text-deciration: none;
+}
 .btn.btn-success.disable {
     background-color: #959595;
     border: 1px solid #ccc;
@@ -47,4 +50,12 @@ a.module-item-name {
     left: 0;
     width: 100%;
     height: 100%;
+}
+.module-title {
+    font-size: 24px;
+    color: $aticleTitleColor;
+    font-weight: bold;
+}
+ul.h4 {
+    list-style-type: none;
 }
