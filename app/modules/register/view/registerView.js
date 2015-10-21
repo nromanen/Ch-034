@@ -41,6 +41,9 @@ define(function(require) {
 
                 this.hideErrors();
                 this.model.set( feedback, {validate: true} );
+                if(this.model.isValid()) {
+                    CMS.router.navigate("courses", {trigger: true});
+                };
             },
 
             showErrors: function(model, errors) {
