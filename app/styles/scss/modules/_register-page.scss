@@ -29,6 +29,9 @@
     }
 
     .warning {
+        width: 420px;
+        padding: 10px 20px;
+        margin: 20px auto;
         color:#CD9953;
         background: #FEF7E4;
     }
@@ -39,3 +42,10 @@
         margin-top: 35px;
     }   
 
+    .error-message {
+        width: 420px;
+        padding: 10px 20px;
+        margin: 20px auto;
+        background-color:#FADFDF;
+        color:#D24A4A;
+    }
