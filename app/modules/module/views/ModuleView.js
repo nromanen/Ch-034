@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     var CMS = require("CMS"),
 
     View = CMS.View.extend({
+        
         template: _.template(require("text!../templates/moduleTemplate.html")),
 
         el: false,

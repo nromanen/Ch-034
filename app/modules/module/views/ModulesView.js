@@ -22,5 +22,4 @@ define(function(require, exports, module) {
     });
 
     return View;
-
 });
