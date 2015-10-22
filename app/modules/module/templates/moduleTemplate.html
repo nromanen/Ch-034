@@ -2,7 +2,7 @@
     <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
     <a href="#courses/<%= courseId %>/module/<%= id %>/test/1" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
-        <h3><%= title %></h3>
+        <h3 class="module-title"><%= title %></h3>
         <div class="text-justify"><%= description %></div>
         <ul class="h4"><% _.each(resources, function(resource){ %>
                 <% if (resource.type == "video") { %>

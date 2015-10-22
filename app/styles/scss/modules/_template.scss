@@ -49,8 +49,45 @@ a {
     color: #5b8bac;
     text-decoration: underline;
 }
-.pagination .active a{
+.pagination .active a, .pagination .active a:hover{
     background-color: #eee;
     color: #2d6594;
     border: 1px solid #ddd;
+}
+.navbar-default {
+    background-color: #fff;
+    border-color: #fff;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
+    background-color: #fff;
+    text-decoration: none;
+    color: $headerTextColor;
+    font-weight: bold;
+}
+.navbar-default .navbar-brand {
+    color: $aticleTitleColor;
+    font-weight: bold;
+    text-decoration: none;
+}
+.navbar-default .navbar-nav > li > a {
+    color: $headerTextColor;
+    text-decoration: none;
+}
+.navbar-nav > li > a {
+    padding-top: 17px;
+}
+.user-head-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+.logo-head {
+    width: 100px;
+    height: 24px;
+}
+.container-search-btn {
+    background-color: #eee;
+}
+.btn.btn-success {
+    text-decoration: none;
 }
