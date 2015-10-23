@@ -2,13 +2,13 @@
     <% modules.each(function(module) { %>
     <div id="module-container" class="row course module">
         <div class="col-md-4 col-sm-5 text-center">
-            <a class="module-img" href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><img src="<%= imgUrl %>"></a>
+            <a class="module-img" href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>"><img src="<%= imgUrl %>"></a>
         </div>
         <div class="col-md-8 col-sm-7">
-            <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>"><%= module.get('title') %></a></strong></div>
+            <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>"><%= module.get('title') %></a></strong></div>
             <div class="bottom-line clearfix">
-                <a href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>" class="left-side pull-left">методичні матеріали</a>
-                <a href="#courses/<%= module.get('courseId') %>/module/<%= module.get('id') %>/test/1" class="btn btn-success pull-right" role="button">Пройти тест</a>
+                <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>" class="left-side pull-left">методичні матеріали</a>
+                <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>/test/1" class="btn btn-success pull-right" role="button">Пройти тест</a>
             </div>
         </div>
     </div>
