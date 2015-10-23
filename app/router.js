@@ -45,8 +45,12 @@ define(function(require) {
             if (this.courses) this.courses.reset();
 
             this.courses.setCurrentPage(parseInt(currentPage));
-            this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
-            this.courses.fetch();
+            var d = this.courses.fetch();
+            d.done($.proxy(function() {
+                this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
+                this.containerView.render();
+            }, this));
+            
         },
 
         showCourseDetails: function(id) {

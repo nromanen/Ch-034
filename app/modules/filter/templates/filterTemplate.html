@@ -1,0 +1,24 @@
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" data-bypass="true" data-parent="#filter" href="#filter<%= type %>">
+      <%= type %>
+      <span class="caret"></span>
+    </a>
+  </div>
+  <div id="filter<%= type %>" class="accordion-body collapse in">
+    <div class="accordion-inner col-lg-12">
+        <form>
+            <div class="form-group">
+            <% _.each(variants.models, function(variant) { %>
+                <div class="checkbox">
+                    <input type="checkbox" id="filter<%= type %>-<%= variant.get('name') %>" value="<%= variant.get('name') %>" aria-label="<%= variant.get('name') %>">
+                        <label for="filter<%= type %>-<%= variant.get('name') %>">
+                           <%= variant.get('name') %>
+                        </label>
+                </div>
+            <% }) %>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

@@ -12,21 +12,17 @@ define(function(require) {
         el: false,
 
         initialize: function() {
-            this.listenTo(this.collection, "reset sync request", this.render);
-        },
 
-        serialize: function() {
-            return {
-                collection: this.collection
-            };
+            CMS.Event.on("filter:change", function(event) {
+                console.log(event);
+            });
+            
         },
 
         beforeRender: function() {
             this.renderList();
-            this.insertViews({
-                ".sidebar-a": new SidebarView({collection: this.collection}),
-                "nav": new PaginationView({collection: this.collection})
-            });
+            this.insertView(".sidebar-a", new SidebarView());
+            this.insertView("nav", new PaginationView({collection: this.collection}));
         },
 
         renderList: function() {

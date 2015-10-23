@@ -729,6 +729,7 @@
       ]
     }
   ],
+
   "course_groups": [
     {
       "id": 1,
@@ -759,6 +760,20 @@
       "id": 6,
       "courseId": 3,
       "name": "Early"
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "Early"
+    },
+    {
+      "id": 2,
+      "name": "Daily"
+    },
+    {
+      "id": 3,
+      "name": "Evening"
     }
   ],
   "areas": [
