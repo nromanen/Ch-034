@@ -34,7 +34,7 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/module/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
+            "courses/:courseId/module/:moduleId/test/:mode(/:testId)": "showTestModule"
         },
 
         index: function() {
@@ -70,14 +70,19 @@ define(function(require) {
             this.register.render();
         },
 
-        showTestModule: function(courseModule, moduleTest, currentQuestion) {    
-            this.tests.reset();
-            this.tests.setCurrentPage(parseInt(currentQuestion));
-            this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/';
-            this.tests.addFilter = '&idModule=' + moduleTest;            
+        showTestModule: function(courseModule, moduleTest, modeTest, currentQuestion) {    
+            if(modeTest == 'list-mode'){
+                
+            }
+            else if(modeTest == 'page-mode'){
+                this.tests.reset();
+                this.tests.setCurrentPage(parseInt(currentQuestion));
+                this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/' +  modeTest + '/';
+                this.tests.addFilter = '&idModule=' + moduleTest;            
 
-            this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
-            this.tests.fetch();
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
+                this.tests.fetch();
+            } 
         },
 
         parseQueryString: function(queryString) {
