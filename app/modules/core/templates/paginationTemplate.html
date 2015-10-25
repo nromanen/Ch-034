@@ -1,7 +1,7 @@
 <ul class="pagination">
   <% if (info.currentPage != 1) { %>
   <li>
-      <a href="<%=info.hrefPath %>1" aria-label="First">
+      <a href="<%=info.pageUrl(1) %>" aria-label="First">
           <span aria-hidden="true">&laquo;</span>
       </a>
   </li>
@@ -14,15 +14,15 @@
  
 <% _.each(info.pageSet, function(p) { %>
   <% if (info.currentPage == p) { %>
-    <li class="active"><a href="<%=info.hrefPath %><%= p %>"><%= p %></a></li>
+    <li class="active"><a href="<%=info.pageUrl(p) %>"><%= p %></a></li>
   <% } else { %>
-    <li><a href="<%=info.hrefPath %><%= p %>"><%= p %></a></li>
+    <li><a href="<%= info.pageUrl(p) %>"><%= p %></a></li>
   <% } %>
 <% }); %>
 
   <% if (info.currentPage != info.lastPage) { %>
   <li>
-      <a href="<%=info.hrefPath %><%= info.lastPage %>" aria-label="Last">
+      <a href="<%= info.pageUrl(info.lastPage) %>" aria-label="Last">
           <span aria-hidden="true">&raquo;</span>
       </a>
   </li>

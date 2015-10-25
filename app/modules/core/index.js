@@ -5,6 +5,7 @@ define(function(require) {
         Collection: require("./collection"),
         View: require("./view"),
         Model: require("./model"),
+        Event: require("./event"),
 
         CoreView: require("./views/CoreView"),
 
