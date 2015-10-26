@@ -18,8 +18,9 @@ define(function(require, exports, module) {
                 modules: this.collection,
                 imgUrl: this.imgUrl
             };
-        }     
+        }
     });
 
     return View;
+    
 });

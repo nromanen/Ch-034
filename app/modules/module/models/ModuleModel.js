@@ -19,9 +19,10 @@ define(function(require, extend, module) {
 
         urlRoot: function() {
             return CMS.api + "courses/"+this.courseId+"/modules";
-        }        
+        }
 
     });
 
-    return Model;    
+    return Model;
+    
 });
