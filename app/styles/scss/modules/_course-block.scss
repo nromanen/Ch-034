@@ -31,7 +31,6 @@
             }
         }        
         .course-action {
-            margin-top: 25px;
 
             .course-schedule {
                 height: 40px;
@@ -66,6 +65,7 @@
     .accordion-heading {
         border-bottom: 1px dashed $accordionTextColor;
         text-align: right;
+        margin-bottom: 10px;
 
         .accordion-toggle {
             text-decoration: none; 
