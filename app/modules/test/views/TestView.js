@@ -12,7 +12,6 @@ define(function(require) {
                 'test': this.model
             };
         }
-
     });
 
     return View;
