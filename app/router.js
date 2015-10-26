@@ -34,11 +34,11 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/module/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/module/:moduleId/test/:mode(/:testId)": "showTestModule"
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:testId)": "showTestModule"
         },
 
         index: function() {
-            this.appView.setView( new Login.View() );
+            this.appView.setView(new Login.View());
         },
 
         showCoursesList: function(currentPage, queryParams) {
@@ -79,7 +79,7 @@ define(function(require) {
             else if(modeTest == 'page-mode'){ 
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
-                this.testsPage.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/' +  modeTest + '/';
+                this.testsPage.hrefPath = '#courses/' + courseModule + '/modules/' + moduleTest + '/tests/' +  modeTest + '/';
                 this.testsPage.addFilter = '&moduleId=' + moduleTest;            
 
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page'}));
@@ -90,7 +90,7 @@ define(function(require) {
         parseQueryString: function(queryString) {
             if (!_.isString(queryString))
                 return;
-            queryString = queryString.substring( queryString.indexOf('?') + 1 );
+            queryString = queryString.substring(queryString.indexOf('?') + 1);
             var params = {},
                 queryParts = decodeURI(queryString).split(/&/g);
 
