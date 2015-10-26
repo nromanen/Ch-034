@@ -17,8 +17,8 @@ define(function(require) {
             this.headerView = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
-            this.courses = new CoursesModule.Collection();
-            this.tests = new TestsModule.Collection();
+            this.courses = new CoursesModule.Collection();                        
+            this.testsPage = new TestsModule.Collection.Page();
 
             this.appView.insertViews([
                 this.headerView,
@@ -72,16 +72,18 @@ define(function(require) {
 
         showTestModule: function(courseModule, moduleTest, modeTest, currentQuestion) {    
             if(modeTest == 'list-mode'){
-                
+                this.testsList = new TestsModule.Collection.List([], {moduleId: moduleTest});
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list'}));
+                this.testsList.fetch();
             }
-            else if(modeTest == 'page-mode'){
-                this.tests.reset();
-                this.tests.setCurrentPage(parseInt(currentQuestion));
-                this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/' +  modeTest + '/';
-                this.tests.addFilter = '&idModule=' + moduleTest;            
+            else if(modeTest == 'page-mode'){ 
+                this.testsPage.reset();
+                this.testsPage.setCurrentPage(parseInt(currentQuestion));
+                this.testsPage.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/' +  modeTest + '/';
+                this.testsPage.addFilter = '&moduleId=' + moduleTest;            
 
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
-                this.tests.fetch();
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page'}));
+                this.testsPage.fetch(); 
             } 
         },
 

@@ -929,7 +929,7 @@
     {
       "id": 1,
       "num": 1,
-      "idModule": 1,
+      "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Введіть класичний варіант написання тегу",
       "typeVariant": "list",
@@ -941,7 +941,7 @@
     {
       "id": 2,
       "num": 2,
-      "idModule": 1,
+      "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Введіть doctype HTML5 без &lt;&gt;",
       "typeVariant": "answer"
@@ -949,7 +949,7 @@
     {
       "id": 3,
       "num": 3,
-      "idModule": 1,
+      "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Відмітьте теги, які не підтримуються HTML 4.0",
       "typeVariant": "few",
@@ -963,7 +963,7 @@
     {
       "id": 4,
       "num": 4,
-      "idModule": 1,
+      "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Яка форма запису є коректною ? (два варіанти)",
       "typeVariant": "few",
@@ -977,7 +977,7 @@
     {
       "id": 5,
       "num": 5,
-      "idModule": 1,
+      "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Як встановити кодировку документа?",
       "typeVariant": "list",
@@ -990,7 +990,7 @@
     {
       "id": 6,
       "num": 6,
-      "idModule": 1,
+      "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Який елемент у секції &lt;head&gt; є обов'язковим?",
       "typeVariant": "list",
@@ -1005,7 +1005,7 @@
     {
       "id": 7,
       "num": 1,
-      "idModule": 2,
+      "moduleId": 2,
       "nameModule": "2. Другий модуль",
       "answer": "Перше питання",
       "typeVariant": "few",
