@@ -6,12 +6,12 @@ define(function(require) {
 
     Collection = CMS.PageableCollection.extend({
         
-        model: Test,
-        currentPage: 1,
-        api: CMS.api,
-        perPage: 1, 
-        paginationSize: 12,
-        resourse: "tests" 
+        model          : Test,
+        currentPage    : 1,
+        api            : CMS.api,
+        perPage        : 1,
+        paginationSize : 12,
+        resourse       : "tests"
 
     });
 

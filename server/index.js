@@ -45,13 +45,13 @@ server.get("/courses/:courseId/modules/:id", function(req, res) {
 
 server.get("/courses/filter", function(req, res) {
     var collection = db("courses"),
+        results = collection.chain(),
         areaQ = req.query.area, 
         groupQ = req.query.group, 
         _start = req.query._start,
         _end = req.query._end,
         _limit = req.query._limit,
-        areas, groups,
-        results = collection.chain();
+        areas, groups;
 
     if (areaQ) {
         areas = db("areas").chain().filter(function(n) {
@@ -90,26 +90,24 @@ server.get("/courses/filter", function(req, res) {
     }
 
     if (_end || _limit) {
-      res.setHeader('X-Total-Count', results.size())
-      res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count')
+      res.setHeader('X-Total-Count', results.size());
+      res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count');
     }
 
-    _start = parseInt(_start, 10) || 0
+    _start = parseInt(_start, 10) || 0;
 
     if (_end) {
-      _end = parseInt(_end, 10)
-      results = results.slice(_start, _end)
+      _end = parseInt(_end, 10);
+      results = results.slice(_start, _end);
     } else if (_limit) {
-      _limit = parseInt(_limit, 10)
-      results = results.slice(_start, _start + _limit)
+      _limit = parseInt(_limit, 10);
+      results = results.slice(_start, _start + _limit);
     }
 
     res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.jsonp(JSON.stringify(results.value()));
-    
+    res.jsonp(results.value());
 });
+
 server.use(router);
-
 server.listen(3000);
-
