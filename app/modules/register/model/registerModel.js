@@ -2,6 +2,12 @@ define(function(require){
     "use strict";
 
     var CMS = require("CMS"),
+    
+    function IsEmail(email) {
+        var emailRegex = "/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/";
+        return emailRegex.test(email);
+    },
+
         Model = CMS.Model.extend({
             
             defaults: {
@@ -22,7 +28,7 @@ define(function(require){
                 if ( !attr.surname ) {
                     errors.push( "surname" );
                 }
-                if ( !attr.email ) {
+                if ( !(IsEmail(attr.email)) ) {
                     errors.push( "email" );
                 }
 
