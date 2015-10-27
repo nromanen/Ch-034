@@ -73,7 +73,7 @@ define(function(require) {
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {    
             if(modeTest == 'list-mode'){
                 this.testsList = new TestsModule.Collection.List([], {moduleId: moduleId});
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', courseId: courseId, moduleId: moduleId}));
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest}));
                 this.testsList.fetch();
             }
             else if(modeTest == 'page-mode'){ 
@@ -81,8 +81,7 @@ define(function(require) {
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
                 this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
                 this.testsPage.addFilter = '&moduleId=' + moduleId;            
-
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', courseId: courseId, moduleId: moduleId}));
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest}));
                 this.testsPage.fetch(); 
             } 
         },

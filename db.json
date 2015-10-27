@@ -932,7 +932,7 @@
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Введіть класичний варіант написання тегу",
-      "typeVariant": "list",
+      "typeVariant": 0,
       "variants": {
         "variant1": "&lt;name&gt;&lt;/name&gt;",
         "variant2": "other variant"
@@ -944,7 +944,7 @@
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Введіть doctype HTML5 без &lt;&gt;",
-      "typeVariant": "answer"
+      "typeVariant": 1
     },
     {
       "id": 3,
@@ -952,7 +952,7 @@
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Відмітьте теги, які не підтримуються HTML 4.0",
-      "typeVariant": "few",
+      "typeVariant": 2,
       "variants": {
         "variant1": "header",
         "variant2": "img",
@@ -966,7 +966,7 @@
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Яка форма запису є коректною ? (два варіанти)",
-      "typeVariant": "few",
+      "typeVariant": 2,
       "variants": {
         "variant1": "&lt;input required=on&gt;",
         "variant2": "&lt;input required=yes&gt;",
@@ -980,7 +980,7 @@
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Як встановити кодировку документа?",
-      "typeVariant": "list",
+      "typeVariant": 0,
       "variants": {
         "variant1": "&lt;body charset=&#34;utf-8&#34;&gt;",
         "variant2": "&lt;meta charset=&#34;utf-8&#34;&gt;",
@@ -993,7 +993,7 @@
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "answer": "Який елемент у секції &lt;head&gt; є обов'язковим?",
-      "typeVariant": "list",
+      "typeVariant": 0,
       "variants": {
         "variant1": "&lt;meta&gt;",
         "variant2": "&lt;link&gt;",
@@ -1008,7 +1008,7 @@
       "moduleId": 2,
       "nameModule": "2. Другий модуль",
       "answer": "Перше питання",
-      "typeVariant": "few",
+      "typeVariant": 2,
       "variants": {
         "variant1": "variant1",
         "variant2": "variant2",

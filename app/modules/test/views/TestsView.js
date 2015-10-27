@@ -12,14 +12,16 @@ define(function(require) {
         initialize: function(collection, options) {
             this.mode = options.mode;
             this.courseId = options.courseId;
-            this.moduleId = options.moduleId;
+            this.moduleId = options.moduleId; 
+            this.typeTest = options.typeTest;
             this.listenTo(this.collection, "reset sync request", this.render);           
         },
         serialize: function(){
             return {
-                'test': this.model,
-                'courseId': this.courseId,
-                'moduleId': this.moduleId
+                'test'     : this.model,
+                'courseId' : this.courseId,
+                'moduleId' : this.moduleId,
+                'typeTest' : this.typeTest
             };
         },
         beforeRender: function(){   
@@ -31,9 +33,7 @@ define(function(require) {
             this.collection.each(this.renderOne, this);            
         },
         renderOne: function(model) {
-            this.insertView('.test', new TestView({
-                    model: model
-            }).render());  
+            this.insertView('.test', new TestView({model: model}, {typeTest: this.typeTest}).render());
         }
     });
 
