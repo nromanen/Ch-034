@@ -13,7 +13,7 @@ define(function(require) {
         },
 
         filterClicked: function(e) {
-            var query = "",
+            var query = "?",
                 queryParams;
 
             queryParams = $(e.target).closest("form").serializeArray();
@@ -33,7 +33,7 @@ define(function(require) {
             }
             
             query = query.slice(0, -1);
-            Backbone.history.navigate("#courses?"+query, {trigger: true});
+            Backbone.history.navigate("#courses"+query, {trigger: true});
         },
 
         serialize: function() {

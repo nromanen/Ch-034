@@ -40,7 +40,7 @@ define(function(require) {
                 });
             });
             string = string.slice(0, -1);
-            return CMS.PageableCollection.prototype.getApiUrl.apply(this, arguments) + "?"+string;
+            return CMS.PageableCollection.prototype.getApiUrl.apply(this, arguments) + "&"+string;
         }
     });
     return Collection;

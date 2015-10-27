@@ -16,10 +16,10 @@ define(function(require) {
         },
         beforeRender: function() {
             this.renderList();
-            this.insertViews({
-                ".sidebar-a": new SidebarView({filterParams: this.filterParams}),
-                "nav": new PaginationView({collection: this.collection})
-            });
+            this.insertView(".sidebar-a", new SidebarView({filterParams: this.filterParams}));
+            if (!_.isEmpty(this.collection.models)) {
+                this.insertView("nav", new PaginationView({collection: this.collection}));
+            }
         },
         renderList: function() {
             this.collection.each(this.renderOne, this);

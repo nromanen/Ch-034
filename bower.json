@@ -24,6 +24,10 @@
     "bootstrap": "~3.3.5",
     "requirejs-text": "~2.0.14",
     "requirejs": "~2.1.20",
-    "almond": "~0.3.1"
+    "almond": "~0.3.1",
+    "layoutmanager": "~0.9"
+  },
+  "resolutions": {
+    "backbone": "~1.2.3"
   }
 }

@@ -33,7 +33,10 @@ server.post("/check_email", function(req, res) {
 });
 
 server.get("/courses/:courseId/modules/:id", function(req, res) {
-    var response = db("modules").chain().find({id: parseInt(req.params.id), courseId: parseInt(req.params.courseId)});
+    var response = db("modules").chain().find({
+        id: parseInt(req.params.id), 
+        courseId: parseInt(req.params.courseId)
+    });
     if (response) {
         res.send(JSON.stringify(response.value()));
     } else {
@@ -46,14 +49,14 @@ server.get("/courses/:courseId/modules/:id", function(req, res) {
 server.get("/courses/filter", function(req, res) {
     var collection = db("courses"),
         results = collection.chain(),
-        areaQ = req.query.area, 
-        groupQ = req.query.group, 
+        areaQ = [].concat(req.query.area ? req.query.area : []), 
+        groupQ = [].concat(req.query.group ? req.query.group : []), 
         _start = req.query._start,
         _end = req.query._end,
         _limit = req.query._limit,
         areas, groups;
 
-    if (areaQ) {
+    if (areaQ.length >= 1) {
         areas = db("areas").chain().filter(function(n) {
             return areaQ.indexOf(n.name) != -1;
         }).reduce(function(result, n, key, arr) {
@@ -62,30 +65,33 @@ server.get("/courses/filter", function(req, res) {
         }, {}).map(function(val, i){
             return val;
         }).value();
-
+        
         results = results.filter(function(n){
             return areas.indexOf(n.areaId) !== -1;
         });
     }
 
-    if (groupQ) {
-        groups = db("course_groups").chain().filter(function(n){
-            return groupQ.indexOf(n.name) != -1;
-        }).sortBy("courseId").reduce(function(result, n, key, arr ) {
-            if (groupQ instanceof Array) {
-                if (arr[key+1] && n.courseId == arr[key+1].courseId) {
-                    result[n.courseId] = n.courseId;
-                }
-            } else {
-                result[n.courseId] = n.courseId;
-            }
+    if (groupQ.length >= 1) {
+        groups = db("groups").chain().filter(function(n) {
+            return groupQ.indexOf(n.name) !== -1;
+        }).reduce(function(result, n, key, arr) {
+            result[key] = n.id;
             return result;
-        }, {}).map(function(val, i){
+        }, {}).map(function(val, i) {
+            return val;
+        }).value();
+
+        var courses_groups = db("course_groups").chain().filter(function(n) {
+            return groups.indexOf(n.groupId) !== -1;
+        }).reduce(function(result, n, key, arr) {
+            result[key] = n.courseId;
+            return result;
+        }, {}).map(function(val, i) {
             return val;
         }).value();
 
         results = results.filter(function(n){
-            return groups.indexOf(n.id) !== -1;
+            return courses_groups.indexOf(n.id) !== -1;
         });
     }
 

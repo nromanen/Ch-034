@@ -47,14 +47,15 @@ define(function(require) {
                 this.courses.reset();
             }
 
-            if (_.isString(queryParams)) {
+            if (!_.isNull(queryParams)) {
+
                 parsedParams = this.parseQueryString(queryParams);
                 parsedParams.area = !_.isEmpty(parsedParams.area) ? parsedParams.area : [];
                 parsedParams.group = !_.isEmpty(parsedParams.group) ? parsedParams.group : [];
-
-                this.courses.setFilterQueries(parsedParams, queryParams);
             }
-            console.log(parsedParams);
+
+            this.courses.setFilterQueries(parsedParams, queryParams);
+
             this.courses.setCurrentPage(parseInt(currentPage, 10));
 
             this.courses.fetch()
