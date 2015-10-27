@@ -17,7 +17,20 @@
               </div>
               <div id="collapseInfo-<%= course.get('id') %>" class="accordion-body collapse out">
                 <div class="accordion-inner col-lg-12">
-                  <ul class="list-unstyled"><li class="col-lg-6"><span>Старт: </span><%= parseDate(course.get('start')) %></li><li class="col-lg-6"><span>Тривалість: </span><%= course.get('duration') %> год.</li><li class="col-lg-6"><span>Кінець: </span><%= parseDate(course.get('end')) %></li><li class="col-lg-6"><span>Розклад: </span><%= course.get('schedule') %></li></ul>
+                  <ul class="list-unstyled">
+                    <li class="col-lg-6">
+                      <table>
+                        <tr><td>Початок</td><td class="padding-right-left">:</td><td><%= parseDate(course.get('start')) %><td></tr>
+                        <tr><td>Кінець</td><td class="padding-right-left">:</td><td><%= parseDate(course.get('end')) %></td></tr>
+                      </table>
+                    </li>
+                    <li class="col-lg-6">
+                      <table>
+                        <tr><td>Тривалість</td><td class="padding-right-left">:</td><td><%= course.get('duration') %> год.</td></tr>
+                        <tr><td>Розклад</td><td class="padding-right-left">:</td><td><%= course.get('schedule') %></td></tr>
+                      </table>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
