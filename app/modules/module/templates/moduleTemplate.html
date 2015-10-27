@@ -4,9 +4,9 @@
     <div id="module-info">
         <h3 class="module-title"><%= title %></h3>
         <div class="text-justify"><%= description %></div>
-        <ul class="h4"><% _.each(resources, function(resource){ %>
+        <ul class="resource-title"><% _.each(resources, function(resource){ %>
                 <% if (resource.type == "video") { %>
-                    <li class="h4"><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
+                    <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="videoWrapper">
                         <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
                     </div></li>
