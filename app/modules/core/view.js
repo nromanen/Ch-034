@@ -5,8 +5,18 @@ define(function(require) {
         Layout = require("backbone.layoutmanager"),
         
     CoreLayout = Backbone.Layout.extend({
-        manage: true
+        manage: true,
+
+        convertToMonthAndDate: function (jsonDate) {
+            var date = new Date(jsonDate);
+            var options = {
+                day: 'numeric',
+                month: 'long'
+            };
+            return date.toLocaleString("ua", options);
+        }
+
     });
 
     return CoreLayout;
-});
+}); 
