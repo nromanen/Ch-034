@@ -32,9 +32,9 @@ define(function(require) {
             "": "index",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
-            "courses/:courseId/module/:id": "showCourseModuleDetails",
+            "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
+            "courses/:courseId/modules/:moduleId/test/:testId": "showTestModule"
         },
 
         index: function() {
