@@ -2,10 +2,12 @@ define(function(require){
     "use strict";
 
     var CMS = require("CMS"),
-    function isEmail(email) {
-        var emailRegex = "/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/";
-        return emailRegex.test(email);
-    }
+
+        isEmail = function(email) {
+            var emailRegex = "/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/";
+            return emailRegex.test(email);
+        },
+
         Model = CMS.Model.extend({
             
             defaults: {
@@ -33,11 +35,11 @@ define(function(require){
                 if (!attr.pass) {
                     errors.push("pass");
                 }
-                
-                if ( !attr.repeatPass ) {
+
+                if (!attr.repeatPass) {
                     errors.push("repeatPass");
                 }
-                     
+
                 return errors.length > 0 ? errors : false;
             }
         });
