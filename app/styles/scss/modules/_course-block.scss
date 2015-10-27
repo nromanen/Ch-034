@@ -1,12 +1,13 @@
 #course-container {
     padding: 0px 70px;
 }
+
 .row {
 
     .course {
         background-color: $courseBgColor;
         background-clip: content-box;
-        margin-bottom: 25px;
+        margin-bottom: $defaultMarginBottom;
         
         .course-name {
             font-size: 18px;

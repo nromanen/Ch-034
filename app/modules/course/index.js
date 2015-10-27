@@ -7,7 +7,8 @@ define(function(require) {
         Views: {
             Course: require("./views/CourseView"),
             CourseDetails: require("./views/CourseDetailsView"),
-            Courses: require("./views/CoursesView")
+            Courses: require("./views/CoursesView"),
+            SideBar: require("./views/SidebarView")
         }
     };
 });

@@ -1,12 +1,12 @@
 <div id="module-container" class="container-fluid padding">
     <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
-    <a href="#courses/<%= courseId %>/module/<%= id %>/test/1" class="right-side">пройти тест &gt;</a>
+    <a href="#courses/<%= courseId %>/modules/<%= id %>/test/1" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
         <h3 class="module-title"><%= title %></h3>
         <div class="text-justify"><%= description %></div>
-        <ul class="h4"><% _.each(resources, function(resource){ %>
+        <ul class="resource-title"><% _.each(resources, function(resource){ %>
                 <% if (resource.type == "video") { %>
-                    <li class="h4"><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
+                    <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="videoWrapper">
                         <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
                     </div></li>
@@ -15,6 +15,6 @@
                     <% } %>
                 <% }); %>
         </ul>
-        <div class="text-center"><a href="#courses/<%= courseId %>/module/<%= id %>/test/1" class="btn btn-success">Пройти тест</a></div>
+        <div class="text-center"><a href="#courses/<%= courseId %>/modules/<%= id %>/test/1" class="btn btn-success" role="button">Пройти тест</a></div>
     </div>
 </div>

@@ -10,11 +10,15 @@ require.config({
         'backbone.layoutmanager': '../vendor/bower/layoutmanager/backbone.layoutmanager'
     },
 
-    shim: {
+    map: {
+      "*": {
+        "underscore": "lodash"
+      }
+    },
 
-        'backbone': {
-            deps: ['lodash', 'jquery'],
-            exports: 'Backbone'
+    shim: {
+        'lodash': {
+            exports: '_'
         },
 
         'bootstrap': {

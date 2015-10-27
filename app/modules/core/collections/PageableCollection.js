@@ -9,8 +9,7 @@ define(function(require) {
         resourse: "",
         perPage: 5,
         currentPage: 1,
-        hrefPath: '',
-        addFilter: '',
+        hrefPath: "",
 
         setCurrentPage: function(page) {
             if (page)
@@ -29,20 +28,17 @@ define(function(require) {
             return this.currUrl();
         },
 
+        pageUrl: function(page) {
+            if (page)
+                return this.hrefPath+page;
+            
+            return this.hrefPath+this.currentPage;
+        },
+
         parse: function(data, options) {
             this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.perPage);
             
             return data;
-        },
-
-        info: function() {
-            return {
-                hrefPath: this.hrefPath,
-                currentPage: this.currentPage,
-                totalPages: this.totalPages,
-                lastPage: this.totalPages,
-                pageSet: this.getPageSet()
-            };
         },
 
         getRange: function() {
@@ -72,7 +68,19 @@ define(function(require) {
             pages = _.range(min, max+1);
 
             return pages;
-        }
+        },
+
+        info: function() {
+            return {
+                pageUrl: $.proxy(this.pageUrl,this),
+                currentPage: this.currentPage,
+                totalPages: this.totalPages,
+                lastPage: this.totalPages,
+                pageSet: this.getPageSet()
+            };
+        },
+
+        
 
     });
 

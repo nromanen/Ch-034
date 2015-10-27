@@ -31,36 +31,48 @@ server.post("/check_email", function(req, res) {
     res.send(JSON.stringify({message: "success"}));
 
 });
+
 server.get("/courses/:courseId/modules/:id", function(req, res) {
-    var response = db("modules").find({id: parseInt(req.params.id), courseId: parseInt(req.params.courseId)});
+    var response = db("modules").chain().find({id: parseInt(req.params.id), courseId: parseInt(req.params.courseId)});
     if (response) {
-        res.send(JSON.stringify(response));
+        res.send(JSON.stringify(response.value()));
     } else {
         res.status(404);
         res.send(JSON.stringify({message: "Not Found"}));
     }
     
 });
+
 server.get("/courses/filter", function(req, res) {
     var collection = db("courses"),
-        areas = [], groups = [], queries = [], results = [];
-    if (req.query.area) {
+        areaQ = req.query.area, 
+        groupQ = req.query.group, 
+        _start = req.query._start,
+        _end = req.query._end,
+        _limit = req.query._limit,
+        areas, groups,
+        results = collection.chain();
+
+    if (areaQ) {
         areas = db("areas").chain().filter(function(n) {
-            return req.query.area.indexOf(n.name) != -1;
+            return areaQ.indexOf(n.name) != -1;
         }).reduce(function(result, n, key, arr) {
             result[key] = n.id;
             return result;
         }, {}).map(function(val, i){
             return val;
         }).value();
-        areas ? queries["areas"] = areas : false;
+
+        results = results.filter(function(n){
+            return areas.indexOf(n.areaId) !== -1;
+        });
     }
 
-    if (req.query.group) {
+    if (groupQ) {
         groups = db("course_groups").chain().filter(function(n){
-            return req.query.group.indexOf(n.name) != -1;
+            return groupQ.indexOf(n.name) != -1;
         }).sortBy("courseId").reduce(function(result, n, key, arr ) {
-            if (req.query.group instanceof Array) {
+            if (groupQ instanceof Array) {
                 if (arr[key+1] && n.courseId == arr[key+1].courseId) {
                     result[n.courseId] = n.courseId;
                 }
@@ -71,27 +83,30 @@ server.get("/courses/filter", function(req, res) {
         }, {}).map(function(val, i){
             return val;
         }).value();
-        groups ? queries["groups"] = groups : false;
+
+        results = results.filter(function(n){
+            return groups.indexOf(n.id) !== -1;
+        });
     }
-    
-    if (queries.hasOwnProperty) {
-        results = collection.chain()
-            .filter(function(n) {
-                if (queries["areas"]) {
-                    return queries["areas"].indexOf(n.areaId) != -1
-                    
-                } else return true;
-            })
-            .filter(function(n){
-                if (queries["groups"]) {
-                    return queries["groups"].indexOf(n.id) != -1
-                } else return true;
-            })
-            .value();  
+
+    if (_end || _limit) {
+      res.setHeader('X-Total-Count', results.size())
+      res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count')
     }
+
+    _start = parseInt(_start, 10) || 0
+
+    if (_end) {
+      _end = parseInt(_end, 10)
+      results = results.slice(_start, _end)
+    } else if (_limit) {
+      _limit = parseInt(_limit, 10)
+      results = results.slice(_start, _start + _limit)
+    }
+
     res.setHeader('Content-Type', 'application/json');
     res.status(200);
-    res.jsonp(JSON.stringify(results, null, 3));
+    res.jsonp(JSON.stringify(results.value()));
     
 });
 server.use(router);

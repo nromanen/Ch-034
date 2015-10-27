@@ -30,23 +30,27 @@ define(function(require) {
 
         routes: {
             "": "index",
-            "courses(/)(/page/:pageNumber)": "showCoursesList",
+            "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
-            "courses/:courseId/module/:id": "showCourseModuleDetails",
+            "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/module/:moduleId/test/:testId": "showTestModule"
+            "courses/:courseId/modules/:moduleId/test/:testId": "showTestModule"
         },
 
         index: function() {
             this.appView.setView( new Login.View() );
         },
 
-        showCoursesList: function(currentPage) {
-            if (this.courses) this.courses.reset();
+        showCoursesList: function(currentPage, queryParams) {
+            if (this.courses.length) this.courses.reset();
 
             this.courses.setCurrentPage(parseInt(currentPage));
-            this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
-            this.courses.fetch();
+            var d = this.courses.fetch();
+            d.done($.proxy(function() {
+                this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
+                this.containerView.render();
+            }, this));
+            
         },
 
         showCourseDetails: function(id) {
@@ -74,6 +78,25 @@ define(function(require) {
 
             this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
             this.tests.fetch();
+        },
+
+        parseQueryString: function(queryString) {
+            if (!_.isString(queryString))
+                return;
+            queryString = queryString.substring( queryString.indexOf('?') + 1 );
+            var params = {},
+                queryParts = decodeURI(queryString).split(/&/g);
+
+            _.each(queryParts, function(val) {
+                    var parts = val.split('=');
+                    if (parts.length >= 1) {
+                        val = undefined;
+                        if (parts.length == 2)
+                            val = parts[1].indexOf(",") != -1 ? parts[1].split(/,/g) : parts[1];
+                        params[parts[0]] = val;
+                    }
+                });
+            return params;
         }
         
     });

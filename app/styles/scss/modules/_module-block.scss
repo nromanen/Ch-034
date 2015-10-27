@@ -5,12 +5,10 @@ a:link {
     text-decoration: underline;
 }
 #module-container {
-    margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: $defaultMarginBottom;
     background-color: #ffffff;
     margin-right: auto;
     margin-left: auto;
-    max-width: 700px ;
 }
 a.module-item-name {
   color: #000;
@@ -32,7 +30,7 @@ a.module-item-name {
     padding-top: 25px;
 }
 .btn.btn-success {
-    text-deciration: none;
+    text-decoration: none;
 }
 .btn.btn-success.disable {
     background-color: #959595;
@@ -52,10 +50,11 @@ a.module-item-name {
     height: 100%;
 }
 .module-title {
-    font-size: 24px;
+    font-size: 150%;
     color: $aticleTitleColor;
     font-weight: bold;
 }
-ul.h4 {
+.resource-title {
+    font-size: 120%;
     list-style-type: none;
 }
