@@ -11,6 +11,7 @@ define(function(require) {
         
         initialize: function(collection, options) {
             this.mode = options.mode;
+            this.toogleMode = options.toogleMode;
             this.courseId = options.courseId;
             this.moduleId = options.moduleId; 
             this.typeTest = options.typeTest;
@@ -18,10 +19,12 @@ define(function(require) {
         },
         serialize: function(){
             return {
-                'test'     : this.model,
-                'courseId' : this.courseId,
-                'moduleId' : this.moduleId,
-                'typeTest' : this.typeTest
+                'mode'       : this.mode,
+                'toogleMode' : this.toogleMode,
+                'test'       : this.model,
+                'courseId'   : this.courseId,
+                'moduleId'   : this.moduleId,
+                'typeTest'   : this.typeTest
             };
         },
         beforeRender: function(){   
@@ -29,7 +32,7 @@ define(function(require) {
                 this.insertView(
                     'nav', new PaginationView({collection: this.collection})
                 );  
-            };
+            }
             this.collection.each(this.renderOne, this);            
         },
         renderOne: function(model) {
