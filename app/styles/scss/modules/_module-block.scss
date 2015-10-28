@@ -1,14 +1,10 @@
-.padding {
-    padding: 20px;
-}
 a:link {
     text-decoration: underline;
 }
 #module-container {
     margin-bottom: $defaultMarginBottom;
-    background-color: #ffffff;
-    margin-right: auto;
-    margin-left: auto;
+    background-color: $courseBgColor;
+    padding: $modulePadding;
 }
 a.module-item-name {
   color: #000;
@@ -29,25 +25,9 @@ a.module-item-name {
 .bottom-line {
     padding-top: 25px;
 }
-.btn.btn-success {
-    text-decoration: none;
-}
 .btn.btn-success.disable {
     background-color: #959595;
     border: 1px solid #ccc;
-}
-.videoWrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-.videoWrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 .module-title {
     font-size: 150%;
@@ -58,6 +38,6 @@ a.module-item-name {
     font-size: 120%;
     list-style-type: none;
 }
-.padding-right-left {
-    padding: 0px 10px 0px 10px;
+.colon-padding {
+    padding: $colonPadding;
 }

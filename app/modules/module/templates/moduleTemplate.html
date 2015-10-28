@@ -1,4 +1,4 @@
-<div id="module-container" class="container-fluid padding">
+<div id="module-container" class="container-fluid col-lg-8 col-md-offset-2">
     <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
     <a href="#courses/<%= courseId %>/modules/<%= id %>/test/1" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
@@ -7,10 +7,10 @@
         <ul class="resource-title"><% _.each(resources, function(resource){ %>
                 <% if (resource.type == "video") { %>
                     <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
-                    <div class="videoWrapper">
-                        <iframe width="560" height="315" src= <%= resource.url %> frameborder="0" allowfullscreen></iframe>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src= <%= resource.url %>></iframe>
                     </div></li>
-                <% } else if (resource.type == "pdf" | resource.type == "zip") { %>
+                <% } else if (resource.type == "zip" | resource.type == "pdf") { %>
                     <li><%= resource.name %>&nbsp<a href="<%= resource.url %>" data-bypass="true"><span class="glyphicon glyphicon-file"></a></li>
                     <% } %>
                 <% }); %>
