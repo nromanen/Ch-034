@@ -5,7 +5,7 @@ define(function(require) {
         template: _.template(require("text!../templates/filterTemplate.html")),
         el: false,
         events: {
-            "change input[id^='filter']": "filterClicked"
+            "change .filter-checkbox": "filterClicked"
         },
 
         initialize: function() {
