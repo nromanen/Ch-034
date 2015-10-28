@@ -24,6 +24,8 @@
     "bootstrap": "~3.3.5",
     "requirejs-text": "~2.0.14",
     "requirejs": "~2.1.20",
-    "almond": "~0.3.1"
+    "almond": "~0.3.1",
+    "backbone.localStorage": "backbone.localstorage#~1.1.16",
+    "jquery-serialize-object": "~2.5.0"
   }
 }

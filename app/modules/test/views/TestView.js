@@ -10,7 +10,6 @@ define(function(require) {
         initialize: function(models, options) {
             this.typeTest = options.typeTest;         
         },
-
         serialize: function(){
             return {
                 'test': this.model,

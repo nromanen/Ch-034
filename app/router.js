@@ -12,13 +12,14 @@ define(function(require) {
     Router = Backbone.Router.extend({
         initialize: function() {
             
-            this.appView = new CMS.CoreView();
-            this.register = new RegisterModule.Model();
-            this.headerView = new CMS.Views.Header();
+            this.appView       = new CMS.CoreView();
+            this.register      = new RegisterModule.Model();
+            this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
-            this.footerView = new CMS.Views.Footer();
-            this.courses = new CoursesModule.Collection();                        
-            this.testsPage = new TestsModule.Collection.Page();
+            this.footerView    = new CMS.Views.Footer();
+            this.courses       = new CoursesModule.Collection();                        
+            this.testsPage     = new TestsModule.Collection.Page();
+            this.userAnswers   = new TestsModule.Collection.Answers();
 
             this.appView.insertViews([
                 this.headerView,
@@ -70,10 +71,10 @@ define(function(require) {
             this.register.render();
         },
 
-        showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {    
+        showTestModule: function(courseId, moduleId, modeTest, currentQuestion) { 
             if(modeTest == 'list-mode'){
                 this.testsList = new TestsModule.Collection.List([], {moduleId: moduleId});
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest}));
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsList.fetch();
             }
             else if(modeTest == 'page-mode'){ 
@@ -81,7 +82,7 @@ define(function(require) {
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
                 this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
                 this.testsPage.addFilter = '&moduleId=' + moduleId;            
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest}));
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsPage.fetch(); 
             } 
         },

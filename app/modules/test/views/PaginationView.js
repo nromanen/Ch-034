@@ -11,7 +11,6 @@ define(function(require) {
                 info: this.collection.info() 
             }; 
         }
-
     });
 
     return View;
