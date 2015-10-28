@@ -31,7 +31,7 @@ define( function ( require ) {
 			submitHandler: function (e) {
 				e.preventDefault();
 
-				this.$el.find( ".form-group" ).removeClass( "error" );
+				this.$el.find( ".input-group" ).removeClass( "error" );
 				this.$el.find( ".error-message" ).addClass( "hidden" );
 				
 				var dataObj = {
@@ -44,7 +44,7 @@ define( function ( require ) {
 			
 			errorMessage: function ( model, errors ) {
 				_.forEach( errors, function ( error ) {
-					this.$el.find( "." + error ).addClass( "error" ); 
+					this.$el.find( error ).addClass( "error" ); 
 					}, this );
 
 				this.$el.find( ".error-message" ).removeClass( "hidden" );
