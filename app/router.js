@@ -17,8 +17,8 @@ define(function(require) {
             this.headerView = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView = new CMS.Views.Footer();
-            this.courses = new CoursesModule.Collection();
-            this.tests = new TestsModule.Collection();
+            this.courses = new CoursesModule.Collection();                        
+            this.testsPage = new TestsModule.Collection.Page();
 
             this.appView.insertViews([
                 this.headerView,
@@ -34,11 +34,11 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/modules/:moduleId/test/:testId": "showTestModule"
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:testId)": "showTestModule"
         },
 
         index: function() {
-            this.appView.setView( new Login.View() );
+            this.appView.setView(new Login.View());
         },
 
         showCoursesList: function(currentPage, queryParams) {
@@ -85,20 +85,26 @@ define(function(require) {
             this.register.render();
         },
 
-        showTestModule: function(courseModule, moduleTest, currentQuestion) {    
-            this.tests.reset();
-            this.tests.setCurrentPage(parseInt(currentQuestion));
-            this.tests.hrefPath =  '#courses/' + courseModule + '/module/' + moduleTest + '/test/';
-            this.tests.addFilter = '&idModule=' + moduleTest;            
-
-            this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.tests}));
-            this.tests.fetch();
+        showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {    
+            if(modeTest == 'list-mode'){
+                this.testsList = new TestsModule.Collection.List([], {moduleId: moduleId});
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest}));
+                this.testsList.fetch();
+            }
+            else if(modeTest == 'page-mode'){ 
+                this.testsPage.reset();
+                this.testsPage.setCurrentPage(parseInt(currentQuestion));
+                this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
+                this.testsPage.addFilter = '&moduleId=' + moduleId;            
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest}));
+                this.testsPage.fetch(); 
+            } 
         },
 
         parseQueryString: function(queryString) {
             if (!_.isString(queryString))
                 return;
-            queryString = queryString.substring( queryString.indexOf('?') + 1 );
+            queryString = queryString.substring(queryString.indexOf('?') + 1);
             var params = {},
                 queryParts = decodeURI(queryString).split(/&/g);
 

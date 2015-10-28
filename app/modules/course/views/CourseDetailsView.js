@@ -20,7 +20,10 @@ define(function(require) {
         },
 
         serialize: function() {
-            return { course: this.model };
+            return { 
+                course: this.model,
+                parseDate: this.convertToMonthAndDate
+            };
         }
 
     });

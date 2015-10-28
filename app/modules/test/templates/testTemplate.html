@@ -1,5 +1,5 @@
- <li value="<%= test.get('num') %>"><p><%= test.get('answer') %></p> 
-  <% if ( test.get('typeVariant') == 'list'  ){ %>
+ <li value="<%= test.get('num') %>"><p><%= test.get('answer') %></p>
+  <% if ( test.get('typeVariant') == typeTest.list  ){ %>
       <p class="variant">
       <select class="form-control">
             <% _.each(test.get('variants'), function(variants, index){ %>
@@ -8,10 +8,10 @@
         </select>
         </p>
     <% } %>
-    <% if ( test.get('typeVariant') == 'answer'  ){ %>
+    <% if ( test.get('typeVariant') == typeTest.answer  ){ %>
         <p class="variant"><input type="text" class="form-control" placeholder="Input answer"></p>
     <% } %>
-    <% if ( test.get('typeVariant')  == 'few'  ){ %>
+    <% if ( test.get('typeVariant')  == typeTest.few  ){ %>
         <div class="checkboxes variant"> 
             <% _.each(test.get('variants'), function(variants, index) {%>
                 <div class="inline"><input type="checkbox" id="<%= index %>" />
@@ -19,5 +19,5 @@
                 </div>
             <% }); %>
         </div>
-    <% } %> 
+    <% } %>
  </li>
