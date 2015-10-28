@@ -8,8 +8,8 @@ define(function(require) {
         manage: true,
 
         convertToMonthAndDate: function (jsonDate) {
-            var date = new Date(jsonDate);
-            var options = {
+            var date = new Date(jsonDate),
+                options = {
                 day: 'numeric',
                 month: 'long'
             };
