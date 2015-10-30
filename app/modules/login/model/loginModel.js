@@ -1,29 +1,29 @@
 define(function(require){
-    "use strict";
+   "use strict";
 
-    var CMS = require("CMS"),
-	    Model = CMS.Model.extend({
-	       
-	        defaults: {
-	            email: null,
-	            password: null
-	        },
+  var CMS = require("CMS"),
+	  Model = CMS.Model.extend({
 
-	        validate: function(attr, options) {
-	        	
-	        	var errors = [];
+	    defaults: {
+	      email: null,
+	      password: null
+	    },
 
-	        	if ( !attr.email) {
-	        		errors.push( "email" );
-	        	}
+	    validate: function(attr, options) {
 
-	        	if ( !attr.password ) {
-	        		errors.push( "password" );
-	        	}
-	        	
-	        	return errors.length > 0 ? errors : false;
-	        }
-	    });
+	      var errors = [];
 
-    return Model;
+	      if ( !attr.email) {
+	        errors.push( ".email" );
+	      }
+
+	      if ( !attr.password ) {
+	        errors.push( ".password" );
+	      }
+
+	      return errors.length > 0 ? errors : false;
+	    }
+	  });
+
+  return Model;
 });

@@ -11,23 +11,36 @@
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#info-<%= course.get('id') %>" data-bypass="true" href="#collapseInfo-<%= course.get('id') %>">
-                  Information about course
+                  Інформація
                   <span class="caret"></span>
                 </a>
               </div>
               <div id="collapseInfo-<%= course.get('id') %>" class="accordion-body collapse out">
                 <div class="accordion-inner col-lg-12">
-                  <ul class="list-unstyled"><li class="col-lg-6"><span>Старт:</span> 1 жовтня</li><li class="col-lg-6"><span>Старт:</span> 1 жовтня</li><li class="col-lg-6"><span>Старт:</span> 1 жовтня</li><li class="col-lg-6"><span>Старт:</span> 1 жовтня</li></ul>
+                  <ul class="list-unstyled">
+                    <li class="col-lg-6">
+                      <table>
+                        <tr><td>Початок</td><td class="colon-padding">:</td><td><%= parseDate(course.get('start')) %><td></tr>
+                        <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= parseDate(course.get('end')) %></td></tr>
+                      </table>
+                    </li>
+                    <li class="col-lg-6">
+                      <table>
+                        <tr><td>Тривалість</td><td class="colon-padding">:</td><td><%= course.get('duration') %> год.</td></tr>
+                        <tr><td>Розклад</td><td class="colon-padding">:</td><td><%= course.get('schedule') %></td></tr>
+                      </table>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
           <div class="row course-action">
               <div class="col-lg-7 course-schedule">
-                  <span>Course will begin at November 1st, with <strong>min 8 students</strong> (13 applications)</span>
+                  <span>Курс почнеться <%= parseDate(course.get('start')) %>, з <strong>мін. <%= course.get('minStudents') %> студентів</strong> (заявок <%= course.get('applicantsNumber') %>)</span>
               </div>
               <div class="col-lg-5 course-schedule">
-                  <button class="btn btn-success pull-right">Submit an application</button>
+                  <button class="btn btn-success pull-right">Подати заявку</button>
               </div>
           </div>
         </div>

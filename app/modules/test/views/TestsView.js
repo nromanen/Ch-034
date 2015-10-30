@@ -9,23 +9,35 @@ define(function(require) {
         template: _.template(require("text!../templates/testsTemplate.html")),
         el: false,
         
-        initialize: function() {
-            this.listenTo(this.collection, "reset sync request", this.render);
+        initialize: function(collection, options) {
+            this.mode = options.mode;
+            this.toogleMode = options.toogleMode;
+            this.courseId = options.courseId;
+            this.moduleId = options.moduleId; 
+            this.typeTest = options.typeTest;
+            this.listenTo(this.collection, "reset sync request", this.render);           
         },
-
-        beforeRender: function(){  
-            this.insertView(
-                'nav', new PaginationView({collection: this.collection})
-            ); 
+        serialize: function(){
+            return {
+                'mode'       : this.mode,
+                'toogleMode' : this.toogleMode,
+                'test'       : this.model,
+                'courseId'   : this.courseId,
+                'moduleId'   : this.moduleId,
+                'typeTest'   : this.typeTest
+            };
+        },
+        beforeRender: function(){   
+            if(this.mode == 'page'){
+                this.insertView(
+                    'nav', new PaginationView({collection: this.collection})
+                );  
+            }
             this.collection.each(this.renderOne, this);            
         },
-
         renderOne: function(model) {
-            this.insertView('.test', new TestView({
-                    model: model
-            }).render());  
+            this.insertView('.test', new TestView({model: model}, {typeTest: this.typeTest}).render());
         }
-
     });
 
     return View;

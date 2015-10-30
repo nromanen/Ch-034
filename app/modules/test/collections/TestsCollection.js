@@ -1,17 +1,20 @@
-define(function(require) {
+define(function(require, exports, module) {
     "use strict";
 
     var CMS = require("CMS"),
         Test = require("../models/TestModel"),
 
-    Collection = CMS.PageableCollection.extend({
-        
+    Collection = CMS.Collection.extend({
         model: Test,
-        currentPage: 1,
         api: CMS.api,
-        perPage: 1, 
-        paginationSize: 12,
-        resourse: "tests" 
+          
+        url: function() {
+            return this.api + "tests?moduleId=" + this.moduleId;
+        },
+        
+        initialize: function(models, options) {
+            this.moduleId = options.moduleId;
+        }
 
     });
 

@@ -38,9 +38,13 @@ Do it via any cmd:
 
 ### Working with project
  
-In a separate window run json-server and grunt task:
+In a separate window run json-server (or node server) and grunt task:
 ```
   json-server --watch db.json
+```
+or
+```
+  node server
 ```
 ```
   grunt server:dev

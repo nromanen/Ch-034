@@ -7,13 +7,26 @@
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-bypass="true" data-parent="#info" href="#collapseInfo">
-                      Detailed information
+                      Інформація
                       <span class="caret"></span>
                     </a>
                   </div>
                   <div id="collapseInfo" class="accordion-body collapse out">
                     <div class="accordion-inner col-lg-12">
-                      <ul class="list-unstyled"><li class="col-lg-6">Старт: 1 жовтня</li><li class="col-lg-6">Старт: 1 жовтня</li><li class="col-lg-6">Старт: 1 жовтня</li><li class="col-lg-6">Старт: 1 жовтня</li></ul>
+                      <ul class="list-unstyled">
+                        <li class="col-lg-6">
+                          <table>
+                            <tr><td>Початок</td><td class="colon-padding">:</td><td><%= parseDate(course.get('start')) %><td></tr>
+                            <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= parseDate(course.get('end')) %></td></tr>
+                          </table>
+                        </li>
+                        <li class="col-lg-6">
+                          <table>
+                            <tr><td>Тривалість</td><td class="colon-padding">:</td><td><%= course.get('duration') %> год.</td></tr>
+                            <tr><td>Розклад</td><td class="colon-padding">:</td><td><%= course.get('schedule') %></td></tr>
+                          </table>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
