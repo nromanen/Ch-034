@@ -5,11 +5,6 @@ define(function(require){
 
     Model = CMS.Model.extend({
 
-        /*isEmail: function (email) {
-            var emailRegex = "/^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/";
-            return emailRegex.test(email);
-        },*/
-
         defaults: {
             name       : null,
             surname    : null,
@@ -28,7 +23,7 @@ define(function(require){
             if (!attr.surname) {
                 errors.push( "surname" );
             }
-            if (!/*(isEmail(*/attr.email/*))*/) {
+            if (!(this.isEmail(attr.email))) {
                 errors.push( "email" );
             }
 
@@ -41,6 +36,11 @@ define(function(require){
             }
 
             return errors.length > 0 ? errors : false;
+        },
+
+        isEmail: function (email) {
+            var emailRegex = /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/;
+            return emailRegex.test(email);
         }
     });
 
