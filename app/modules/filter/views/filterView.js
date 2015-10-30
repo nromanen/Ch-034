@@ -33,6 +33,7 @@ define(function(require) {
             }
             
             query = query.slice(0, -1);
+            CMS.Event.trigger("filter:change");
             Backbone.history.navigate("#courses"+query, {trigger: true});
         },
 

@@ -14,6 +14,11 @@ define(function(require) {
         hrefPath: "#courses/page/",
         resourse: "courses",
 
+        initialize: function() {
+            CMS.Event.on("filter:change", _.bind(function(){
+                this.setPageOffset(1);
+            }, this));
+        },
         setFilterQueries: function(parsedParams, queryParams) {
             this.queryParams = queryParams;
             this.filterParams = parsedParams;
@@ -39,6 +44,7 @@ define(function(require) {
                     string += name + "=" + val + "&";
                 });
             });
+
             string = string.slice(0, -1);
             return CMS.PageableCollection.prototype.getApiUrl.apply(this, arguments) + "&"+string;
         }
