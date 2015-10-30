@@ -11,40 +11,40 @@ define(function(require) {
         currentPage: 1,
         hrefPath: "",
 
+        getResource: function() {
+            return this.resourse;
+        },
+        getHrefPath: function() {
+            return this.hrefPath;
+        },
         setCurrentPage: function(page) {
             if (page)
                 this.currentPage = page;
         },
-
-        pageOffset: function() {
+        getPageOffset: function() {
             return (this.currentPage - 1)*this.perPage;
         },
-
-        currUrl: function() {
-            return this.api + this.resourse + '?_start=' + this.pageOffset() + '&_limit=' + this.perPage + this.addFilter;
+        getApiUrl: function() {
+            return this.api + this.getResourse() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
         },
-
         url: function() {
-            return this.currUrl();
+            return this.getApiUrl();
         },
-
-        pageUrl: function(page) {
-            if (page)
-                return this.hrefPath+page;
+        getPageUrl: function(page) {
+            if (page) {
+                return this.getHrefPath()+page.toString();
+            }
             
-            return this.hrefPath+this.currentPage;
+            return this.getHrefPath()+this.currentPage.toString();
         },
-
         parse: function(data, options) {
             this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.perPage);
             
             return data;
         },
-
         getRange: function() {
             return Math.floor(this.paginationSize/2);
         },
-
         getPageSet: function() {
             var pages = [],
                 totalPages = this.totalPages,
@@ -72,17 +72,13 @@ define(function(require) {
 
         info: function() {
             return {
-                pageUrl: $.proxy(this.pageUrl,this),
+                pageUrl: $.proxy(this.getPageUrl,this),
                 currentPage: this.currentPage,
                 totalPages: this.totalPages,
                 lastPage: this.totalPages,
                 pageSet: this.getPageSet()
             };
         },
-
-        
-
     });
-
     return PageableCollection;
 });

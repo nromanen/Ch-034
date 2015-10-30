@@ -15,6 +15,7 @@ define(function(require, exports, module) {
         initialize: function(models, options) {
             this.moduleId = options.moduleId;
         }
+
     });
 
     return Collection;
