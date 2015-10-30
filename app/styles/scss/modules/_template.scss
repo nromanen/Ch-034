@@ -10,13 +10,14 @@ $accordionTextColor: #8E8E8E;
 $courseColor: #191919;
 $moduleLinkColor: #006597;
 $defaultMarginBottom: 20px;
+$colonPadding: 0 10px;
+$modulePadding: 40px;
 @import url(https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic-ext);
 html,
 body,
 ul,
 ol {
     margin: 0;
-    
     padding: 0;
 	font-family: 'Open Sans', sans-serif;
 }
