@@ -31,7 +31,7 @@ define(function(require) {
                     repeatPass: this.$el.find('#repeatPass').val()
                 };
                 this.hideErrors();
-                this.model.set( feedback, {validate: true} );
+                this.model.set(feedback);
                 if(this.model.isValid()) {
                     CMS.router.navigate("courses", {trigger: true});
                 }
