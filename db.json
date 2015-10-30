@@ -9,7 +9,7 @@
       "start": "2032-10-11T12:31:42.556Z",
       "end": "2034-11-12T13:09:28.547Z",
       "duration": 10,
-      "schedule": "Пн, Пт",
+      "schedule": "Сб, Пн, Пт",
       "minStudents": 17,
       "applicantsNumber": 15,
       "image": "img/flat_ui.png"
@@ -23,7 +23,7 @@
       "start": "2034-01-27T03:51:46.154Z",
       "end": "2052-10-12T02:10:47.705Z",
       "duration": 0,
-      "schedule": "Чт, Пт",
+      "schedule": "Сб, Чт, Пт",
       "minStudents": 12,
       "applicantsNumber": 12,
       "image": "img/css.png"
@@ -37,7 +37,7 @@
       "start": "2002-05-31T20:56:00.792Z",
       "end": "2039-02-11T16:56:15.907Z",
       "duration": 1,
-      "schedule": "Пн, Ср, Пт",
+      "schedule": "Сб, Пн, Ср, Пт",
       "minStudents": 17,
       "applicantsNumber": 18,
       "image": "img/html.png"
@@ -51,7 +51,7 @@
       "start": "2050-05-31T19:22:30.324Z",
       "end": "2059-09-26T06:33:01.409Z",
       "duration": 2,
-      "schedule": "Вт",
+      "schedule": "Сб, Вт",
       "minStudents": 1,
       "applicantsNumber": 12,
       "image": "img/java.png"
@@ -65,7 +65,7 @@
       "start": "2003-11-04T23:35:01.566Z",
       "end": "2047-12-09T13:39:14.477Z",
       "duration": 2,
-      "schedule": "Пн",
+      "schedule": "Сб, Пн",
       "minStudents": 10,
       "applicantsNumber": 5,
       "image": "img/_net.png"
@@ -79,7 +79,7 @@
       "start": "2080-04-08T02:10:23.863Z",
       "end": "2097-10-28T15:41:32.442Z",
       "duration": 4,
-      "schedule": "Чт",
+      "schedule": "Сб, Чт",
       "minStudents": 10,
       "applicantsNumber": 8,
       "image": "img/ux.png"

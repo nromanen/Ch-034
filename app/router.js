@@ -113,7 +113,13 @@ define(function(require) {
                     if (parts.length >= 1) {
                         val = undefined;
                         if (parts.length == 2)
-                            val = parts[1].indexOf(",") != -1 ? parts[1].split(/,/g) : [].concat(parts[1]);
+                            if (parts[1].indexOf("'") !== -1 ) {
+                                parts[1] = parts[1].slice(1, -1);
+                                val = [].concat(parts[1]);
+                            } else {
+                                val = parts[1].indexOf(",") !== -1 ? parts[1].split(/,/g) : [].concat(parts[1]);
+                            }
+                            
                         params[parts[0]] = val;
                     }
                 });

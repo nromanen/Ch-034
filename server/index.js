@@ -1,17 +1,33 @@
-var low = require('lowdb');
-var jsonServer = require('json-server');
-var express = require('json-server/node_modules/express');
-var bodyParser = require('json-server/node_modules/body-parser');
+var low = require('lowdb')
+    jsonServer = require('json-server')
+    express = require('json-server/node_modules/express')
+    bodyParser = require('json-server/node_modules/body-parser'),
+    db = low('db.json'),
+    server = jsonServer.create(),
+    router = jsonServer.router(db.object);
 
-var db = low('db.json');
-var server = jsonServer.create();
-
-var router = jsonServer.router(db.object);
-/*
-router.render = function(req,res) {
-    setTimeout((function() {res.jsonp(
-   res.locals.data
-  )}), 2000);};*/
+db._.mixin({
+    deepQuery: function(value, q) {
+      var _ = this
+      if (value && q) {
+        if (_.isArray(value)) {
+          for (var i = 0; i < value.length; i++) {
+            if (_.deepQuery(value[i], q)) {
+              return true
+            }
+          }
+        } else if (_.isObject(value) && !_.isArray(value)) {
+          for (var k in value) {
+            if (_.deepQuery(value[k], q)) {
+              return true
+            }
+          }
+        } else if (value.toString().toLowerCase().indexOf(q) !== -1) {
+          return true
+        }
+      }
+    }
+});
 
 server.use(jsonServer.defaults());
 server.use(bodyParser.json());
@@ -51,10 +67,26 @@ server.get("/courses/filter", function(req, res) {
         results = collection.chain(),
         areaQ = [].concat(req.query.area ? req.query.area : []), 
         groupQ = [].concat(req.query.group ? req.query.group : []), 
+        searchQ = req.query.s ? req.query.s : null, 
         _start = req.query._start,
         _end = req.query._end,
         _limit = req.query._limit,
         areas, groups;
+
+    if (searchQ) {
+
+      searchQ = searchQ.toLowerCase()
+
+      results = results.filter(function (obj) {
+        for (var key in obj) {
+          var value = obj[key]
+          if (db._.deepQuery(value, searchQ)) {
+            return true
+          }
+        }
+      })
+
+    }
 
     if (areaQ.length >= 1) {
         areas = db("areas").chain().filter(function(n) {
