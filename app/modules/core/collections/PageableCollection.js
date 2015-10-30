@@ -10,6 +10,7 @@ define(function(require) {
         perPage: 5,
         currentPage: 1,
         hrefPath: "",
+        pageOffset: 0,
 
         getResource: function() {
             return this.resourse;
@@ -22,7 +23,14 @@ define(function(require) {
                 this.currentPage = page;
         },
         getPageOffset: function() {
-            return (this.currentPage - 1)*this.perPage;
+            this.setPageOffset();
+            return this.pageOffset;
+        },
+        setPageOffset: function(page) {
+            if (page) {
+                this.setCurrentPage(page);
+            }
+            this.pageOffset = (this.currentPage - 1)*this.perPage;
         },
         getApiUrl: function() {
             return this.api + this.getResourse() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
@@ -69,7 +77,6 @@ define(function(require) {
 
             return pages;
         },
-
         info: function() {
             return {
                 pageUrl: $.proxy(this.getPageUrl,this),
@@ -78,7 +85,7 @@ define(function(require) {
                 lastPage: this.totalPages,
                 pageSet: this.getPageSet()
             };
-        },
+        }
     });
     return PageableCollection;
 });
