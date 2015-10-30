@@ -40,7 +40,7 @@ define(function(require) {
                 };
 
                 this.hideErrors();
-                this.model.set( feedback, {validate: true} );
+                this.model.set(feedback);
                 if(this.model.isValid()) {
                     CMS.router.navigate("courses", {trigger: true});
                 }
