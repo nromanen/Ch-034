@@ -9,11 +9,7 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
         el: false,
-        initialize: function() {
-            CMS.Event.on("filter:change", function(event) {
-                console.log(event);
-            });
-        },
+
         beforeRender: function() {
             this.renderList();
             this.insertView(".sidebar-a", new SidebarView({filterParams: this.filterParams}));
