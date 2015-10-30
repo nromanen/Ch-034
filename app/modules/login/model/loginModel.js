@@ -3,14 +3,14 @@ define(function(require){
 
   var CMS = require("CMS"),
 	  Model = CMS.Model.extend({
-	  	
+
 	    defaults: {
 	      email: null,
 	      password: null
 	    },
 
 	    validate: function(attr, options) {
-	        	
+
 	      var errors = [];
 
 	      if ( !attr.email) {
