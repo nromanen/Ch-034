@@ -40,6 +40,16 @@ h1 {
 	padding-bottom: 10px;
 }
 
+.pagination .answer a, .pagination .answer a:hover {
+    background-color: #D5FCDD;
+    color: #06B05C;
+    border: 1px solid #95EBAC;
+}
+
+.pagination .active.answer a, .pagination .active.answer a:hover {
+    background-color: #ADE1B7;
+}
+
 ol {
 	list-style: decimal inside;
 }

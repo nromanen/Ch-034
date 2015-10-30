@@ -7,10 +7,10 @@ define(function(require){
         defaults: {
             id         : null,
             moduleId   : null,
+            courseId   : null, 
             answerUser : null
         }
     });
 
     return Model;
-
 });

@@ -12,7 +12,9 @@ define(function(require) {
         el: false,
 
         events: {
-            "submit" : "submitHandler"
+            "submit"                 : "submitHandler",
+            "click .pagination li a" : "submitHandler",
+            "click #test-mode"       : "submitHandler",            
         },
         initialize: function(collection, options) {
             this.mode        = options.mode;
@@ -20,34 +22,58 @@ define(function(require) {
             this.courseId    = options.courseId;
             this.moduleId    = options.moduleId; 
             this.typeTest    = options.typeTest;
-            this.userAnswers = options.storage; 
+            this.userAnswers = options.storage;               
+            this.userAnswers.fetch();
             this.listenTo(this.collection, "reset sync request", this.render);           
         },
         serialize: function(){
             return {
-                'mode'       : this.mode,
-                'toogleMode' : this.toogleMode,
-                'test'       : this.model,
-                'courseId'   : this.courseId,
-                'moduleId'   : this.moduleId,
-                'typeTest'   : this.typeTest
+                "mode"       : this.mode,
+                "toogleMode" : this.toogleMode,
+                "test"       : this.model,
+                "courseId"   : this.courseId,
+                "moduleId"   : this.moduleId,
+                "typeTest"   : this.typeTest
             };
         },
         beforeRender: function(){
-            if(this.mode == 'page'){
+            if(this.mode == "page"){
                 this.insertView(
-                    'nav', new PaginationView({collection: this.collection})
+                    "nav", new PaginationView({collection: this.collection}, {answers: this.userAnswers})
                 );  
             }
             this.collection.each(this.renderOne, this);            
         },
         renderOne: function(model) {
-            this.insertView('.test', new TestView({model: model}, {typeTest: this.typeTest}).render());
+            var answer = "";
+            if(this.userAnswers.get(model.get("num"))){
+                answer = this.userAnswers.get(model.get("num")).get("answerUser"); 
+            } 
+            this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
         },
-        submitHandler: function (e) {
-                e.preventDefault();                
-                this.$form = this.$el.find('.tests-form');
-                this.userAnswers.set(this.$form.serializeObject());
+        submitHandler: function (e) {  
+            e.preventDefault();                
+            this.$form = this.$el.find(".tests-form");
+            _.each(this.$form.serializeObject(), function(value, key, list){
+                var num = parseInt(key.substring(6, key.length));
+                if (_.isArray(value)) {
+                    value = _.map(value, function(answer){ return answer.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\"/g, '&#34;') });
+                }
+                else {
+                    value = value.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\"/g, '&#34;');
+                }  console.log(value);
+                if (!_.isEmpty(value)) {
+                    this.userAnswers.create({
+                        id         : num, 
+                        moduleId   : parseInt(this.moduleId),
+                        courseId   : parseInt(this.courseId),  
+                        answerUser : value
+                    });                      
+                }
+                else if(!_.isUndefined(this.userAnswers.get(num))) {
+                    this.userAnswers.get(num).destroy();
+                }          
+            }, this); 
         }
     });
 

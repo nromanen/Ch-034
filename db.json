@@ -937,7 +937,7 @@
       "num": 1,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Введіть класичний варіант написання тегу",
+      "question": "Введіть класичний варіант написання тегу",
       "typeVariant": 0,
       "variants": {
         "variant1": "&lt;name&gt;&lt;/name&gt;",
@@ -949,7 +949,7 @@
       "num": 2,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Введіть doctype HTML5 без &lt;&gt;",
+      "question": "Введіть doctype HTML5 без &lt;&gt;",
       "typeVariant": 1
     },
     {
@@ -957,7 +957,7 @@
       "num": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Відмітьте теги, які не підтримуються HTML 4.0",
+      "question": "Відмітьте теги, які не підтримуються HTML 4.0",
       "typeVariant": 2,
       "variants": {
         "variant1": "header",
@@ -971,7 +971,7 @@
       "num": 4,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Яка форма запису є коректною ? (два варіанти)",
+      "question": "Яка форма запису є коректною ? (два варіанти)",
       "typeVariant": 2,
       "variants": {
         "variant1": "&lt;input required=on&gt;",
@@ -985,7 +985,7 @@
       "num": 5,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Як встановити кодировку документа?",
+      "question": "Як встановити кодировку документа?",
       "typeVariant": 0,
       "variants": {
         "variant1": "&lt;body charset=&#34;utf-8&#34;&gt;",
@@ -998,7 +998,7 @@
       "num": 6,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Який елемент у секції &lt;head&gt; є обов'язковим?",
+      "question": "Який елемент у секції &lt;head&gt; є обов'язковим?",
       "typeVariant": 0,
       "variants": {
         "variant1": "&lt;meta&gt;",
@@ -1013,7 +1013,7 @@
       "num": 1,
       "moduleId": 2,
       "nameModule": "2. Другий модуль",
-      "answer": "Перше питання",
+      "question": "Перше питання",
       "typeVariant": 2,
       "variants": {
         "variant1": "variant1",
