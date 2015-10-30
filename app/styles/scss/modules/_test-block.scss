@@ -8,6 +8,31 @@
 }
 
 /* style for page: course-test   */
+#test-mode {
+    width: 30px;
+    height: 30px;
+    padding-top: 5px;
+    display: inline-block;
+    cursor: pointer;
+    background-color: #dae2e9;
+    opacity: 0.8;
+}
+
+#test-mode-not-list {
+  background: url(../img/test_mode.png) left 0px no-repeat;
+}
+
+#test-mode-not-page {
+  background: url(../img/test_mode.png) left -15px no-repeat;
+}
+
+#test-mode-not-list, #test-mode-not-page {
+    display: block;
+    width: 10px;
+    height: 11px;
+    margin: 6px 10px;    
+}
+
 h1 {
 	font-size: 22px;
 	text-align: center;
