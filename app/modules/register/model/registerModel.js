@@ -17,22 +17,22 @@ define(function(require){
             var errors = [];
 
             if (!attr.name) {
-                errors.push( "name" );
+                errors.push("name");
             }
 
             if (!attr.surname) {
-                errors.push( "surname" );
+                errors.push("surname");
             }
             if (!(this.isEmail(attr.email))) {
-                errors.push( "email" );
+                errors.push("email");
             }
 
             if (!attr.pass) {
-                errors.push( "pass" );
+                errors.push("pass");
             }
 
-            if (!attr.repeatPass) {
-                errors.push( "repeatPass" );
+            if (!(this.isPassEqual(attr.pass, attr.repeatPass))) {
+                errors.push("repeatPass");
             }
 
             return errors.length > 0 ? errors : false;
@@ -41,6 +41,10 @@ define(function(require){
         isEmail: function (email) {
             var emailRegex = /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/;
             return emailRegex.test(email);
+        },
+
+        isPassEqual: function (pass, repeatPass) {
+            return pass === repeatPass;
         }
     });
 
