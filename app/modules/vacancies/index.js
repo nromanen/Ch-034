@@ -4,6 +4,9 @@ define(function(require) {
     return {
         Collection: require("./collections/vacanciesCollection"),
         Model: require("./models/vacancyModel"),
-        View: require("./view/vacancyView"),
+        Views: {
+            Vacancy:   require("./views/vacancyView"),
+            Vacancies: require("./views/vacanciesView"),
+        },
     };
 });

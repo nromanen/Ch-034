@@ -13,9 +13,9 @@ define(function(require) {
             return {
                 model: this.model
             };
+        },
+        initialize: function() {
         }
-        
     });
-
     return View;
 });

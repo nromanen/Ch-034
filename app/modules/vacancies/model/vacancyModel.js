@@ -5,8 +5,8 @@ define(function(require) {
 
     Model = CMS.Model.extend({
         defaults: {
-            name: null,
-            url: null,
+            name: "",
+            url: "",
         }
     });
 
