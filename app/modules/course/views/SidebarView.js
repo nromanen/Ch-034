@@ -16,12 +16,12 @@ define(function(require) {
             this.filterView = FilterModule.Views.Filter;
             this.areaFilter = new this.filterView({
                 collection: new FilterModule.Collection.Areas(),
-                type: "Area",
+                type: "Напрямок",
                 params: areaParams
             });
             this.groupFilter = new this.filterView({
                 collection: new FilterModule.Collection.Groups(),
-                type: "Group",
+                type: "Група",
                 params: groupParams
             });
 

@@ -5,9 +5,11 @@ define(function(require) {
         initialize: function() {
             this.fetch();
         },
-        
         url: function() {
             return CMS.api + "areas";
+        },
+        getName: function() {
+            return "Area";
         }
 
     });
