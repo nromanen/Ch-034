@@ -6,45 +6,53 @@ define(function(require) {
     PageableCollection = CoreCollection.extend({
 
         api: "",
-        resourse: "",
+        resource: "",
         perPage: 5,
         currentPage: 1,
         hrefPath: "",
+        pageOffset: 0,
 
+        getResource: function() {
+            return this.resource;
+        },
+        getHrefPath: function() {
+            return this.hrefPath;
+        },
         setCurrentPage: function(page) {
             if (page)
                 this.currentPage = page;
         },
-
-        pageOffset: function() {
-            return (this.currentPage - 1)*this.perPage;
+        getPageOffset: function() {
+            this.setPageOffset();
+            return this.pageOffset;
         },
-
-        currUrl: function() {
-            return this.api + this.resourse + '?_start=' + this.pageOffset() + '&_limit=' + this.perPage + this.addFilter;
+        setPageOffset: function(page) {
+            if (page) {
+                this.setCurrentPage(page);
+            }
+            this.pageOffset = (this.currentPage - 1)*this.perPage;
         },
-
+        getApiUrl: function() {
+            return this.api + this.getResource() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
+        },
         url: function() {
-            return this.currUrl();
+            return this.getApiUrl();
         },
-
-        pageUrl: function(page) {
-            if (page)
-                return this.hrefPath+page;
+        getPageUrl: function(page) {
+            if (page) {
+                return this.getHrefPath()+page.toString();
+            }
             
-            return this.hrefPath+this.currentPage;
+            return this.getHrefPath()+this.currentPage.toString();
         },
-
         parse: function(data, options) {
             this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.perPage);
             
             return data;
         },
-
         getRange: function() {
             return Math.floor(this.paginationSize/2);
         },
-
         getPageSet: function() {
             var pages = [],
                 totalPages = this.totalPages,
@@ -69,20 +77,15 @@ define(function(require) {
 
             return pages;
         },
-
         info: function() {
             return {
-                pageUrl: $.proxy(this.pageUrl,this),
+                pageUrl: $.proxy(this.getPageUrl,this),
                 currentPage: this.currentPage,
                 totalPages: this.totalPages,
                 lastPage: this.totalPages,
                 pageSet: this.getPageSet()
             };
-        },
-
-        
-
+        }
     });
-
     return PageableCollection;
 });

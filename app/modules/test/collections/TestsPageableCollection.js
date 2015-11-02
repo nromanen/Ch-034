@@ -10,7 +10,16 @@ define(function(require) {
         api            : CMS.api,
         perPage        : 1,
         paginationSize : 12,
-        resourse       : "tests"
+        resource       : "tests",
+
+        url: function() {
+            return this.getApiUrl() + "&courseId=" + this.courseId + "&moduleId=" + this.moduleId;
+        },        
+        initialize: function(models, options) {
+            this.courseId = options.courseId;
+            this.moduleId = options.moduleId;            
+        }
+
     });
 
     return Collection;

@@ -9,11 +9,13 @@ define(function(require) {
         api   : CMS.api,
 
         url: function() {
-            return this.api + "tests?moduleId=" + this.moduleId;
+            return this.api + "tests?courseId=" + this.courseId + "&moduleId=" + this.moduleId;
         },        
         initialize: function(models, options) {
+            this.courseId = options.courseId;
             this.moduleId = options.moduleId;
         }
+
     });
 
     return Collection;

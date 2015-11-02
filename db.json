@@ -17,7 +17,7 @@
     {
       "id": 2,
       "isPublished": true,
-      "areaId": 4,
+      "areaId": 1,
       "name": "CSS",
       "description": "Будуть розглянуті сучасні можливості каскадних таблиць стилів і їхню підтримку востанніх популярних браузерах",
       "start": "2034-01-27T03:51:46.154Z",
@@ -59,7 +59,7 @@
     {
       "id": 5,
       "isPublished": true,
-      "areaId": 2,
+      "areaId": 3,
       "name": ".Net",
       "description": "У Вас буде можливість вивчити технології та підходи до розробки Web-програм з багаторівневою архітектурою. Ви отримаєте досвід побудови Web-програм засобами ASP.NET MVC, Silverlight, побудови десктопних програм засобами WPF, реалізацію ORM засобами ADO.NET Entity, а також розробки Web-сервісів з допомогою WСF.",
       "start": "2003-11-04T23:35:01.566Z",
@@ -737,54 +737,44 @@
   ],
   "course_groups": [
     {
-      "id": 1,
-      "courseId": 1,
-      "name": "Early"
+      "groupId": 1,
+      "courseId": 1
     },
     {
-      "id": 2,
-      "courseId": 1,
-      "name": "Evening"
+      "groupId": 2,
+      "courseId": 1
     },
     {
-      "id": 3,
-      "courseId": 2,
-      "name": "Early"
+      "groupId": 3,
+      "courseId": 2
     },
     {
-      "id": 4,
-      "courseId": 2,
-      "name": "Evening"
+      "groupId": 1,
+      "courseId": 2
     },
     {
-      "id": 5,
-      "courseId": 3,
-      "name": "Daily"
+      "groupId": 2,
+      "courseId": 3
     },
     {
-      "id": 6,
-      "courseId": 3,
-      "name": "Early"
+      "groupId": 3,
+      "courseId": 3
     },
     {
-      "id": 7,
-      "courseId": 4,
-      "name": "Early"
+      "groupId": 1,
+      "courseId": 4
     },
     {
-      "id": 8,
-      "courseId": 4,
-      "name": "Evening"
+      "groupId": 2,
+      "courseId": 4
     },
     {
-      "id": 9,
-      "courseId": 5,
-      "name": "Early"
+      "groupId": 3,
+      "courseId": 5
     },
     {
-      "id": 10,
-      "courseId": 6,
-      "name": "Daily"
+      "groupId": 1,
+      "courseId": 6
     }
   ],
   "groups": [
@@ -935,6 +925,7 @@
     {
       "id": 1,
       "num": 1,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Введіть класичний варіант написання тегу",
@@ -947,6 +938,7 @@
     {
       "id": 2,
       "num": 2,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Введіть doctype HTML5 без &lt;&gt;",
@@ -955,6 +947,7 @@
     {
       "id": 3,
       "num": 3,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Відмітьте теги, які не підтримуються HTML 4.0",
@@ -969,6 +962,7 @@
     {
       "id": 4,
       "num": 4,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Яка форма запису є коректною ? (два варіанти)",
@@ -983,6 +977,7 @@
     {
       "id": 5,
       "num": 5,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Як встановити кодировку документа?",
@@ -996,6 +991,7 @@
     {
       "id": 6,
       "num": 6,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Який елемент у секції &lt;head&gt; є обов'язковим?",
@@ -1011,6 +1007,7 @@
     {
       "id": 7,
       "num": 1,
+      "courseId": 3,
       "moduleId": 2,
       "nameModule": "2. Другий модуль",
       "question": "Перше питання",

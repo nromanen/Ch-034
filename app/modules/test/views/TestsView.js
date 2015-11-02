@@ -57,10 +57,10 @@ define(function(require) {
             _.each(this.$form.serializeObject(), function(value, key, list){
                 var num = parseInt(key.substring(6, key.length));
                 if (_.isArray(value)) {
-                    value = _.map(value, function(answer){ return answer.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\"/g, '&#34;') });
+                    value = _.map(value, function(answer){ return answer.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&#34;'); });
                 }
                 else {
-                    value = value.replace(/\</g, '&lt;').replace(/\>/g, '&gt;').replace(/\"/g, '&#34;');
+                    value = value.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&#34;');
                 }  console.log(value);
                 if (!_.isEmpty(value)) {
                     this.userAnswers.create({

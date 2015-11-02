@@ -73,7 +73,7 @@ module.exports = function(grunt ) {
                     livereload: true
                 },
                 files: ['app/**', '!app/styles/'],
-                tasks: ['jshint:dev', 'sass', 'autoprefixer']
+                tasks: ['jshint:dev', 'sass:dev', 'autoprefixer']
             }
         },
 
@@ -145,7 +145,7 @@ module.exports = function(grunt ) {
         autoprefixer: {
             dist: {
                 files: {
-                    'build/styles/main.min.css': 'app/styles/scss/index.scss'
+                    'build/styles/main.min.css': 'build/styles/main.min.css'
                 }
             }
         },

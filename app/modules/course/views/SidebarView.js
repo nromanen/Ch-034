@@ -8,9 +8,23 @@ define(function(require) {
         template: _.template(require("text!../templates/sidebarTemplate.html")),
 
         initialize: function() {
+            var areaParams, groupParams;
+
+            areaParams = this.filterParams.area ? [].concat(this.filterParams.area) : [];
+            groupParams = this.filterParams.group ? [].concat(this.filterParams.group) : [];
+
             this.filterView = FilterModule.Views.Filter;
-            this.areaFilter = new this.filterView({collection: new FilterModule.Collection.Areas(), type: "Area" });
-            this.groupFilter = new this.filterView({collection: new FilterModule.Collection.Groups(), type: "Group"});
+            this.areaFilter = new this.filterView({
+                collection: new FilterModule.Collection.Areas(),
+                type: "Area",
+                params: areaParams
+            });
+            this.groupFilter = new this.filterView({
+                collection: new FilterModule.Collection.Groups(),
+                type: "Group",
+                params: groupParams
+            });
+
             this.render();
         },
 

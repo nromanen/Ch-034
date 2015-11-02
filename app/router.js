@@ -17,8 +17,7 @@ define(function(require) {
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
-            this.courses       = new CoursesModule.Collection();                        
-            this.testsPage     = new TestsModule.Collection.Page();
+            this.courses       = new CoursesModule.Collection();                                   
             this.userAnswers   = new TestsModule.Collection.Answers();
 
             this.appView.insertViews([
@@ -43,15 +42,30 @@ define(function(require) {
         },
 
         showCoursesList: function(currentPage, queryParams) {
-            if (this.courses.length) this.courses.reset();
+            var parsedParams = {};
+            if (this.courses.length) {
+                this.courses.reset();
+            }
 
-            this.courses.setCurrentPage(parseInt(currentPage));
-            var d = this.courses.fetch();
-            d.done($.proxy(function() {
-                this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({collection: this.courses}));
-                this.containerView.render();
-            }, this));
-            
+            if (!_.isNull(queryParams)) {
+
+                parsedParams = this.parseQueryString(queryParams);
+                parsedParams.area = !_.isEmpty(parsedParams.area) ? parsedParams.area : [];
+                parsedParams.group = !_.isEmpty(parsedParams.group) ? parsedParams.group : [];
+            }
+
+            this.courses.setFilterQueries(parsedParams, queryParams);
+
+            this.courses.setCurrentPage(parseInt(currentPage, 10));
+
+            this.courses.fetch()
+                .done($.proxy(function() {
+                    this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({
+                        collection: this.courses, 
+                        filterParams: parsedParams
+                    }));
+                    this.containerView.render();
+                }, this));
         },
 
         showCourseDetails: function(id) {
@@ -73,15 +87,15 @@ define(function(require) {
 
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) { 
             if(modeTest == 'list-mode'){
-                this.testsList = new TestsModule.Collection.List([], {moduleId: moduleId});
+                this.testsList = new TestsModule.Collection.List([], {courseId: courseId, moduleId: moduleId});
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsList.fetch();
             }
             else if(modeTest == 'page-mode'){ 
+                this.testsPage = new TestsModule.Collection.Page([], {courseId: courseId, moduleId: moduleId});
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
                 this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
-                this.testsPage.addFilter = '&moduleId=' + moduleId;            
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsPage.fetch(); 
             } 
@@ -99,7 +113,7 @@ define(function(require) {
                     if (parts.length >= 1) {
                         val = undefined;
                         if (parts.length == 2)
-                            val = parts[1].indexOf(",") != -1 ? parts[1].split(/,/g) : parts[1];
+                            val = parts[1].indexOf(",") != -1 ? parts[1].split(/,/g) : [].concat(parts[1]);
                         params[parts[0]] = val;
                     }
                 });
