@@ -3,7 +3,7 @@ define(function(require) {
 
     return {
         Collection: require("./collections/vacanciesCollection"),
-        Model: require("./models/vacancieseModel"),
-        View: require("./view/vacanciesView"),
+        Model: require("./models/vacancyModel"),
+        View: require("./view/vacancyView"),
     };
 });
