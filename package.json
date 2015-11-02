@@ -36,6 +36,11 @@
     "grunt-autoprefixer": "~3.0.3"
   },
   "dependencies": {
-    "requirejs": "^2.1.20"
+    "requirejs": "^2.1.20",
+    "morgan": "~1.6.1",
+    "body-parser": "~1.14.1",
+    "express": "~4.13.3",
+    "jsonwebtoken": "~5.4.1",
+    "mongoose": "~4.2.3"
   }
 }
