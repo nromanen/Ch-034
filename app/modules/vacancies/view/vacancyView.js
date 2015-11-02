@@ -5,7 +5,7 @@ define(function(require) {
         vacanciesModule = require("modules/vacancies/index"),
     
     View = CMS.View.extend({
-        template: _.template(require("text!../templates/vacancyTemplate.html")),
+        template: _.template(require("text!../template/vacancyTemplate.html")),
 
         el: false,
 
