@@ -10,11 +10,9 @@ define(function(require, exports, module) {
         url: function() {
             return this.api+"courses/"+this.courseId+"/modules/";
         },
-
         initialize: function(models, options) {
             this.courseId = options.courseId;
         }
     });
-
     return Collection;
 });

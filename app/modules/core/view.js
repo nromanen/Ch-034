@@ -15,8 +15,6 @@ define(function(require) {
             };
             return date.toLocaleString("ua", options);
         }
-
     });
-
     return CoreLayout;
 });

@@ -6,7 +6,6 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testTemplate.html")),
         el: false,
-
         initialize: function(options) {
             this.answer   = options.answer;
             this.typeTest = options.typeTest;
@@ -19,6 +18,5 @@ define(function(require) {
             };
         }
     });
-
     return View;
 });

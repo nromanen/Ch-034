@@ -98,6 +98,9 @@ a {
 .btn.btn-info {
     text-decoration: none;
 }
+.pagination > li > span {
+    padding: 8px 12px;
+}
 .bottom-padding {
     padding-bottom: $padding-bottom-25;
 }

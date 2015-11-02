@@ -17,9 +17,7 @@ define(function(require) {
             Footer: require("./views/FooterView")
         },
 
-
         PageableCollection: require("./collections/PageableCollection"),
         PaginationView: require("./views/PaginationView")
     };
-
 });

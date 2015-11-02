@@ -7,7 +7,6 @@ define(function(require) {
     Collection = CMS.Collection.extend({
         model : Question,
         api   : CMS.api,
-
         url: function() {
             return this.api + "questions?courseId=" + this.courseId + "&moduleId=" + this.moduleId;
         },
@@ -16,6 +15,5 @@ define(function(require) {
             this.moduleId = options.moduleId;
         }
     });
-
     return Collection;
 });

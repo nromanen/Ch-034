@@ -5,7 +5,6 @@ define(function(require) {
 
     View = CMS.PaginationView.extend({
         el: false,
-
         initialize: function(collection, options) {
             this.answers = options.answers;
             this.pageSet = this.collection.info().pageSet;
@@ -23,6 +22,5 @@ define(function(require) {
             }, this);
         }
     });
-
     return View;
 });

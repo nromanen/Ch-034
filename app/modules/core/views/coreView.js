@@ -1,13 +1,10 @@
 define(function(require) {
-   "use strict";
+    "use strict";
 
-   var View = require("../view"),
-
-   CoreView = View.extend({
+    var View = require("../view"),
+    CoreView = View.extend({
 
         el: "#CrsMSContainer"
-
-   });
-
-   return CoreView;
+    });
+    return CoreView;
 });

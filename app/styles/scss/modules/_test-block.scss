@@ -20,18 +20,18 @@
 }
 
 #test-mode-not-list {
-  background: url(../img/test_mode.png) left 0px no-repeat;
+    background: url(../img/test_mode.png) left 0px no-repeat;
 }
 
 #test-mode-not-page {
-  background: url(../img/test_mode.png) left -15px no-repeat;
+     background: url(../img/test_mode.png) left -15px no-repeat;
 }
 
 #test-mode-not-list, #test-mode-not-page {
     display: block;
     width: 10px;
     height: 11px;
-    margin: 6px 10px;    
+    margin: 6px 10px;
 }
 
 h1 {
@@ -51,9 +51,8 @@ h1 {
     background-color: #ADE1B7;
 }
 
-.test {
+ol {
     list-style: decimal inside;
-    margin-bottom: 50px;
 }
 
 .form-control {
@@ -88,7 +87,7 @@ input[type="checkbox"] + label {
     display: inline-block;
     margin-left: -20px;
     padding: 0 0 0 30px;
-	background: url(../img/checkboxes.png) no-repeat 0 -23px;
+    background: url(../img/checkboxes.png) no-repeat 0 -23px;
     font-weight: normal;
 }
 

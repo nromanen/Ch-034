@@ -11,8 +11,6 @@ define(function(require) {
         getName: function() {
             return "Area";
         }
-
     });
-
     return Collection;
 });

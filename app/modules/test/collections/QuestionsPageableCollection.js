@@ -11,7 +11,6 @@ define(function(require) {
         perPage        : 1,
         paginationSize : 12,
         resource       : "questions",
-
         url: function() {
             return this.getApiUrl() + "&courseId=" + this.courseId + "&moduleId=" + this.moduleId;
         },
@@ -19,8 +18,6 @@ define(function(require) {
             this.courseId = options.courseId;
             this.moduleId = options.moduleId;
         }
-
     });
-
     return Collection;
 });
