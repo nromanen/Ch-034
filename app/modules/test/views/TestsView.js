@@ -51,17 +51,19 @@ define(function(require) {
             } 
             this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
         },
-        submitHandler: function (e) {  
-            e.preventDefault();                
-            this.$form = this.$el.find(".tests-form");
-            _.each(this.$form.serializeObject(), function(value, key, list){
+        submitHandler: function (e) {
+            e.preventDefault();   
+            this.$form = this.$(".tests-form");                         
+            var checkboxEl = [];              
+            var answerForm = this.$form.serializeObject();                     
+            _.each(answerForm, function(value, key, list){
                 var num = parseInt(key.substring(6, key.length));
                 if (_.isArray(value)) {
                     value = _.map(value, function(answer){ return answer.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&#34;'); });
                 }
                 else {
                     value = value.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&#34;');
-                }  console.log(value);
+                }
                 if (!_.isEmpty(value)) {
                     this.userAnswers.create({
                         id         : num, 
@@ -74,6 +76,13 @@ define(function(require) {
                     this.userAnswers.get(num).destroy();
                 }          
             }, this); 
+            _.each(this.$form.find("[type='checkbox']"), function(obj){ checkboxEl.push(obj.name); });
+            _.each(checkboxEl, function(arr){ 
+                var num = Number(arr.match(/\d+/)[0]);
+                if ((!(_.has(answerForm, arr)) )&&(!_.isUndefined(this.userAnswers.get(num)))) {
+                    this.userAnswers.get(num).destroy();
+                };  
+            }, this);                     
         }
     });
 
