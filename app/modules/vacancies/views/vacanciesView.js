@@ -2,19 +2,20 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-        vacanciesModule = require("modules/vacancies/index"),
-    
+        VacancyView = require("../views/vacancyView"),
+
     View = CMS.View.extend({
         template: _.template(require("text!../template/vacancyTemplate.html")),
 
         el: false,
 
-        serialize: function() {
-            return {
-                model: this.model
-            };
+        beforeRender: function(){
+            console.log(this.collection.length);
+            this.collection.each(function(model){
+
+                console.log(model);
+            }, this);
         }
-        
     });
 
     return View;
