@@ -46,6 +46,7 @@ define(function(require) {
             return this.getHrefPath()+this.currentPage.toString();
         },
         parse: function(data, options) {
+            console.log(options.xhr.getAllResponseHeaders());
             this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.perPage);
             
             return data;

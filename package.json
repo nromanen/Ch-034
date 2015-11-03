@@ -41,6 +41,7 @@
     "body-parser": "~1.14.1",
     "express": "~4.13.3",
     "jsonwebtoken": "~5.4.1",
-    "mongoose": "~4.2.3"
+    "mongoose": "~4.2.3",
+    "express-mongoose-docs": "~0.3.1"
   }
 }

@@ -1,0 +1,5 @@
+var express = require('express'),
+    router = express.Router(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose'),
+    Course = require('../models/course'),

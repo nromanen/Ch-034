@@ -2,7 +2,7 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    Course = require('../models/course'),
+    Course = require('../models/course');
 
 router.post('/', function(req, res) {
   
@@ -29,23 +29,37 @@ router.post('/', function(req, res) {
 });
 
 router.put('/:id', function(req, res) {
-    Course.findByIdAndUpdate(req.param.id, $set: {}, function(err, course) {
+    Course.findByIdAndUpdate(req.param.id, {$set: {}}, function(err, course) {
       if (err) return handleError(err);
       res.send(course);
     });
 });
 
 router.get('/', function(req, res) {
-    Course.find({}, function(errr, courses) {
-        res.header("X-Total-Count", courses.length);
-        res.json(courses);
-    });
+    
+    Course
+        .find({})
+        .skip(req.query._start)
+        .limit(req.query._limit)
+        .exec(function(errr, courses) {
+            res.header("X-Total-Count", courses.length);
+            res.json(courses);
+        });
 });
 
 router.get('/:id', function(req, res) {
-    Course.findById(req.param.id}, function(err, course) {
+    Course.findById(req.params.id, function(err, course) {
         res.json(course);
     });
 });
 
-module.exports = router
+router.use('/:id/modules/', function(req, res) {
+    Course
+        .findById(req.params.id)
+        .populate('_modules')
+        .exec(function(err, course) {
+            if (err) return handleError(err)
+            res.json(course._modules);
+        });
+});
+module.exports = router;

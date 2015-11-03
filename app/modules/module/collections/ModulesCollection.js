@@ -8,7 +8,7 @@ define(function(require, exports, module) {
         model: Module,
         api: CMS.api,
         url: function() {
-            return this.api+"course/"+this.courseId+"/modules/";
+            return this.api+"courses/"+this.courseId+"/modules/";
         },
         
         initialize: function(models, options) {
