@@ -12,7 +12,7 @@ define(function(require) {
         perPage: CMS.perPage,
         paginationSize: CMS.paginationSize,
         hrefPath: "#courses/page/",
-        resourse: "courses",
+        resource: "courses",
 
         initialize: function() {
             CMS.Event.on("filter:change", _.bind(function(){
@@ -26,8 +26,8 @@ define(function(require) {
         isFiltered: function() {
             return (!_.isEmpty(this.filterParams)) ? true : false;
         },
-        getResourse: function() {
-            return this.isFiltered() ? this.resourse+"/filter" : this.resourse;
+        getResource: function() {
+            return this.isFiltered() ? this.resource+"/filter" : this.resource;
         },
         getPageUrl: function() {
             if (this.isFiltered()) {
