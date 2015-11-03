@@ -27,7 +27,11 @@ app.use(bodyParser.json());
 
 // use morgan to log requests to the console
 app.use(morgan('dev'));
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
 // =======================
 // routes ================
 // =======================
@@ -49,6 +53,12 @@ app.get('/setup', function(req, res) {
     var java = new Area({
         name: "Java"
     });
+    var design = new Area({
+        name: "Design"
+    });
+    var net = new Area({
+        name: ".Net"
+    });
     var early = new Group({
         name: "Early"
     });
@@ -60,12 +70,24 @@ app.get('/setup', function(req, res) {
     });
     ui.save();
     java.save();
+    design.save();
+    net.save();
     early.save();
     daily.save();
     evening.save();
   // create a sample user
   var course = new Course({ 
-    name: 'Java'
+    name: 'Java',
+    description: "Some very big description again, isn't",
+    startAt: new Date(),
+    endAt: new Date("2015-12-15 22:00:00"),
+    duration: 2,
+    schedule: ["Пн, Вт, Пт"],
+    minStudents: 12,
+    applicantsNumber: 2,
+    image: "img/java.png",
+    area: java._id,
+    groups: [early._id, evening._id],
   });
 
   // save the sample user

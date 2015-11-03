@@ -1,17 +1,17 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
-module.exports = mongoose.model('Course', new Schema({
+var CourseSchema = new Schema({
     name: {
         type: String,
         required: "Please fill course name",
         trim: true
     },
-    created: {
+    created_at: {
         type: Date,
         default: Date.now
     },
-    updated: {
+    updated_at: {
         type: Date,
         default: Date.now
     },
@@ -54,4 +54,10 @@ module.exports = mongoose.model('Course', new Schema({
         type: Schema.Types.ObjectId,
         ref: "Group"
     }]
-}));
+});
+CourseSchema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  next();
+});
+module.exports = mongoose.model('Course', CourseSchema);

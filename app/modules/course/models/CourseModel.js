@@ -4,8 +4,8 @@ define(function(require){
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
+        idAttribute: "_id",
         defaults: {
-            id: null,
             isPublished: null,
             group: null,
             area: null,

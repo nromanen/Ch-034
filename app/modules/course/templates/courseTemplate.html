@@ -1,13 +1,13 @@
 <article class="col-lg-12 course">    
   <div class="col-md-4 col-sm-5 text-center">
-    <a class="course-img" href="#courses/<%= course.get('id') %>"><img src="<%= course.get('image') %>"></a>
+    <a class="course-img" href="#courses/<%= course.get('_id') %>"><img src="<%= course.get('image') %>"></a>
   </div>
   <div class="col-md-8 col-sm-7">
-    <h3><a class="course-name" href="#courses/<%= course.get('id') %>"><%= course.get('name') %></a></h3>
+    <h3><a class="course-name" href="#courses/<%= course.get('_id') %>"><%= course.get('name') %></a></h3>
     <div class="row">
       <div class="col-lg-12">
         <p><%= course.get('description') %></p>
-          <div class="accordion" id="info-<%= course.get('id') %>">
+          <div class="accordion" id="info-<%= course.get('_id') %>">
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#info-<%= course.get('id') %>" data-bypass="true" href="#collapseInfo-<%= course.get('id') %>">

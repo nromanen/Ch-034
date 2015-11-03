@@ -9,7 +9,7 @@ define(function(require) {
         require("bootstrap");
 
     CMS.root = "/";
-    CMS.api = "http://localhost:3000/";
+    CMS.api = "http://localhost:8888/api/";
     CMS.perPage = 3;
     CMS.paginationSize = 5;
     CMS.typeTest = {
