@@ -25,24 +25,19 @@ define(function(require) {
                 type: "Group",
                 params: groupParams
             });
-            this.vacancies = new VacanciesModule.Collection();
-            this.vacancies.fetch().done(_.bind(function() {
-                this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: this.vacancies});
-                this.insertView("#vacancies", this.vacanciesView.render());
-
-            }, this));
             
+            this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: new VacanciesModule.Collection()});
 
             this.render();
         },
 
         el: false,
 
-        beforeRender: function() {
+        beforeRender: function(collection) {
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
-            console.log(this.vacanciesView);
-            
+            this.insertView("#vacancies", this.vacanciesView);
+
         }
         
     });
