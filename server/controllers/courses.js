@@ -2,10 +2,11 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    Course = require('../models/course');
+    Course = require('../models/course'),
+    Module = require('../models/module');
 
 router.post('/', function(req, res) {
-  
+
     var course = new Course({ 
         name: req.body.name,
         description: req.body.description,
@@ -36,7 +37,7 @@ router.put('/:id', function(req, res) {
 });
 
 router.get('/', function(req, res) {
-    
+
     Course
         .find({})
         .skip(req.query._start)
@@ -52,14 +53,28 @@ router.get('/:id', function(req, res) {
         res.json(course);
     });
 });
-
-router.use('/:id/modules/', function(req, res) {
-    Course
-        .findById(req.params.id)
-        .populate('_modules')
-        .exec(function(err, course) {
-            if (err) return handleError(err)
-            res.json(course._modules);
+router.use('/:id/modules/:moduleId', function(req, res) {
+    console.log("match");
+    Module
+        .find({'_course': req.params.id})
+        .populate('_course', '_id')
+        .exec(function(error, modules) {
+            Module
+                .findById(req.params.moduleId)
+                .exec(function(error, module) {
+                    if (error) throw error
+                    res.json(module);
+                })
         });
 });
+router.use('/:id/modules', function(req, res) {
+    console.log("match1");
+    Module
+        .find({'_course': req.params.id})
+        .populate('_course', '_id')
+        .exec(function(error, modules) {
+            res.json(modules);
+        });
+});
+
 module.exports = router;

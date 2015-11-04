@@ -73,6 +73,8 @@ router.get('/', function(req, res) {
     module1._course = course._id;
     module2._course = course._id;
     console.log('Course saved successfully');
+    module1.save();
+    module2.save();
     res.json({ success: true });
   });
 });

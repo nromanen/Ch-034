@@ -60,8 +60,8 @@ var CourseSchema = new Schema({
     }]
 });
 CourseSchema.pre('save', function(next){
-  now = new Date();
-  this.updated_at = now;
-  next();
+    now = new Date();
+    this.updated_at = now;
+    next();
 });
 module.exports = mongoose.model('Course', CourseSchema);
