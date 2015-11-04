@@ -40,19 +40,19 @@ define(function(require) {
             if(this.mode == "page"){
                 this.insertView(
                     "nav", new PaginationView({collection: this.collection}, {answers: this.userAnswers})
-                );  
+                );
             }
             this.collection.each(this.renderOne, this);
         },
         renderOne: function(model) {
             var answer = "";
             if(this.userAnswers.get(model.get("num"))){
-                answer = this.userAnswers.get(model.get("num")).get("answerUser"); 
-            } 
+                answer = this.userAnswers.get(model.get("num")).get("answerUser");
+            }
             this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
         },
         submitHandler: function (e) {
-            e.preventDefault();   
+            e.preventDefault();
             this.$form = this.$(".tests-form");
             var answerForm = this.$form.serializeObject();
             _.each(answerForm, function(value, key, list){
@@ -65,22 +65,22 @@ define(function(require) {
                 }
                 if (!_.isEmpty(value)) {
                     this.userAnswers.create({
-                        id         : num, 
+                        id         : num,
                         moduleId   : parseInt(this.moduleId),
-                        courseId   : parseInt(this.courseId),  
+                        courseId   : parseInt(this.courseId),
                         answerUser : value
-                    });                      
+                    });
                 }
                 else if(!_.isUndefined(this.userAnswers.get(num))) {
                     this.userAnswers.get(num).destroy();
                 }
             }, this);
             var checkboxEl = _.pluck(this.$form.find("[type='checkbox']"), "name");
-            _.each(checkboxEl, function(arr){ 
+            _.each(checkboxEl, function(arr){
                 var num = Number(arr.match(/\d+/)[0]);
                 if ((!(_.has(answerForm, arr)) )&&(!_.isUndefined(this.userAnswers.get(num)))) {
                     this.userAnswers.get(num).destroy();
-                }  
+                }
             }, this);
         }
     });

@@ -60,7 +60,7 @@ define(function(require) {
             this.courses.fetch()
                 .done($.proxy(function() {
                     this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({
-                        collection: this.courses, 
+                        collection: this.courses,
                         filterParams: parsedParams
                     }));
                     this.containerView.render();
@@ -90,13 +90,13 @@ define(function(require) {
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsList.fetch();
             }
-            else if(modeTest == 'page-mode'){ 
+            else if(modeTest == 'page-mode'){
                 this.testsPage = new TestsModule.Collection.Page([], {courseId: courseId, moduleId: moduleId});
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
                 this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
-                this.testsPage.fetch(); 
+                this.testsPage.fetch();
             }
         },
 

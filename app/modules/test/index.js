@@ -10,7 +10,7 @@ define(function(require) {
         Model: {
             Test   : require("./models/TestModel"),
             Answer : require("./models/AnswerModel")
-        },    
+        },
         Views: {
             Test: require("./views/TestView"),
             Tests: require("./views/TestsView")

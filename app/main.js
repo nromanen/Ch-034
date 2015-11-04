@@ -1,6 +1,6 @@
 require(["CMS", "router"], function (CMS, Router) {
         CMS.router = new Router();
-        //Without url rewriting next options will cause route not found error. 
+        //Without url rewriting next options will cause route not found error.
         //{ pushState: true, root: CMS.root }
         Backbone.history.start();
         $(document).on("click", "a[href]:not([data-bypass])", function(evt) {

@@ -2,7 +2,7 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-    
+
     View = CMS.View.extend({
         template: _.template(require("text!../templates/courseTemplate.html")),
 
@@ -17,7 +17,7 @@ define(function(require) {
         },
 
         serialize: function() {
-            return { 
+            return {
                 course: this.model,
                 parseDate: this.convertToMonthAndDate
             };

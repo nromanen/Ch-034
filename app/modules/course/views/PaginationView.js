@@ -1,6 +1,6 @@
 define(function(require) {
     "use strict";
-    
+
     var CMS = require("CMS"),
 
     View = CMS.PaginationView.extend({

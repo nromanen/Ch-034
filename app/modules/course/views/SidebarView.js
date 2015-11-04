@@ -4,7 +4,7 @@ define(function(require) {
     var CMS = require("CMS"),
         FilterModule = require("modules/filter/index"),
         VacanciesModule = require("modules/vacancies/index"),
-    
+
     View = CMS.View.extend({
         template: _.template(require("text!../templates/sidebarTemplate.html")),
 
@@ -39,7 +39,7 @@ define(function(require) {
             this.insertView("#vacancies", this.vacanciesView);
 
         }
-        
+
     });
 
     return View;

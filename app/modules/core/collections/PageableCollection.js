@@ -42,12 +42,12 @@ define(function(require) {
             if (page) {
                 return this.getHrefPath()+page.toString();
             }
-            
+
             return this.getHrefPath()+this.currentPage.toString();
         },
         parse: function(data, options) {
             this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.perPage);
-            
+
             return data;
         },
         getRange: function() {
