@@ -1,10 +1,12 @@
 <div id="module-container" class="container-fluid col-lg-8 col-md-offset-2">
-    <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
-    <a href="#courses/<%= courseId %>/modules/<%= id %>/tests/list-mode" class="right-side">пройти тест &gt;</a>
+
+    <a href="#courses/<%= module.courseId %>" class="left-side">&lt; повернутись до курсу</a>
+
+    <a href="#courses/<%= module.courseId %>/modules/<%= module.get('id') %>/tests/list-mode" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
-        <h3 class="module-title"><%= title %></h3>
-        <div class="text-justify"><%= description %></div>
-        <ul class="resource-title"><% _.each(resources, function(resource){ %>
+        <h3 class="module-title"><%= module.get('title') %></h3>
+        <div class="text-justify"><%= module.get('description') %></div>
+        <ul class="resource-title"><% _.each(module.get('resources'), function(resource){ %>
                 <% if (resource.type == "video") { %>
                     <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="embed-responsive embed-responsive-16by9">
@@ -15,6 +17,6 @@
                     <% } %>
                 <% }); %>
         </ul>
-        <div class="text-center"><a href="#courses/<%= courseId %>/modules/<%= id %>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
+        <div class="text-center"><a href="#courses/<%= module.courseId %>/modules/<%= module.get('id') %>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
     </div>
 </div>

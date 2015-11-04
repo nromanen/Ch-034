@@ -54,11 +54,12 @@ router.get('/:id', function(req, res) {
     });
 });
 router.use('/:id/modules/:moduleId', function(req, res) {
-    console.log("match");
+    console.log(req.params.moduleId);
     Module
         .find({'_course': req.params.id})
         .populate('_course', '_id')
         .exec(function(error, modules) {
+            
             Module
                 .findById(req.params.moduleId)
                 .exec(function(error, module) {

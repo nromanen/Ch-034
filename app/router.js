@@ -60,7 +60,6 @@ define(function(require) {
 
             this.courses.fetch()
                 .done($.proxy(function() {
-                    console.log(this.courses);
                     this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({
                         collection: this.courses, 
                         filterParams: parsedParams
@@ -76,7 +75,7 @@ define(function(require) {
         },
 
         showCourseModuleDetails: function(courseId, id) {
-            this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
+            this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
             this.module.fetch();  
         },
