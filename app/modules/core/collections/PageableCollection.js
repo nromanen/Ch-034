@@ -6,14 +6,14 @@ define(function(require) {
     PageableCollection = CoreCollection.extend({
 
         api: "",
-        resourse: "",
+        resource: "",
         perPage: 5,
         currentPage: 1,
         hrefPath: "",
         pageOffset: 0,
 
         getResource: function() {
-            return this.resourse;
+            return this.resource;
         },
         getHrefPath: function() {
             return this.hrefPath;
@@ -33,7 +33,7 @@ define(function(require) {
             this.pageOffset = (this.currentPage - 1)*this.perPage;
         },
         getApiUrl: function() {
-            return this.api + this.getResourse() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
+            return this.api + this.getResource() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
         },
         url: function() {
             return this.getApiUrl();

@@ -8,13 +8,14 @@ define(function(require) {
         el: false,
 
         initialize: function(models, options) {
-            this.typeTest = options.typeTest;         
+            this.answer   = options.answer; 
+            this.typeTest = options.typeTest;        
         },
-
         serialize: function(){
             return {
-                'test': this.model,
-                'typeTest' : this.typeTest
+                'test'     : this.model,
+                'answer'   : this.answer,
+                'typeTest' : this.typeTest            
             };
         }
     });

@@ -10,6 +10,10 @@ define(function(require) {
         template: _.template(require("text!../templates/coursesTemplate.html")),
         el: false,
 
+        events: {
+            "keypress #search-input": "searchCourse"
+        },
+
         beforeRender: function() {
             this.renderList();
             this.insertView(".sidebar-a", new SidebarView({filterParams: this.filterParams}));
@@ -24,6 +28,11 @@ define(function(require) {
             this.insertView(".courses", new CourseView({
                 model: model
             }));
+        },
+        searchCourse: function(e) {
+            if (e.keyCode === 13) {
+                Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
+            }
         }
     });
     return View;
