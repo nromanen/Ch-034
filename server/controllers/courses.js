@@ -36,12 +36,42 @@ router.put('/:id', function(req, res) {
     });
 });
 
-router.get('/', function(req, res) {
+router.get('/', function(req, res, next) {
+    var _start = req.query._start ? req.query._start : null,
+        _limit = req.query._limit ? req.query._limit : null,
+        areaQ = [].concat(req.query.area ? req.query.area : []), 
+        groupQ = [].concat(req.query.group ? req.query.group : []), 
+        searchQ = req.query.s ? req.query.s : null;
+
+    if (!(req.query.area || req.query.group || req.query.s)) {
+        next();
+        return;
+    }
+
+    console.log(areaQ);
+
+        Course
+            .find()
+            .populate('_area')
+            .where({'_area.name': 'Java'})
+
+            .exec(function(errr, courses) {
+                console.log(courses);
+                res.header("X-Total-Count", courses.length);
+                res.json(courses);
+            });
+});
+
+router.get('/', function(req, res, next) {
+    var _start = req.query._start ? req.query._start : null,
+        _limit = req.query._limit ? req.query._limit : null;
 
     Course
         .find({})
-        .skip(req.query._start)
-        .limit(req.query._limit)
+        .populate('_area')
+        .populate('_groups')
+        .skip(_start)
+        .limit(_limit)
         .exec(function(errr, courses) {
             res.header("X-Total-Count", courses.length);
             res.json(courses);
@@ -49,19 +79,19 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:id', function(req, res) {
-    Course.findById(req.params.id, function(err, course) {
-        res.json(course);
-    });
+    Course
+        .findById(req.params.id, function(err, course) {
+            res.json(course);
+        });
 });
 router.use('/:id/modules/:moduleId', function(req, res) {
-    console.log(req.params.moduleId);
     Module
         .find({'_course': req.params.id})
-        .populate('_course', '_id')
         .exec(function(error, modules) {
-            
             Module
                 .findById(req.params.moduleId)
+                .populate('_course', '_id')
+                .populate('_resources')
                 .exec(function(error, module) {
                     if (error) throw error
                     res.json(module);
@@ -73,6 +103,7 @@ router.use('/:id/modules', function(req, res) {
     Module
         .find({'_course': req.params.id})
         .populate('_course', '_id')
+        .sort({'_id': 1})
         .exec(function(error, modules) {
             res.json(modules);
         });

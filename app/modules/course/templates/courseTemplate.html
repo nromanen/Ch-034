@@ -1,16 +1,16 @@
 <article class="col-lg-12 course">    
   <div class="col-md-4 col-sm-5 text-center">
-    <a class="course-img" href="#courses/<%= course.get('_id') %>"><img src="<%= course.get('image') %>"></a>
+    <a class="course-img" href="#courses/<%= course.get('id') %>"><img src="<%= course.get('image') %>"></a>
   </div>
   <div class="col-md-8 col-sm-7">
-    <h3><a class="course-name" href="#courses/<%= course.get('_id') %>"><%= course.get('name') %></a></h3>
+    <h3><a class="course-name" href="#courses/<%= course.get('id') %>"><%= course.get('name') %></a></h3>
     <div class="row">
       <div class="col-lg-12">
         <p><%= course.get('description') %></p>
-          <div class="accordion" id="info-<%= course.get('_id') %>">
+          <div class="accordion" id="info-<%= course.get('id') %>">
             <div class="accordion-group">
               <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#info-<%= course.id %>" data-bypass="true" href="#collapseInfo-<%= course.get('id') %>">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#info-<%= course.get('id') %>" data-bypass="true" href="#collapseInfo-<%= course.get('id') %>">
                   Інформація
                   <span class="caret"></span>
                 </a>
@@ -20,8 +20,8 @@
                   <ul class="list-unstyled">
                     <li class="col-lg-6">
                       <table>
-                        <tr><td>Початок</td><td class="colon-padding">:</td><td><%= parseDate(course.get('start')) %><td></tr>
-                        <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= parseDate(course.get('end')) %></td></tr>
+                        <tr><td>Початок</td><td class="colon-padding">:</td><td><%= course.parseDate(course.get('startAt')) %><td></tr>
+                        <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= course.parseDate(course.get('endAt')) %></td></tr>
                       </table>
                     </li>
                     <li class="col-lg-6">
@@ -37,7 +37,7 @@
           </div>
           <div class="row course-action">
               <div class="col-lg-7 course-schedule">
-                  <span>Курс почнеться <%= parseDate(course.get('start')) %>, з <strong>мін. <%= course.get('minStudents') %> студентів</strong> (заявок <%= course.get('applicantsNumber') %>)</span>
+                  <span>Курс почнеться <%= course.parseDate(course.get('startAt')) %>, з <strong>мін. <%= course.get('minStudents') %> студентів</strong> (заявок <%= course.get('applicantsNumber') %>)</span>
               </div>
               <div class="col-lg-5 course-schedule">
                   <button class="btn btn-success pull-right">Подати заявку</button>

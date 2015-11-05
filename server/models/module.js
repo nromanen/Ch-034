@@ -14,10 +14,10 @@ ModuleSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Course"
     },
-    _resources: {
-        type: [Schema.Types.ObjectId],
+    _resources: [{
+        type: Schema.Types.ObjectId,
         ref: "Resource"
-    }
+    }]
 })
 
 module.exports = mongoose.model('Module', ModuleSchema);

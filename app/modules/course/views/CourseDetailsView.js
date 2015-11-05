@@ -20,9 +20,12 @@ define(function(require) {
         },
 
         serialize: function() {
+            var course = this.model;
+            course.attributes.id = this.model.id;
+            course.parseDate = this.convertToMonthAndDate;
+
             return { 
-                course: this.model,
-                parseDate: this.convertToMonthAndDate
+                course: course,
             };
         }
 

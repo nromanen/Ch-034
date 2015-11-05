@@ -33,5 +33,5 @@ app.use(function(req, res, next) {
 app.use('/api', require('./controllers'));
 //app.use(require('./middlewares/auth'));
 
-docs(app, mongoose);
 app.listen(port);
+docs(app, mongoose);

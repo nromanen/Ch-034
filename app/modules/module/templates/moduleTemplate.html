@@ -6,7 +6,7 @@
     <div id="module-info">
         <h3 class="module-title"><%= module.get('title') %></h3>
         <div class="text-justify"><%= module.get('description') %></div>
-        <ul class="resource-title"><% _.each(module.get('resources'), function(resource){ %>
+        <ul class="resource-title"><% _.each(module.get('_resources'), function(resource){ %>
                 <% if (resource.type == "video") { %>
                     <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="embed-responsive embed-responsive-16by9">
