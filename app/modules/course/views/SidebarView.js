@@ -3,6 +3,7 @@ define(function(require) {
 
     var CMS = require("CMS"),
         FilterModule = require("modules/filter/index"),
+        VacanciesModule = require("modules/vacancies/index"),
     
     View = CMS.View.extend({
         template: _.template(require("text!../templates/sidebarTemplate.html")),
@@ -24,15 +25,19 @@ define(function(require) {
                 type: "Group",
                 params: groupParams
             });
+            
+            this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: new VacanciesModule.Collection()});
 
             this.render();
         },
 
         el: false,
 
-        beforeRender: function() {
+        beforeRender: function(collection) {
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
+            this.insertView("#vacancies", this.vacanciesView);
+
         }
         
     });
