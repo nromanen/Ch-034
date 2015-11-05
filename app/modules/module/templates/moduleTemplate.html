@@ -1,20 +1,20 @@
 <div id="module-container" class="container-fluid col-lg-8 col-md-offset-2">
-    <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
-    <a href="#courses/<%= courseId %>/modules/<%= id %>/tests/list-mode" class="right-side">пройти тест &gt;</a>
+    <a href="#courses/<%= module.get('courseId') %>" class="left-side">&lt; повернутись до курсу</a>
+    <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id')%>/tests/list-mode" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
-        <h3 class="module-title"><%= title %></h3>
-        <div class="text-justify"><%= description %></div>
-        <ul class="resource-title"><% _.each(resources, function(resource){ %>
-                <% if (resource.type == "video") { %>
+        <h3 class="module-title"><%= module.get('title') %></h3>
+        <div class="text-justify"><%= module.get('description') %></div>
+        <ul class="resource-title"><% _.each(module.get('resources'), function(resource){ %>
+                <% if (embeddable.indexOf(resource.type) !== -1) { %>
                     <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe class="embed-responsive-item" src= <%= resource.url %>></iframe>
                     </div></li>
-                <% } else if (resource.type == "zip" | resource.type == "pdf") { %>
+                <% } else if (downloadable.indexOf(resource.type) !== -1) { %>
                     <li><%= resource.name %>&nbsp<a href="<%= resource.url %>" data-bypass="true"><span class="glyphicon glyphicon-file"></a></li>
                     <% } %>
                 <% }); %>
         </ul>
-        <div class="text-center"><a href="#courses/<%= courseId %>/modules/<%= id %>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
+        <div class="text-center"><a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id')%>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
     </div>
 </div>

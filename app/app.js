@@ -18,6 +18,8 @@ define(function(require) {
        answer : 1,
        few    : 2
     };
+    CMS.embeddable = ['avi', 'mp4', 'video'];
+    CMS.downloadable = ['zip', 'pdf', 'rar', 'doc', 'docx'];
 
     return CMS;
 });
