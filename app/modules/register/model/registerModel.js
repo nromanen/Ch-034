@@ -13,11 +13,35 @@ define(function(require){
             repeatPass : null
         },
 
+        validation: {
+            name: {
+                required: true,
+                minLength: 2,
+                msg: 'Enter your name'
+            },
+            surname: {
+                required: true,
+                minLength: 2,
+                msg: 'Enter your surname'
+            },
+            email: {
+                required: true,
+                pattern: 'email'
+            },
+            pass: {
+                minLength: 8
+            },
+            repeatPass: {
+                equalTo: 'pass',
+                msg: 'The passwords does not match'
+            }
+        },
+
         validate: function(attr, options) {
             var errors = [];
 
             if (!(this.isName(attr.name))) {
-                errors.push("name");
+                errors.push("name", "Wrong NAME!!!");
             }
 
             if (!(this.isSurname(attr.surname))) {
