@@ -70,12 +70,12 @@ define(function(require) {
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({id: id});
             this.course.fetch();
-            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course, courseId: id}));
         },
 
         showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
+            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
             this.module.fetch();
         },
 

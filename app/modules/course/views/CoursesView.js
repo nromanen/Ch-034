@@ -33,6 +33,11 @@ define(function(require) {
             if (e.keyCode === 13) {
                 Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
             }
+        },
+        serialize: function() {
+            return {
+                courseId: this.id,
+            };
         }
     });
     return View;
