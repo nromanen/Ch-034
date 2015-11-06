@@ -3,10 +3,14 @@ define(function(require) {
 
     return {
         Collection: {
-        	List: require("./collections/TestsCollection"),
-        	Page: require("./collections/TestsPageableCollection")
+        	List    : require("./collections/TestsCollection"),
+        	Page    : require("./collections/TestsPageableCollection"),
+            Answers : require("./collections/AnswersCollection")
         },
-        Model: require("./models/TestModel"),
+        Model: {
+            Test   : require("./models/TestModel"),
+            Answer : require("./models/AnswerModel")
+        },
         Views: {
             Test: require("./views/TestView"),
             Tests: require("./views/TestsView")

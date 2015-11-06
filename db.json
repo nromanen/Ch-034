@@ -925,9 +925,10 @@
     {
       "id": 1,
       "num": 1,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Введіть класичний варіант написання тегу",
+      "question": "Введіть класичний варіант написання тегу",
       "typeVariant": 0,
       "variants": {
         "variant1": "&lt;name&gt;&lt;/name&gt;",
@@ -937,17 +938,19 @@
     {
       "id": 2,
       "num": 2,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Введіть doctype HTML5 без &lt;&gt;",
+      "question": "Введіть doctype HTML5 без &lt;&gt;",
       "typeVariant": 1
     },
     {
       "id": 3,
       "num": 3,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Відмітьте теги, які не підтримуються HTML 4.0",
+      "question": "Відмітьте теги, які не підтримуються HTML 4.0",
       "typeVariant": 2,
       "variants": {
         "variant1": "header",
@@ -959,9 +962,10 @@
     {
       "id": 4,
       "num": 4,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Яка форма запису є коректною ? (два варіанти)",
+      "question": "Яка форма запису є коректною ? (два варіанти)",
       "typeVariant": 2,
       "variants": {
         "variant1": "&lt;input required=on&gt;",
@@ -973,9 +977,10 @@
     {
       "id": 5,
       "num": 5,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Як встановити кодировку документа?",
+      "question": "Як встановити кодировку документа?",
       "typeVariant": 0,
       "variants": {
         "variant1": "&lt;body charset=&#34;utf-8&#34;&gt;",
@@ -986,9 +991,10 @@
     {
       "id": 6,
       "num": 6,
+      "courseId": 3,
       "moduleId": 1,
       "nameModule": "1. Теги: поняття, типи підтримки",
-      "answer": "Який елемент у секції &lt;head&gt; є обов'язковим?",
+      "question": "Який елемент у секції &lt;head&gt; є обов'язковим?",
       "typeVariant": 0,
       "variants": {
         "variant1": "&lt;meta&gt;",
@@ -1001,9 +1007,10 @@
     {
       "id": 7,
       "num": 1,
+      "courseId": 3,
       "moduleId": 2,
       "nameModule": "2. Другий модуль",
-      "answer": "Перше питання",
+      "question": "Перше питання",
       "typeVariant": 2,
       "variants": {
         "variant1": "variant1",
@@ -1011,6 +1018,38 @@
         "variant3": "variant3",
         "variant4": "variant4"
       }
+    }
+  ],
+  "vacancies": [
+    {
+      "id": 1,
+      "name": ".NET Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/net-software-engineer/"
+    },
+    {
+      "id": 2,
+      "name": "C++ Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/c-software-engineer-3/"
+    },
+    {
+      "id": 3,
+      "name": "Cloud Storage Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/cloud-storage-software-engineer/"
+    },
+    {
+      "id": 4,
+      "name": "Delivery Director",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/delivery-director/"
+    },
+    {
+      "id": 5,
+      "name": "DevOps Technology Consultant",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/devops-technology-consultant/"
+    },
+    {
+      "id": 6,
+      "name": "Intermediate DevOps Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/intermediate-devops-software-engineer/"
     }
   ]
 }

@@ -4,7 +4,7 @@ define(function(require) {
    var View = require("../view"),
 
    CoreView = View.extend({
-        
+
         el: "#CrsMSContainer"
 
    });

@@ -2,16 +2,13 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-    
+
     View = CMS.View.extend({
         template: _.template(require("text!../templates/courseTemplate.html")),
-
         el: false,
-
         events: {
-            'click .btn': "subscribe"
+            'click .btn': "subscribeDialog"
         },
-
         initialize: function() {
             this.subscribeModal = new CMS.ModalView({model: this.model});
         },
@@ -21,12 +18,11 @@ define(function(require) {
             course.attributes.id = this.model.id;
             course.parseDate = this.convertToMonthAndDate;
 
-            return { 
+            return {
                 course: course,
             };
         },
-
-        subscribe: function(ev){
+        subscribeDialog: function(ev){
             this.subscribeModal.render();
             this.subscribeModal.show();
         }

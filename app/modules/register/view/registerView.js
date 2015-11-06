@@ -7,7 +7,7 @@ define(function(require) {
 
     View = CMS.View.extend({
         el: "#CrsMSContainer",
-        template: _.template( require("text!../template/registerTemplate.html") ),
+        template: _.template(require("text!../template/registerTemplate.html")),
         events: {
             'click #submit': "submitClicked"
         },
@@ -19,11 +19,11 @@ define(function(require) {
             });
         },
 
-        serialize: function () {
+        serialize: function() {
             return {model : this.model};
         },
 
-        afterRender: function () {
+        afterRender: function() {
             this.$el.find(".error-message").addClass("hidden");
         },
 
@@ -48,10 +48,10 @@ define(function(require) {
                 this.$el.find('.' + error).addClass('error');
             }, this);
             this.$el.find(".warning").addClass("hidden");
-            this.$el.find( ".error-message" ).removeClass( "hidden" );
+            this.$el.find(".error-message").removeClass("hidden");
         },
 
-        hideErrors: function () {
+        hideErrors: function() {
             this.$el.find('.error-message').addClass('hidden');
             this.$el.find(".input-group").removeClass("error");
         }
