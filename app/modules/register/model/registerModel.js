@@ -54,7 +54,7 @@ define(function(require){
         },
 
         isPass: function(pass) {
-            var passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
+            var passRegex = /^(?=.*[a-zа-яєії])(?=.*[A-ZА-ЯЄІЇ])(?=.*[0-9])(?=.{8,})/;
             return passRegex.test(pass);
         },
 
