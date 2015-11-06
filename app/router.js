@@ -11,21 +11,20 @@ define(function(require) {
 
     Router = Backbone.Router.extend({
         initialize: function() {
-            
+
             this.appView       = new CMS.CoreView();
             this.register      = new RegisterModule.Model();
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
-            this.courses       = new CoursesModule.Collection();                                   
+            this.courses       = new CoursesModule.Collection();
             this.userAnswers   = new TestsModule.Collection.Answers();
-
             this.appView.insertViews([
                 this.headerView,
                 this.containerView,
                 this.footerView
-            ]); 
-            this.appView.render(); 
+            ]);
+            this.appView.render();
         },
 
         routes: {
@@ -61,7 +60,7 @@ define(function(require) {
             this.courses.fetch()
                 .done($.proxy(function() {
                     this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({
-                        collection: this.courses, 
+                        collection: this.courses,
                         filterParams: parsedParams
                     }));
                     this.containerView.render();
@@ -71,13 +70,13 @@ define(function(require) {
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({id: id});
             this.course.fetch();
-            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));  
+            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
         },
 
         showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
             this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
-            this.module.fetch();  
+            this.module.fetch();
         },
 
         showRegisterModule: function() {
@@ -85,20 +84,20 @@ define(function(require) {
             this.register.render();
         },
 
-        showTestModule: function(courseId, moduleId, modeTest, currentQuestion) { 
+        showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             if(modeTest == 'list-mode'){
                 this.testsList = new TestsModule.Collection.List([], {courseId: courseId, moduleId: moduleId});
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsList.fetch();
             }
-            else if(modeTest == 'page-mode'){ 
+            else if(modeTest == 'page-mode'){
                 this.testsPage = new TestsModule.Collection.Page([], {courseId: courseId, moduleId: moduleId});
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
                 this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
-                this.testsPage.fetch(); 
-            } 
+                this.testsPage.fetch();
+            }
         },
 
         parseQueryString: function(queryString) {
@@ -119,13 +118,11 @@ define(function(require) {
                             } else {
                                 val = parts[1].indexOf(",") !== -1 ? parts[1].split(/,/g) : [].concat(parts[1]);
                             }
-                            
                         params[parts[0]] = val;
                     }
                 });
             return params;
         }
-        
     });
 
     return Router;

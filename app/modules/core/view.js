@@ -3,7 +3,7 @@ define(function(require) {
 
     var Backbone = require("backbone"),
         Layout = require("backbone.layoutmanager"),
-        
+
     CoreLayout = Backbone.Layout.extend({
         manage: true,
 
@@ -19,4 +19,4 @@ define(function(require) {
     });
 
     return CoreLayout;
-}); 
+});

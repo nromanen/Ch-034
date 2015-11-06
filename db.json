@@ -1019,5 +1019,37 @@
         "variant4": "variant4"
       }
     }
+  ],
+  "vacancies": [
+    {
+      "id": 1,
+      "name": ".NET Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/net-software-engineer/"
+    },
+    {
+      "id": 2,
+      "name": "C++ Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/c-software-engineer-3/"
+    },
+    {
+      "id": 3,
+      "name": "Cloud Storage Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/cloud-storage-software-engineer/"
+    },
+    {
+      "id": 4,
+      "name": "Delivery Director",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/delivery-director/"
+    },
+    {
+      "id": 5,
+      "name": "DevOps Technology Consultant",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/devops-technology-consultant/"
+    },
+    {
+      "id": 6,
+      "name": "Intermediate DevOps Software Engineer",
+      "url": "https://softserve.ua/en/vacancies/open-vacancies/intermediate-devops-software-engineer/"
+    }
   ]
 }

@@ -2,7 +2,7 @@ define( function (require) {
     "use strict";
 
     var CMS = require("CMS"),
-    
+
     Model = require("modules/login/model/loginModel"),
 
     View = CMS.View.extend({
@@ -46,7 +46,7 @@ define( function (require) {
 
         errorMessage: function (model, errors) {
             _.forEach( errors, function (error) {
-                this.$el.find( error ).addClass("error"); 
+                this.$el.find( error ).addClass("error");
             }, this );
 
             this.$el.find(".error-message").removeClass("hidden");

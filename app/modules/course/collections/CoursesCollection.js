@@ -5,7 +5,7 @@ define(function(require) {
         Course = require("../models/CourseModel"),
 
     Collection = CMS.PageableCollection.extend({
-        
+
         model: Course,
         currentPage: 1,
         api: CMS.api,
