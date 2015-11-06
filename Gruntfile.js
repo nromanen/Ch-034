@@ -73,7 +73,7 @@ module.exports = function(grunt ) {
                     livereload: true
                 },
                 files: ['app/**', '!app/styles/'],
-                tasks: ['jshint:dev', 'sass:dev', 'autoprefixer']
+                tasks: ['jshint:dev', 'sass:dev', 'autoprefixer', 'trimtrailingspaces:main']
             }
         },
 
@@ -149,6 +149,17 @@ module.exports = function(grunt ) {
                 }
             }
         },
+
+        trimtrailingspaces: {
+            main: {
+                src: ['app/**/*.js'],
+                options: {
+                    filter: 'isFile',
+                    encoding: 'utf8',
+                    failIfTrimmed: false
+                }
+            }
+        }
     });
 
     grunt.loadNpmTasks('grunt-lodash');
@@ -162,6 +173,7 @@ module.exports = function(grunt ) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-trimtrailingspaces');
 
 
     grunt.registerTask('build:dev', ['lodash:build','jshint:dev', 'sass']);

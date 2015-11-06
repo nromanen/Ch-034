@@ -10,7 +10,7 @@ define(function(require, exports, module) {
         url: function() {
             return this.api+"course/"+this.courseId+"/modules/";
         },
-        
+
         initialize: function(models, options) {
             this.courseId = options.courseId;
         }

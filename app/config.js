@@ -29,7 +29,7 @@ require.config({
             deps: ['jquery']
         }
     },
-    
+
     deps: ['main']
 
 });
