@@ -84,8 +84,8 @@ router.get('/', function(req, res) {
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/java.png",
-        _area: java._id,
-        _groups: [early._id, evening._id],
+        area: java,
+        groups: [early, evening],
         _modules: [module1._id, module2._id]
     });  
 

@@ -4,8 +4,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     Module = require('../models/module');
 
-router.get('/', function(req, res) {
-    
+router.get('/', function(req, res, next) {
+console.log(req.params.id);
     Module
         .find({})
         .skip(req.query._start)

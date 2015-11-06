@@ -5,6 +5,24 @@ var express = require('express'),
     Course = require('../models/course'),
     Module = require('../models/module');
 
+
+var pageAble = function(req, res, next) {
+    if (res.locals.courses.length === 0 ) {
+        res.status(204);
+        return res.json([{success: false}]);
+    }
+    console.log(res.locals.courses)
+    Course
+        .find(res.locals.courses)
+        .skip(req.query._start)
+        .limit(req.query._start)
+        .exec(function(err, courses) {
+            if (err) throw err;
+            res.header('X-Total-Count', courses.length);
+            return res.json(courses);
+        })
+}
+/*
 router.post('/', function(req, res) {
 
     var course = new Course({ 
@@ -34,49 +52,57 @@ router.put('/:id', function(req, res) {
       if (err) return handleError(err);
       res.send(course);
     });
-});
+});*/
 
 router.get('/', function(req, res, next) {
-    var _start = req.query._start ? req.query._start : null,
-        _limit = req.query._limit ? req.query._limit : null,
-        areaQ = [].concat(req.query.area ? req.query.area : []), 
-        groupQ = [].concat(req.query.group ? req.query.group : []), 
-        searchQ = req.query.s ? req.query.s : null;
-
-    if (!(req.query.area || req.query.group || req.query.s)) {
-        next();
-        return;
-    }
-
-    console.log(areaQ);
-
-        Course
-            .find()
-            .populate('_area')
-            .where({'_area.name': 'Java'})
-
-            .exec(function(errr, courses) {
-                console.log(courses);
-                res.header("X-Total-Count", courses.length);
-                res.json(courses);
-            });
-});
-
-router.get('/', function(req, res, next) {
-    var _start = req.query._start ? req.query._start : null,
-        _limit = req.query._limit ? req.query._limit : null;
-
     Course
-        .find({})
-        .populate('_area')
-        .populate('_groups')
-        .skip(_start)
-        .limit(_limit)
-        .exec(function(errr, courses) {
-            res.header("X-Total-Count", courses.length);
-            res.json(courses);
+        .find()
+        .exec(function(err, courses) {
+            if (err) throw err;
+            res.locals.courses = courses;
+            next();
         });
-});
+}, pageAble);
+
+router.get('/filter', function(req, res, next) {
+    if (req.query.s) {
+        var terms = req.query.s.split(' ');
+
+        var regexString = "";
+
+        for (var i = 0; i < terms.length; i++)
+        {
+            regexString += terms[i];
+            if (i < terms.length - 1) regexString += '|';
+        }
+
+        var q = new RegExp(regexString, 'ig');
+        Course
+            .find(res.locals.courses)
+            .or([{'name': {$regex: q}}, {'description': {$regex: q}}, {'schedule': {$regex: q}}])
+            .select('-area -groups')
+            .exec(function(err, courses) {
+                if (err) throw err;
+                res.locals.courses = courses;
+                next();
+            })
+    }
+}, pageAble);
+
+router.get('/', function(req, res, next) {
+    if (req.query.s) {
+
+        var q = new RegExp('^'+req.query.s+'$', "i");
+        Course
+            .find(req.locals.courses)
+            .or([{'title': q}, {'description': q}, {'schedule': q}])
+            .select('-area -groups')
+            exec(function(err, courses) {
+                if (err) throw err;
+                req.locals.courses = courses;
+            })
+    }
+}, pageAble);
 
 router.get('/:id', function(req, res) {
     Course
@@ -84,7 +110,7 @@ router.get('/:id', function(req, res) {
             res.json(course);
         });
 });
-router.use('/:id/modules/:moduleId', function(req, res) {
+router.get('/:id/modules/:moduleId', function(req, res) {
     Module
         .find({'_course': req.params.id})
         .exec(function(error, modules) {
@@ -98,7 +124,7 @@ router.use('/:id/modules/:moduleId', function(req, res) {
                 })
         });
 });
-router.use('/:id/modules', function(req, res) {
+router.get('/:id/modules', function(req, res) {
     console.log("match1");
     Module
         .find({'_course': req.params.id})
@@ -108,5 +134,6 @@ router.use('/:id/modules', function(req, res) {
             res.json(modules);
         });
 });
+
 
 module.exports = router;

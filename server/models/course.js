@@ -46,13 +46,13 @@ var CourseSchema = new Schema({
     image: {
         type: String
     },
-    _area: {
-        type: Schema.Types.ObjectId,
-        ref: "Area"
+    area: {
+        _id: {type: Schema.Types.ObjectId, ref: "Area" },
+        name: [String]
     },
-    _groups: [{
-        type: Schema.Types.ObjectId,
-        ref: "Group"
+    groups: [{
+        _id: {type: Schema.Types.ObjectId, ref: "Group" },
+        name: [String]
     }],
     _modules: [{
         type: Schema.Types.ObjectId,
