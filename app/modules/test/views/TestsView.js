@@ -14,8 +14,8 @@ define(function(require) {
 
         events: {
             "submit"                 : "submitHandler",
-            "click .pagination li a" : "submitHandler",
-            "click #test-mode"       : "submitHandler"
+            "click .pagination li a" : "saveAnswers",
+            "click #test-mode"       : "saveAnswers"
         },
         initialize: function(collection, options) {
             this.mode        = options.mode;
@@ -27,6 +27,10 @@ define(function(require) {
             this.userAnswers.fetch();
             this.test = new TestModel({id: this.moduleId});
             this.test.fetch();
+            this.sendModal = new CMS.ModalView({
+                modalHeader  : "Ви впевнені, що завершили проходження тестування та готові відправити дані на перевірку?",
+                submitButton : "Так, відправити на перевірку"
+            });
             this.listenTo(this.collection, "reset sync request", this.render);
         },
         serialize: function(){
@@ -52,8 +56,7 @@ define(function(require) {
             }
             this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
         },
-        submitHandler: function (e) {
-            e.preventDefault();
+        saveAnswers: function () {
             this.$form = this.$(".tests-form");
             var answerForm = this.$form.serializeObject();
             _.each(answerForm, function(value, key, list){
@@ -83,6 +86,12 @@ define(function(require) {
                     this.userAnswers.get(num).destroy();
                 }
             }, this);
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+            this.saveAnswers();
+            this.sendModal.render();
+            this.sendModal.show();
         }
     });
 
