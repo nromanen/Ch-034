@@ -25,7 +25,7 @@ define(function(require) {
                 type: "Group",
                 params: groupParams
             });
-            
+
             this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: new VacanciesModule.Collection()});
 
             this.render();

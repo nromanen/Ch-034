@@ -924,10 +924,29 @@
   "tests": [
     {
       "id": 1,
+      "courseId": 1,
+      "moduleId": 2,
+      "nameTest": "Flat UI Color Workflows"
+    },
+    {
+      "id": 2,
+      "courseId": 2,
+      "moduleId": 4,
+      "nameTest": " Псевдокласи"
+    },
+    {
+      "id": 3,
+      "courseId": 3,
+      "moduleId": 1,
+      "nameTest": "Теги: поняття, типи, підтримка"
+    }
+   ],   
+  "questions": [
+    {
+      "id": 1,
       "num": 1,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Введіть класичний варіант написання тегу",
       "typeVariant": 0,
       "variants": {
@@ -940,7 +959,6 @@
       "num": 2,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Введіть doctype HTML5 без &lt;&gt;",
       "typeVariant": 1
     },
@@ -949,7 +967,6 @@
       "num": 3,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Відмітьте теги, які не підтримуються HTML 4.0",
       "typeVariant": 2,
       "variants": {
@@ -964,7 +981,6 @@
       "num": 4,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Яка форма запису є коректною ? (два варіанти)",
       "typeVariant": 2,
       "variants": {
@@ -979,7 +995,6 @@
       "num": 5,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Як встановити кодировку документа?",
       "typeVariant": 0,
       "variants": {
@@ -993,7 +1008,6 @@
       "num": 6,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Який елемент у секції &lt;head&gt; є обов'язковим?",
       "typeVariant": 0,
       "variants": {
@@ -1002,21 +1016,6 @@
         "variant3": "&lt;style&gt;",
         "variant4": "&lt;base&gt;",
         "variant5": "&lt;title&gt;"
-      }
-    },
-    {
-      "id": 7,
-      "num": 1,
-      "courseId": 3,
-      "moduleId": 2,
-      "nameModule": "2. Другий модуль",
-      "question": "Перше питання",
-      "typeVariant": 2,
-      "variants": {
-        "variant1": "variant1",
-        "variant2": "variant2",
-        "variant3": "variant3",
-        "variant4": "variant4"
       }
     }
   ],
