@@ -33,7 +33,7 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/modules/:moduleId/tests/:mode(/:testId)": "showTestModule"
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
 
         index: function() {
@@ -94,7 +94,7 @@ define(function(require) {
                 this.testsPage = new TestsModule.Collection.Page([], {courseId: courseId, moduleId: moduleId});
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
-                this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
+                this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' + modeTest + '/';
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsPage.fetch();
             }

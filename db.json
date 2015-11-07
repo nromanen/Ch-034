@@ -924,23 +924,41 @@
   "tests": [
     {
       "id": 1,
-      "courseId": 1,
-      "moduleId": 2,
-      "nameTest": "Flat UI Color Workflows"
+      "courseId": 3,
+      "moduleId": 1,
+      "nameTest": "Теги: поняття, типи, підтримка"
     },
     {
       "id": 2,
-      "courseId": 2,
-      "moduleId": 4,
-      "nameTest": " Псевдокласи"
+      "courseId": 3,
+      "moduleId": 2,
+      "nameTest": " Форми"
     },
     {
       "id": 3,
       "courseId": 3,
-      "moduleId": 1,
-      "nameTest": "Теги: поняття, типи, підтримка"
+      "moduleId": 3,
+      "nameTest": " Таблиці"
+    },
+    {
+      "id": 4,
+      "courseId": 3,
+      "moduleId": 4,
+      "nameTest": "Спеціальні теги HTML 5"
+    },
+    {
+      "id": 5,
+      "courseId": 3,
+      "moduleId": 5,
+      "nameTest": "Побудова оптимізованого DOM дерева"
+    },
+    {
+      "id": 6,
+      "courseId": 3,
+      "moduleId": 6,
+      "nameTest": "Екзаменаційне завдання"
     }
-   ],   
+  ],
   "questions": [
     {
       "id": 1,
@@ -1017,6 +1035,28 @@
         "variant4": "&lt;base&gt;",
         "variant5": "&lt;title&gt;"
       }
+    },
+    {
+      "id": 7,
+      "num": 1,
+      "courseId": 3,
+      "moduleId": 3,
+      "question": "Який тег не є тегом форматування таблиці?",
+      "typeVariant": 0,
+      "variants": {
+        "variant1": "&lt;target&gt;",
+        "variant2": "&lt;td&gt;",
+        "variant3": "&lt;hd&gt;",
+        "variant4": "&lt;colspan&gt;"
+      }
+    },
+    {
+      "id": 8,
+      "num": 2,
+      "courseId": 3,
+      "moduleId": 3,
+      "question": "Який тег потрібен для організації назви таблиці?",
+      "typeVariant": 1
     }
   ],
   "vacancies": [

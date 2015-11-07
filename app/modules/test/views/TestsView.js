@@ -6,6 +6,7 @@ define(function(require) {
     var CMS = require("CMS"),
         TestView = require("./TestView"),
         PaginationView = require("./PaginationView"),
+        TestModel = require("modules/test/models/TestModel"),
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testsTemplate.html")),
@@ -24,16 +25,16 @@ define(function(require) {
             this.typeTest    = options.typeTest;
             this.userAnswers = options.storage;
             this.userAnswers.fetch();
+            this.test = new TestModel({id: this.moduleId});
+            this.test.fetch();
             this.listenTo(this.collection, "reset sync request", this.render);
         },
         serialize: function(){
             return {
-                "mode"       : this.mode,
-                "toogleMode" : this.toogleMode,
-                "test"       : this.model,
-                "courseId"   : this.courseId,
-                "moduleId"   : this.moduleId,
-                "typeTest"   : this.typeTest
+                mode       : this.mode,
+                toogleMode : this.toogleMode,
+                test       : this.test,
+                typeTest   : this.typeTest
             };
         },
         beforeRender: function(){

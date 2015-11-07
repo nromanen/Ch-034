@@ -1,9 +1,9 @@
 <div class="tests">
     <div>
-        <a href="#courses/<%= courseId %>">&lt; повернутися до курсу</a> 
-        <div id="test-mode" class="pull-right"><a id="test-mode-not-<%= mode%>" href="#courses/<%= courseId %>/modules/<%= moduleId %>/tests/<%= toogleMode%>-mode"></a></div>
+        <a href="#courses/<%= test.get("courseId") %>">&lt; повернутися до курсу</a>
+        <div id="test-mode" class="pull-right"><a id="test-mode-not-<%= mode%>" href="#courses/<%= test.get("courseId") %>/modules/<%= test.get("moduleId") %>/tests/<%= toogleMode %>-mode"></a></div>
     </div>
-    <h1>Тест <%= moduleId %>. Теги: поняття, типи підтримки </h1>
+    <h1>Тест <%= test.get("id") %>. <%= test.get("nameTest") %> </h1>
     <div class="row">
         <div class="col-lg-12 text-center">
             <nav></nav>

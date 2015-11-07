@@ -10,12 +10,12 @@ define(function(require){
             moduleId : null,
             nameTest : null
         },
-        urlRoot: function() {
-            return this.api + "tests?courseId=" + this.courseId + "&moduleId=" + this.moduleId;
-        }
-        initialize: function(attributes, options) {
-            this.courseId = options.courseId;
-            this.moduleId = options.moduleId;
+        api     : CMS.api,
+        urlRoot : CMS.api + 'tests',
+
+        url: function() {
+            return this.urlRoot + '/' + this.id;
+
         }
     });
 
