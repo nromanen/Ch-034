@@ -9,7 +9,8 @@ define(function(require, exports, module) {
 
         el: false,
 
-        initialize: function() {
+        initialize: function(options) {
+            this.courseId = options.courseId;
             this.listenTo(this.model, "reset sync request", this.render);
         },
 
@@ -17,7 +18,8 @@ define(function(require, exports, module) {
             return {
                 module: this.model,
                 downloadable: CMS.downloadable,
-                embeddable: CMS.embeddable
+                embeddable: CMS.embeddable,
+                courseId : this.courseId
             };
         }
     });

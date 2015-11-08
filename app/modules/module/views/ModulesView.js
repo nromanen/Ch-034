@@ -16,7 +16,8 @@ define(function(require, exports, module) {
         serialize: function() {
             return {
                 modules: this.collection,
-                imgUrl: this.imgUrl
+                imgUrl: this.imgUrl,
+                courseId : this.courseId
             };
         }
     });

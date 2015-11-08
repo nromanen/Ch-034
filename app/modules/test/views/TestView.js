@@ -7,7 +7,7 @@ define(function(require) {
         template: _.template(require("text!../templates/testTemplate.html")),
         el: false,
 
-        initialize: function(models, options) {
+        initialize: function(options) {
             this.answer   = options.answer;
             this.typeTest = options.typeTest;
         },
