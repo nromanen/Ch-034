@@ -9,7 +9,8 @@ require.config({
         'text'                    : '../vendor/bower/requirejs-text/text',
         'CMS'                     : './app',
         'backbone.layoutmanager'  : '../vendor/bower/layoutmanager/backbone.layoutmanager',
-        'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min'
+        'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
+        'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min'
     },
 
     map: {
@@ -27,6 +28,10 @@ require.config({
         },
         'jquery-serialize-object': {
             deps: ['jquery']
+        },
+        'backboneValidation' : {
+            deps: ['backbone'],
+            exports: 'Backbone'
         }
     },
 

@@ -1,6 +1,23 @@
 define(function(require) {
     "use strict";
 
+_.extend(Backbone.Validation.callbacks, {
+    valid: function (view, attr, selector) {
+        var $el = view.$('[name=' + attr + ']'),
+            $group = $el.closest('.form-group');
+
+        $group.removeClass('has-error');
+        $group.find('.help-block').html('').addClass('hidden');
+    },
+    invalid: function (view, attr, error, selector) {
+        var $el = view.$('[name=' + attr + ']'),
+            $group = $el.closest('.form-group');
+
+        $group.addClass('has-error');
+        $group.find('.help-block').html(error).removeClass('hidden');
+    }
+});
+
     var CMS = require("CMS"),
 
     Model = require("modules/register/model/registerModel"),
@@ -15,27 +32,16 @@ define(function(require) {
         },
 
         initialize: function() {
-            
-            Backbone.Validation.bind(this, {
-                valid: function(view, attr) {
-                    var $el = view.$('[name=' + attr + ']'), 
-                        $group = $el.closest('.form-group');
-                    $group.removeClass('has-error');
-                    $group.find('.help-block').html('').addClass('hidden');
-                },
 
-                invalid: function(view, attr, error) {
-                    var $el = view.$('[name=' + attr + ']'), 
-                        $group = $el.closest('.form-group');
-                    $group.addClass('has-error');
-                    $group.find('.help-block').html(error).removeClass('hidden');
-                }
-            });
+            this.model = new Model();
 
-            /*this.model = new Model();
+Backbone.Validation.bind(this);
+
+
             this.listenTo(this.model, "invalid", function (model, error) {
                 this.showErrors(model, error);
-            });*/
+            });
+
         },
 
         serialize: function() {
@@ -44,6 +50,28 @@ define(function(require) {
 
         afterRender: function() {
             this.$el.find(".error-message").addClass("hidden");
+
+
+        },
+
+        showErrors: function(model, errors) {
+            _.each(errors, function (error) {
+                this.$el.find('.' + error.name).addClass('error');
+                this.$el.find(".error-message").removeClass("hidden").text(error.mes);
+            }, this);
+            this.$el.find(".warning").addClass("hidden");
+        },
+
+        hideErrors: function() {
+            this.$el.find('.error-message').addClass('hidden');
+            this.$el.find(".input-group").removeClass("error");
+        },
+
+        remove: function() {
+            // Remove the validation binding
+            // See: http://thedersen.com/projects/backbone-validation/#using-form-model-validation/unbinding
+            Backbone.Validation.unbind(this);
+            return Backbone.View.prototype.remove.apply(this, arguments);
         },
 
         submitClicked: function(e) {
@@ -57,29 +85,9 @@ define(function(require) {
             };
             this.hideErrors();
             this.model.set(feedback);
-            if(this.model.isValid()) {
+            if(this.model.isValid(true)) {
                 CMS.router.navigate("courses", {trigger: true});
             }
-        },
-
-        /*showErrors: function(model, errors) {
-            _.each(errors, function (error) {
-                this.$el.find('.' + error).addClass('error');
-            }, this);
-            this.$el.find(".warning").addClass("hidden");
-            this.$el.find(".error-message").removeClass("hidden");
-        },
-
-        hideErrors: function() {
-            this.$el.find('.error-message').addClass('hidden');
-            this.$el.find(".input-group").removeClass("error");
-        }*/
-
-        remove: function() {
-            // Remove the validation binding
-            // See: http://thedersen.com/projects/backbone-validation/#using-form-model-validation/unbinding
-            Backbone.Validation.unbind(this);
-            return Backbone.View.prototype.remove.apply(this, arguments);
         }
     });
 

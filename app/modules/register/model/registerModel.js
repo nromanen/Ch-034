@@ -35,17 +35,17 @@ define(function(require){
                 equalTo: 'pass',
                 msg: 'The passwords does not match'
             }
-        },
+        }
 
-        validate: function(attr, options) {
+        /*validate: function(attr, options) {
             var errors = [];
 
             if (!(this.isName(attr.name))) {
-                errors.push("name", "Wrong NAME!!!");
+                errors.push({name: "name", mes: "Wrong NAME!!!"});
             }
 
             if (!(this.isSurname(attr.surname))) {
-                errors.push("surname");
+                errors.push({name: "surname", mes: "Wrong surname"});
             }
             if (!(this.isEmail(attr.email))) {
                 errors.push("email");
@@ -84,7 +84,7 @@ define(function(require){
 
         isPassEqual: function(pass, repeatPass) {
             return pass === repeatPass;
-        }
+        }*/
     });
 
     return Model;
