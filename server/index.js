@@ -74,18 +74,15 @@ server.get("/courses/filter", function(req, res) {
         areas, groups;
 
     if (searchQ) {
-
-      searchQ = searchQ.toLowerCase()
-
+      searchQ = searchQ.toLowerCase();
       results = results.filter(function (obj) {
         for (var key in obj) {
-          var value = obj[key]
+          var value = obj[key];
           if (db._.deepQuery(value, searchQ)) {
-            return true
+            return true;
           }
         }
-      })
-
+      });
     }
 
     if (areaQ.length >= 1) {

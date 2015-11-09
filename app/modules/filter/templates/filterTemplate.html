@@ -1,17 +1,17 @@
 <div class="accordion-group">
   <div class="accordion-heading">
-    <a class="accordion-toggle" data-toggle="collapse" data-bypass="true" data-parent="#filter" href="#filter<%= type %>">
+    <a class="accordion-toggle" data-toggle="collapse" data-bypass="true" data-parent="#filter" href="#filter<%= variants.getName() %>">
       <%= type %>
       <span class="caret"></span>
     </a>
   </div>
-  <div id="filter<%= type %>" class="accordion-body collapse in">
+  <div id="filter<%= variants.getName() %>" class="accordion-body collapse in">
     <div class="accordion-inner col-lg-12">
         <div class="form-group">
         <% _.each(variants.models, function(variant) { %>
             <div class="checkbox">
-                <input type="checkbox" class="filter-checkbox" id="filter<%= type %>-<%= variant.get('name') %>" value="<%= variant.get('name') %>" aria-label="<%= variant.get('name') %>" name="<%= type.toLowerCase() %>" <% if (params.indexOf(variant.get('name')) !== -1) { %> checked <% } %>>
-                    <label for="filter<%= type %>-<%= variant.get('name') %>">
+                <input type="checkbox" class="filter-checkbox" id="filter<%= variants.getName() %>-<%= variant.get('name') %>" value="<%= variant.get('name') %>" aria-label="<%= variant.get('name') %>" name="<%= variants.getName().toLowerCase() %>" <% if (params.indexOf(variant.get('name')) !== -1) { %> checked <% } %>>
+                    <label for="filter<%= variants.getName() %>-<%= variant.get('name') %>">
                        <%= variant.get('name') %>
                     </label>
             </div>

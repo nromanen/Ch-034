@@ -780,15 +780,15 @@
   "groups": [
     {
       "id": 1,
-      "name": "Early"
+      "name": "Ранкова"
     },
     {
       "id": 2,
-      "name": "Daily"
+      "name": "Денна"
     },
     {
       "id": 3,
-      "name": "Evening"
+      "name": "Вечірня"
     }
   ],
   "areas": [
