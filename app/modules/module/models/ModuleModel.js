@@ -8,7 +8,7 @@ define(function(require, extend, module) {
         defaults: {
             id: null,
             courseId: null,
-            title: null,
+            name: null,
             description: null,
             resources: {}
         },

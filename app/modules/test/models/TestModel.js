@@ -5,12 +5,19 @@ define(function(require){
 
     Model = CMS.Model.extend({
         defaults: {
-            id: null,
-            moduleId: null,
-            nameModule: null
+            id       : null,
+            courseId : null,
+            moduleId : null,
+            nameTest : null
+        },
+        api     : CMS.api,
+        urlRoot : CMS.api + 'tests',
+
+        url: function() {
+            return this.urlRoot + '/' + this.id;
+
         }
     });
 
     return Model;
-
 });
