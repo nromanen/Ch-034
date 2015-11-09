@@ -8,15 +8,15 @@
   <% } else { %>
 
   <li class="disabled">
-      <span aria-hidden="true">&laquo;</span>
+      <a><span aria-hidden="true">&laquo;</span></a>
   </li>
   <% } %>
  
 <% _.each(info.pageSet, function(p) { %>
   <% if (info.currentPage == p) { %>
-    <li class="active"><a href="<%=info.pageUrl(p) %>"><%= p %></a></li>
+    <li class="active" id="<%= p %>"><a href="<%=info.pageUrl(p) %>"><%= p %></a></li>
   <% } else { %>
-    <li><a href="<%= info.pageUrl(p) %>"><%= p %></a></li>
+    <li id="<%= p %>"><a href="<%= info.pageUrl(p) %>" id="<%= p %>"><%= p %></a></li>
   <% } %>
 <% }); %>
 
@@ -28,7 +28,7 @@
   </li>
   <% } else { %>
   <li class="disabled">
-      <span aria-hidden="true">&raquo;</span>
+      <a><span aria-hidden="true">&raquo;</span></a>
   </li>
   <% } %>
 </ul>

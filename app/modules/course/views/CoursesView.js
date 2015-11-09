@@ -41,7 +41,11 @@ define(function(require) {
             var searchString = this.$el.find("#search-input").val();
             Backbone.history.navigate("#courses?s='"+searchString+"'", {trigger: true});
         },
-
+        serialize: function() {
+            return {
+                courseId: this.id,
+            };
+        }
     });
     return View;
 });

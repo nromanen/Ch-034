@@ -19,7 +19,7 @@ define(function(require){
             image: null,
             modules: []
         },
-        
+
         urlRoot: CMS.api+'courses',
 
         url: function() {

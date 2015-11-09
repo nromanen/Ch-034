@@ -3,17 +3,18 @@ define(function(require) {
 
     var CMS = require("CMS"),
 
-    View = CMS.PaginationView.extend({
+    View = CMS.View.extend({
+        template: _.template(require("text!../template/vacancyTemplate.html")),
 
         el: false,
 
         serialize: function() {
             return {
-                info: this.collection.info()
+                model: this.model
             };
+        },
+        initialize: function() {
         }
-
     });
-
     return View;
 });

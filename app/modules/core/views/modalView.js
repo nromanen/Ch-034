@@ -13,9 +13,9 @@ define(function(require) {
             "click .btn-cancel": "declinePopup"
         },
         initialize: function(options) {
-            if (!options.modalHeader) 
+            if (!options.modalHeader)
                 this.modalHeader = "Я підтверджую подачу заявки на курс:";
-            if (!options.submitButton) 
+            if (!options.submitButton)
                 this.submitButton = "Подати заявку";
         },
         serialize: function() {

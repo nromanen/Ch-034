@@ -7,6 +7,6 @@ define(function(require){
         Views: {
             Filter: require("./views/filterView")
         }
-        
+
     };
 });
