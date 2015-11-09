@@ -7,104 +7,79 @@ var express = require('express'),
 
 
 var pageAble = function(req, res, next) {
-    if (res.locals.courses.length === 0 ) {
+    var data = res.locals.data;
+    //console.log(data);
+    if (data.length === 0 ) {
         res.status(204);
         return res.json([{success: false}]);
     }
+    res.header('X-Total-Count', data.length);
 
-    var totalCount, query = Course.find(res.locals.courses);
-    query.count(function(err, count) {
-        if (err) throw err;
-        totalCount = count;
-    })
-        query
+    Course
+        .find({"_id": {$in: data}})
         .skip(req.query._start)
         .limit(req.query._limit)
         .exec(function(err, courses) {
             if (err) throw err;
-            res.header('X-Total-Count', totalCount);
+            console.log(courses);
             return res.json(courses);
         })
 }
-/*
-router.post('/', function(req, res) {
-
-    var course = new Course({ 
-        name: req.body.name,
-        description: req.body.description,
-        startAt: req.body.startAt,
-        endAt: req.body.endAt,
-        duration: req.body.duration,
-        schedule: req.body.schedule,
-        minStudents: req.body.minStudents,
-        applicantsNumber: req.body.applicantsNumber,
-        image: req.body.image,
-        area: java._id,
-        groups: [early._id, evening._id],
-    });
-
-    course.save(function(err) {
-        if (err) throw err;
-
-        console.log('Course saved successfully');
-        res.json({ success: true });
-    });
-});
-
-router.put('/:id', function(req, res) {
-    Course.findByIdAndUpdate(req.param.id, {$set: {}}, function(err, course) {
-      if (err) return handleError(err);
-      res.send(course);
-    });
-});*/
 
 router.get('/', function(req, res, next) {
-    Course
-        .find()
-        .exec(function(err, courses) {
-            if (err) throw err;
-            res.locals.courses = courses;
-            next();
-        });
-}, pageAble);
+    var chain = Course.find().exec(function(err, courses) {
+        res.locals.data = courses;
+        next();
+    });
+}, pageAble );
 
 router.get('/filter', function(req, res, next) {
+    console.log("/filter");
     if (req.query.s) {
-        var terms = req.query.s.split(' ');
+        var searchString = req.query.s.split(' '),
+            regexString = "",
+            q;
 
-        var regexString = "";
-
-        for (var i = 0; i < terms.length; i++)
+        for (var i = 0; i < searchString.length; i++)
         {
-            regexString += terms[i];
-            if (i < terms.length - 1) regexString += '|';
+            regexString += searchString[i];
+            if (i < searchString.length - 1) regexString += '|';
         }
 
-        var q = new RegExp(regexString, 'ig');
+        q = new RegExp(regexString, 'ig');
         Course
-            .find(res.locals.courses)
+            .find()
             .or([{'name': {$regex: q}}, {'description': {$regex: q}}, {'schedule': {$regex: q}}])
             .select('-area -groups')
             .exec(function(err, courses) {
-                if (err) throw err;
-                res.locals.courses = courses;
+                res.locals.data = courses;
                 next();
             })
+            
     }
-}, pageAble);
+    if (req.query.area || req.query.group) {
+        console.log("area group");
+        var areaQ = [].concat(req.query.area ? req.query.area : []), 
+            groupQ = [].concat(req.query.group ? req.query.group : []);
 
-router.get('/', function(req, res, next) {
-    if (req.query.s) {
-
-        var q = new RegExp('^'+req.query.s+'$', "i");
-        Course
-            .find(req.locals.courses)
-            .or([{'title': q}, {'description': q}, {'schedule': q}])
-            .select('-area -groups')
-            exec(function(err, courses) {
-                if (err) throw err;
-                req.locals.courses = courses;
-            })
+        var chain = Course.find();
+        if (areaQ.length !== 0 && groupQ.length !== 0) {
+            console.log("TWO");
+            chain.and([{"area.name": {$in: areaQ}}, {"groups.name": {$in: groupQ}}])
+        } else
+        if (areaQ.length !== 0) {
+            console.log("AREA");
+            chain.where("area.name").in(areaQ)
+        } else
+        if (groupQ.length !== 0) {
+            console.log("GROUP");
+            chain.where("groups.name").in(groupQ)
+        }
+        chain.exec(function(err, courses) {
+            if (err) throw err;
+            res.locals.data = courses;
+            next();
+        })
     }
 }, pageAble);
 

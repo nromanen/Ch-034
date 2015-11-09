@@ -48,11 +48,11 @@ var CourseSchema = new Schema({
     },
     area: {
         _id: {type: Schema.Types.ObjectId, ref: "Area" },
-        name: [String]
+        name: String
     },
     groups: [{
         _id: {type: Schema.Types.ObjectId, ref: "Group" },
-        name: [String]
+        name: String
     }],
     _modules: [{
         type: Schema.Types.ObjectId,
