@@ -1,10 +1,11 @@
 /*  main area style   */
 .tests {
-	background-color: #fff;
-	margin: 20px auto;
-	padding: 25px 35px;
-	max-width: 630px;
-	min-height: 100%;	
+    background-color: #fff;
+    margin: 0 auto 20px;
+    padding: 25px 35px;
+    max-width: 630px;
+    min-height: 450px;
+    position: relative;
 }
 
 /* style for page: course-test   */
@@ -34,10 +35,10 @@
 }
 
 h1 {
-	font-size: 22px;
-	text-align: center;
-	font-weight: 800;
-	padding-bottom: 10px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 800;
+    padding-bottom: 10px;
 }
 
 .pagination .answer a, .pagination .answer a:hover {
@@ -50,16 +51,20 @@ h1 {
     background-color: #ADE1B7;
 }
 
-ol {
-	list-style: decimal inside;
+.test {
+    list-style: decimal inside;
+    margin-bottom: 50px;
 }
 
 .form-control {
-	width: 300px;
+    width: 300px;
 }
 
 #test-submit {
-	text-align: center;
+    position: absolute;
+    bottom: 0;
+    margin: 15px;
+    left: 33%
 } 
  
 /* checkbox style*/

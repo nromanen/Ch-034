@@ -924,10 +924,47 @@
   "tests": [
     {
       "id": 1,
+      "courseId": 3,
+      "moduleId": 1,
+      "nameTest": "Теги: поняття, типи, підтримка"
+    },
+    {
+      "id": 2,
+      "courseId": 3,
+      "moduleId": 2,
+      "nameTest": " Форми"
+    },
+    {
+      "id": 3,
+      "courseId": 3,
+      "moduleId": 3,
+      "nameTest": " Таблиці"
+    },
+    {
+      "id": 4,
+      "courseId": 3,
+      "moduleId": 4,
+      "nameTest": "Спеціальні теги HTML 5"
+    },
+    {
+      "id": 5,
+      "courseId": 3,
+      "moduleId": 5,
+      "nameTest": "Побудова оптимізованого DOM дерева"
+    },
+    {
+      "id": 6,
+      "courseId": 3,
+      "moduleId": 6,
+      "nameTest": "Екзаменаційне завдання"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
       "num": 1,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Введіть класичний варіант написання тегу",
       "typeVariant": 0,
       "variants": {
@@ -940,7 +977,6 @@
       "num": 2,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Введіть doctype HTML5 без &lt;&gt;",
       "typeVariant": 1
     },
@@ -949,7 +985,6 @@
       "num": 3,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Відмітьте теги, які не підтримуються HTML 4.0",
       "typeVariant": 2,
       "variants": {
@@ -964,7 +999,6 @@
       "num": 4,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Яка форма запису є коректною ? (два варіанти)",
       "typeVariant": 2,
       "variants": {
@@ -979,7 +1013,6 @@
       "num": 5,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Як встановити кодировку документа?",
       "typeVariant": 0,
       "variants": {
@@ -993,7 +1026,6 @@
       "num": 6,
       "courseId": 3,
       "moduleId": 1,
-      "nameModule": "1. Теги: поняття, типи підтримки",
       "question": "Який елемент у секції &lt;head&gt; є обов'язковим?",
       "typeVariant": 0,
       "variants": {
@@ -1008,16 +1040,23 @@
       "id": 7,
       "num": 1,
       "courseId": 3,
-      "moduleId": 2,
-      "nameModule": "2. Другий модуль",
-      "question": "Перше питання",
-      "typeVariant": 2,
+      "moduleId": 3,
+      "question": "Який тег не є тегом форматування таблиці?",
+      "typeVariant": 0,
       "variants": {
-        "variant1": "variant1",
-        "variant2": "variant2",
-        "variant3": "variant3",
-        "variant4": "variant4"
+        "variant1": "&lt;target&gt;",
+        "variant2": "&lt;td&gt;",
+        "variant3": "&lt;hd&gt;",
+        "variant4": "&lt;colspan&gt;"
       }
+    },
+    {
+      "id": 8,
+      "num": 2,
+      "courseId": 3,
+      "moduleId": 3,
+      "question": "Який тег потрібен для організації назви таблиці?",
+      "typeVariant": 1
     }
   ],
   "vacancies": [

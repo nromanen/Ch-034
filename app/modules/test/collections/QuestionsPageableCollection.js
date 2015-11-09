@@ -2,15 +2,15 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-        Test = require("../models/TestModel"),
+        Question = require("../models/QuestionModel"),
 
     Collection = CMS.PageableCollection.extend({
-        model          : Test,
+        model          : Question,
         currentPage    : 1,
         api            : CMS.api,
         perPage        : 1,
         paginationSize : 12,
-        resource       : "tests",
+        resource       : "questions",
 
         url: function() {
             return this.getApiUrl() + "&courseId=" + this.courseId + "&moduleId=" + this.moduleId;
