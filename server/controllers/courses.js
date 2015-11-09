@@ -11,14 +11,18 @@ var pageAble = function(req, res, next) {
         res.status(204);
         return res.json([{success: false}]);
     }
-    console.log(res.locals.courses)
-    Course
-        .find(res.locals.courses)
+
+    var totalCount, query = Course.find(res.locals.courses);
+    query.count(function(err, count) {
+        if (err) throw err;
+        totalCount = count;
+    })
+        query
         .skip(req.query._start)
-        .limit(req.query._start)
+        .limit(req.query._limit)
         .exec(function(err, courses) {
             if (err) throw err;
-            res.header('X-Total-Count', courses.length);
+            res.header('X-Total-Count', totalCount);
             return res.json(courses);
         })
 }
@@ -110,19 +114,15 @@ router.get('/:id', function(req, res) {
             res.json(course);
         });
 });
-router.get('/:id/modules/:moduleId', function(req, res) {
+router.get('/:courseId/modules/:moduleId', function(req, res) {
     Module
-        .find({'_course': req.params.id})
-        .exec(function(error, modules) {
-            Module
-                .findById(req.params.moduleId)
-                .populate('_course', '_id')
-                .populate('_resources')
-                .exec(function(error, module) {
-                    if (error) throw error
-                    res.json(module);
-                })
-        });
+        .findOne({"_course": req.params.courseId, "_id": req.params.moduleId})
+        .populate('_course', '_id')
+        .populate('_resources')
+        .exec(function(error, module) {
+            if (error) throw error
+            res.json(module);
+        })
 });
 router.get('/:id/modules', function(req, res) {
     console.log("match1");

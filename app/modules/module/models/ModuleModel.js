@@ -6,9 +6,8 @@ define(function(require, extend, module) {
     Model = CMS.Model.extend({
         idAttribute: '_id',
         defaults: {
-
             courseId: null,
-            title: null,
+            name: null,
             description: null,
             resources: {}
         },

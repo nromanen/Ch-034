@@ -5,7 +5,7 @@
         </div>
         <div class="modal-body">
             <%= modalHeader %><br />
-            <span class="course-title"><%= model.get('name') %></span>
+            <span class="course-title"><%if (!_.isUndefined(model)) {%><%= model.get('name')%><%}%></span>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-link btn-cancel" data-dismiss="modal">Відміна</button>

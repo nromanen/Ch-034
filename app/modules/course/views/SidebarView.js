@@ -22,7 +22,7 @@ define(function(require) {
             });
             this.groupFilter = new this.filterView({
                 collection: new FilterModule.Collection.Groups(),
-                type: "Група",
+                type: "Тип групи",
                 params: groupParams
             });
 
