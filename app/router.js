@@ -29,6 +29,7 @@ define(function(require) {
 
         routes: {
             "": "index",
+            "login": "login",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
@@ -37,6 +38,10 @@ define(function(require) {
         },
 
         index: function() {
+            //this.appView.setView(new Login.View());
+        },
+
+        login: function () {
             this.appView.setView(new Login.View());
         },
 

@@ -42,6 +42,25 @@ define( function (require) {
             };
 
             this.model.set(dataObj, {validate: true});
+
+            if ( this.model.isValid() ) {
+                $.ajax({
+                    url: "/login",
+                    type: "POST",
+                    data: dataObj,
+                    statusCode: {
+                        200: function () {
+                            CMS.router.navigate( "courses", { trigger: true } );
+                        },
+                        409: function () {
+                            this.$el.find( ".error-message" )
+                                        .removeClass( "hidden" )
+                                        .text( "ERROR" );
+                        }
+
+                    }
+                })
+            }
         },
 
         errorMessage: function (model, errors) {
