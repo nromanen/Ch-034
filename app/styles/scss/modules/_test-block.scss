@@ -65,7 +65,18 @@ h1 {
     bottom: 0;
     margin: 15px;
     left: 33%
-} 
+}
+
+#next-question {
+    color: #337ab7;
+    border-color: #ddd;
+}
+
+#count-questions {
+    position: absolute;
+    margin-right: 14px;
+    right: 0;
+}
  
 /* checkbox style*/
 .inline {
