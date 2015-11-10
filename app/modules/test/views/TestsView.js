@@ -54,7 +54,7 @@ define(function(require) {
             if(this.userAnswers.get(model.get("num"))){
                 answer = this.userAnswers.get(model.get("num")).get("answerUser");
             }
-            this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
+            this.insertView(".test", new TestView({model: model, answer: answer, typeTest: this.typeTest}).render());
         },
         saveAnswers: function () {
             this.$form = this.$(".tests-form");

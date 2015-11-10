@@ -13,9 +13,9 @@ define(function(require) {
         },
         serialize: function(){
             return {
-                'test'     : this.model,
-                'answer'   : this.answer,
-                'typeTest' : this.typeTest
+                test     : this.model,
+                answer   : this.answer,
+                typeTest : this.typeTest
             };
         }
     });
