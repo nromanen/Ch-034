@@ -17,7 +17,7 @@ define(function(require) {
 
         beforeRender: function() {
             this.modules.fetch();
-            this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image'), courseId: this.courseId}));
+            this.insertView("#_modules", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image'), courseId: this.courseId}));
         },
 
         serialize: function() {

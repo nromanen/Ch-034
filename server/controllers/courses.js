@@ -2,13 +2,10 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    Course = require('../models/course'),
-    Module = require('../models/module');
-
+    Course = require('../models/course');
 
 var pageAble = function(req, res, next) {
     var data = res.locals.data;
-    //console.log(data);
     if (data.length === 0 ) {
         res.status(204);
         return res.json([{success: false}]);
@@ -64,15 +61,12 @@ router.get('/filter', function(req, res, next) {
 
         var chain = Course.find();
         if (areaQ.length !== 0 && groupQ.length !== 0) {
-            console.log("TWO");
             chain.and([{"area.name": {$in: areaQ}}, {"groups.name": {$in: groupQ}}])
         } else
         if (areaQ.length !== 0) {
-            console.log("AREA");
             chain.where("area.name").in(areaQ)
         } else
         if (groupQ.length !== 0) {
-            console.log("GROUP");
             chain.where("groups.name").in(groupQ)
         }
         chain.exec(function(err, courses) {
@@ -89,26 +83,5 @@ router.get('/:id', function(req, res) {
             res.json(course);
         });
 });
-router.get('/:courseId/modules/:moduleId', function(req, res) {
-    Module
-        .findOne({"_course": req.params.courseId, "_id": req.params.moduleId})
-        .populate('_course', '_id')
-        .populate('_resources')
-        .exec(function(error, module) {
-            if (error) throw error
-            res.json(module);
-        })
-});
-router.get('/:id/modules', function(req, res) {
-    console.log("match1");
-    Module
-        .find({'_course': req.params.id})
-        .populate('_course', '_id')
-        .sort({'_id': 1})
-        .exec(function(error, modules) {
-            res.json(modules);
-        });
-});
-
 
 module.exports = router;

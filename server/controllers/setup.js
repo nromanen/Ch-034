@@ -2,6 +2,7 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    User = require('../models/user'),
     Course = require('../models/course'),
     Area = require('../models/area'),
     Group = require('../models/group'),
@@ -10,6 +11,15 @@ var express = require('express'),
     Vacancy = require('../models/vacancy');
 
 router.get('/', function(req, res) {
+
+    var user1 = new User({
+        email: "buispr@gmail.com",
+        fullName: "Sergiy Diak",
+        password: "diak540910",
+        role: 1
+    });
+    
+    user1.save();
 
     var ui = new Area({
         name: "UI"

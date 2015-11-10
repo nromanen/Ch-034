@@ -12,6 +12,7 @@ define(function(require){
             pass       : null,
             repeatPass : null
         },
+        url: CMS.api+"register",
 
         validate: function(attr, options) {
             var errors = [];

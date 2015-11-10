@@ -3,10 +3,12 @@ var mongoose = require('mongoose'),
 
 module.exports = mongoose.model('User', new Schema({
 	email: String,
-    firstName: String,
-    lastName: String,
+    fullName: String,
     password: String,
-    role: Number,
+    role: {
+    	type: Number,
+    	default: 0
+    },
     _courses: {
     	type: Schema.Types.ObjectId,
     	ref: 'Course'

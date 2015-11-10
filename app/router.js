@@ -4,6 +4,7 @@ define(function(require) {
     var CMS = require("CMS"),
 
         CoursesModule = require("modules/course/index"),
+        SidebarModule = require("modules/sidebar/index"),
         ModulesModule = require("modules/module/index"),
         RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
@@ -11,22 +12,26 @@ define(function(require) {
 
     Router = Backbone.Router.extend({
         initialize: function() {
-
             this.appView       = new CMS.CoreView();
+
             this.register      = new RegisterModule.Model();
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
             this.courses       = new CoursesModule.Collection();
             this.userAnswers   = new TestsModule.Collection.Answers();
-            this.appView.insertViews([
+
+            this.renderHomepage();
+        },
+        renderHomepage: function() {
+            this.appView.removeView();
+            this.appView.insertViews({"#CrsMSContainer": [
                 this.headerView,
                 this.containerView,
                 this.footerView
-            ]);
+            ]});
             this.appView.render();
         },
-
         routes: {
             "": "index",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
@@ -39,7 +44,11 @@ define(function(require) {
         index: function() {
             this.appView.setView(new Login.View());
         },
+        showRegisterModule: function() {
+            this.registerView = new RegisterModule.View( {model: this.register} );
+            this.appView.setView("#CrsMSContainer", this.registerView).render();
 
+        },
         showCoursesList: function(currentPage, queryParams) {
             var parsedParams = {};
             if (this.courses.length) {
@@ -47,47 +56,55 @@ define(function(require) {
             }
 
             if (!_.isNull(queryParams)) {
-
                 parsedParams = this.parseQueryString(queryParams);
                 parsedParams.area = !_.isEmpty(parsedParams.area) ? parsedParams.area : [];
                 parsedParams.group = !_.isEmpty(parsedParams.group) ? parsedParams.group : [];
             }
 
-            this.courses.setFilterQueries(parsedParams, queryParams);
+            if (!this.containerView.getView(".sidebar-a")) {
+                this.containerView.setView(".sidebar-a", new SidebarModule.View({filterParams: parsedParams}));
+                this.containerView.getView(".sidebar-a").render();
+            }
 
+            this.courses.setFilterQueries(parsedParams, queryParams);
             this.courses.setCurrentPage(parseInt(currentPage, 10));
 
             this.courses.fetch()
                 .done($.proxy(function() {
-                    this.containerView.setView(".wrapper", new CoursesModule.Views.Courses({
+                    this.containerView.setView(".content", new CoursesModule.Views.Courses({
                         collection: this.courses,
                         filterParams: parsedParams
                     }));
-                    this.containerView.render();
+
+                    this.containerView.getView(".content").render();
                 }, this));
         },
 
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({_id: id});
             this.course.fetch();
-            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course, courseId: id}));
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+            this.containerView.setView(".content", new CoursesModule.Views.CourseDetails({model: this.course, courseId: id}));
         },
 
         showCourseModuleDetails: function(courseId, id) {
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
             this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
+            this.containerView.setView(".content", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
             this.module.fetch();
         },
 
-        showRegisterModule: function() {
-            this.register = new RegisterModule.View( {model: this.register} );
-            this.register.render();
-        },
-
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
             if(modeTest == 'list-mode'){
                 this.testsList = new TestsModule.Collection.List([], {courseId: courseId, moduleId: moduleId});
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
+                this.containerView.setView(".content", new TestsModule.Views.Tests({collection: this.testsList},{mode: 'list', toogleMode: 'page', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsList.fetch();
             }
             else if(modeTest == 'page-mode'){

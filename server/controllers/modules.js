@@ -1,25 +1,28 @@
 var express = require('express'),
-    router = express.Router(),
+    router = express.Router({mergeParams: true}),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     Module = require('../models/module');
 
 router.get('/', function(req, res, next) {
-console.log(req.params.id);
     Module
-        .find({})
-        .skip(req.query._start)
-        .limit(req.query._limit)
-        .exec(function(errr, modules) {
-            res.header("X-Total-Count", modules.length);
-            res.json(modules);
+        .find({'_course': req.params.courseId})
+        .populate('_course', '_id')
+        .sort({'_id': 1})
+        .exec(function(error, modules) {
+            return res.json(modules);
         });
 });
 
-router.get('/:id', function(req, res) {
-    Module.findById(req.params.id, function(err, module) {
-        res.json(module);
-    });
+router.get('/:moduleId', function(req, res) {
+    Module
+        .findOne({"_course": req.params.courseId, "_id": req.params.moduleId})
+        .populate('_course', '_id')
+        .populate('_resources')
+        .exec(function(error, module) {
+            if (error) throw error
+            return res.json(module);
+        })
 });
 
 module.exports = router;

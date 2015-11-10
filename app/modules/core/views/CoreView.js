@@ -5,7 +5,7 @@ define(function(require) {
 
    CoreView = View.extend({
 
-        el: "#CrsMSContainer"
+        el: "body"
 
    });
 
