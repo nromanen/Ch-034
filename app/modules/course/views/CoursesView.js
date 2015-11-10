@@ -12,7 +12,7 @@ define(function(require) {
         events: {
             "keypress #search-input": "searchCoursesOnEnter",
             "click #search-button": "searchCoursesOnClick",
-            "click .remove-search": "removeSearchField"
+            "click .remove-search": "clearSearchInput"
         },
         beforeRender: function() {
             this.renderList();
@@ -40,7 +40,7 @@ define(function(require) {
                 if ($(e.target).val()) {
                     Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
                 } else {
-                    Backbone.history.navigate("#courses", {trigger: true});
+                    this.clearSearchInput();
                 }
             }
         },
@@ -50,10 +50,10 @@ define(function(require) {
             if (searchString) {
                 Backbone.history.navigate("#courses?s='"+searchString+"'", {trigger: true});
             } else {
-                Backbone.history.navigate("#courses", {trigger: true});
+                this.clearSearchInput();
             }
         },
-        removeSearchField: function() {
+        clearSearchInput: function() {
             Backbone.history.navigate("#courses", {trigger: true});
         },
         serialize: function() {
