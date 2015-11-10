@@ -11,7 +11,6 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testsTemplate.html")),
         el: false,
-
         events: {
             "submit"                 : "submitHandler",
             "click .pagination li a" : "saveAnswers",
@@ -94,6 +93,5 @@ define(function(require) {
             this.sendModal.show();
         }
     });
-
     return View;
 });

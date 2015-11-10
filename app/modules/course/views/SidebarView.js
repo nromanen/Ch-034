@@ -17,13 +17,13 @@ define(function(require) {
             this.filterView = FilterModule.Views.Filter;
             this.areaFilter = new this.filterView({
                 collection: new FilterModule.Collection.Areas(),
-                type: "РќР°РїСЂСЏРјРѕРє",
+                type: "Напрямок",
                 params: areaParams
             });
             this.groupFilter = new this.filterView({
                 collection: new FilterModule.Collection.Groups(),
 
-                type: "РўРёРї РіСЂСѓРїРё",
+                type: "Тип групи",
                 params: groupParams
             });
 
@@ -31,17 +31,13 @@ define(function(require) {
 
             this.render();
         },
-
         el: false,
-
         beforeRender: function(collection) {
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
             this.insertView("#vacancies", this.vacanciesView);
 
         }
-
     });
-
     return View;
 });

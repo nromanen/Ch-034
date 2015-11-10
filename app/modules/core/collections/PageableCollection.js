@@ -5,12 +5,12 @@ define(function(require) {
 
     PageableCollection = CoreCollection.extend({
 
-        api: "",
-        resource: "",
-        perPage: 5,
+        api        : "",
+        resourse   : "",
+        perPage    : 5,
         currentPage: 1,
-        hrefPath: "",
-        pageOffset: 0,
+        hrefPath   : "",
+        pageOffset : 0,
 
         getResource: function() {
             return this.resource;
@@ -74,7 +74,6 @@ define(function(require) {
             }
 
             pages = _.range(min, max+1);
-
             return pages;
         },
         info: function() {
