@@ -19,7 +19,7 @@ define(function(require) {
             course.parseDate = this.convertToMonthAndDate;
 
             return {
-                course: course,
+                course: course
             };
         },
         subscribeDialog: function(ev){
