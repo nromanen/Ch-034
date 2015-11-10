@@ -41,13 +41,13 @@ h1 {
     padding-bottom: 10px;
 }
 
-.pagination .answer a, .pagination .answer a:hover {
+.pagination .answer > a, .pagination .answer > a:hover {
     background-color: #D5FCDD;
     color: #06B05C;
     border: 1px solid #95EBAC;
 }
 
-.pagination .active.answer a, .pagination .active.answer a:hover {
+.pagination .active.answer > a, .pagination .active.answer > a:hover {
     background-color: #ADE1B7;
 }
 
@@ -64,7 +64,18 @@ ol {
     bottom: 0;
     margin: 15px;
     left: 33%
-} 
+}
+
+#next-question {
+    color: #337ab7;
+    border-color: #ddd;
+}
+
+#count-questions {
+    position: absolute;
+    margin-right: 14px;
+    right: 0;
+}
  
 /* checkbox style*/
 .inline {

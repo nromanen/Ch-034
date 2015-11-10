@@ -4,6 +4,7 @@ define(function(require) {
     var CMS = require("CMS"),
 
     View = CMS.PaginationView.extend({
+        template: _.template(require("text!../templates/paginationTemplate.html")),
         el: false,
         initialize: function(collection, options) {
             this.answers = options.answers;
