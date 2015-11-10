@@ -18,7 +18,7 @@ var pageAble = function(req, res, next) {
         .limit(req.query._limit)
         .exec(function(err, courses) {
             if (err) throw err;
-            console.log(courses);
+            
             return res.json(courses);
         })
 }
@@ -28,10 +28,12 @@ router.get('/', function(req, res, next) {
         res.locals.data = courses;
         next();
     });
+    
+
 }, pageAble );
 
 router.get('/filter', function(req, res, next) {
-    console.log("/filter");
+    
     if (req.query.s) {
         var searchString = req.query.s.split(' '),
             regexString = "",
@@ -55,7 +57,7 @@ router.get('/filter', function(req, res, next) {
             
     }
     if (req.query.area || req.query.group) {
-        console.log("area group");
+        
         var areaQ = [].concat(req.query.area ? req.query.area : []), 
             groupQ = [].concat(req.query.group ? req.query.group : []);
 

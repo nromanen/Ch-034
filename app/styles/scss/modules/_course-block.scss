@@ -1,6 +1,18 @@
 
 .row {
-
+    .content {
+        .remove-search {
+            position: absolute;
+            top: 25%;
+            right: 5px;
+            z-index: 50;
+            cursor: pointer;
+            
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
     .course {
         background-color: $courseBgColor;
         background-clip: content-box;
@@ -120,8 +132,6 @@
 
     }
 }
-
-
 
 .banner-hot {
     display: table;
