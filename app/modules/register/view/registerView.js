@@ -48,16 +48,16 @@ define(function(require) {
         },
 
         afterRender: function() {
-            this.$el.find(".error-message").addClass("hidden");
+            this.$el.find('.error-message').addClass('hidden');
         },
 
         showErrors: function(model, errors) {
+            this.$el.find('.warning').addClass('hidden');
             this.$el.find('.error-message').removeClass('hidden');
-            this.$el.find(".center-block").addClass("hidden");
         },
 
         hideErrors: function() {
-            this.$el.find(".center-block").removeClass("hidden");
+            this.$el.find('.warning').removeClass('hidden');
             this.$el.find('.error-message').addClass('hidden');
         },
 
