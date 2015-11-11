@@ -1,12 +1,10 @@
 define(function(require) {
-   "use strict";
+    "use strict";
 
-   var View = require("../view"),
-
-   FooterView = View.extend({
+    var View = require("../view"),
+    FooterView = View.extend({
         template: _.template(require("text!../templates/footerTemplate.html")),
         el: false
-   });
-
-   return FooterView;
+    });
+    return FooterView;
 });

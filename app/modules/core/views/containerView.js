@@ -1,12 +1,11 @@
 define(function(require) {
-   "use strict";
+    "use strict";
 
-   var View = require("../view"),
+    var View = require("../view"),
 
-   MainContainerView = View.extend({
+    MainContainerView = View.extend({
         template: _.template(require("text!../templates/mainContainerTemplate.html")),
         el: false
-   });
-
-   return MainContainerView;
+    });
+    return MainContainerView;
 });

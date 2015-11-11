@@ -3,8 +3,6 @@ define(function(require) {
 
     var Backbone = require("backbone"),
         _ = require("lodash"),
-
     Event = _.extend({}, Backbone.Events);
-
     return Event;
 });

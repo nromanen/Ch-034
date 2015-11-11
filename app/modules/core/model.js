@@ -3,9 +3,6 @@ define(function(require) {
 
     var Backbone = require("backbone"),
 
-    Model = Backbone.Model.extend({
-
-    });
-
+    Model = Backbone.Model.extend({});
     return Model;
 });

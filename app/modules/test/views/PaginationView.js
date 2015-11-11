@@ -6,7 +6,6 @@ define(function(require) {
     View = CMS.PaginationView.extend({
         template: _.template(require("text!../templates/paginationTemplate.html")),
         el: false,
-
         initialize: function(collection, options) {
             this.answers = options.answers;
             this.pageSet = this.collection.info().pageSet;
@@ -25,6 +24,5 @@ define(function(require) {
             }, this);
         }
     });
-
     return View;
 });

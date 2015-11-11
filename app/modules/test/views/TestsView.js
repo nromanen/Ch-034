@@ -11,7 +11,6 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testsTemplate.html")),
         el: false,
-
         events: {
             "change .form-control"     : "saveAnswers",
             "change .form-checkbox"    : "saveAnswers",
@@ -137,6 +136,5 @@ define(function(require) {
             this.$el.find("#test-submit").html(btnTemplate);
         }
     });
-
     return View;
 });

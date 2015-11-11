@@ -9,12 +9,10 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
         el: false,
-
         events: {
             "keypress #search-input": "searchCoursesOnEnter",
             "click #search-button": "searchCoursesOnClick"
         },
-
         beforeRender: function() {
             this.renderList();
             this.insertView(".sidebar-a", new SidebarView({filterParams: this.filterParams}));
