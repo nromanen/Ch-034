@@ -30,7 +30,7 @@ define(function(require){
             }
             return errors.length > 0 ? errors : false;
         },
-        nameRegex: /^[A-ZÀ-ßª²¯]'?[a-zà-ÿº³¿']*[a-zà-ÿº³¿]*\-[A-ZÀ-ßª²¯][a-zà-ÿº³¿']+$|^[A-ZÀ-ßª²¯][a-zà-ÿº³¿']+$/,
+        nameRegex: /^[A-ZÃ€-ÃŸÂªÂ²Â¯]'?[a-zÃ -Ã¿ÂºÂ³Â¿']*[a-zÃ -Ã¿ÂºÂ³Â¿]*\-[A-ZÃ€-ÃŸÂªÂ²Â¯][a-zÃ -Ã¿ÂºÂ³Â¿']+$|^[A-ZÃ€-ÃŸÂªÂ²Â¯][a-zÃ -Ã¿ÂºÂ³Â¿']+$/,
 
         isName: function(name) {
             return name.length > 1 && this.nameRegex.test(name);
