@@ -3,17 +3,15 @@ define(function(require) {
 
     var Backbone = require("backbone"),
         Layout = require("backbone.layoutmanager"),
+        moment = require("moment"),
+        uklocale = require("uk-locale"),
 
     CoreLayout = Backbone.Layout.extend({
         manage: true,
 
         convertToMonthAndDate: function (jsonDate) {
-            var date = new Date(jsonDate),
-                options = {
-                day: 'numeric',
-                month: 'long'
-            };
-            return date.toLocaleString("ua", options);
+                var date = moment(jsonDate).locale('uklocale').format('DD MMMM');
+                return date;
         }
     });
     return CoreLayout;
