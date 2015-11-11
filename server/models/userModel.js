@@ -20,16 +20,4 @@
         }
     });
 
-    userSchema.methods.hashedPassword = function ( password ) {
-        return crypto.createHmac( "md5", "SALT" ).update( password ).digest( "hex" );
-    }
-
-    userSchema.methods.checkPassword = function ( password ) {
-        return this.hashedPassword( password ) === this.password;
-    }
-
-    userSchema.virtual( "password" ).set( function ( password ) {
-        this.password = this.hashedPassword( password );
-    });
-
 module.exports = mongoose.model( "User", userSchema );

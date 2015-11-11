@@ -3,6 +3,8 @@ define( function (require) {
 
     var CMS = require("CMS"),
 
+    crypto = require("crypto"),
+
     Model = require("modules/login/model/loginModel"),
 
     View = CMS.View.extend({
@@ -36,9 +38,14 @@ define( function (require) {
             this.$el.find(".input-group").removeClass("error");
             this.$el.find(".error-message").addClass("hidden");
 
+            var email = this.$el.find("#email").val(),
+                password = crypto.createHmac( "md5", "SALT" )
+                                    .update( this.$el.find("#password").val() )
+                                    .digest( "hex" );
+
             var dataObj = {
-                email : this.$el.find("#email").val(),
-                password: this.$el.find("#password").val()
+                email : email,
+                password: password
             };
 
             this.model.set(dataObj, {validate: true});

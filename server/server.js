@@ -25,8 +25,8 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 app.use(require('./middlewares/cors'));
 
-app.use('/api', require('./controllers/login'));
-//app.use(require('./middlewares/auth'));
+app.use('/api', require('./controllers'));
+app.use(require('./middlewares/auth'));
 
 app.listen(port);
 docs(app, mongoose);

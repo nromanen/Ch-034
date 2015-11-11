@@ -2,28 +2,42 @@ var express = require( "express" ),
     router = express.Router(),
     bodyParser = require( "body-parser" ),
     mongoose = require( "mongoose" ),
+    crypto = require( "crypto" ),
     User = require( "../models/userModel" );
 
 router.post( "/login", function ( req, res, next ) {
 
-    var email = req.body.email,
+    var name = req.body.name,
         password = req.body.password;
 
-    User.findOne( { email: email }, function ( err, user ) {
+    User.findOne( { name: name }, function ( err, user ) {
+
         if ( err ) {
+
             return next( err );
         }
-        
+
         if ( user ) {
-            if ( user.checkPassword( password ) ) {
-                res.status( 200 );
-                Backbone.router.navigate( "/courses" );
+
+            if ( user.password != password ) {
+
+                res.json( { success: false, message: "Authentication failed. Wrong password." } );
+                
             } else {
-                res.status( 409 );
-            }
-        } else {
-            res.status( 409 );
+
+                var token = jwt.sign(user, app.get('superSecret'), {
+                    expiresInMinutes: 1440 // expires in 24 hours
+                });
+
+                res.json({
+                    success: true,
+                    message: 'Enjoy your token!',
+                    token: token
+                });
+            }       
+
         }
+
     });
 });
 
