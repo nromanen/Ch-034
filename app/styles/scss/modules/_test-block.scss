@@ -20,18 +20,18 @@
 }
 
 #test-mode-not-list {
-  background: url(../img/test_mode.png) left 0px no-repeat;
+    background: url(../img/test_mode.png) left 0px no-repeat;
 }
 
 #test-mode-not-page {
-  background: url(../img/test_mode.png) left -15px no-repeat;
+     background: url(../img/test_mode.png) left -15px no-repeat;
 }
 
 #test-mode-not-list, #test-mode-not-page {
     display: block;
     width: 10px;
     height: 11px;
-    margin: 6px 10px;    
+    margin: 6px 10px;
 }
 
 h1 {
@@ -41,13 +41,13 @@ h1 {
     padding-bottom: 10px;
 }
 
-.pagination .answer a, .pagination .answer a:hover {
+.pagination .answer > a, .pagination .answer > a:hover {
     background-color: #D5FCDD;
     color: #06B05C;
     border: 1px solid #95EBAC;
 }
 
-.pagination .active.answer a, .pagination .active.answer a:hover {
+.pagination .active.answer > a, .pagination .active.answer > a:hover {
     background-color: #ADE1B7;
 }
 
@@ -65,7 +65,20 @@ h1 {
     bottom: 0;
     margin: 15px;
     left: 33%
-} 
+}
+
+#next-question {
+    color: #337ab7;
+    border-color: #ddd;
+    width: 182px;
+}
+
+#count-questions {
+    position: absolute;
+    margin-right: 14px;
+    text-align: left;
+    right: 0;
+}
  
 /* checkbox style*/
 .inline {
@@ -88,7 +101,7 @@ input[type="checkbox"] + label {
     display: inline-block;
     margin-left: -20px;
     padding: 0 0 0 30px;
-	background: url(../img/checkboxes.png) no-repeat 0 -23px;
+    background: url(../img/checkboxes.png) no-repeat 0 -23px;
     font-weight: normal;
 }
 

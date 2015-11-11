@@ -4,15 +4,15 @@
     margin-left: 0;
 
     #registerForm {
-        max-width:300px;
-        margin: 0 auto;
+      max-width:300px;
+      margin: 0 auto;
     }
 
     .input-group {
         width:310px;
         margin-bottom: 20px;
         height: 40px;
-    }
+  }
 
     .form-control {
         height:40px;
@@ -28,7 +28,6 @@
 
 .error {
     border: 1px solid red;
-    
 }
 
 .warning {
@@ -43,7 +42,7 @@
     width: 140px;
     background-color: #00C1DE;
     margin-top: 35px;
-}   
+}
 
 .error-message {
     padding: 10px 0;

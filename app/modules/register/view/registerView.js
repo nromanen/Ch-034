@@ -8,6 +8,7 @@ define(function(require) {
 
             $group.removeClass('has-error');
             $group.find('.help-block').html('').addClass('hidden');
+            $el.popover('destroy');
         },
         invalid: function (view, attr, error, selector) {
             var $el = view.$('[name=' + attr + ']'),
@@ -15,6 +16,7 @@ define(function(require) {
 
             $group.addClass('has-error');
             $group.find('.help-block').html(error).removeClass('hidden');
+            $el.popover({title: "Помилка!", content: error, trigger: "focus"});
         }
     });
 
@@ -35,9 +37,9 @@ define(function(require) {
             this.model = new Model();
             Backbone.Validation.bind(this);
 
-            this.listenTo(this.model, "invalid", function (model, error) {
+            /*this.listenTo(this.model, "invalid", function (model, error) {
                 this.showErrors(model, error);
-            });
+            });*/
 
         },
 
@@ -50,16 +52,13 @@ define(function(require) {
         },
 
         showErrors: function(model, errors) {
-            _.each(errors, function (error) {
-                this.$el.find('.' + error.name).addClass('error');
-                this.$el.find(".error-message").removeClass("hidden").text(error.mes);
-            }, this);
-            this.$el.find(".warning").addClass("hidden");
+            this.$el.find('.error-message').removeClass('hidden');
+            this.$el.find(".center-block").addClass("hidden");
         },
 
         hideErrors: function() {
+            this.$el.find(".center-block").removeClass("hidden");
             this.$el.find('.error-message').addClass('hidden');
-            this.$el.find(".input-group").removeClass("error");
         },
 
         remove: function() {
@@ -77,13 +76,16 @@ define(function(require) {
                 pass: this.$el.find('#pass').val(),
                 repeatPass: this.$el.find('#repeatPass').val()
             };
-            this.hideErrors();
+            //this.hideErrors();
             this.model.set(feedback);
+            //console.log(this.model.isValid(true));
             if(this.model.isValid(true)) {
+                this.hideErrors();
                 CMS.router.navigate("courses", {trigger: true});
+            } else {
+                this.showErrors();
             }
         }
     });
-
     return View;
 });

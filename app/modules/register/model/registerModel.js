@@ -4,7 +4,6 @@ define(function(require){
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
-
         defaults: {
             name       : null,
             surname    : null,
@@ -33,7 +32,6 @@ define(function(require){
             },
             pass: {
                 required: true,
-                minLength: 8,
                 pattern: /^(?=.*[a-zа-яєії])(?=.*[A-ZА-ЯЄІЇ])(?=.*[0-9])(?=.{8,})/,
                 msg: 'Введіть, будь ласка, коректний пароль'
             },
@@ -45,27 +43,23 @@ define(function(require){
         }
 
         /*validate: function(attr, options) {
-            var errors = [];
 
+            var errors = [];
             if (!(this.isName(attr.name))) {
                 errors.push({name: "name", mes: "Wrong NAME!!!"});
             }
-
             if (!(this.isSurname(attr.surname))) {
                 errors.push({name: "surname", mes: "Wrong surname"});
             }
             if (!(this.isEmail(attr.email))) {
                 errors.push("email");
             }
-
             if (!(this.isPass(attr.pass))) {
                 errors.push("pass");
             }
-
             if (!(this.isPassEqual(attr.pass, attr.repeatPass))) {
                 errors.push("repeatPass");
             }
-
             return errors.length > 0 ? errors : false;
         },
 
@@ -83,7 +77,6 @@ define(function(require){
             var emailRegex = /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/;
             return emailRegex.test(email);
         },
-
         isPass: function(pass) {
             var passRegex = /^(?=.*[a-zа-яєії])(?=.*[A-ZА-ЯЄІЇ])(?=.*[0-9])(?=.{8,})/;
             return passRegex.test(pass);
@@ -93,6 +86,5 @@ define(function(require){
             return pass === repeatPass;
         }*/
     });
-
     return Model;
 });

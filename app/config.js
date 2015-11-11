@@ -10,7 +10,8 @@ require.config({
         'CMS'                     : './app',
         'backbone.layoutmanager'  : '../vendor/bower/layoutmanager/backbone.layoutmanager',
         'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
-        'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min'
+        'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min',
+        "moment"                  : "../vendor/bower/moment/moment"
     },
 
     map: {
@@ -35,6 +36,12 @@ require.config({
         }
     },
 
-    deps: ['main']
+    deps: ['main'],
+
+    config: {
+        moment: {
+            noGlobal: true
+        }
+    }
 
 });

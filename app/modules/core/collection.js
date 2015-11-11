@@ -6,6 +6,5 @@ define(function(require) {
     Collection = Backbone.Collection.extend({
 
     });
-
     return Collection;
 });

@@ -11,7 +11,7 @@ define(function(require, exports, module) {
             this.fetch();
         },
         url: function() {
-            return this.api+"vacancies?_limit=5&_order=DESC";
+            return this.api+"vacancies?_limit=5&_sort=id&_order=DESC";
         }
 
     });
