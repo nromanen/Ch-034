@@ -17,19 +17,19 @@ define(function(require) {
             this.filterView = FilterModule.Views.Filter;
             this.areaFilter = new this.filterView({
                 collection: new FilterModule.Collection.Areas(),
-                type: "Напрямок",
+                type: "РќР°РїСЂСЏРјРѕРє",
                 params: areaParams
             });
             this.groupFilter = new this.filterView({
                 collection: new FilterModule.Collection.Groups(),
 
-                type: "Тип групи",
+                type: "РўРёРї РіСЂСѓРїРё",
                 params: groupParams
             });
+            
+            this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
 
-            this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: new VacanciesModule.Collection()});
-
-            this.render();
+     //       this.render();
         },
         el: false,
         beforeRender: function(collection) {
