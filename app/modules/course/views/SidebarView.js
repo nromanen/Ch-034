@@ -26,7 +26,7 @@ define(function(require) {
                 type: "Тип групи",
                 params: groupParams
             });
-            
+
             this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
 
      //       this.render();

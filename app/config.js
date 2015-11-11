@@ -10,7 +10,8 @@ require.config({
         'CMS'                     : './app',
         'backbone.layoutmanager'  : '../vendor/bower/layoutmanager/backbone.layoutmanager',
         'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
-        "moment"                  : "../vendor/bower/moment/moment"
+        "moment"                  : "../vendor/bower/moment/moment",
+        "uk-locale"               : "../vendor/bower/moment/locale/uk"
     },
 
     map: {
