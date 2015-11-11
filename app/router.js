@@ -12,8 +12,12 @@ define(function(require) {
 
     Router = Backbone.Router.extend({
         initialize: function() {
-            this.appView       = new CMS.CoreView();
+            //in progress, commented due demonstration
+            //this.userSession = CMS.SessionModel;
+            //this.userSession.login({email: "buispr@gmail.com", pass: "diak540910"});
+            //this.on("route", this.isAuthenticated);
 
+            this.appView       = new CMS.CoreView();
             this.register      = new RegisterModule.Model();
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
@@ -32,19 +36,39 @@ define(function(require) {
             ]});
             this.appView.render();
         },
+        //in progress, commented due demonstration
+        /*isAuthenticated: function() {
+            var path = Backbone.history.location.hash;
+
+            //this.userSession.get('userSession')
+            if (true) {
+
+                if (_.contains(CMS.excludedPages, path)) {
+                    console.log(path);
+                    Backbone.history.navigate(path, {
+                        trigger: true
+                    })
+                } else {
+                    Backbone.history.navigate("#register", {
+                        trigger: true
+                    });
+                }
+            }
+        },*/
         routes: {
-            "": "index",
+            "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
+            "login": "showLoginPage",
+            "register" : "showRegisterPage",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
-            "register" : "showRegisterModule",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
 
-        index: function() {
+        showLoginPage: function() {
             this.appView.setView(new Login.View());
         },
-        showRegisterModule: function() {
+        showRegisterPage: function() {
             this.registerView = new RegisterModule.View( {model: this.register} );
             this.appView.setView("#CrsMSContainer", this.registerView).render();
 

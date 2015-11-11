@@ -12,7 +12,6 @@ define(function(require) {
         initialize: function() {
             this.subscribeModal = new CMS.ModalView({model: this.model});
         },
-
         serialize: function() {
             var course = this.model;
             course.attributes.id = this.model.id;
@@ -27,6 +26,5 @@ define(function(require) {
             this.subscribeModal.show();
         }
     });
-
     return View;
 });

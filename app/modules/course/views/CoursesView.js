@@ -8,7 +8,6 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
         el: false,
-
         events: {
             "keypress #search-input": "searchCoursesOnEnter",
             "click #search-button": "searchCoursesOnClick",

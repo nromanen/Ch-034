@@ -2,6 +2,7 @@ define(function(require) {
     "use strict";
 
     return {
+        SessionModel: require("./models/SessionModel"),
         Collection: require("./collection"),
         View: require("./view"),
         Model: require("./model"),
@@ -17,9 +18,7 @@ define(function(require) {
             Footer: require("./views/FooterView")
         },
 
-
         PageableCollection: require("./collections/PageableCollection"),
         PaginationView: require("./views/PaginationView")
     };
-
 });

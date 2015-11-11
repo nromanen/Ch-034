@@ -11,7 +11,6 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testsTemplate.html")),
         el: false,
-
         events: {
             "submit"                 : "submitHandler",
             "click .pagination li a" : "saveAnswers",
@@ -54,7 +53,7 @@ define(function(require) {
             if(this.userAnswers.get(model.get("num"))){
                 answer = this.userAnswers.get(model.get("num")).get("answerUser");
             }
-            this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
+            this.insertView(".test", new TestView({model: model, answer: answer, typeTest: this.typeTest}).render());
         },
         saveAnswers: function () {
             this.$form = this.$(".tests-form");
@@ -94,6 +93,5 @@ define(function(require) {
             this.sendModal.show();
         }
     });
-
     return View;
 });

@@ -11,7 +11,6 @@ define(function(require, extend, module) {
             description: null,
             resources: {}
         },
-
         initialize: function(attributes, options) {
 
             this.courseId = options.courseId;
@@ -23,7 +22,6 @@ define(function(require, extend, module) {
             return CMS.api + "courses/"+this.courseId+"/modules/";
         }
     });
-
     return Model;
 });
 

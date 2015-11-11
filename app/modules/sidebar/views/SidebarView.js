@@ -34,8 +34,6 @@ define(function(require) {
             this.insertView("#filter", this.groupFilter);
             this.insertView("#vacancies", this.vacanciesView);
         }
-
     });
-
     return View;
 });

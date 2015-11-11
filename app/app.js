@@ -8,17 +8,19 @@ define(function(require) {
         Layout = require("backbone.layoutmanager");
         require("bootstrap");
 
-    CMS.root = "/";
-    CMS.api = "http://localhost:8888/api/";
-    CMS.perPage = 3;
-    CMS.paginationSize = 5;
-    CMS.typeTest = {
-       list   : 0,
-       answer : 1,
-       few    : 2
-    };
-    CMS.embeddable = ['avi', 'mp4', 'video'];
-    CMS.downloadable = ['zip', 'pdf', 'rar', 'doc', 'docx'];
-
+    _.extend(CMS, {
+        root: "/",
+        excludedPages: ["#login", "#register"],
+        api: "http://localhost:8888/api/",
+        perPage: 3,
+        paginationSize: 5,
+        typeTest: {
+           list   : 0,
+           answer : 1,
+           few    : 2
+        },
+        embeddable: ['avi', 'mp4', 'video'],
+        downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx']
+    });
     return CMS;
 });

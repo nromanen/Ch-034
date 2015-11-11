@@ -9,9 +9,8 @@ define(function(require) {
         currentPage    : 1,
         api            : CMS.api,
         perPage        : 1,
-        paginationSize : 12,
+        paginationSize : 7,
         resource       : "questions",
-
         url: function() {
             return this.getApiUrl() + "&courseId=" + this.courseId + "&moduleId=" + this.moduleId;
         },
@@ -19,8 +18,6 @@ define(function(require) {
             this.courseId = options.courseId;
             this.moduleId = options.moduleId;
         }
-
     });
-
     return Collection;
 });
