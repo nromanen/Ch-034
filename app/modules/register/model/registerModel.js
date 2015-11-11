@@ -30,6 +30,7 @@ define(function(require){
             }
             return errors.length > 0 ? errors : false;
         },
+
         nameRegex: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
 
         isName: function(name) {

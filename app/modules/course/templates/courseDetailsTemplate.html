@@ -17,12 +17,12 @@
                         <li class="col-lg-6">
                           <table>
                             <tr><td>Початок</td><td class="colon-padding">:</td><td><%= parseDate(course.get('startDate')) %><td></tr>
-                            <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= parseDate(course.get('endDate')) %></td></tr>
+                            <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= parseDate(course.endDate) %></td></tr>
                           </table>
                         </li>
                         <li class="col-lg-6">
                           <table>
-                            <tr><td>Тривалість</td><td class="colon-padding">:</td><td><%= course.get('duration') %> год.</td></tr>
+                            <tr><td>Тривалість</td><td class="colon-padding">:</td><td><%= course.get('duration') %> тиж.</td></tr>
                             <tr><td>Розклад</td><td class="colon-padding">:</td><td><%= course.get('schedule') %></td></tr>
                           </table>
                         </li>
