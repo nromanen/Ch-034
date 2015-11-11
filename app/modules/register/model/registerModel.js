@@ -17,23 +17,30 @@ define(function(require){
             name: {
                 required: true,
                 minLength: 2,
-                msg: 'Enter your name'
+                pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
+                msg: 'Введіть, будь ласка, коректне ім’я'
             },
             surname: {
                 required: true,
                 minLength: 2,
-                msg: 'Enter your surname'
+                pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
+                msg: 'Введіть, будь ласка, коректне прізвище'
             },
             email: {
                 required: true,
-                pattern: 'email'
+                pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
+                msg: 'Введіть, будь ласка, коректну адресу скриньки'
             },
             pass: {
-                minLength: 8
+                required: true,
+                minLength: 8,
+                pattern: /^(?=.*[a-zа-яєії])(?=.*[A-ZА-ЯЄІЇ])(?=.*[0-9])(?=.{8,})/,
+                msg: 'Введіть, будь ласка, коректний пароль'
             },
             repeatPass: {
+                required: true,
                 equalTo: 'pass',
-                msg: 'The passwords does not match'
+                msg: 'Введені паролі не співпадають'
             }
         }
 

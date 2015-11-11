@@ -1,22 +1,22 @@
 define(function(require) {
     "use strict";
 
-_.extend(Backbone.Validation.callbacks, {
-    valid: function (view, attr, selector) {
-        var $el = view.$('[name=' + attr + ']'),
-            $group = $el.closest('.form-group');
+    _.extend(Backbone.Validation.callbacks, {
+        valid: function (view, attr, selector) {
+            var $el = view.$('[name=' + attr + ']'),
+                $group = $el.closest('.form-group');
 
-        $group.removeClass('has-error');
-        $group.find('.help-block').html('').addClass('hidden');
-    },
-    invalid: function (view, attr, error, selector) {
-        var $el = view.$('[name=' + attr + ']'),
-            $group = $el.closest('.form-group');
+            $group.removeClass('has-error');
+            $group.find('.help-block').html('').addClass('hidden');
+        },
+        invalid: function (view, attr, error, selector) {
+            var $el = view.$('[name=' + attr + ']'),
+                $group = $el.closest('.form-group');
 
-        $group.addClass('has-error');
-        $group.find('.help-block').html(error).removeClass('hidden');
-    }
-});
+            $group.addClass('has-error');
+            $group.find('.help-block').html(error).removeClass('hidden');
+        }
+    });
 
     var CMS = require("CMS"),
 
@@ -32,11 +32,8 @@ _.extend(Backbone.Validation.callbacks, {
         },
 
         initialize: function() {
-
             this.model = new Model();
-
-Backbone.Validation.bind(this);
-
+            Backbone.Validation.bind(this);
 
             this.listenTo(this.model, "invalid", function (model, error) {
                 this.showErrors(model, error);
@@ -50,8 +47,6 @@ Backbone.Validation.bind(this);
 
         afterRender: function() {
             this.$el.find(".error-message").addClass("hidden");
-
-
         },
 
         showErrors: function(model, errors) {
@@ -69,7 +64,6 @@ Backbone.Validation.bind(this);
 
         remove: function() {
             // Remove the validation binding
-            // See: http://thedersen.com/projects/backbone-validation/#using-form-model-validation/unbinding
             Backbone.Validation.unbind(this);
             return Backbone.View.prototype.remove.apply(this, arguments);
         },
