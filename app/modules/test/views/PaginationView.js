@@ -12,7 +12,8 @@ define(function(require) {
         },
         serialize: function(){
             return {
-                info: this.collection.info()
+                info         : this.collection.info(),
+                countAnswers : this.answers.length
             };
         },
         afterRender: function(){

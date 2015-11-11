@@ -136,7 +136,7 @@ define(function(require) {
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
                 this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' + modeTest + '/';
-                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
+                this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, page: currentQuestion, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsPage.fetch();
             }
         },

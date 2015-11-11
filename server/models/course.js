@@ -24,12 +24,9 @@ var CourseSchema = new Schema({
         default: '',
         trim: true
     },
-    startAt: {
+    startDate: {
         type: Date,
         default: Date.now
-    },
-    endAt: {
-        type: Date,
     },
     duration: {
         type: Number,

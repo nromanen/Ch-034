@@ -1,5 +1,8 @@
 <ul class="pagination">
-  <div id="count-questions">Питання <%=info.currentPage %> з <%= info.totalPages %></div>
+  <div id="count-questions">
+    Питання <%=info.currentPage %> з <%= info.totalPages %><br/>
+    Відповідей <%= countAnswers %>
+  </div>
 
   <% if (info.currentPage != 1) { %>
   <li>

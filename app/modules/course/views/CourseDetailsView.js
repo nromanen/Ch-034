@@ -8,6 +8,7 @@ define(function(require) {
         el: false,
         initialize: function(options) {
             this.courseId = options.courseId;
+            this.model.get("endDate");
             this.modules = new ModulesModule.Collection([],{courseId: this.model.id});
             this.listenTo(this.model, "reset sync request", this.render);
         },

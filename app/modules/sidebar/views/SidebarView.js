@@ -27,7 +27,7 @@ define(function(require) {
                 params: groupParams
             });
 
-            this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: new VacanciesModule.Collection()});
+            this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
         },
         beforeRender: function(collection) {
             this.insertView("#filter", this.areaFilter);
