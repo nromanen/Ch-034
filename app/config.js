@@ -11,7 +11,8 @@ require.config({
         'backbone.layoutmanager'  : '../vendor/bower/layoutmanager/backbone.layoutmanager',
         'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
         'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min',
-        "moment"                  : "../vendor/bower/moment/moment"
+        "moment"                  : "../vendor/bower/moment/moment",
+        "uk-locale"               : "../vendor/bower/moment/locale/uk"
     },
 
     map: {

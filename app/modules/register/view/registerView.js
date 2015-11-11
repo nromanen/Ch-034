@@ -36,11 +36,6 @@ define(function(require) {
         initialize: function() {
             this.model = new Model();
             Backbone.Validation.bind(this);
-
-            /*this.listenTo(this.model, "invalid", function (model, error) {
-                this.showErrors(model, error);
-            });*/
-
         },
 
         serialize: function() {
@@ -61,12 +56,6 @@ define(function(require) {
             this.$el.find('.error-message').addClass('hidden');
         },
 
-        remove: function() {
-            // Remove the validation binding
-            Backbone.Validation.unbind(this);
-            return Backbone.View.prototype.remove.apply(this, arguments);
-        },
-
         submitClicked: function(e) {
             e.preventDefault();
             var feedback = {
@@ -76,9 +65,8 @@ define(function(require) {
                 pass: this.$el.find('#pass').val(),
                 repeatPass: this.$el.find('#repeatPass').val()
             };
-            //this.hideErrors();
             this.model.set(feedback);
-            //console.log(this.model.isValid(true));
+
             if(this.model.isValid(true)) {
                 this.hideErrors();
                 CMS.router.navigate("courses", {trigger: true});
