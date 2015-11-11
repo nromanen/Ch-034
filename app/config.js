@@ -9,7 +9,8 @@ require.config({
         'text'                    : '../vendor/bower/requirejs-text/text',
         'CMS'                     : './app',
         'backbone.layoutmanager'  : '../vendor/bower/layoutmanager/backbone.layoutmanager',
-        'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min'
+        'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
+        "moment"                  : "../vendor/bower/moment/moment"
     },
 
     map: {
@@ -30,6 +31,12 @@ require.config({
         }
     },
 
-    deps: ['main']
+    deps: ['main'],
+
+    config: {
+        moment: {
+            noGlobal: true
+        }
+    }
 
 });

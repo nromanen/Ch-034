@@ -10,6 +10,7 @@ define(function(require) {
             'click .btn': "subscribe"
         },
         initialize: function() {
+            this.model.get("endDate");
             this.subscribeModal = new CMS.ModalView({model: this.model});
         },
         serialize: function() {
