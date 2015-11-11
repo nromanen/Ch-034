@@ -6,15 +6,15 @@ define(function(require) {
     var CMS = require("CMS"),
         TestView = require("./TestView"),
         PaginationView = require("./PaginationView"),
+        TestModel = require("modules/test/models/TestModel"),
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/testsTemplate.html")),
         el: false,
-
         events: {
             "submit"                 : "submitHandler",
-            "click .pagination li a" : "submitHandler",
-            "click #test-mode"       : "submitHandler"
+            "click .pagination li a" : "saveAnswers",
+            "click #test-mode"       : "saveAnswers"
         },
         initialize: function(collection, options) {
             this.mode        = options.mode;
@@ -24,16 +24,20 @@ define(function(require) {
             this.typeTest    = options.typeTest;
             this.userAnswers = options.storage;
             this.userAnswers.fetch();
+            this.test = new TestModel({id: this.moduleId});
+            this.test.fetch();
+            this.sendModal = new CMS.ModalView({
+                modalHeader  : "Ви впевнені, що завершили проходження тестування та готові відправити дані на перевірку?",
+                submitButton : "Так, відправити на перевірку"
+            });
             this.listenTo(this.collection, "reset sync request", this.render);
         },
         serialize: function(){
             return {
-                "mode"       : this.mode,
-                "toogleMode" : this.toogleMode,
-                "test"       : this.model,
-                "courseId"   : this.courseId,
-                "moduleId"   : this.moduleId,
-                "typeTest"   : this.typeTest
+                mode       : this.mode,
+                toogleMode : this.toogleMode,
+                test       : this.test,
+                typeTest   : this.typeTest
             };
         },
         beforeRender: function(){
@@ -49,10 +53,9 @@ define(function(require) {
             if(this.userAnswers.get(model.get("num"))){
                 answer = this.userAnswers.get(model.get("num")).get("answerUser");
             }
-            this.insertView(".test", new TestView({model: model}, {answer: answer, typeTest: this.typeTest}).render());
+            this.insertView(".test", new TestView({model: model, answer: answer, typeTest: this.typeTest}).render());
         },
-        submitHandler: function (e) {
-            e.preventDefault();
+        saveAnswers: function () {
             this.$form = this.$(".tests-form");
             var answerForm = this.$form.serializeObject();
             _.each(answerForm, function(value, key, list){
@@ -82,8 +85,13 @@ define(function(require) {
                     this.userAnswers.get(num).destroy();
                 }
             }, this);
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+            this.saveAnswers();
+            this.sendModal.render();
+            this.sendModal.show();
         }
     });
-
     return View;
 });

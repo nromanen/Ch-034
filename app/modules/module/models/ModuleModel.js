@@ -8,20 +8,17 @@ define(function(require, extend, module) {
         defaults: {
             id: null,
             courseId: null,
-            title: null,
+            name: null,
             description: null,
             resources: {}
         },
-
         initialize: function(attributes, options) {
             this.courseId = options.courseId;
         },
-
         urlRoot: function() {
             return CMS.api + "courses/"+this.courseId+"/modules";
         }
     });
-
     return Model;
 });
 

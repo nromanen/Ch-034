@@ -9,11 +9,10 @@ define(function(require) {
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
         el: false,
-
         events: {
-            "keypress #search-input": "searchCourse"
+            "keypress #search-input": "searchCoursesOnEnter",
+            "click #search-button": "searchCoursesOnClick"
         },
-
         beforeRender: function() {
             this.renderList();
             this.insertView(".sidebar-a", new SidebarView({filterParams: this.filterParams}));
@@ -29,10 +28,21 @@ define(function(require) {
                 model: model
             }));
         },
-        searchCourse: function(e) {
-            if (e.keyCode === 13) {
+        searchCoursesOnEnter: function(e) {
+            var code = e.keyCode ? e.keyCode : e.charCode;
+            if (code === 13) {
                 Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
             }
+        },
+        searchCoursesOnClick: function(e) {
+            e.preventDefault();
+            var searchString = this.$el.find("#search-input").val();
+            Backbone.history.navigate("#courses?s='"+searchString+"'", {trigger: true});
+        },
+        serialize: function() {
+            return {
+                courseId: this.id,
+            };
         }
     });
     return View;

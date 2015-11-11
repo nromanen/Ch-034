@@ -33,7 +33,7 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/modules/:moduleId/tests/:mode(/:testId)": "showTestModule"
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
 
         index: function() {
@@ -70,12 +70,12 @@ define(function(require) {
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({id: id});
             this.course.fetch();
-            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course}));
+            this.containerView.setView(".wrapper", new CoursesModule.Views.CourseDetails({model: this.course, courseId: id}));
         },
 
         showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module}));
+            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
             this.module.fetch();
         },
 
@@ -94,7 +94,7 @@ define(function(require) {
                 this.testsPage = new TestsModule.Collection.Page([], {courseId: courseId, moduleId: moduleId});
                 this.testsPage.reset();
                 this.testsPage.setCurrentPage(parseInt(currentQuestion));
-                this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' +  modeTest + '/';
+                this.testsPage.hrefPath = '#courses/' + courseId + '/modules/' + moduleId + '/tests/' + modeTest + '/';
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsPage.fetch();
             }

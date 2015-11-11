@@ -1,8 +1,8 @@
-<div id="module-container" class="container-fluid col-lg-8 col-md-offset-2">
-    <a href="#courses/<%= module.get('courseId') %>" class="left-side">&lt; повернутись до курсу</a>
-    <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id')%>/tests/list-mode" class="right-side">пройти тест &gt;</a>
+<div id="module-container" class="container-fluid col-lg-10 col-md-offset-1">
+    <a href="#courses/<%= courseId %>" class="left-side">&lt; повернутись до курсу</a>
+    <a href="#courses/<%= courseId %>/modules/<%= module.get('id')%>/tests/list-mode" class="right-side">пройти тест &gt;</a>
     <div id="module-info">
-        <h3 class="module-title"><%= module.get('title') %></h3>
+        <h3 class="module-title"><%= module.get('name') %></h3>
         <div class="text-justify"><%= module.get('description') %></div>
         <ul class="resource-title"><% _.each(module.get('resources'), function(resource){ %>
                 <% if (embeddable.indexOf(resource.type) !== -1) { %>
@@ -15,6 +15,6 @@
                     <% } %>
                 <% }); %>
         </ul>
-        <div class="text-center"><a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id')%>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
+        <div class="text-center top-margin"><a href="#courses/<%= courseId %>/modules/<%= module.get('id')%>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
     </div>
 </div>
