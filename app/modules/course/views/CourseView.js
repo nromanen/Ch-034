@@ -10,14 +10,12 @@ define(function(require) {
             'click .btn': "subscribeDialog"
         },
         initialize: function() {
-            this.model.get("endDate");
             this.subscribeModal = new CMS.ModalView({model: this.model});
         },
         serialize: function() {
             var course = this.model;
             course.attributes.id = this.model.id;
             course.parseDate = this.convertToMonthAndDate;
-            console.log(course.get("startDate"));
             return {
                 course: course
             };
