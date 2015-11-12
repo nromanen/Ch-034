@@ -1,5 +1,8 @@
 #general-form {
 
+    margin-right: 0;
+    margin-left: 0;
+
     #registerForm {
       max-width:300px;
       margin: 0 auto;
@@ -28,11 +31,12 @@
 }
 
 .warning {
-    width: 420px;
-    padding: 10px 20px;
+    max-width: 420px;
+    padding: 10px 0;
     margin: 20px auto;
     color:#CD9953;
     background: #FEF7E4;
+    text-align: center;
 }
 
 #submit {
@@ -42,9 +46,9 @@
 }
 
 .error-message {
-    width: 420px;
-    padding: 10px 20px;
+    padding: 10px 0;
     margin: 20px auto;
     background-color: #FADFDF;
     color: #D24A4A;
+    text-align: center;
 }

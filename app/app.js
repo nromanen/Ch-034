@@ -5,7 +5,8 @@ define(function(require) {
         $ = require("jquery"),
         Backbone = require("backbone"),
         CMS = require("./modules/core/index"),
-        Layout = require("backbone.layoutmanager");
+        Layout = require("backbone.layoutmanager"),
+        Validation = require("backbone.validation");
         require("bootstrap");
 
     _.extend(CMS, {

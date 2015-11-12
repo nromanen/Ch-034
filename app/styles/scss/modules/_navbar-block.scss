@@ -7,6 +7,35 @@
     margin: auto;
     height:100%;
     z-index:-1;
+	@media screen and (max-width: $break-middle){
+		display: none;
+	}
+}
+.navigation-menu {		
+	.open a.dropdown-toggle {
+		 background-color: #e7e7e7;
+		 &:focus{
+			background-color: #e7e7e7;
+		 }
+	}
+}
+@media screen and (max-width: $break-middle) and (min-width: $break-small){
+	.navigation-menu {
+		float: left;
+		width: 100px;
+	}
+	.personal-menu {
+		margin-left: 100px;
+		text-align: right;
+		
+		li {
+			text-align: right;
+			
+			a{
+				display: inline-block;
+			}
+		}
+	}
 }
 .navbar-centered>.navbar-brand {
     float: none;
