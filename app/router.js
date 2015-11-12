@@ -8,6 +8,7 @@ define(function(require) {
         RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
+        NavigationModule = require("modules/navigation/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -67,6 +68,14 @@ define(function(require) {
                 }, this));
         },
 
+/*        showNavMenu: function(userType){
+            if(userType == 'teacher'){
+                this.menuList = new NavMenu.Collection.List([], {})
+            }
+            else{
+                this.menuList = new NavMenu.Collection.List([], {})
+            }
+        },*/
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({id: id});
             this.course.fetch();
