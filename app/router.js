@@ -22,16 +22,17 @@ define(function(require) {
             this.footerView    = new CMS.Views.Footer();
             this.courses       = new CoursesModule.Collection();
             this.userAnswers   = new TestsModule.Collection.Answers();
+
+            this.renderHomepage();
         },
         before: function(params, next) {
             var path = Backbone.history.location.hash,
                 session = this.userSession.getItem("UserSession"),
                 isRestricted = _.contains(CMS.guestPages, path),
                 isAuth = session ? session.authenticate : false;
-                console.log(path);
+
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
-
                 Backbone.history.navigate("#login", {
                     trigger: true
                 });
@@ -46,18 +47,15 @@ define(function(require) {
         },
         renderHomepage: function() {
             //this.appView.removeView();
-            if (!this.appView.hasRendered){
+
                 this.appView.setViews({"#CrsMSContainer": [
                     this.headerView,
                     this.containerView,
                     this.footerView
                 ]});
-                console.log(this.appView);
                 this.appView.render();
-            }
-                
-        },
 
+        },
         routes: {
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
@@ -69,7 +67,6 @@ define(function(require) {
         },
 
         showLoginPage: function() {
-            console.log("login route");
             this.loginRegView.setView("#CrsMSContainer", new Login.View());
             this.loginRegView.render();
         },
@@ -79,6 +76,7 @@ define(function(require) {
 
         },
         showCoursesList: function(currentPage, queryParams) {
+            this.renderHomepage();
             var parsedParams = {};
             if (this.courses.length) {
                 this.courses.reset();

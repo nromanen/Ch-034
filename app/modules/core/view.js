@@ -10,8 +10,8 @@ define(function(require) {
         manage: true,
 
         convertToMonthAndDate: function (jsonDate) {
-                var date = moment(jsonDate).locale('uklocale').format('DD MMMM');
-                return date;
+            var date = moment(jsonDate).locale('uklocale').format('DD MMMM');
+            return date;
         }
     });
     return CoreLayout;

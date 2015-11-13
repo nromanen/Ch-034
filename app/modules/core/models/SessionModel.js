@@ -4,25 +4,21 @@ define(function(require) {
     var CoreModel = require("../model"),
 
     SessionModel = CoreModel.extend({
-        urlRoot: "http://localhost:8888/authenticate",
+        urlRoot: "http://localhost:8888/api/authenticate",
         initialize: function() {
             var that = this;
             if (typeof window.Storage !== "undefined") {
                 this.supportsStorage = true;
             }
-
             $.ajaxSetup({
                 statusCode: {
                     401: function(){
-                        console.log("401 status");
                         that.clearSession();
                         Backbone.history.navigate("#login", {
                             trigger: true
                         });
-
                     },
                     403: function(){
-                        console.log("403 status");
                         that.clearSession();
                         Backbone.history.navigate("#login", {
                             trigger: true
@@ -56,47 +52,42 @@ define(function(require) {
                 window.localStorage.clear();
             }
         },
-        login: function(credentials) {
-
-            var that = this;
-            this.save(credentials, {
-                success: function(model, response) {
-                    console.log("true");
-                    console.log(response.token);
-                    console.log(response.profile);
-                    that.setItem("UserSession", JSON.stringify(response));
-                    if (that.getItem("UserSession.targetPage")) {
-                        var path = that.getItem("UserSession.targetPage");
-                        console.log(path);
-                        that.unsetItem("UserSession.targetPage");
-                        Backbone.history.navigate(path, {
-                            trigger: true
-                        });
-                    } else {
-                        Backbone.history.navigate("", {
-                            trigger: true
-                        });
-                    }
-                },
-                error: function(data) {
-                    console.log("data");
-                    Backbone.history.navigate("#login", {
+        login: function(credentials, callback) {
+            var that = this,
+            login = this.save(credentials);
+            login.done(function(response) {
+                console.log("true");
+                console.log(response.profile);
+                that.setItem("UserSession", JSON.stringify(response));
+                if (that.getItem("UserSession.targetPage")) {
+                    var path = that.getItem("UserSession.targetPage");
+                    console.log(path);
+                    that.unsetItem("UserSession.targetPage");
+                    Backbone.history.navigate(path, {
+                        trigger: true
+                    });
+                } else {
+                    Backbone.history.navigate("", {
                         trigger: true
                     });
                 }
             });
+            login.fail(function(data) {
+                console.log("data");
+                Backbone.history.navigate("#login", {
+                    trigger: true
+                });
+            });
+            login.always(callback && callback);
         },
         logout: function(callback) {
-            var that = this;
-            this.delete({
-                success: function() {
-                    that.clearSession();
-                    callback();
-                }
+            var that = this,
+            logout = this.delete();
+            logout.done(function(data) {
+                that.clearSession();
+                callback();
             });
         }
     });
-
     return new SessionModel();
-
 });

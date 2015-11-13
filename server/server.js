@@ -25,11 +25,11 @@ app.use(bodyParser.json());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 app.use(cors());
-//app.use(require('./middlewares/cors'));
-app.use('/authenticate', require('./controllers/authenticate'));
+app.use(require('./middlewares/cors'));
+app.use('/api/authenticate', require('./controllers/authenticate'));
+app.use('/api/register', require('./controllers/register'));
 app.use('/api', require('./middlewares/auth'));
 app.use('/api', require('./controllers'));
-
 
 app.listen(port);
 docs(app, mongoose);

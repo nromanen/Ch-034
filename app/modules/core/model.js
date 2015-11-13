@@ -7,7 +7,7 @@ define(function(require) {
 
     Backbone.sync = function(method, model, options) {
         var session = JSON.parse(window.localStorage.getItem("UserSession"));
-        
+
         if (session) {
             options.headers = {
                 "x-access-token": session.token

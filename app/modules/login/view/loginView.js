@@ -40,7 +40,7 @@ define( function (require) {
         errorMessage: function (model, errors) {
             _.forEach( errors, function (error) {
                 this.$el.find( error ).addClass("error");
-            }, this ); 
+            }, this );
             this.$el.find(".error-message").removeClass("hidden");
         }
     });
