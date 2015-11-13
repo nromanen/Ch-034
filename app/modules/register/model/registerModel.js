@@ -3,7 +3,10 @@ define(function(require){
 
     var CMS = require("CMS"),
 
+    Messages = require("modules/messages"),
+
     Model = CMS.Model.extend({
+
         defaults: {
             name       : null,
             surname    : null,
@@ -17,7 +20,7 @@ define(function(require){
                 required: true,
                 minLength: 2,
                 pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
-                msg: 'Введіть, будь ласка, коректне ім’я'
+                msg: this.messages.name.msg
             },
             surname: {
                 required: true,
@@ -28,7 +31,7 @@ define(function(require){
             email: {
                 required: true,
                 pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
-                msg: 'Введіть, будь ласка, коректну адресу скриньки'
+                msg: 'Введіть, будь ласка, коректну адресу електронної скриньки'
             },
             pass: {
                 required: true,
