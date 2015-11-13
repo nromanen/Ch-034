@@ -12,6 +12,9 @@ define( function (require) {
             this.listenTo(this.model, "invalid", function (model, error) {
                 this.errorMessage(model, error);
             } );
+            this.listenTo(this.model, "change", function(model) {
+                CMS.SessionModel.login(model.attributes);
+            });
         },
         el: false,
         template: _.template( require("text!../template/loginTemplate.html")),
@@ -37,7 +40,7 @@ define( function (require) {
         errorMessage: function (model, errors) {
             _.forEach( errors, function (error) {
                 this.$el.find( error ).addClass("error");
-            }, this );
+            }, this ); 
             this.$el.find(".error-message").removeClass("hidden");
         }
     });

@@ -11,7 +11,7 @@ define(function(require) {
 
     _.extend(CMS, {
         root: "/",
-        excludedPages: ["#login", "#register"],
+        guestPages: ["#login", "#register", "#reset"],
         api: "http://localhost:8888/api/",
         perPage: 3,
         paginationSize: 5,

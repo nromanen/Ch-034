@@ -10,51 +10,54 @@ define(function(require) {
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
 
-    Router = Backbone.Router.extend({
+    Router = CMS.Router.extend({
         initialize: function() {
-            //in progress, commented due demonstration
-            //this.userSession = CMS.SessionModel;
-            //this.userSession.login({email: "buispr@gmail.com", pass: "diak540910"});
-            //this.on("route", this.isAuthenticated);
+            this.userSession = CMS.SessionModel;
 
             this.appView       = new CMS.CoreView();
+            this.loginRegView  = new CMS.CoreView();
             this.register      = new RegisterModule.Model();
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
             this.courses       = new CoursesModule.Collection();
             this.userAnswers   = new TestsModule.Collection.Answers();
+        },
+        before: function(params, next) {
+            var path = Backbone.history.location.hash,
+                session = this.userSession.getItem("UserSession"),
+                isRestricted = _.contains(CMS.guestPages, path),
+                isAuth = session ? session.authenticate : false;
+                console.log(path);
+            if (!isRestricted && !isAuth) {
+                this.userSession.setItem('UserSession.targetPage', path);
 
-            this.renderHomepage();
+                Backbone.history.navigate("#login", {
+                    trigger: true
+                });
+            } else if (isRestricted && isAuth) {
+                this.renderHomepage();
+                Backbone.history.navigate("", {
+                    trigger: true
+                });
+            } else {
+                return next();
+            }
         },
         renderHomepage: function() {
-            this.appView.removeView();
-            this.appView.insertViews({"#CrsMSContainer": [
-                this.headerView,
-                this.containerView,
-                this.footerView
-            ]});
-            this.appView.render();
-        },
-        //in progress, commented due demonstration
-        /*isAuthenticated: function() {
-            var path = Backbone.history.location.hash;
-
-            //this.userSession.get('userSession')
-            if (true) {
-
-                if (_.contains(CMS.excludedPages, path)) {
-                    console.log(path);
-                    Backbone.history.navigate(path, {
-                        trigger: true
-                    })
-                } else {
-                    Backbone.history.navigate("#register", {
-                        trigger: true
-                    });
-                }
+            //this.appView.removeView();
+            if (!this.appView.hasRendered){
+                this.appView.setViews({"#CrsMSContainer": [
+                    this.headerView,
+                    this.containerView,
+                    this.footerView
+                ]});
+                console.log(this.appView);
+                this.appView.render();
             }
-        },*/
+                
+        },
+
         routes: {
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
@@ -66,11 +69,13 @@ define(function(require) {
         },
 
         showLoginPage: function() {
-            this.appView.setView(new Login.View());
+            console.log("login route");
+            this.loginRegView.setView("#CrsMSContainer", new Login.View());
+            this.loginRegView.render();
         },
         showRegisterPage: function() {
             this.registerView = new RegisterModule.View( {model: this.register} );
-            this.appView.setView("#CrsMSContainer", this.registerView).render();
+            this.loginRegView.setView("#CrsMSContainer", this.registerView).render();
 
         },
         showCoursesList: function(currentPage, queryParams) {

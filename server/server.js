@@ -6,7 +6,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     mongoose = require('mongoose'),
-    docs = require("express-mongoose-docs");
+    docs = require("express-mongoose-docs"),
+    cors = require("cors"),
     jwt = require('jsonwebtoken'), // used to create, sign, and verify tokens
     config = require('./config'); // get our config file
     
@@ -23,10 +24,12 @@ app.use(bodyParser.json());
 
 // use morgan to log requests to the console
 app.use(morgan('dev'));
-app.use(require('./middlewares/cors'));
-
+app.use(cors());
+//app.use(require('./middlewares/cors'));
+app.use('/authenticate', require('./controllers/authenticate'));
+app.use('/api', require('./middlewares/auth'));
 app.use('/api', require('./controllers'));
-//app.use(require('./middlewares/auth'));
+
 
 app.listen(port);
 docs(app, mongoose);
