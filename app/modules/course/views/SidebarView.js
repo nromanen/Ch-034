@@ -4,6 +4,12 @@ define(function(require) {
     var CMS = require("CMS"),
         FilterModule = require("modules/filter/index"),
         VacanciesModule = require("modules/vacancies/index"),
+        WigetModule = require("modules/widget/index"),
+
+        testWidget = {
+                name: "newName",
+                HTML: "<p>boady</p>"
+            },
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/sidebarTemplate.html")),
@@ -28,14 +34,18 @@ define(function(require) {
             });
 
             this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
+            this.widgetView = new WigetModule.View({model: {name: "newName", HTML: this.vacanciesView.el} })
 
      //       this.render();
         },
         el: false,
         beforeRender: function(collection) {
+            console.log(this.vacanciesView.$el.prop('outerHTML'));
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
-            this.insertView("#vacancies", this.vacanciesView);
+            //this.insertView("#vacancies", this.vacanciesView);
+            this.insertView("#vacancies", this.widgetView);
+
 
         }
     });
