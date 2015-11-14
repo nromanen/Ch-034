@@ -1,21 +1,22 @@
- <li value="<%= test.get('num') %>"><p><%= test.get('answer') %></p>
-  <% if ( test.get('typeVariant') == typeTest.list  ){ %>
-      <p class="variant">
-      <select class="form-control">
+ <li value="<%= test.get('num') %>"><p><%= test.get('question') %></p>
+    <% if (test.get('typeVariant') === typeTest.list){ %>
+        <p class="variant">
+        <select class="form-control" name="answer<%= test.get('num') %>">
+                <option value=""></option>
             <% _.each(test.get('variants'), function(variants, index){ %>
-                <option value="<%= index %>"><%= variants %></option>
+                <option value="<%= variants %>" <% if (variants == answer) {%>selected<% } %> ><%= variants %></option>
             <% }); %>
         </select>
         </p>
     <% } %>
-    <% if ( test.get('typeVariant') == typeTest.answer  ){ %>
-        <p class="variant"><input type="text" class="form-control" placeholder="Input answer"></p>
+    <% if (test.get('typeVariant') === typeTest.answer){ %>
+        <p class="variant"><input type="text" class="form-control" name="answer<%= test.get('num') %>" placeholder="Input answer" value="<%= answer %>"></p>
     <% } %>
-    <% if ( test.get('typeVariant')  == typeTest.few  ){ %>
+    <% if (test.get('typeVariant')  === typeTest.few){ %>
         <div class="checkboxes variant"> 
-            <% _.each(test.get('variants'), function(variants, index) {%>
-                <div class="inline"><input type="checkbox" id="<%= index %>" />
-                    <label for="<%= index %>"><%= variants %></label>
+            <% _.each(test.get('variants'), function(variants, index) {%>  
+                <div class="inline"><input type="checkbox" class="form-checkbox" id="<%= index %><%= test.get('num') %>" name="answer<%= test.get('num') %>[]" value="<%= variants %>" <% if (_.indexOf(answer, variants) != -1) {%>checked<% } %> />
+                    <label for="<%= index %><%= test.get('num') %>"><%= variants %></label>
                 </div>
             <% }); %>
         </div>

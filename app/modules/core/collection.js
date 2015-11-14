@@ -3,9 +3,8 @@ define(function(require) {
 
     var Backbone = require("backbone"),
 
-    Collection = Backbone.Collection.extend({      
+    Collection = Backbone.Collection.extend({
 
     });
-
     return Collection;
 });

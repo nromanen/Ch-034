@@ -3,7 +3,8 @@ define(function(require) {
 
     var CMS = require("CMS"),
         FilterModule = require("modules/filter/index"),
-    
+        VacanciesModule = require("modules/vacancies/index"),
+
     View = CMS.View.extend({
         template: _.template(require("text!../templates/sidebarTemplate.html")),
 
@@ -16,26 +17,27 @@ define(function(require) {
             this.filterView = FilterModule.Views.Filter;
             this.areaFilter = new this.filterView({
                 collection: new FilterModule.Collection.Areas(),
-                type: "Area",
+                type: "Напрямок",
                 params: areaParams
             });
             this.groupFilter = new this.filterView({
                 collection: new FilterModule.Collection.Groups(),
-                type: "Group",
+
+                type: "Тип групи",
                 params: groupParams
             });
 
-            this.render();
+            this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
+
+     //       this.render();
         },
-
         el: false,
-
-        beforeRender: function() {
+        beforeRender: function(collection) {
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
-        }
-        
-    });
+            this.insertView("#vacancies", this.vacanciesView);
 
+        }
+    });
     return View;
 });

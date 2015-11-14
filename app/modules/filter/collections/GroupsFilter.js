@@ -5,12 +5,12 @@ define(function(require) {
         initialize: function() {
             this.fetch();
         },
-
         url: function() {
             return CMS.api + "groups";
+        },
+        getName: function() {
+            return "Group";
         }
-
     });
-
     return Collection;
 });

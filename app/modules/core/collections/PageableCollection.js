@@ -5,15 +5,15 @@ define(function(require) {
 
     PageableCollection = CoreCollection.extend({
 
-        api: "",
-        resourse: "",
-        perPage: 5,
+        api        : "",
+        resourse   : "",
+        perPage    : 5,
         currentPage: 1,
-        hrefPath: "",
-        pageOffset: 0,
+        hrefPath   : "",
+        pageOffset : 0,
 
         getResource: function() {
-            return this.resourse;
+            return this.resource;
         },
         getHrefPath: function() {
             return this.hrefPath;
@@ -33,7 +33,7 @@ define(function(require) {
             this.pageOffset = (this.currentPage - 1)*this.perPage;
         },
         getApiUrl: function() {
-            return this.api + this.getResourse() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
+            return this.api + this.getResource() + '?_start=' + this.getPageOffset() + '&_limit=' + this.perPage;
         },
         url: function() {
             return this.getApiUrl();
@@ -42,12 +42,12 @@ define(function(require) {
             if (page) {
                 return this.getHrefPath()+page.toString();
             }
-            
+
             return this.getHrefPath()+this.currentPage.toString();
         },
         parse: function(data, options) {
             this.totalPages = Math.ceil(options.xhr.getResponseHeader('X-Total-Count')/this.perPage);
-            
+
             return data;
         },
         getRange: function() {
@@ -74,7 +74,6 @@ define(function(require) {
             }
 
             pages = _.range(min, max+1);
-
             return pages;
         },
         info: function() {

@@ -1,13 +1,10 @@
 define(function(require) {
-   "use strict";
+    "use strict";
 
-   var View = require("../view"),
-
+    var View = require("../view"),
        HeaderNavigationMenuView = View.extend({
         template: _.template(require("text!../templates/headerNavigationMenuTemplate.html")),
-
         el: false
-   });
-
-   return HeaderNavigationMenuView;
+    });
+    return HeaderNavigationMenuView;
 });

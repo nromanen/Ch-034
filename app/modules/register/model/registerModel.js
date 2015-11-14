@@ -4,7 +4,6 @@ define(function(require){
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
-
         defaults: {
             name       : null,
             surname    : null,
@@ -13,40 +12,35 @@ define(function(require){
             repeatPass : null
         },
 
-        validate: function(attr, options) {
-            var errors = [];
-
-            if (!attr.name) {
-                errors.push("name");
+        validation: {
+            name: {
+                required: true,
+                minLength: 2,
+                pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
+                msg: 'Введіть, будь ласка, коректне ім’я'
+            },
+            surname: {
+                required: true,
+                minLength: 2,
+                pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
+                msg: 'Введіть, будь ласка, коректне прізвище'
+            },
+            email: {
+                required: true,
+                pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
+                msg: 'Введіть, будь ласка, коректну адресу скриньки'
+            },
+            pass: {
+                required: true,
+                pattern: /^(?=.*[a-zа-яєії])(?=.*[A-ZА-ЯЄІЇ])(?=.*[0-9])(?=.{8,})/,
+                msg: 'Введіть, будь ласка, коректний пароль'
+            },
+            repeatPass: {
+                required: true,
+                equalTo: 'pass',
+                msg: 'Введені паролі не співпадають'
             }
-
-            if (!attr.surname) {
-                errors.push("surname");
-            }
-            if (!(this.isEmail(attr.email))) {
-                errors.push("email");
-            }
-
-            if (!attr.pass) {
-                errors.push("pass");
-            }
-
-            if (!(this.isPassEqual(attr.pass, attr.repeatPass))) {
-                errors.push("repeatPass");
-            }
-
-            return errors.length > 0 ? errors : false;
-        },
-
-        isEmail: function (email) {
-            var emailRegex = /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/;
-            return emailRegex.test(email);
-        },
-
-        isPassEqual: function (pass, repeatPass) {
-            return pass === repeatPass;
         }
     });
-
     return Model;
 });

@@ -1,0 +1,14 @@
+<% vacancies.each(function(vacancy) { %>
+    <div class="banner-hot">
+        <div class="badge-hot">
+            <div class="badge-panel">
+                <span>HOT</span>
+            </div>
+            <div class="badge-triangle">
+            </div>
+        </div>
+        <div class="banner-inner">
+            <span ><a target="blank" href="<%= vacancy.get('url') %>"><%= vacancy.get('name') %> <%= vacancy.get('id') %></a></span>
+        </div>
+    </div>
+<% }) %>
