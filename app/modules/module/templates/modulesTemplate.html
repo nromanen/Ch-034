@@ -8,7 +8,11 @@
             <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= courseId %>/modules/<%= module.get('id') %>"><%= module.get('name') %></a></strong></div>
             <div class="bottom-line clearfix">
                 <a href="#courses/<%= courseId %>/modules/<%= module.get('id') %>" class="left-side pull-left">методичні матеріали</a>
-                <a href="#courses/<%= courseId %>/modules/<%= module.get('id') %>/tests/list-mode" class="btn btn-success pull-right">Пройти тест</a>
+                <% if (module.get('available') === true) { %>
+                    <a href="#courses/<%= courseId %>/modules/<%= module.get('id') %>/tests/list-mode" class="btn btn-success pull-right padding-right padding-left">Пройти тест</a>
+                <% } else { %>
+                    <div class="btn btn-success disable pull-right padding-right padding-left">Пройти тест</div>
+                <% } %>
             </div>
         </div>
     </div>
