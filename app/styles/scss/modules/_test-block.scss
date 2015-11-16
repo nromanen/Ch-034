@@ -53,18 +53,21 @@ h1 {
 
 .test {
     list-style: decimal inside;
-    margin-bottom: 50px;
+    margin-bottom: 80px;
 }
 
 .form-control {
     width: 300px;
 }
 
-#test-submit {
+#area-submit {
     position: absolute;
     bottom: 0;
-    margin: 15px;
-    left: 33%
+    margin-bottom: 15px;
+}
+
+#test-submit {
+    text-align: center;
 }
 
 #next-question {

@@ -96,10 +96,12 @@ define(function(require) {
                 }
             }, this);
             var checkboxEl = _.pluck(this.$form.find("[type='checkbox']"), "name");
-            _.each(checkboxEl, function(arr){
-                var num = Number(arr.match(/\d+/)[0]);
-                if ((!(_.has(answerForm, arr)) )&&(!_.isUndefined(this.userAnswers.get(num)))) {
-                    this.userAnswers.get(num).destroy();
+            _.each(checkboxEl, function(arr) {
+                if (arr != "not-all-answers") {
+                    var num = Number(arr.match(/\d+/)[0]);
+                    if ((!(_.has(answerForm, arr)) )&&(!_.isUndefined(this.userAnswers.get(num)))) {
+                        this.userAnswers.get(num).destroy();
+                    }
                 }
             }, this);
             if(this.mode == "page"){
