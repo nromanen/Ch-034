@@ -9,12 +9,14 @@ define(function(require) {
         TestModel = require("modules/test/models/TestModel"),
 
     View = CMS.View.extend({
-        template: _.template(require("text!../templates/testsTemplate.html")),
+        template      :  _.template(require("text!../templates/testsTemplate.html")),
+        tempBtnSuccess:  "<button id='btn-submit' type='submit' class='btn btn-success'>Завершити тестуванняr</button>",
         el: false,
         events: {
             "change .form-control"     : "saveAnswers",
             "change .form-checkbox"    : "saveAnswers",
             "keyup .form-control"      : "saveAnswers",
+            "click #not-all-answers"   : "openBtn",
             "click #btn-submit"        : "submitHandler",
             "click #btn-forbid-submit" : "submitForbid",
             "click #next-question"     : "nextQuestion"
@@ -127,7 +129,7 @@ define(function(require) {
         btnCtrl: function () {
             var btnTemplate = '';
             if (this.countQuestions == this.userAnswers.length) {
-                btnTemplate = "<button id='btn-submit' type='submit' class='btn btn-success'>Завершити тестування</button>";
+                btnTemplate = this.tempBtnSuccess;
             }
             else if (this.mode == "list" || (this.mode == "page" && this.countQuestions == this.page)) {
                 btnTemplate = "<button id='btn-forbid-submit' class='btn btn-success disabled'>Завершити тестування</button>";
@@ -136,6 +138,14 @@ define(function(require) {
                 btnTemplate = "<button id='next-question' class='btn btn-default'>Наступне питання</button>";
             }
             this.$el.find("#test-submit").html(btnTemplate);
+        },
+        openBtn: function (e) {
+            if (this.$("#not-all-answers").prop("checked")) {
+                this.$el.find("#test-submit").html(this.tempBtnSuccess);
+            }
+            else {
+                this.btnCtrl();
+            }
         }
     });
     return View;
