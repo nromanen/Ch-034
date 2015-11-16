@@ -27,12 +27,13 @@
             }
         }
         .course-action {
-            margin-top: 25px;
 
             .course-schedule {
                 height: 40px;
                 display: inline-block;
                 margin-bottom: 25px;
+                padding-top: 25px;
+                padding-bottom: 40px;
 
                 & > span {
                     color: #787878;
@@ -71,8 +72,6 @@
 
     .accordion-inner {
         border-bottom: 1px dashed $accordionTextColor;
-        margin-bottom: 10px;
-
         & .list-unstyled > li.col-lg-6 > span {
             font-style: italic;
         }
@@ -184,4 +183,8 @@
         padding-top: 35px;
         color: $aticleTitleColor;
     }
+}
+
+.alignment {
+    text-align: justify;
 }
