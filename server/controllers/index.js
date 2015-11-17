@@ -7,6 +7,6 @@ router.use('/areas', require('./areas'));
 router.use('/groups', require('./groups'));
 router.use('/modules', require('./modules'));
 router.use('/vacancies', require('./vacancies'));
-router.use('/setup', require('./setup'));
+
 
 module.exports = router;

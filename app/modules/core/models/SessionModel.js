@@ -56,12 +56,9 @@ define(function(require) {
             var that = this,
             login = this.save(credentials);
             login.done(function(response) {
-                console.log("true");
-                console.log(response.profile);
                 that.setItem("UserSession", JSON.stringify(response));
                 if (that.getItem("UserSession.targetPage")) {
                     var path = that.getItem("UserSession.targetPage");
-                    console.log(path);
                     that.unsetItem("UserSession.targetPage");
                     Backbone.history.navigate(path, {
                         trigger: true
@@ -72,21 +69,15 @@ define(function(require) {
                     });
                 }
             });
-            login.fail(function(data) {
-                console.log("data");
-                Backbone.history.navigate("#login", {
-                    trigger: true
-                });
+            login.fail(function(jqXHR) {
+                if (callback) {
+                    callback(jqXHR, jqXHR.responseJSON.message);
+                }
             });
-            login.always(callback && callback);
         },
         logout: function(callback) {
-            var that = this,
-            logout = this.delete();
-            logout.done(function(data) {
-                that.clearSession();
-                callback();
-            });
+            this.clearSession();
+            callback();
         }
     });
     return new SessionModel();

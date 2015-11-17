@@ -15,15 +15,11 @@ define(function(require) {
             this.userSession = CMS.SessionModel;
 
             this.appView       = new CMS.CoreView();
-            this.loginRegView  = new CMS.CoreView();
-            this.register      = new RegisterModule.Model();
+
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
-            this.courses       = new CoursesModule.Collection();
-            this.userAnswers   = new TestsModule.Collection.Answers();
 
-            this.renderHomepage();
         },
         before: function(params, next) {
             var path = Backbone.history.location.hash,
@@ -37,46 +33,61 @@ define(function(require) {
                     trigger: true
                 });
             } else if (isRestricted && isAuth) {
-                this.renderHomepage();
                 Backbone.history.navigate("", {
                     trigger: true
                 });
+            } else if (isAuth) {
+                this.renderHomepage();
+                return next();
             } else {
                 return next();
             }
         },
         renderHomepage: function() {
-            //this.appView.removeView();
-
-                this.appView.setViews({"#CrsMSContainer": [
-                    this.headerView,
-                    this.containerView,
-                    this.footerView
-                ]});
+            if (!this.appView.getView(this.homeView) || !this.homeView) {
+                console.log("render HP");
+                this.homeView = new CMS.View({
+                    views: {
+                        "": [
+                            this.headerView,
+                            this.containerView,
+                            this.footerView
+                        ]
+                    }
+                });
+                this.appView.setView("#CrsMSContainer", this.homeView);
                 this.appView.render();
-
+            }
         },
         routes: {
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
+            "logout": "logoutToLoginPage",
             "register" : "showRegisterPage",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
-
         showLoginPage: function() {
-            this.loginRegView.setView("#CrsMSContainer", new Login.View());
-            this.loginRegView.render();
+            this.loginView = new Login.View();
+            this.appView.setView("#CrsMSContainer", this.loginView);
+            this.appView.render();
+        },
+        logoutToLoginPage: function() {
+            this.userSession.logout(function() {
+                Backbone.history.navigate("/", {
+                    trigger: true
+                });
+            });
         },
         showRegisterPage: function() {
-            this.registerView = new RegisterModule.View( {model: this.register} );
-            this.loginRegView.setView("#CrsMSContainer", this.registerView).render();
-
+            this.registerModel      = new RegisterModule.Model();
+            this.registerView = new RegisterModule.View( {model: this.registerModel} );
+            this.appView.setView("#CrsMSContainer", this.registerView).render();
         },
         showCoursesList: function(currentPage, queryParams) {
-            this.renderHomepage();
+            this.courses = new CoursesModule.Collection();
             var parsedParams = {};
             if (this.courses.length) {
                 this.courses.reset();
@@ -106,7 +117,6 @@ define(function(require) {
                     this.containerView.getView(".content").render();
                 }, this));
         },
-
         showCourseDetails: function(id) {
             this.course = new CoursesModule.Model({_id: id});
             this.course.fetch();
@@ -115,7 +125,6 @@ define(function(require) {
             }
             this.containerView.setView(".content", new CoursesModule.Views.CourseDetails({model: this.course, courseId: id}));
         },
-
         showCourseModuleDetails: function(courseId, id) {
             if (this.containerView.getView(".sidebar-a")) {
                 this.containerView.getView(".sidebar-a").remove();
@@ -124,8 +133,8 @@ define(function(require) {
             this.containerView.setView(".content", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
             this.module.fetch();
         },
-
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
+            this.userAnswers   = new TestsModule.Collection.Answers();
             if (this.containerView.getView(".sidebar-a")) {
                 this.containerView.getView(".sidebar-a").remove();
             }
@@ -143,7 +152,6 @@ define(function(require) {
                 this.testsPage.fetch();
             }
         },
-
         parseQueryString: function(queryString) {
             if (!_.isString(queryString))
                 return;

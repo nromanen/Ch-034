@@ -3,7 +3,8 @@ define(function(require) {
 
     var Backbone = require("backbone"),
         _sync = Backbone.sync,
-        Model = Backbone.Model.extend({});
+        Model = Backbone.Model.extend({
+        });
 
     Backbone.sync = function(method, model, options) {
         var session = JSON.parse(window.localStorage.getItem("UserSession"));
