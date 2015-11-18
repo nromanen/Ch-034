@@ -8,6 +8,7 @@ define(function(require, exports, module) {
         el: false,
         initialize: function(options) {
             this.courseId = options.courseId;
+            this.id = options.id;
             this.listenTo(this.model, "reset sync request", this.render);
         },
 
@@ -22,3 +23,5 @@ define(function(require, exports, module) {
     });
     return View;
 });
+
+
