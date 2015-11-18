@@ -5,15 +5,15 @@
             <a class="module-img" href="#courses/<%= courseId %>/modules/<%= module.get('id') %>"><img src="<%= imgUrl %>"></a>
         </div>
         <div class="col-md-8 col-sm-7">
-            <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= courseId %>/modules/<%= module.get('id') %>"><%= module.get('name') %></a></strong></div>
+            <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= courseId %>/modules/<%= module.get('id')%>"><%= module.get('name') %></a></strong></div>
             <div class="bottom-line clearfix">
                 <a href="#courses/<%= courseId %>/modules/<%= module.get('id') %>" class="left-side pull-left">методичні матеріали</a>
-                <% if (module.get('result') != null) { %>
-                    <div class="pull-right">Результат:&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= module.get('result') %>/<%= module.get('numberOfTests') %> </strong>&nbsp;&nbsp;&nbsp;&nbsp;(<%= module.get('result')/module.get('numberOfTests')*100 %>%)</div>
-                <% } else if (module.get('available') === true) { %>
-                    <a href="#courses/<%= courseId %>/modules/<%= module.get('id') %>/tests/list-mode" class="btn btn-success pull-right padding-right padding-left">Пройти тест</a>
-                <% } else { %>
+                <% if (module.get('available') !== true) { %>
                     <div class="btn btn-success disable pull-right padding-right padding-left">Пройти тест</div>
+                <% } else if (module.get('result') != null){ %>
+                    <div class="pull-right">Результат:&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= module.get('result') %>/<%= module.get('numberOfTests') %> </strong>&nbsp;&nbsp;&nbsp;&nbsp;(<%= Math.round(module.get('result')/module.get('numberOfTests')*100) %>%)</div>
+                <% } else { %>
+                    <a href="#courses/<%= courseId %>/modules/<%= module.get('id') %>/tests/list-mode" class="btn btn-success pull-right padding-right padding-left">Пройти тест</a>
                 <% } %>
             </div>
         </div>

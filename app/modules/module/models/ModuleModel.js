@@ -10,6 +10,9 @@ define(function(require, extend, module) {
             courseId: null,
             name: null,
             description: null,
+            available: null,
+            numberOfTests: null,
+            result: null,
             resources: {}
         },
         initialize: function(attributes, options) {
