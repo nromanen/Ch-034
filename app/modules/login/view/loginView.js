@@ -28,7 +28,6 @@ define( function (require) {
             e.preventDefault();
             this.$el.find(".input-group").removeClass("error");
             this.$el.find(".error-message").addClass("hidden");
-
             var dataObj = {
                 email : this.$el.find( "#email" ).val(),
                 password: this.$el.find( "#password" ).val()

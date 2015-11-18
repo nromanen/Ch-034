@@ -11,10 +11,10 @@ var express = require('express'),
     jwt = require('jsonwebtoken'), // used to create, sign, and verify tokens
     config = require('./config'), // get our config file
     User = require( "./models/userModel" );
+
 // =======================
 // configuration =========
 // =======================
-
 mongoose.connect(config.database); // connect to database
 app.set('superSecret', config.secret); // secret variable
 

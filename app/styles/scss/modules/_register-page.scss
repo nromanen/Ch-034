@@ -1,15 +1,18 @@
 #general-form {
 
+    margin-right: 0;
+    margin-left: 0;
+
     #registerForm {
-        max-width:300px;
-        margin: 0 auto;
+      max-width:300px;
+      margin: 0 auto;
     }
 
     .input-group {
         width:310px;
         margin-bottom: 20px;
         height: 40px;
-    }
+  }
 
     .form-control {
         height:40px;
@@ -25,27 +28,27 @@
 
 .error {
     border: 1px solid red;
-    
 }
 
 .warning {
-    width: 420px;
-    padding: 10px 20px;
+    max-width: 420px;
+    padding: 10px 0;
     margin: 20px auto;
     color:#CD9953;
     background: #FEF7E4;
+    text-align: center;
 }
 
 #submit {
     width: 140px;
     background-color: #00C1DE;
     margin-top: 35px;
-}   
+}
 
 .error-message {
-    width: 420px;
-    padding: 10px 20px;
+    padding: 10px 0;
     margin: 20px auto;
     background-color: #FADFDF;
     color: #D24A4A;
+    text-align: center;
 }

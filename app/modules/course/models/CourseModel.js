@@ -2,17 +2,17 @@ define(function(require){
     "use strict";
 
     var CMS = require("CMS"),
+        moment = require("moment"),
 
     Model = CMS.Model.extend({
+        idAttribute: "_id",
         defaults: {
-            id: null,
             isPublished: null,
             group: null,
             area: null,
             name: null,
             description: null,
-            start: null,
-            end: null,
+            startDate: null,
             duration: null,
             schedule: null,
             minStudents: null,
@@ -20,14 +20,21 @@ define(function(require){
             modules: []
         },
 
-        urlRoot: CMS.api+'courses',
+        parse: function(data, options) {
+            this.startDate = moment(data.startDate.toString());
+            this.duration = data.duration;
+            this.attributes.endDate = this.setEndDate();
+            return data;
+        },
 
+        setEndDate: function() {
+            return moment(this.startDate.add(this.duration * 7, 'days').toDate());
+        },
+
+        urlRoot: CMS.api+'courses',
         url: function() {
             return this.urlRoot + '/' + this.id;
         }
-
     });
-
     return Model;
-
 });

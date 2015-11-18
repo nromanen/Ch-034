@@ -7,6 +7,7 @@ define(function(require) {
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/sidebarTemplate.html")),
+        el: false,
 
         initialize: function() {
             var areaParams, groupParams;
@@ -22,26 +23,17 @@ define(function(require) {
             });
             this.groupFilter = new this.filterView({
                 collection: new FilterModule.Collection.Groups(),
-
                 type: "Тип групи",
                 params: groupParams
             });
 
-            this.vacanciesView = new VacanciesModule.Views.Vacancies({collection: new VacanciesModule.Collection()});
-
-            this.render();
+            this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
         },
-
-        el: false,
-
         beforeRender: function(collection) {
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
             this.insertView("#vacancies", this.vacanciesView);
-
         }
-
     });
-
     return View;
 });
