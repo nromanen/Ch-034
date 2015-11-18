@@ -2,42 +2,51 @@ var express = require( "express" ),
     router = express.Router(),
     bodyParser = require( "body-parser" ),
     mongoose = require( "mongoose" ),
-    crypto = require( "crypto" ),
+    bcrypt = require( "bcrypt-nodejs" ),
+    jwt = require( "jsonwebtoken" ),
     User = require( "../models/userModel" );
 
-router.post( "/login", function ( req, res, next ) {
+router.post( "/", function ( req, res, next ) {
 
-    var name = req.body.name,
+    var email = req.body.email,
         password = req.body.password;
 
-    User.findOne( { name: name }, function ( err, user ) {
+    User.findOne( { email: email }, function ( err, user ) {
 
-        if ( err ) {
-
-            return next( err );
-        }
+        if ( err ) throw err;
 
         if ( user ) {
 
-            if ( user.password != password ) {
+            if ( !user.checkPassword( password ) ) {
 
-                res.json( { success: false, message: "Authentication failed. Wrong password." } );
-                
+                res.status( 409 ).send({ 
+                    success: false,
+                    name: ".password",
+                    message: "Authentication failed. Wrong password." 
+                });
+
             } else {
 
-                var token = jwt.sign(user, app.get('superSecret'), {
+                var token = jwt.sign(user, req.app.get('superSecret'), {
                     expiresInMinutes: 1440 // expires in 24 hours
                 });
 
-                res.json({
+                res.status( 200 ).send({
                     success: true,
                     message: 'Enjoy your token!',
                     token: token
                 });
-            }       
+            }
+
+        } else {
+
+            res.status( 404 ).send({ 
+                success: false,
+                name: ".email",
+                message: "User with this email not found." 
+            });
 
         }
-
     });
 });
 

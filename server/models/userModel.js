@@ -1,4 +1,4 @@
-﻿var crypto = require( "crypto" ),
+﻿var bcrypt = require( "bcrypt-nodejs" ),
     mongoose = require( "mongoose" ),
     Schema = mongoose.Schema,
    
@@ -14,10 +14,14 @@
             unique: true,
             required: true
         },
-        password: {
+        hashedPassword: {
             type: String,
             required: true
         }
     });
+
+    userSchema.methods.checkPassword = function ( password ) {
+        return bcrypt.compareSync( password, this.hashedPassword );
+    };
 
 module.exports = mongoose.model( "User", userSchema );
