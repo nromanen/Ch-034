@@ -76,7 +76,7 @@ define(function(require) {
         showCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({id: id}, {courseId: courseId});
             this.module.fetch();
-            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module, courseId: courseId, moduleId: id}));
+            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
         },
 
         showRegisterModule: function() {
