@@ -10,7 +10,6 @@ define(function(require) {
 
     View = CMS.View.extend({
         template      :  _.template(require("text!../templates/testsTemplate.html")),
-        tempBtnSuccess:  "<button id='btn-submit' type='submit' class='btn btn-success'>Завершити тестуванняr</button>",
         el: false,
         events: {
             "change .form-control"     : "saveAnswers",
@@ -22,6 +21,11 @@ define(function(require) {
             "click #next-question"     : "nextQuestion"
         },
         initialize: function(collection, options) {
+            this.btnTemplate = [
+                require("text!../templates/btn_templates/btnNextTemplate.html"),
+                require("text!../templates/btn_templates/btnCloseTemplate.html"),
+                require("text!../templates/btn_templates/btnOpenTemplate.html")
+            ];
             this.mode        = options.mode;
             this.page        = options.page;
             this.toogleMode  = options.toogleMode;
@@ -127,21 +131,21 @@ define(function(require) {
             e.preventDefault();
         },
         btnCtrl: function () {
-            var btnTemplate = '';
+            var btnState;
             if (this.countQuestions == this.userAnswers.length) {
-                btnTemplate = this.tempBtnSuccess;
+                btnState = CMS.btnTestView.open;
             }
             else if (this.mode == "list" || (this.mode == "page" && this.countQuestions == this.page)) {
-                btnTemplate = "<button id='btn-forbid-submit' class='btn btn-success disabled'>Завершити тестування</button>";
+                btnState = CMS.btnTestView.close;
             }
             else {
-                btnTemplate = "<button id='next-question' class='btn btn-default'>Наступне питання</button>";
+                btnState = CMS.btnTestView.nextQuestion;
             }
-            this.$el.find("#test-submit").html(btnTemplate);
+            this.$el.find("#test-submit").html(this.btnTemplate[btnState]);
         },
         openBtn: function (e) {
             if (this.$("#not-all-answers").prop("checked")) {
-                this.$el.find("#test-submit").html(this.tempBtnSuccess);
+                this.$el.find("#test-submit").html(this.btnTemplate[CMS.btnTestView.open]);
             }
             else {
                 this.btnCtrl();
