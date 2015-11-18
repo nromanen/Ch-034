@@ -23,10 +23,10 @@ define(function(require) {
         },
         before: function(params, next) {
             var path = Backbone.history.location.hash,
-                session = this.userSession.getItem("UserSession"),
+                session = this.userSession.getItem("UserSession") || {},
                 isRestricted = _.contains(CMS.guestPages, path),
-                isAuth = session ? session.authenticate : false;
-
+                isAuth = this.userSession.getAuth(session.token);
+                console.log(isAuth);
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
                 Backbone.history.navigate("#login", {

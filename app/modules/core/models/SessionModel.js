@@ -14,12 +14,14 @@ define(function(require) {
                 statusCode: {
                     401: function(){
                         that.clearSession();
+
                         Backbone.history.navigate("#login", {
                             trigger: true
                         });
                     },
                     403: function(){
                         that.clearSession();
+
                         Backbone.history.navigate("#login", {
                             trigger: true
                         });
@@ -73,6 +75,26 @@ define(function(require) {
                 if (callback) {
                     callback(jqXHR, jqXHR.responseJSON.message);
                 }
+            });
+        },
+        getAuth: function(token) {
+            var that = this,
+            check = $.ajax({
+                url: this.urlRoot+"/check_auth",
+                type: "POST",
+                dataType: 'JSON',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("x-access-token", token);
+                }
+            });
+            check.done(function(response) {
+
+                that.setItem("UserSession.authenticated", true);
+                return true;
+            });
+            check.fail(function(response) {
+                that.setItem("UserSession.authenticated", false);
+                return false;
             });
         },
         logout: function(callback) {

@@ -22,12 +22,11 @@ router.post('/', function(req, res) {
                     res.status(401);
                     return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
                 } else {
-                    var token = jwt.sign({name: user.email}, req.app.get('superSecret'), { expiresIn: 86400 });
+                    var token = jwt.sign({name: user.email}, req.app.get('superSecret'), { expiresIn: 60 });
                     Profile.findOne({"_user": user._id}).exec(function(err, profile) {
                         if (err) throw err;
                         res.status(200);
                         return res.json({
-                            authenticate: true,
                             profile: profile,
                             message: 'Token successfully sent',
                             token: token
@@ -37,6 +36,26 @@ router.post('/', function(req, res) {
             });
         }
     });
+});
+
+router.post('/check_auth', function(req, res) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    if (token !== 'undefined') {
+        console.log(token);
+        jwt.verify(token, req.app.get('superSecret'), function(err, decoded) {
+            if (err) {
+                return res.status(403).json({ success: false, message: 'Failed to authenticate token.' });
+            } else {
+                req.decoded = decoded;
+                return res.json({success: true, message: "Authenticated"});
+            }
+        });
+    } else {
+      return res.status(403).send({
+          success: false,
+          message: 'No token provided.'
+      });
+    }
 });
 
 module.exports = router;
