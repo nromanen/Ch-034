@@ -22,22 +22,52 @@ define( function (require) {
             this.$el.find(".error-message").addClass("hidden");
         },
         events: {
-            "submit" : "submitHandler"
+            "click #submitLogin" : "submitHandler"
         },
         submitHandler: function (e) {
             e.preventDefault();
             this.$el.find(".input-group").removeClass("error");
             this.$el.find(".error-message").addClass("hidden");
             var dataObj = {
-                email : this.$el.find("#email").val(),
-                password: this.$el.find("#password").val()
+                email : this.$el.find( "#email" ).val(),
+                password: this.$el.find( "#password" ).val()
             };
             this.model.set(dataObj, {validate: true});
+
+            var that = this;
+            if ( this.model.isValid( true ) ) {
+                $.ajax({
+                    url: CMS.api + "login",
+                    type: "POST",
+                    crossDomain: true,
+                    data: dataObj,
+                    statusCode: {
+                        200: function () {
+                            CMS.router.navigate( "courses", { trigger: true } );
+                        },
+                        409: function ( jqXHR ) {
+                            var error = JSON.parse( jqXHR.responseText );
+                            that.$el.find( ".text-danger" ).html( error.message );
+                            that.$el.find( error.name ).addClass( "error" );
+                            that.$el.find( ".error-message" ).removeClass( "hidden" );
+                        },
+                        404: function ( jqXHR ) {
+                            var error = JSON.parse( jqXHR.responseText );
+                            that.$el.find( ".text-danger" ).html( error.message );
+                            that.$el.find( error.name ).addClass( "error" );
+                            that.$el.find( ".error-message" ).removeClass( "hidden" );
+                        }
+                    }
+                });
+            } else {
+                return false;
+            }
         },
         errorMessage: function (model, errors) {
             _.forEach( errors, function (error) {
                 this.$el.find( error ).addClass("error");
             }, this );
+            this.$el.find( ".text-danger" ).html( "<b>Помилка!</b>Заповніть підсвічені поля та спробуйте знову." );
             this.$el.find(".error-message").removeClass("hidden");
         }
     });
