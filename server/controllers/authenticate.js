@@ -22,11 +22,12 @@ router.post('/', function(req, res) {
                     res.status(401);
                     return res.json({ success: false, message: 'Authentication failed. Wrong password.' });
                 } else {
-                    var token = jwt.sign({name: user.email}, req.app.get('superSecret'), { expiresIn: 60 });
+                    var token = jwt.sign({name: user.email}, req.app.get('superSecret'), { expiresIn: 60000 });
                     Profile.findOne({"_user": user._id}).exec(function(err, profile) {
                         if (err) throw err;
                         res.status(200);
                         return res.json({
+                            authenticated: true,
                             profile: profile,
                             message: 'Token successfully sent',
                             token: token

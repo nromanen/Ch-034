@@ -23,9 +23,9 @@ define(function(require) {
         },
         before: function(params, next) {
             var path = Backbone.history.location.hash,
-                session = this.userSession.getItem("UserSession") || {},
+                session = this.userSession.getItem("UserSession") || null,
                 isRestricted = _.contains(CMS.guestPages, path),
-                isAuth = this.userSession.getAuth(session.token);
+                isAuth = session ? session.authenticated : false;
                 console.log(isAuth);
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
@@ -45,7 +45,6 @@ define(function(require) {
         },
         renderHomepage: function() {
             if (!this.appView.getView(this.homeView) || !this.homeView) {
-                console.log("render HP");
                 this.homeView = new CMS.View({
                     views: {
                         "": [
