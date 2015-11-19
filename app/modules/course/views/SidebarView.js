@@ -4,7 +4,7 @@ define(function(require) {
     var CMS = require("CMS"),
         FilterModule = require("modules/filter/index"),
         VacanciesModule = require("modules/vacancies/index"),
-        //WidgetModule = require("modules/widget/index"),
+        WidgetModule = require("modules/widget/index"),
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/sidebarTemplate.html")),
@@ -28,15 +28,19 @@ define(function(require) {
             });
 
             this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
-            //this.widgetView = new WidgetModule.View({model: {name: "Title", HTML: '<p class="text-center">text</p>'} });
+            //this.widgetView = new WidgetModule.View({model: {name: "Title", HTML: '<ul><li>Coffee</li><li>Tea</li><li>Milk</li></ul>'} });
+            this.widgetView = new WidgetModule.View({model: {name: "Title", HTML: this.vacanciesView} });
 
         },
         el: false,
         beforeRender: function(collection) {
+            //console.log(this.widgetView.model.HTML);
+            //console.log(typeof(this.widgetView.model.HTML));
+            //console.log(typeof(this.vacanciesView));
             this.insertView("#filter", this.areaFilter);
             this.insertView("#filter", this.groupFilter);
-            this.insertView("#vacancies", this.vacanciesView);
-            //this.insertView("#vacancies", this.widgetView);
+            //this.insertView("#vacancies", this.vacanciesView);
+            this.insertView("#widget", this.widgetView);
         }
     });
     return View;
