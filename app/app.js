@@ -19,6 +19,11 @@ define(function(require) {
        answer : 1,
        few    : 2
     };
+    CMS.btnTestView = {
+       nextQuestion : 0,
+       close        : 1,
+       open         : 2
+    };
     CMS.embeddable = ['avi', 'mp4', 'video', 'EMBEDDED'];
     CMS.downloadable = ['zip', 'pdf', 'rar', 'doc', 'docx', 'FILE'];
 
