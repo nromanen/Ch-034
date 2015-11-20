@@ -57,7 +57,6 @@ define(function(require) {
         },*/
         routes: {
             "": "index",
-            "login": "showLoginPage",
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
             "register" : "showRegisterPage",
