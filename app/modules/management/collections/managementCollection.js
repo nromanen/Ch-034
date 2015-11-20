@@ -2,18 +2,21 @@ define(function(require, exports, module) {
     "use strict";
 
     var CMS = require("CMS"),
-        Vacancy = require("../models/vacancyModel"),
+        Management = require("../models/managementModel"),
 
      Collection = CMS.Collection.extend({
-        model: Vacancy,
+        model: Management,
         api: CMS.api,
+
         initialize: function() {
             this.fetch();
         },
+        
         url: function() {
-            return this.api+"vacancies?_limit=5&_sort=id&_order=DESC";
+            return this.api+"areas";
         }
     });
+     console.log()
 
     return Collection;
 });

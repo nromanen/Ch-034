@@ -8,6 +8,7 @@ define(function(require) {
         RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
+        ManagementModule = require("modules/management/index"),
 
     Router = Backbone.Router.extend({
         initialize: function() {
@@ -19,6 +20,7 @@ define(function(require) {
             this.footerView    = new CMS.Views.Footer();
             this.courses       = new CoursesModule.Collection();
             this.userAnswers   = new TestsModule.Collection.Answers();
+            this.management    = new ManagementModule.ManagementCollection();
             this.appView.insertViews([
                 this.headerView,
                 this.containerView,
@@ -33,7 +35,8 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
-            "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
+            "management" : "showManagementModule"
         },
 
         index: function() {
@@ -98,6 +101,13 @@ define(function(require) {
                 this.containerView.setView(".wrapper", new TestsModule.Views.Tests({collection: this.testsPage}, {mode: 'page', toogleMode: 'list', courseId: courseId, moduleId: moduleId, page: currentQuestion, typeTest: CMS.typeTest, storage: this.userAnswers}));
                 this.testsPage.fetch();
             }
+        },
+
+        showManagementModule: function(){
+            this.management.fetch();
+            console.log(this.management);
+            this.management = new ManagementModule.ManagementView({collection: this.management});
+            this.management.render();
         },
 
         parseQueryString: function(queryString) {
