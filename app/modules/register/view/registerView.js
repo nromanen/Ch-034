@@ -16,11 +16,13 @@ define(function(require) {
 
             $group.addClass('has-error');
             $group.find('.help-block').html(error).removeClass('hidden');
-            $el.popover({title: "Помилка!", content: error, trigger: "focus"});
+            $el.popover({title: Message.errorWord, content: error, trigger: "focus"});
         }
     });
 
     var CMS = require("CMS"),
+
+    Message = require("modules/messages"),
 
     Model = require("modules/register/model/registerModel"),
 
