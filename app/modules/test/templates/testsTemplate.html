@@ -1,7 +1,9 @@
 <div class="tests">
     <div>
         <a href="#courses/<%= test.get("courseId") %>">&lt; повернутися до курсу</a>
-        <div id="test-mode" class="pull-right"><a id="test-mode-not-<%= mode%>" href="#courses/<%= test.get("courseId") %>/modules/<%= test.get("moduleId") %>/tests/<%= toogleMode %>-mode"></a></div>
+        <a id="test-mode" class="pull-right" href="#courses/<%= test.get("courseId") %>/modules/<%= test.get("moduleId") %>/tests/<%= toogleMode %>-mode">
+            <span id="test-mode-not-<%= mode%>"></span>
+        </a>
     </div>
     <h1>Тест <%= test.get("id") %>. <%= test.get("nameTest") %></h1>
     <div class="row">
@@ -11,6 +13,10 @@
     </div>
     <form class="tests-form">
         <ol class="test"></ol> 
-        <div id="test-submit"></div>
+        <div id="area-submit">
+            <input type="checkbox" id="not-all-answers" name="not-all-answers">
+            <label for="not-all-answers">завершити тестування без необхідності відповідати на всі запитання</label>
+            <div id="test-submit"></div>
+        </div>
     </form>
 </div>
