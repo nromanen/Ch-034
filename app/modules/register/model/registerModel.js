@@ -3,7 +3,7 @@ define(function(require){
 
     var CMS = require("CMS"),
 
-    Messages = require("modules/messages"),
+    Message = require("modules/messages"),
 
     Model = CMS.Model.extend({
 
@@ -20,7 +20,7 @@ define(function(require){
                 required: true,
                 minLength: 2,
                 pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
-                msg: this.messages.name.msg
+                msg: Message.nameMsg
             },
             surname: {
                 required: true,
