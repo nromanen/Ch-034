@@ -104,10 +104,14 @@ define(function(require) {
         },
 
         showManagementModule: function(){
-            this.management.fetch();
             console.log(this.management);
-            this.management = new ManagementModule.ManagementView({collection: this.management});
-            this.management.render();
+            this.management.fetch();
+            console.log(this.management.collection);
+            this.management1 = new ManagementModule.ManagementView({collection: this.management});
+            //this.management.fetch();
+            console.log(this.management1.collection);
+            this.management1.render();
+            console.log(this.management1.collection);
         },
 
         parseQueryString: function(queryString) {

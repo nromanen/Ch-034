@@ -8,15 +8,18 @@ define(function(require, exports, module) {
         model: Management,
         api: CMS.api,
 
-        initialize: function() {
-            this.fetch();
-        },
-        
         url: function() {
             return this.api+"areas";
+        },
+
+        initialize: function() {
+            console.log(this);
+            this.fetch();
+            console.log(this);
         }
     });
-     console.log()
+
+     console.log(Collection);
 
     return Collection;
 });
