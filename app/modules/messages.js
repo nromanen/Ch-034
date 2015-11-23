@@ -9,7 +9,10 @@ define(function(require) {
         emailMsg        : 'Введіть, будь ласка, коректну адресу електронної скриньки',
         passMsg         : 'Введіть, будь ласка, коректний пароль',
         repeatPassMsg   : 'Введені паролі не співпадають',
-        errorWord        : 'Помилка!'
+        errorWord       : 'Помилка!',
+        tryAgain        : 'Заповніть підсвічені поля та спробуйте знову.',
+        attentionWord   : 'Увага!',
+        fieldsRequired  : 'Всі поля є обов’язковими для заповнення.'
     };
 
     return Message;
