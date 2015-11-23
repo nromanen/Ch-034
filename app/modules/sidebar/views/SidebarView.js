@@ -10,29 +10,44 @@ define(function(require) {
         el: false,
 
         initialize: function() {
-            var areaParams, groupParams;
 
-            areaParams = this.filterParams.area ? [].concat(this.filterParams.area) : [];
-            groupParams = this.filterParams.group ? [].concat(this.filterParams.group) : [];
+            this.areaParams = this.filterParams.area ? [].concat(this.filterParams.area) : [];
+            this.groupParams = this.filterParams.group ? [].concat(this.filterParams.group) : [];
 
-            this.filterView = FilterModule.Views.Filter;
-            this.areaFilter = new this.filterView({
-                collection: new FilterModule.Collection.Areas(),
-                type: "Напрямок",
-                params: areaParams
-            });
-            this.groupFilter = new this.filterView({
-                collection: new FilterModule.Collection.Groups(),
-                type: "Тип групи",
-                params: groupParams
-            });
+            this.areasCollection = new FilterModule.Collection.Areas();
+            this.groupsCollection = new FilterModule.Collection.Groups();
+            this.vacanciesCollection = new VacanciesModule.Collection();
 
-            this.vacanciesView = new VacanciesModule.Vacancies({collection: new VacanciesModule.Collection()});
         },
-        beforeRender: function(collection) {
-            this.insertView("#filter", this.areaFilter);
-            this.insertView("#filter", this.groupFilter);
-            this.insertView("#vacancies", this.vacanciesView);
+
+        afterRender: function() {
+            var _this = this;
+
+            $.when(
+                    this.areasCollection.fetch(),
+                    this.groupsCollection.fetch(),
+                    this.vacanciesCollection.fetch()
+            ).done(function() {
+                _this.removeView();
+                _this.areaFilter = new FilterModule.Views.Filter({
+                    collection: _this.areasCollection,
+                    type: "Напрямок",
+                    params: _this.areaParams
+                });
+                _this.groupFilter = new FilterModule.Views.Filter({
+                    collection: _this.groupsCollection,
+                    type: "Тип групи",
+                    params: _this.groupParams
+                });
+                _this.vacanciesView = new VacanciesModule.Vacancies({
+                    collection: _this.vacanciesCollection
+                });
+
+                _this.insertView("#filter", _this.areaFilter).render();
+                _this.insertView("#filter", _this.groupFilter).render();
+                _this.insertView("#vacancies", _this.vacanciesView).render();
+
+            });
         }
     });
     return View;
