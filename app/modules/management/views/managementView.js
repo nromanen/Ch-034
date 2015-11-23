@@ -23,7 +23,20 @@ define(function(require) {
         },
 
         initialize: function() {
-            this.listenTo(this.collection, "sync request change", this.render);
+            this.listenTo(this.collection, "sync request change", this.render, this);
+        },
+
+        beforeRender: function(){
+            console.log(this.collection);
+            console.log(this);
+            this.collection.each(this.renderOne);
+        },
+
+        renderOne: function(){
+          console.log(this.model);
+            this.insertView("#managementlist", new View({
+                model: model
+            }));
         },
 
        addManagement: function () {
@@ -47,20 +60,18 @@ define(function(require) {
            ev.target.setAttribute("class","btn btn-success");
            ev.target.setAttribute("id","saveManagementEdit");
            //$(evObj)[0].removeAttribute("disabled");
-            console.log(ev.target);
-            //this.Model.destroy();
+           console.log(ev.target);
+           //this.Model.destroy();
         },
 
         saveEditManagement: function(ev) {
-            var newValue = ev.target.closest("td").previousSibling.previousSibling.lastChild.value;
+           var newValue = ev.target.closest("td").previousSibling.previousSibling.lastChild.value;
            ev.target.closest("td").previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
            console.log(newValue);
            ev.target.setAttribute("value","Редагувати");
            ev.target.setAttribute("class","btn btn-primary");
            ev.target.setAttribute("id","managementEdit");
-           //$(evObj)[0].removeAttribute("disabled");
-            console.log(ev.target);
-            //this.Model.destroy();
+           console.log(ev.target);
         },
 
     });
