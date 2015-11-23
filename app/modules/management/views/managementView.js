@@ -10,6 +10,8 @@ define(function(require) {
         events: {
             "click #managementAddButton": "addManagement",
             "click #managementDel": "deleteManagement",
+            "click #managementEdit": "editManagement",
+            "click #saveManagementEdit": "saveEditManagement",
         },
 
         serialize: function() {
@@ -20,14 +22,9 @@ define(function(require) {
             };
         },
 
-        url: function() {
-            return this.api+"areas";
-        },
-
         initialize: function() {
             this.listenTo(this.collection, "sync request change", this.render);
         },
-
 
        addManagement: function () {
             var managementName = this.$el.find("#managementAddInput").val();
@@ -37,10 +34,34 @@ define(function(require) {
             console.log(this.collection);
        },
 
-        deleteManagement: function() {
+        deleteManagement: function(ev) {
+            console.log(ev.target.closest("tr").remove());
             console.log(this.collection);
-        this.Model.destroy();
-    },
+            this.Model.destroy();
+        },
+
+        editManagement: function(ev) {
+           ev.target.closest("td").previousSibling.previousSibling.lastChild.removeAttribute("disabled");
+           ev.target.closest("td").previousSibling.previousSibling.lastChild.focus();
+           ev.target.setAttribute("value","Зберегти");
+           ev.target.setAttribute("class","btn btn-success");
+           ev.target.setAttribute("id","saveManagementEdit");
+           //$(evObj)[0].removeAttribute("disabled");
+            console.log(ev.target);
+            //this.Model.destroy();
+        },
+
+        saveEditManagement: function(ev) {
+            var newValue = ev.target.closest("td").previousSibling.previousSibling.lastChild.value;
+           ev.target.closest("td").previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
+           console.log(newValue);
+           ev.target.setAttribute("value","Редагувати");
+           ev.target.setAttribute("class","btn btn-primary");
+           ev.target.setAttribute("id","managementEdit");
+           //$(evObj)[0].removeAttribute("disabled");
+            console.log(ev.target);
+            //this.Model.destroy();
+        },
 
     });
 

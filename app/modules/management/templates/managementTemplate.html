@@ -6,7 +6,7 @@
       <% management.each(function(area) { %>
 
        <tr>
-        <td> <input id="managementName" type="text" name="name" value="<%= area.get('name') %>" disabled="disabled"></td>
+        <td> <input id="managementName" type="text" name="name" value="<%= area.get('name') %>" disabled></td>
         <td> <input type="submit" class="btn btn-primary" id="managementEdit" value="Редагувати"/></td>
         <td> <input type="submit" class="btn btn-danger" id="managementDel" value="Видалити"/> </td>
       </tr>
