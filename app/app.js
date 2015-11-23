@@ -20,8 +20,14 @@ define(function(require) {
            answer : 1,
            few    : 2
         },
+        btnTestView: {
+           nextQuestion : 0,
+           close        : 1,
+           open         : 2
+        },
         embeddable: ['avi', 'mp4', 'video'],
         downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx']
     });
+
     return CMS;
 });

@@ -130,7 +130,9 @@ define(function(require) {
             }
             this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
             this.containerView.setView(".content", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
+
             this.module.fetch();
+            this.containerView.setView(".wrapper", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();
