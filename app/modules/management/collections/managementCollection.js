@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
@@ -13,13 +13,9 @@ define(function(require, exports, module) {
         },
 
         initialize: function() {
-            console.log(this);
             this.fetch();
-            console.log(this);
         }
     });
-
-     console.log(Collection);
 
     return Collection;
 });

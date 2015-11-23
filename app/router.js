@@ -20,7 +20,6 @@ define(function(require) {
             this.footerView    = new CMS.Views.Footer();
             this.courses       = new CoursesModule.Collection();
             this.userAnswers   = new TestsModule.Collection.Answers();
-            this.management    = new ManagementModule.ManagementCollection();
             this.appView.insertViews([
                 this.headerView,
                 this.containerView,
@@ -36,7 +35,7 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "register" : "showRegisterModule",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management" : "showManagementModule"
+            "management/:areas" : "showManagementModule"
         },
 
         index: function() {
@@ -104,14 +103,11 @@ define(function(require) {
         },
 
         showManagementModule: function(){
-            console.log(this.management);
-            this.management.fetch();
-            console.log(this.management.collection);
-            this.management1 = new ManagementModule.ManagementView({collection: this.management});
+            this.containerView.setView(".wrapper", new ManagementModule.View({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+            this.containerView.hrefPath = "management/areas";
+            //this.management = new ManagementModule.ManagementView({collection: new ManagementModule.ManagementCollection()});
             //this.management.fetch();
-            console.log(this.management1.collection);
-            this.management1.render();
-            console.log(this.management1.collection);
+            //this.management.render();
         },
 
         parseQueryString: function(queryString) {
