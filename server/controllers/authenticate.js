@@ -3,7 +3,6 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     jwt = require('jsonwebtoken'),
-    bcrypt = require('bcrypt'),
     User = require('../models/user'),
     Profile = require('../models/profile');
 
