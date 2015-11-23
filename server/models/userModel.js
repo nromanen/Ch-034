@@ -1,4 +1,4 @@
-﻿var bcrypt = require( "bcrypt" ),
+﻿var bcrypt = require( "bcrypt-nodejs" ),
     mongoose = require( "mongoose" ),
     Schema = mongoose.Schema,
    
@@ -17,6 +17,11 @@
         password: {
             type: String,
             required: true
+        },
+        role: {
+            type: String,
+            default: "student",
+            required: true
         }
     });
 
@@ -29,7 +34,7 @@ userSchema.pre( "save", function ( next ) {
     bcrypt.genSalt( 10, function ( err, salt ) {
         if ( err ) return next( err );
 
-        bcrypt.hash( user.password, salt, function( err, hash ) {
+        bcrypt.hash( user.password, salt, null, function( err, hash ) {
             if ( err ) return next( err );
 
             user.password = hash;
