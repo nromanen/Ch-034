@@ -60,6 +60,7 @@ define(function(require) {
             }
         },
         routes: {
+            "": "index",
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
             "logout": "logoutToLoginPage",
@@ -68,6 +69,9 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
+        },
+        index: function() {
+            //this.appView.setView(new Login.View());
         },
         showLoginPage: function() {
             this.loginView = new Login.View();
