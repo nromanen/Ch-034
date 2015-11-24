@@ -4,6 +4,7 @@ define(function(require, extend, module) {
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
+        idAttribute: "_id",
         defaults: {
             name: "",
             id  : null,
