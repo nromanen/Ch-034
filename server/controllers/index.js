@@ -8,6 +8,7 @@ var express = require('express'),
     router.use('/modules', require('./modules'));
     router.use('/courses/:courseId/modules/:moduleId/tests', require('./tests'));
     router.use('/courses/:courseId/modules/:moduleId/questions', require('./questions'));
+    router.use('/answers', require('./answers'));
     router.use('/vacancies', require('./vacancies'));
 
 module.exports = router;
