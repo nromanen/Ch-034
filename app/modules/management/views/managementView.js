@@ -25,8 +25,7 @@ define(function(require) {
         },
 
         deleteManagement: function(ev) {
-            console.log(ev.target.closest("tr").remove());
-            console.log(this.collection);
+            console.log(this.model);
             this.model.destroy();
         },
 
@@ -37,7 +36,7 @@ define(function(require) {
            ev.target.setAttribute("class","btn btn-success");
            ev.target.setAttribute("id","saveManagementEdit");
            //$(evObj)[0].removeAttribute("disabled");
-           console.log(ev.target);
+           //console.log(ev.target);
            //this.Model.destroy();
         },
 
@@ -48,7 +47,9 @@ define(function(require) {
            ev.target.setAttribute("value","Редагувати");
            ev.target.setAttribute("class","btn btn-primary");
            ev.target.setAttribute("id","managementEdit");
-           console.log(ev.target);
+           console.log(this.model);
+           this.model.set({name:newValue});
+           console.log(this.model);
         },
 
     });

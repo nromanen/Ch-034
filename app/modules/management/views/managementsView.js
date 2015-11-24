@@ -41,7 +41,10 @@ define(function(require) {
             var managementName = this.$el.find("#managementAddInput").val();
             console.log(managementName);
             var management= new Model({name: managementName });
-            this.collection.create(management);
+            management.url = this.collection.url();
+                        this.collection.add(management);
+            management.save();
+
             console.log(this.collection);
         }
 
