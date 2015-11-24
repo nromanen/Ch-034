@@ -844,6 +844,7 @@
   "users": [
     {
       "id": 1,
+      "userType": "teacher",
       "name": "Munazza",
       "lastname": "Arivett",
       "email": "buispr@gmail.com",
@@ -855,6 +856,7 @@
     },
     {
       "id": 2,
+      "userType": "teacher",
       "name": "Jeri",
       "lastname": "Geouque",
       "email": "GBowen@consectetur.gov",
@@ -866,6 +868,7 @@
     },
     {
       "id": 3,
+      "userType": "student",
       "name": "Salomon",
       "lastname": "Ellingwood",
       "email": "KCrete@pulvinar.com",
@@ -877,6 +880,7 @@
     },
     {
       "id": 4,
+      "userType": "student",
       "name": "Ora",
       "lastname": "Reith",
       "email": "SHawkins@dolor.gov",
@@ -888,6 +892,7 @@
     },
     {
       "id": 5,
+      "userType": "student",
       "name": "Vanita",
       "lastname": "Scheppe",
       "email": "CHaga@lacus.ly",
@@ -899,6 +904,7 @@
     },
     {
       "id": 6,
+      "userType": "student",
       "name": "Renita",
       "lastname": "Haft",
       "email": "ACaines@consequat.ly",
@@ -910,6 +916,7 @@
     },
     {
       "id": 7,
+      "userType": "student",
       "name": "Elzbieta",
       "lastname": "Stevenson",
       "email": "JLilly@sed.com",
@@ -921,6 +928,7 @@
     },
     {
       "id": 8,
+      "userType": "student",
       "name": "Richard",
       "lastname": "Barge",
       "email": "MLarson@et.net",
@@ -932,6 +940,7 @@
     },
     {
       "id": 9,
+      "userType": "student",
       "name": "Jerome",
       "lastname": "Depreta",
       "email": "DSherstan@suspendisse.com",
@@ -943,6 +952,7 @@
     },
     {
       "id": 10,
+      "userType": "student",
       "name": "Antoine",
       "lastname": "Elmuccio",
       "email": "DEkekwe@lorem.ly",
@@ -951,6 +961,36 @@
       "address": "1900 Curabitur Ln",
       "phone": "(733)369-5183",
       "isActive": false
+    }
+  ],
+  "navLinks": [
+    {
+      "text": "Всі курси",
+      "link": "#courses"
+    },
+    {
+      "text": "Мої курси",
+      "link": "#courses/1"
+    }
+  ],
+  "personalLinks": [
+    {
+      "text" : "Мій профіль",
+      "link" : "#courses"
+    },
+    {
+      "text" : "Вихід",
+      "link" : "#courses/1"
+    }
+  ],
+  "teacherLinks": [
+    {
+      "text" : "Викладацькі курси",
+      "link" : "#courses"
+    },
+    {
+      "text" : "Додати курс",
+      "link" : "#courses/1"
     }
   ],
   "tests": [

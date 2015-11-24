@@ -9,6 +9,7 @@ define(function(require) {
         RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
+        NavigationModule = require("modules/navigation/index"),
 
     Router = CMS.Router.extend({
         initialize: function() {
