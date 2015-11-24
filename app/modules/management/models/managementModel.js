@@ -6,7 +6,7 @@ define(function(require, extend, module) {
     Model = CMS.Model.extend({
         defaults: {
             name: "",
-            id  : "",
+            id  : null,
         }
     });
 

@@ -50,6 +50,7 @@ define(function(require) {
            ev.target.setAttribute("id","managementEdit");
            console.log(this.model);
            this.model.set({name:newValue});
+           this.model.save();
            console.log(this.model);
         },
 
