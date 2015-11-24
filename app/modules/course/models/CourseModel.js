@@ -14,7 +14,6 @@ define(function(require){
             description: null,
             startDate: null,
             duration: null,
-            endDate: null,
             schedule: null,
             minStudents: null,
             image: null,

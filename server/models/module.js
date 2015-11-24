@@ -10,6 +10,16 @@ ModuleSchema = new Schema({
         type: String,
         default: ""
     },
+    available: {
+        type: Boolean,
+        default: false
+    },
+    result: {
+        type: Number
+    },
+    numberOfTests: {
+        type: Number
+    },
     _course: {
         type: Schema.Types.ObjectId,
         ref: "Course"
