@@ -40,7 +40,7 @@ router.post('/', function(req, res) {
 
 router.post('/check_auth', function(req, res) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
-    if (token !== 'undefined') {
+    if (token) {
         console.log(token);
         jwt.verify(token, req.app.get('superSecret'), function(err, decoded) {
             if (err) {
@@ -51,6 +51,7 @@ router.post('/check_auth', function(req, res) {
             }
         });
     } else {
+        console.log("no token");
       return res.status(403).send({
           success: false,
           message: 'No token provided.'
