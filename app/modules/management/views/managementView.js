@@ -30,8 +30,9 @@ define(function(require) {
         },
 
         editManagement: function(ev) {
-           ev.target.closest("td").previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-           ev.target.closest("td").previousSibling.previousSibling.lastChild.focus();
+           console.log(ev.target.parentNode);
+           ev.target.parentNode.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
+           ev.target.parentNode.previousSibling.previousSibling.lastChild.focus();
            ev.target.setAttribute("value","Зберегти");
            ev.target.setAttribute("class","btn btn-success");
            ev.target.setAttribute("id","saveManagementEdit");
@@ -41,8 +42,8 @@ define(function(require) {
         },
 
         saveEditManagement: function(ev) {
-           var newValue = ev.target.closest("td").previousSibling.previousSibling.lastChild.value;
-           ev.target.closest("td").previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
+           var newValue = ev.target.parentNode.previousSibling.previousSibling.lastChild.value;
+           ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
            console.log(newValue);
            ev.target.setAttribute("value","Редагувати");
            ev.target.setAttribute("class","btn btn-primary");

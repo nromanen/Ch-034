@@ -42,7 +42,7 @@ define(function(require) {
             console.log(managementName);
             var management= new Model({name: managementName });
             management.url = this.collection.url();
-                        this.collection.add(management);
+            this.collection.add(management);
             management.save();
 
             console.log(this.collection);
