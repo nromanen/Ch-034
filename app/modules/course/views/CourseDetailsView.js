@@ -8,7 +8,6 @@ define(function(require) {
         el: false,
         initialize: function(options) {
             this.courseId = options.courseId;
-            this.model.get("endDate");
             this.modules = new ModulesModule.Collection([],{courseId: this.model.id});
             this.listenTo(this.model, "reset sync request", this.render);
         },
@@ -17,10 +16,12 @@ define(function(require) {
             this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image'), courseId: this.courseId}));
         },
         serialize: function() {
+            var course = this.model;
+            course.attributes.id = this.model.id;
+            course.parseDate = this.convertToMonthAndDate;
+
             return {
-                course: this.model,
-                parseDate: this.convertToMonthAndDate,
-                courseId : this.courseId
+                course: course
             };
         }
     });

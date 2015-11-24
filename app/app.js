@@ -9,18 +9,25 @@ define(function(require) {
         Validation = require("backbone.validation");
         require("bootstrap");
 
-    CMS.root = "/";
-    //CMS.api = "http://192.168.101.107:8080/crsms/api/";
-    CMS.api = "http://localhost:3000/";
-    CMS.perPage = 3;
-    CMS.paginationSize = 5;
-    CMS.typeTest = {
-       list   : 0,
-       answer : 1,
-       few    : 2
-    };
-    CMS.embeddable = ['avi', 'mp4', 'video', 'EMBEDDED'];
-    CMS.downloadable = ['zip', 'pdf', 'rar', 'doc', 'docx', 'FILE'];
+    _.extend(CMS, {
+        root: "/",
+        guestPages: ["#login", "#register", "#reset"],
+        api: "http://localhost:8888/api/",
+        perPage: 3,
+        paginationSize: 5,
+        typeTest: {
+           list   : 0,
+           answer : 1,
+           few    : 2
+        },
+        btnTestView: {
+           nextQuestion : 0,
+           close        : 1,
+           open         : 2
+        },
+        embeddable: ['avi', 'mp4', 'video'],
+        downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx']
+    });
 
     return CMS;
 });

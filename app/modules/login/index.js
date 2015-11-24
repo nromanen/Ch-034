@@ -1,8 +1,8 @@
 define( function ( require ) {
-  "use strict";
+    "use strict";
 
-  return {
-    Model: require("./model/loginModel"),
-    View: require("./view/loginView")
-  };
+    return {
+        Model: require("./model/loginModel"),
+        View: require("./view/loginView")
+    };
 });

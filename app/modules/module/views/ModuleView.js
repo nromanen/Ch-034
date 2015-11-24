@@ -12,13 +12,17 @@ define(function(require, exports, module) {
         },
 
         serialize: function() {
+            var module = this.model;
+            module.attributes.id = this.model.id;
+            module.attributes.courseId = this.model.courseId;
+            module.attributes.downloadable = CMS.downloadable;
+            module.attributes.embeddable = CMS.embeddable;
+
             return {
-                module: this.model,
-                downloadable: CMS.downloadable,
-                embeddable: CMS.embeddable,
-                courseId : this.courseId
+                module: module
             };
         }
+
     });
     return View;
 });

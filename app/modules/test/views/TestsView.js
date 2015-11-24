@@ -9,17 +9,23 @@ define(function(require) {
         TestModel = require("modules/test/models/TestModel"),
 
     View = CMS.View.extend({
-        template: _.template(require("text!../templates/testsTemplate.html")),
+        template      :  _.template(require("text!../templates/testsTemplate.html")),
         el: false,
         events: {
             "change .form-control"     : "saveAnswers",
             "change .form-checkbox"    : "saveAnswers",
             "keyup .form-control"      : "saveAnswers",
+            "click #not-all-answers"   : "openBtn",
             "click #btn-submit"        : "submitHandler",
             "click #btn-forbid-submit" : "submitForbid",
             "click #next-question"     : "nextQuestion"
         },
         initialize: function(collection, options) {
+            this.btnTemplate = [
+                require("text!../templates/btn_templates/btnNextTemplate.html"),
+                require("text!../templates/btn_templates/btnCloseTemplate.html"),
+                require("text!../templates/btn_templates/btnOpenTemplate.html")
+            ];
             this.mode        = options.mode;
             this.page        = options.page;
             this.toogleMode  = options.toogleMode;
@@ -96,10 +102,12 @@ define(function(require) {
                 }
             }, this);
             var checkboxEl = _.pluck(this.$form.find("[type='checkbox']"), "name");
-            _.each(checkboxEl, function(arr){
-                var num = Number(arr.match(/\d+/)[0]);
-                if ((!(_.has(answerForm, arr)) )&&(!_.isUndefined(this.userAnswers.get(num)))) {
-                    this.userAnswers.get(num).destroy();
+            _.each(checkboxEl, function(arr) {
+                if (arr != "not-all-answers") {
+                    var num = Number(arr.match(/\d+/)[0]);
+                    if ((!(_.has(answerForm, arr)) )&&(!_.isUndefined(this.userAnswers.get(num)))) {
+                        this.userAnswers.get(num).destroy();
+                    }
                 }
             }, this);
             if(this.mode == "page"){
@@ -123,17 +131,25 @@ define(function(require) {
             e.preventDefault();
         },
         btnCtrl: function () {
-            var btnTemplate = '';
+            var btnState;
             if (this.countQuestions == this.userAnswers.length) {
-                btnTemplate = "<button id='btn-submit' type='submit' class='btn btn-success'>Завершити тестування</button>";
+                btnState = CMS.btnTestView.open;
             }
             else if (this.mode == "list" || (this.mode == "page" && this.countQuestions == this.page)) {
-                btnTemplate = "<button id='btn-forbid-submit' class='btn btn-success disabled'>Завершити тестування</button>";
+                btnState = CMS.btnTestView.close;
             }
             else {
-                btnTemplate = "<button id='next-question' class='btn btn-default'>Наступне питання</button>";
+                btnState = CMS.btnTestView.nextQuestion;
             }
-            this.$el.find("#test-submit").html(btnTemplate);
+            this.$el.find("#test-submit").html(this.btnTemplate[btnState]);
+        },
+        openBtn: function (e) {
+            if (this.$("#not-all-answers").prop("checked")) {
+                this.$el.find("#test-submit").html(this.btnTemplate[CMS.btnTestView.open]);
+            }
+            else {
+                this.btnCtrl();
+            }
         }
     });
     return View;
