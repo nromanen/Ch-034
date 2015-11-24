@@ -10,7 +10,6 @@ define(function(require, exports, module) {
         url: function() {
             return this.api+"vacancies?_limit=5&_sort=id&_order=DESC";
         }
-
     });
 
     return Collection;
