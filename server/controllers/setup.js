@@ -2,8 +2,8 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
     User = require('../models/user'),
+    UserProfile = require('../models/profile'),
     Course = require('../models/course'),
     Area = require('../models/area'),
     Group = require('../models/group'),
@@ -16,12 +16,28 @@ router.get('/', function(req, res) {
     var user1 = new User({
         email: "buispr@gmail.com",
         fullName: "Sergiy Diak",
-        password: bcrypt.hashSync("diak540910", bcrypt.genSaltSync(10)),
+        password: "Diak540910",
         role: 1
     });
     
     user1.save();
-
+    var profile = new UserProfile({
+        _user: user1._id,
+        email: user1.email,
+        name: {
+            first: user1.fullName.split(" ")[0],
+            last: user1.fullName.split(" ")[1]
+        },
+        avatar: "",
+        social: {
+            phone: "req.body.phone",
+            skype: "req.body.skype",
+            linkedin: "req.body.linkedin",
+            fb: "req.body.fb",
+            vk: "req.body.vk"
+        },
+    });
+    profile.save();
     var ui = new Area({
         name: "UI"
     });
@@ -57,14 +73,23 @@ router.get('/', function(req, res) {
     var module1 = new Module({
         title: "Lesson 1: Preaparing our environment",
         description: "Just do it!",
+        available: true
     });
     var module2 = new Module({
         title: "Lesson 2: Finishing preaparing our environment",
         description: "Just do it again!",
+        available: true,
+        result: 7,
+        numberOfTests: 8
+    });
+    var module3 = new Module({
+        title: "Lesson 3: Finishing preaparing our environment",
+        description: "Just do it again and again and again!",
     });
 
     module1.save();
     module2.save();
+    module3.save();
 
     var resource1 = new Resource({
         type: "video",
@@ -118,15 +143,15 @@ router.get('/', function(req, res) {
     vacancy6.save();
 
     var course1 = new Course({ 
-        name: 'Java',
-        description: "Даний курс орієнтований на вивчення Java як людьми з мінімальним рівнем знання програмування так і людей, які хочуть покращити свої знання з певних нюансів мови.",
+        name: 'HTML',
+        description: "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-10-06",
         duration: 4,
         schedule: ["Пн, Вт, Пт"],
         minStudents: 12,
         applicantsNumber: 2,
-        image: "img/java.png",
-        area: java,
+        image: "img/html.png",
+        area: ui,
         groups: [early, evening],
         _modules: [module1._id, module2._id]
     });  
@@ -157,15 +182,15 @@ router.get('/', function(req, res) {
         _modules: [module1._id, module2._id]
     });  
     var course4 = new Course({ 
-        name: 'HTML',
+        name: 'JAVA',
         description: "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-10-26",
         duration: 3,
         schedule: ["Пн, Вт, Пт"],
         minStudents: 8,
         applicantsNumber: 2,
-        image: "img/html.png",
-        area: ui,
+        image: "img/java.png",
+        area: java,
         groups: [daily, evening],
         _modules: [module1._id, module2._id]
     });  
@@ -188,12 +213,14 @@ router.get('/', function(req, res) {
         if (err) throw err;
         module1._course = course1._id;
         module2._course = course1._id;
+        module3._course = course1._id;
         module1._resources.push(resource1._id);
         module1._resources.push(resource2._id);
         module1._resources.push(resource3._id);
         module2._resources.push(resource1._id);
         module1.save();
         module2.save();
+        module3.save();
         console.log('Course saved successfully');
         
     });

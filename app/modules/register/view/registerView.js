@@ -16,11 +16,13 @@ define(function(require) {
 
             $group.addClass('has-error');
             $group.find('.help-block').html(error).removeClass('hidden');
-            $el.popover({title: "Помилка!", content: error, trigger: "focus"});
+            $el.popover({title: Message.errorWord, content: error, trigger: "focus"});
         }
     });
 
     var CMS = require("CMS"),
+
+    Message = require("modules/messages"),
 
     Model = require("modules/register/model/registerModel"),
 
@@ -39,21 +41,23 @@ define(function(require) {
         },
 
         serialize: function() {
-            return {model : this.model};
+            return {model: this.model};
         },
 
         afterRender: function() {
-            this.$el.find('.error-message').addClass('hidden');
+            this.hideErrors();
         },
 
         showErrors: function(model, errors) {
-            this.$el.find('.warning').addClass('hidden');
-            this.$el.find('.error-message').removeClass('hidden');
+            this.$el.find('#warnMsg').addClass('error-message');
+            this.$el.find('.title-msg').html(Message.errorWord);
+            this.$el.find('.text-msg').html(Message.tryAgain);
         },
 
         hideErrors: function() {
-            this.$el.find('.warning').removeClass('hidden');
-            this.$el.find('.error-message').addClass('hidden');
+            this.$el.find('#warnMsg').removeClass('error-message');
+            this.$el.find('.title-msg').html(Message.attentionWord);
+            this.$el.find('.text-msg').html(Message.fieldsRequired);
         },
 
         submitClicked: function(e) {
@@ -69,14 +73,10 @@ define(function(require) {
             if(this.model.isValid()) {
                 this.model.save(null, {
                     success: function(model, response) {
-                        console.log("trigg");
-                        console.log(response);
                         CMS.router.renderHomepage();
                         CMS.router.navigate("courses", {trigger: true});
                     },
                     error: function(model, response) {
-                        console.log("err");
-                        console.log(response);
                     }
                 });
             } else {

@@ -7,6 +7,7 @@ define(function(require) {
         View: require("./view"),
         Model: require("./model"),
         Event: require("./event"),
+        Router: require("./router"),
 
         CoreView: require("./views/CoreView"),
 

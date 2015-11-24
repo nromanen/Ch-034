@@ -3,7 +3,12 @@ define(function(require) {
 
     var View = require("../view"),
     CoreView = View.extend({
-        el: "body"
+        el: "body",
+        initialize: function() {
+        },
+        changeView: function(view) {
+            this.setView(view);
+        }
    });
 
    return CoreView;

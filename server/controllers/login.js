@@ -8,7 +8,7 @@ var express = require( "express" ),
 
 router.post( "/", function ( req, res, next ) {
 
-    User.findOne( { email: req.body.email }, function ( err, user ) {
+    UserModel.findOne( { email: req.body.email }, function ( err, user ) {
 
         if ( err ) throw err;
 

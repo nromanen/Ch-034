@@ -1,9 +1,4 @@
 <ul class="pagination">
-  <div id="count-questions">
-    Питання <%=info.currentPage %> з <%= info.totalPages %><br/>
-    Відповідей <%= countAnswers %>
-  </div>
-
   <% if (info.currentPage != 1) { %>
   <li>
       <a href="<%=info.pageUrl(1) %>" aria-label="First">
@@ -36,4 +31,7 @@
       <a><span aria-hidden="true">&raquo;</span></a>
   </li>
   <% } %>
+  <span id="count-questions">
+    Питання <%=info.currentPage %> з <%= info.totalPages %> (Відповідей <%= countAnswers %>)
+  </span>
 </ul>

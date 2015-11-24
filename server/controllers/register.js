@@ -2,17 +2,14 @@ var express = require("express"),
 	router = express.Router(),
 bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
+    
     User = require("../models/user"),
     Profile = require("../models/profile");
 
 router.post("/", function(req, res, next) {
-    var salt = bcrypt.genSaltSync(10),
-        hash = bcrypt.hashSync(req.body.pass, salt),
-
         newUser = new User({
             email: req.body.email,
-            password: hash,
+            password: req.body.pass,
             role: req.body.role
         });
 
