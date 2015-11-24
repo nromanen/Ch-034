@@ -10,5 +10,11 @@ var express = require('express'),
     router.use('/courses/:courseId/modules/:moduleId/questions', require('./questions'));
     router.use('/answers', require('./answers'));
     router.use('/vacancies', require('./vacancies'));
+    router.use('/register', require('./register'));
+    router.use('/authenticate', require('./authenticate'));
+    router.use('/setup', require('./setup'));
+    router.use( "/login", require( "./login" ) );
+    router.use( "/users", require( "./users" ) );
+    router.use( "/signup", require( "./signup" ) );
 
 module.exports = router;

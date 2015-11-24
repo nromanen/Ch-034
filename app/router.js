@@ -9,6 +9,7 @@ define(function(require) {
         RegisterModule = require("modules/register/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
+        NavigationModule = require("modules/navigation/index"),
 
     Router = CMS.Router.extend({
         initialize: function() {
@@ -59,6 +60,7 @@ define(function(require) {
             }
         },
         routes: {
+            "": "index",
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
             "logout": "logoutToLoginPage",
@@ -67,6 +69,9 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
+        },
+        index: function() {
+            //this.appView.setView(new Login.View());
         },
         showLoginPage: function() {
             this.loginView = new Login.View();
