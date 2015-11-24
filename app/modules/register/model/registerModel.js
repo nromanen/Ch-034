@@ -1,9 +1,14 @@
-define(function(require){
+define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
 
+    Message = require("modules/messages"),
+
+    RegexPattern = require("modules/regexPatterns"),
+
     Model = CMS.Model.extend({
+
         defaults: {
             name       : null,
             surname    : null,
@@ -15,29 +20,29 @@ define(function(require){
             name: {
                 required: true,
                 minLength: 2,
-                pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
-                msg: 'Введіть, будь ласка, коректне ім’я'
+                pattern: RegexPattern.nameRegex,
+                msg: Message.nameMsg
             },
             surname: {
                 required: true,
                 minLength: 2,
-                pattern: /^[A-ZА-ЯЄІЇ]'?[a-zа-яєії']*[a-zа-яєії]*\-[A-ZА-ЯЄІЇ][a-zа-яєії']+$|^[A-ZА-ЯЄІЇ][a-zа-яєії']+$/,
-                msg: 'Введіть, будь ласка, коректне прізвище'
+                pattern: RegexPattern.nameRegex,
+                msg: Message.surnameMsg
             },
             email: {
                 required: true,
-                pattern: /^[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+(\.[a-zA-Z0-9!#$%&'*+\/=?^_`{|}~-]+)*@([a-zA-Z0-9]([a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+([a-zA-Z]{2,4}|museum|travel)$/,
-                msg: 'Введіть, будь ласка, коректну адресу скриньки'
+                pattern: RegexPattern.emailRegex,
+                msg: Message.emailMsg
             },
             pass: {
                 required: true,
-                pattern: /^(?=.*[a-zа-яєії])(?=.*[A-ZА-ЯЄІЇ])(?=.*[0-9])(?=.{8,})/,
-                msg: 'Введіть, будь ласка, коректний пароль'
+                pattern: RegexPattern.passwordRegex,
+                msg: Message.passMsg
             },
             repeatPass: {
                 required: true,
                 equalTo: 'pass',
-                msg: 'Введені паролі не співпадають'
+                msg: Message.repeatPassMsg
             }
         }
     });
