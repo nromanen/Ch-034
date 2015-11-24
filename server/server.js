@@ -7,10 +7,8 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     mongoose = require('mongoose'),
-    bcrypt = require( "bcrypt-nodejs" ),
     jwt = require('jsonwebtoken'), // used to create, sign, and verify tokens
-    config = require('./config'), // get our config file
-    User = require( "./models/userModel" );
+    config = require('./config'); // get our config file
 
 // =======================
 // configuration =========
@@ -32,6 +30,6 @@ app.use( function ( req, res, next ) {
 });
 
 //app.use( require( "./middlewares/auth" ) );
-app.use( "/", require( "./controllers" ) );
+app.use( "/api", require( "./controllers" ) );
 app.listen( config.port );
 console.log( "Magic happens at http://localhost:" + config.port );

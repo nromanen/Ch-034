@@ -29,13 +29,13 @@ define( function (require) {
             this.$el.find(".input-group").removeClass("error");
             this.$el.find(".error-message").addClass("hidden");
             var dataObj = {
-                email : this.$el.find( "#email" ).val(),
-                password: this.$el.find( "#password" ).val()
+                email : this.$el.find( "#email" ).val().trim(),
+                password: this.$el.find( "#password" ).val().trim()
             };
             this.model.set(dataObj, {validate: true});
 
             var that = this;
-            if ( this.model.isValid( true ) ) {
+            if ( this.model.isValid() ) {
                 $.ajax({
                     url: CMS.api + "login",
                     type: "POST",
@@ -59,8 +59,10 @@ define( function (require) {
                         }
                     }
                 });
+            } else if ( !this.model.isValid() ) {
+                this.errorMessage( this.model, this.model.validationError );
             } else {
-                return false;
+                return this;
             }
         },
         errorMessage: function (model, errors) {

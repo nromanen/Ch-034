@@ -8,35 +8,39 @@ var express = require( "express" ),
 
 router.post( "/", function ( req, res, next ) {
 
-    var email = req.body.email,
-        password = req.body.password;
-
-    User.findOne( { email: email }, function ( err, user ) {
+    User.findOne( { email: req.body.email }, function ( err, user ) {
 
         if ( err ) throw err;
 
         if ( user ) {
 
-            if ( !user.checkPassword( password ) ) {
+            user.checkPassword( req.body.password, function ( err, isMatch ) {
 
-                res.status( 409 ).send({ 
+                if ( err ) return next( err );
+
+                if ( !isMatch ) {
+
+                    res.status( 409 ).send({ 
                     success: false,
                     name: ".password",
                     message: "Authentication failed. Wrong password." 
-                });
+                    });
 
-            } else {
+                } else {
 
-                var token = jwt.sign(user, req.app.get('superSecret'), {
-                    expiresInMinutes: 1440 // expires in 24 hours
-                });
+                    var token = jwt.sign( user, req.app.get( "superSecret" ), {
+                        expiresInMinutes: 1440 // expires in 24 hours
+                    });
 
-                res.status( 200 ).send({
-                    success: true,
-                    message: 'Enjoy your token!',
-                    token: token
-                });
-            }
+                    res.status( 200 ).send({
+                        success: true,
+                        message: 'Enjoy your token!',
+                        token: token,
+                        role: user.role
+                    });
+                }
+
+            });
 
         } else {
 

@@ -8,7 +8,10 @@ module.exports = function(req, res, next) {
 
       if (err) {
 
-        return res.json({ success: false, message: 'Failed to authenticate token.' });
+        return res.status( 409 ).send({ 
+          success: false, 
+          message: 'Failed to authenticate token.' 
+        });
 
       } else {
 
