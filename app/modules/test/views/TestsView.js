@@ -35,7 +35,7 @@ define(function(require) {
             this.userAnswers = options.storage;
             this.userAnswers.fetch();
             this.countAnswer = this.userAnswers.length;
-            this.test = new TestModel({id: this.moduleId});
+            this.test = new TestModel({}, {courseId: this.courseId, moduleId: this.moduleId});
             this.test.fetch();
             this.sendModal = new CMS.ModalView({
                 modalHeader  : "Ви впевнені, що завершили проходження тестування та готові відправити дані на перевірку?",
