@@ -103,7 +103,7 @@ define(function(require) {
         },
 
         showManagementModule: function(){
-            this.containerView.setView(".wrapper", new ManagementModule.View({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
             this.containerView.hrefPath = "management/areas";
             //this.management = new ManagementModule.ManagementView({collection: new ManagementModule.ManagementCollection()});
             //this.management.fetch();

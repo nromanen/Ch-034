@@ -1,11 +1,13 @@
 define(function(require) {
     "use strict";
     return {
-        View: require("./views/ManagementView"),
-        //addViev: require("./views/ManagementAddView"),
+        Views: {
+            management: require("./views/managementView"),
+            managements: require("./views/managementsView"),
+        },
         Model: require("./models/managementModel"),
         Collections: {
-            Areas: require("./collections/managementCollection"),
+            Areas: require("./collections/areasCollection"),
         }
     };
 });

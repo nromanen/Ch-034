@@ -4,21 +4,19 @@ define(function(require) {
     var CMS = require("CMS"),
     Model = require("../models/managementModel"),
     View = CMS.View.extend({
-        //el: "#CrsMSContainer",
+        el: false,
         template: _.template(require("text!../templates/managementTemplate.html")),
 
         events: {
-            "click #managementAddButton": "addManagement",
             "click #managementDel": "deleteManagement",
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
         },
 
         serialize: function() {
+            console.log(this.model);
             return {
-                management: this.collection,
-                name      : this.name,
-                title     : this.title,
+                model: this.model,
             };
         },
 
@@ -26,31 +24,10 @@ define(function(require) {
             this.listenTo(this.collection, "sync request change", this.render, this);
         },
 
-        beforeRender: function(){
-            console.log(this.collection);
-            console.log(this);
-            this.collection.each(this.renderOne);
-        },
-
-        renderOne: function(){
-          console.log(this.model);
-            this.insertView("#managementlist", new View({
-                model: model
-            }));
-        },
-
-       addManagement: function () {
-            var managementName = this.$el.find("#managementAddInput").val();
-            console.log(managementName);
-            var management= new Model({name: managementName });
-            this.collection.create(management);
-            console.log(this.collection);
-       },
-
         deleteManagement: function(ev) {
             console.log(ev.target.closest("tr").remove());
             console.log(this.collection);
-            this.Model.destroy();
+            this.model.destroy();
         },
 
         editManagement: function(ev) {
