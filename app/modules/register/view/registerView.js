@@ -73,14 +73,10 @@ define(function(require) {
             if(this.model.isValid()) {
                 this.model.save(null, {
                     success: function(model, response) {
-                        console.log("trigg");
-                        console.log(response);
                         CMS.router.renderHomepage();
                         CMS.router.navigate("courses", {trigger: true});
                     },
                     error: function(model, response) {
-                        console.log("err");
-                        console.log(response);
                     }
                 });
             } else {
