@@ -25,7 +25,7 @@ define(function(require) {
     Model = require("modules/register/model/registerModel"),
 
     View = CMS.View.extend({
-        el: "#CrsMSContainer",
+        el: false,
 
         template: _.template(require("text!../template/registerTemplate.html")),
 
@@ -66,10 +66,19 @@ define(function(require) {
                 repeatPass: this.$el.find('#repeatPass').val()
             };
             this.model.set(feedback);
-
-            if(this.model.isValid(true)) {
-                this.hideErrors();
-                CMS.router.navigate("courses", {trigger: true});
+            if(this.model.isValid()) {
+                this.model.save(null, {
+                    success: function(model, response) {
+                        console.log("trigg");
+                        console.log(response);
+                        CMS.router.renderHomepage();
+                        CMS.router.navigate("courses", {trigger: true});
+                    },
+                    error: function(model, response) {
+                        console.log("err");
+                        console.log(response);
+                    }
+                });
             } else {
                 this.showErrors();
             }

@@ -20,8 +20,8 @@
                   <ul class="list-unstyled">
                     <li class="col-lg-6">
                       <table>
-                        <tr><td>Початок</td><td class="colon-padding">:</td><td><%= parseDate(course.get('startDate')) %><td></tr>
-                        <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= parseDate(course.endDate) %></td></tr>
+                        <tr><td>Початок</td><td class="colon-padding">:</td><td><%= course.parseDate(course.get('startDate')) %><td></tr>
+                        <tr><td>Кінець</td><td class="colon-padding">:</td><td><%= course.parseDate(course.get('endDate')) %></td></tr>
                       </table>
                     </li>
                     <li class="col-lg-6">
@@ -37,7 +37,7 @@
           </div>
           <div class="row course-action">
               <div class="col-lg-7 course-schedule">
-                  <span>Курс почнеться <%= parseDate(course.get('startDate')) %>, з <strong>мін. <%= course.get('minStudents') %> студентів</strong> (заявок <%= course.get('applicantsNumber') %>)</span>
+                  <span>Курс почнеться <%= course.parseDate(course.get('startDate')) %>, з <strong>мін. <%= course.get('minStudents') %> студентів</strong> (заявок <%= course.get('applicantsNumber') %>)</span>
               </div>
               <div class="col-lg-5 course-schedule">
                   <button class="btn btn-success pull-right">Подати заявку</button>

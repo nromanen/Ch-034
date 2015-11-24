@@ -4,20 +4,25 @@ define(function(require) {
     var CMS = require("CMS"),
         CourseView = require("./CourseView"),
         PaginationView = require("./PaginationView"),
-        SidebarView = require("./SidebarView"),
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
         el: false,
         events: {
             "keypress #search-input": "searchCoursesOnEnter",
-            "click #search-button": "searchCoursesOnClick"
+            "click #search-button": "searchCoursesOnClick",
+            "click .remove-search": "clearSearchInput"
         },
         beforeRender: function() {
             this.renderList();
-            this.insertView(".sidebar-a", new SidebarView({filterParams: this.filterParams}));
             if (!_.isEmpty(this.collection.models)) {
                 this.insertView("nav", new PaginationView({collection: this.collection}));
+            }
+        },
+        afterRender: function() {
+            if (this.collection.filterParams.s) {
+                this.$el.find("#search-input").parent().append('<span class="glyphicon glyphicon-remove remove-search" aria-hidden="true"></span>');
+                this.$el.find("#search-input").val(this.collection.filterParams.s);
             }
         },
         renderList: function() {
@@ -31,13 +36,24 @@ define(function(require) {
         searchCoursesOnEnter: function(e) {
             var code = e.keyCode ? e.keyCode : e.charCode;
             if (code === 13) {
-                Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
+                if ($(e.target).val()) {
+                    Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
+                } else {
+                    this.clearSearchInput();
+                }
             }
         },
         searchCoursesOnClick: function(e) {
             e.preventDefault();
             var searchString = this.$el.find("#search-input").val();
-            Backbone.history.navigate("#courses?s='"+searchString+"'", {trigger: true});
+            if (searchString) {
+                Backbone.history.navigate("#courses?s='"+searchString+"'", {trigger: true});
+            } else {
+                this.clearSearchInput();
+            }
+        },
+        clearSearchInput: function() {
+            Backbone.history.navigate("#courses", {trigger: true});
         },
         serialize: function() {
             return {

@@ -11,7 +11,6 @@ define(function(require){
             pass       : null,
             repeatPass : null
         },
-
         validation: {
             name: {
                 required: true,

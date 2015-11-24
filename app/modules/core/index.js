@@ -2,10 +2,12 @@ define(function(require) {
     "use strict";
 
     return {
+        SessionModel: require("./models/SessionModel"),
         Collection: require("./collection"),
         View: require("./view"),
         Model: require("./model"),
         Event: require("./event"),
+        Router: require("./router"),
 
         CoreView: require("./views/CoreView"),
 

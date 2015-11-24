@@ -1,5 +1,18 @@
-.row {
 
+.row {
+    .content {
+        .remove-search {
+            position: absolute;
+            top: 25%;
+            right: 5px;
+            z-index: 50;
+            cursor: pointer;
+            
+            &:hover {
+                color: #ccc;
+            }
+        }
+    }
     .course {
         background-color: $courseBgColor;
         background-clip: content-box;
@@ -25,7 +38,7 @@
                 max-width: 190px;
                 max-height: 190px;
             }
-        }
+        }  
         .course-action {
 
             .course-schedule {
@@ -65,7 +78,7 @@
         text-align: right;
 
         .accordion-toggle {
-            text-decoration: none;
+            text-decoration: none; 
             color: $accordionTextColor;
         }
     }
@@ -118,8 +131,6 @@
 
     }
 }
-
-
 
 .banner-hot {
     display: table;
@@ -175,7 +186,7 @@
         }
     }
 }
-
+    
 .module {
     .module-title {
         display: block;
