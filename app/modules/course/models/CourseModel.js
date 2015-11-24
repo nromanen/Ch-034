@@ -5,8 +5,8 @@ define(function(require){
         moment = require("moment"),
 
     Model = CMS.Model.extend({
+        idAttribute: "_id",
         defaults: {
-            id: null,
             isPublished: null,
             group: null,
             area: null,
@@ -14,7 +14,6 @@ define(function(require){
             description: null,
             startDate: null,
             duration: null,
-            endDate: null,
             schedule: null,
             minStudents: null,
             image: null,
@@ -22,9 +21,9 @@ define(function(require){
         },
 
         parse: function(data, options) {
-            this.startDate = moment(data.startDate);
+            this.startDate = moment(data.startDate.toString());
             this.duration = data.duration;
-            this.endDate = this.setEndDate();
+            this.attributes.endDate = this.setEndDate();
             return data;
         },
 
