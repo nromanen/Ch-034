@@ -2,7 +2,6 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
     User = require('../models/user'),
     Course = require('../models/course'),
     Area = require('../models/area'),
@@ -16,7 +15,7 @@ router.get('/', function(req, res) {
     var user1 = new User({
         email: "buispr@gmail.com",
         fullName: "Sergiy Diak",
-        password: bcrypt.hashSync("diak540910", bcrypt.genSaltSync(10)),
+        password: "Diak540910",
         role: 1
     });
     

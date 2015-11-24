@@ -2,11 +2,11 @@
   <div class="col-md-4 col-sm-5 text-center">
     <a class="course-img" href="#courses/<%= course.get('id') %>"><img src="<%= course.get('image') %>"></a>
   </div>
-  <div class="col-md-8 col-sm-7">
+  <div class="col-md-8 col-sm-7 padding-right padding-left">
     <h3><a class="course-name" href="#courses/<%= course.get('id') %>"><%= course.get('name') %></a></h3>
     <div class="row">
       <div class="col-lg-12">
-        <p><%= course.get('description') %></p>
+        <p class="alignment"><%= course.get('description') %></p>
           <div class="accordion" id="info-<%= course.get('id') %>">
             <div class="accordion-group">
               <div class="accordion-heading">

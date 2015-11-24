@@ -1,4 +1,4 @@
-<div>
+<div class="col-md-12">
     <% modules.each(function(module) { %>
     <div id="module-container" class="row course module">
         <div class="col-md-4 col-sm-5 text-center">
@@ -8,7 +8,13 @@
             <div class="module-title clearfix"><strong><a class="module-item-name" href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>"><%= module.get('title') %></a></strong></div>
             <div class="bottom-line clearfix">
                 <a href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>" class="left-side pull-left">методичні матеріали</a>
-                <a href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>/tests/list-mode" class="btn btn-success pull-right">Пройти тест</a>
+                <% if (module.get('available') !== true) { %>
+                    <div class="btn btn-success disable pull-right padding-right padding-left">Пройти тест</div>
+                <% } else if (module.get('result') != null){ %>
+                    <div class="pull-right">Результат:&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= module.get('result') %>/<%= module.get('numberOfTests') %> </strong>&nbsp;&nbsp;&nbsp;&nbsp;(<%= Math.round(module.get('result')/module.get('numberOfTests')*100) %>%)</div>
+                <% } else { %>
+                    <a href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>/tests/list-mode" class="btn btn-success pull-right padding-right padding-left">Пройти тест</a>
+                <% } %>
             </div>
         </div>
     </div>

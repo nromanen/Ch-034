@@ -1,8 +1,10 @@
-<div id="module-container" class="container-fluid col-lg-8 col-md-offset-2">
-    <a href="#courses/<%= module.get('courseId') %>" class="left-side">&lt; повернутись до курсу</a>
-    <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id')%>/tests/list-mode" class="right-side">пройти тест &gt;</a>
+<div id="module-container" class="container-fluid col-lg-10 col-md-offset-1">
+    <a href="#courses/<%= module.get('courseId') %>" id="return-to-course" class="left-side">&lt; повернутись до курсу</a>
+    <% if (module.get("available") === true && module.get("result") === null) { %>
+        <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>/tests/list-mode" class="right-side">пройти тест &gt;</a>
+    <% } %>
     <div id="module-info">
-        <h3 class="module-title"><%= module.get('name') %></h3>
+        <h3 class="module-title"><%= module.get('title') %></h3>
         <div class="text-justify"><%= module.get('description') %></div>
         <ul class="resource-title"><% _.each(module.get('_resources'), function(resource){ %>
                 <% if (module.get('embeddable').indexOf(resource.type) !== -1) { %>
@@ -15,6 +17,14 @@
                     <% } %>
                 <% }); %>
         </ul>
-        <div class="text-center top-margin"><a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id')%>/tests/list-mode" class="btn btn-success">Пройти тест</a></div>
+        <div id="test-btn" class="text-center top-margin">
+            <% if (module.get("available") !== true) { %>
+                <div class="btn btn-success disable">Пройти тест</div>
+            <% } else if (module.get("result") !== null) { %>
+                <div>Результат тесту:&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= module.get("result")%>/<%= module.get("numberOfTests")%></strong>&nbsp;&nbsp;&nbsp;&nbsp;(<%= Math.round( module.get("result") / module.get("numberOfTests") * 100 )%>%)</div>
+            <% } else { %>
+                <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>/tests/list-mode" class="btn btn-success">Пройти тест</a>
+            <% } %>
+        </div>
     </div>
 </div>

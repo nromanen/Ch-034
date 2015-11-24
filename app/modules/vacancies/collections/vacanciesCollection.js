@@ -7,9 +7,6 @@ define(function(require, exports, module) {
      Collection = CMS.Collection.extend({
         model: Vacancy,
         api: CMS.api,
-        initialize: function() {
-            this.fetch();
-        },
         url: function() {
             return this.api+"vacancies?_limit=5&_sort=id&_order=DESC";
         }
