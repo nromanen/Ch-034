@@ -36,7 +36,6 @@ router.get('/', function(req, res) {
         return res.json(areas);
     });
 });
-
 router.get('/:id', function(req, res) {
     Area.findById(req.params.id, function(err, area) {
         if (err) throw err;
