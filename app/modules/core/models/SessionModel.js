@@ -52,7 +52,7 @@ define(function(require) {
         clearSession: function() {
             if (this.supportsStorage) {
                 window.localStorage.clear();
-                this.setItem("authenticated", false);
+                that.setItem("authenticated", false);
             }
         },
         login: function(credentials, callback) {

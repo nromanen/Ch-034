@@ -29,7 +29,6 @@ define(function(require) {
                 session = this.userSession.getItem("UserSession") || null,
                 isRestricted = _.contains(CMS.guestPages, path),
                 isAuth = session ? session.authenticated : false;
-                console.log(this.userSession.getProfile());
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
                 Backbone.history.navigate("#login", {
