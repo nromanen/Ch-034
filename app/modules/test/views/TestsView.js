@@ -92,9 +92,9 @@ define(function(require) {
                 if (!_.isEmpty(value)) {
                     this.userAnswers.create({
                         id         : num,
-                        moduleId   : parseInt(this.moduleId),
-                        courseId   : parseInt(this.courseId),
-                        answerUser : value
+                        _module    : this.moduleId,
+                        _course    : this.courseId,
+                        userAnswer : value
                     });
                 }
                 else if(!_.isUndefined(this.userAnswers.get(num))) {

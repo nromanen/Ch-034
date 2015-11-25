@@ -6,9 +6,9 @@ define(function(require){
     Model = CMS.Model.extend({
         defaults: {
             id         : null,
-            moduleId   : null,
-            courseId   : null,
-            answerUser : null
+            _course    : null,
+            _module    : null,
+            userAnswer : null
         }
     });
 
