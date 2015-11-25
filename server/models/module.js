@@ -15,7 +15,10 @@ ModuleSchema = new Schema({
         default: false
     },
     result: {
-        type: Number,
+        type: Number
+    },
+    numberOfTests: {
+        type: Number
     },
     _course: {
         type: Schema.Types.ObjectId,

@@ -39,7 +39,5 @@ app.use('/api/register', require('./controllers/register'));
 app.use('/api', require('./middlewares/auth'));
 app.use('/api', require('./controllers'));
 
-//app.use( require( "./middlewares/auth" ) );
-app.use( "/api", require( "./controllers" ) );
 app.listen( config.port );
 console.log( "Magic happens at http://localhost:" + config.port );
