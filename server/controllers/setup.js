@@ -169,11 +169,11 @@ router.get('/', function(req, res) {
     });
     var test2 = new Test({
         "num": 2,
-        "nameTest": " Форми"
+        "nameTest": "Форми"
     });
     var test3 = new Test({
         "num": 3,
-        "nameTest": " Таблиці"
+        "nameTest": "Таблиці"
     });
     var test4 = new Test({
         "num": 4,
@@ -214,12 +214,16 @@ router.get('/', function(req, res) {
     var module41 = new Module({
         title: "Модуль 1.Теги: поняття, типи, підтримка",
         description: "Just do it again!",
+        available: true,
         _tests: [test1._id]
     });
 
     var module42 = new Module({
         title: "Модуль 2. Форми",
         description: "Just do it again!",
+        available: true,
+        result: 7,
+        numberOfTests: 8,
         _tests: [test2._id]
     });
 
@@ -329,7 +333,7 @@ router.get('/', function(req, res) {
         image: "img/html.png",
         area: ui,
         groups: [early, evening],
-        _modules: [module1._id, module2._id]
+        _modules: [module41._id, module42._id, module43._id]
     });  
     var course2 = new Course({ 
         name: 'Flat UI',
@@ -368,7 +372,7 @@ router.get('/', function(req, res) {
         image: "img/java.png",
         area: java,
         groups: [daily, evening],
-        _modules: [module41._id, module42._id, module43._id]
+        _modules: [module1._id, module2._id]
     });  
     var course5 = new Course({ 
         name: '.Net',
@@ -386,18 +390,44 @@ router.get('/', function(req, res) {
 
     course1.save(function(err) {
         if (err) throw err;
-        module1._course = course1._id;
-        module2._course = course1._id;
-        module3._course = course1._id;
-        module1._resources.push(resource1._id);
-        module1._resources.push(resource2._id);
-        module1._resources.push(resource3._id);
-        module2._resources.push(resource1._id);
-        module1.save();
-        module2.save();
-        module3.save();
+        module41._course = course1._id;
+        module42._course = course1._id;
+        module43._course = course1._id;
+        module41._resources.push(resource1._id);
+        module42._resources.push(resource2._id);
+        module43._resources.push(resource3._id);
+        module41.save();
+        module42.save();
+        module43.save();
+        test1._course = course1._id;
+        test2._course = course1._id;
+        test3._course = course1._id;
+        test4._course = course1._id;
+        test5._course = course1._id;
+        test6._course = course1._id;
+        test1.save();
+        test2.save();
+        test3.save();
+        test4.save();
+        test5.save();
+        test6.save(); 
+        question1._course = course1._id;
+        question2._course = course1._id;
+        question3._course = course1._id;
+        question4._course = course1._id;
+        question5._course = course1._id;
+        question6._course = course1._id;
+        question7._course = course1._id;
+        question8._course = course1._id;
+        question1.save();
+        question2.save();
+        question3.save();
+        question4.save();
+        question5.save();
+        question6.save();
+        question7.save();
+        question8.save();
         console.log('Course saved successfully');
-        
     });
     course2.save(function(err) {
         if (err) throw err;
@@ -411,36 +441,17 @@ router.get('/', function(req, res) {
     });
     course4.save(function(err) {
         if (err) throw err;
-        test1._course = course4._id;
-        test2._course = course4._id;
-        test3._course = course4._id;
-        test4._course = course4._id;
-        test5._course = course4._id;
-        test6._course = course4._id;
-        test1.save();
-        test2.save();
-        test3.save();
-        test4.save();
-        test5.save();
-        test6.save();
-        question1._course = course4._id;
-        question2._course = course4._id;
-        question3._course = course4._id;
-        question4._course = course4._id;
-        question5._course = course4._id;
-        question6._course = course4._id;
-        question7._course = course4._id;
-        question8._course = course4._id;
-        question1.save();
-        question2.save();
-        question3.save();
-        question4.save();
-        question5.save();
-        question6.save();
-        question7.save();
-        question8.save();
+        module1._course = course4._id;
+        module2._course = course4._id;
+        module3._course = course4._id;
+        module1._resources.push(resource1._id);
+        module1._resources.push(resource2._id);
+        module1._resources.push(resource3._id);
+        module2._resources.push(resource1._id);
+        module1.save();
+        module2.save();
+        module3.save();
         console.log('Course saved successfully');
-        
     });
     course5.save(function(err) {
         if (err) throw err;
