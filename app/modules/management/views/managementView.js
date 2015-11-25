@@ -33,9 +33,10 @@ define(function(require) {
            console.log(ev.target.parentNode);
            ev.target.parentNode.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
            ev.target.parentNode.previousSibling.previousSibling.lastChild.focus();
-           ev.target.setAttribute("value","Зберегти");
-           ev.target.setAttribute("class","btn btn-success");
-           ev.target.setAttribute("id","saveManagementEdit");
+           $(".managementEdit").attr({"value":"Зберегти", "class":"btn btn-success", "id":"saveManagementEdit"});
+           //ev.target.setAttribute("value","Зберегти");
+           //ev.target.setAttribute("class","btn btn-success");
+           //ev.target.setAttribute("id","saveManagementEdit");
            //$(evObj)[0].removeAttribute("disabled");
            //console.log(ev.target);
            //this.Model.destroy();
