@@ -52,12 +52,14 @@ define(function(require) {
         clearSession: function() {
             if (this.supportsStorage) {
                 window.localStorage.clear();
+                that.setItem("authenticated", false);
             }
         },
         login: function(credentials, callback) {
             var that = this,
             login = this.save(credentials);
             login.done(function(response) {
+                that.setItem("authenticated", true);
                 that.setItem("UserSession", JSON.stringify(response));
                 if (that.getItem("UserSession.targetPage")) {
                     var path = that.getItem("UserSession.targetPage");
@@ -77,29 +79,19 @@ define(function(require) {
                 }
             });
         },
-        getAuth: function(token) {
-            var that = this,
-            check = $.ajax({
-                url: this.urlRoot+"/check_auth",
-                type: "POST",
-                dataType: 'JSON',
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader("x-access-token", token);
-                }
-            });
-            check.done(function(response) {
-
-                that.setItem("UserSession.authenticated", true);
-                return true;
-            });
-            check.fail(function(response) {
-                that.setItem("UserSession.authenticated", false);
-                return false;
-            });
-        },
         logout: function(callback) {
             this.clearSession();
             callback();
+        },
+        getRole: function() {
+            return this.getItem("authenticated") ?
+                this.getItem("UserSession").profile.role :
+                false;
+        },
+        getProfile: function() {
+            return this.getItem("authenticated") ?
+                this.getItem("UserSession").profile :
+                false;
         }
     });
     return new SessionModel();

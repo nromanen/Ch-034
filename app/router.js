@@ -27,7 +27,6 @@ define(function(require) {
                 session = this.userSession.getItem("UserSession") || null,
                 isRestricted = _.contains(CMS.guestPages, path),
                 isAuth = session ? session.authenticated : false;
-                console.log(isAuth);
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
                 Backbone.history.navigate("#login", {
@@ -60,7 +59,6 @@ define(function(require) {
             }
         },
         routes: {
-            "": "index",
             "(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "login": "showLoginPage",
             "logout": "logoutToLoginPage",
@@ -70,9 +68,7 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
-        index: function() {
-            //this.appView.setView(new Login.View());
-        },
+
         showLoginPage: function() {
             this.loginView = new Login.View();
             this.appView.setView("#CrsMSContainer", this.loginView);
