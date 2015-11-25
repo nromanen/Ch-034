@@ -21,7 +21,7 @@ define(function(require) {
         },
 
         initialize: function() {
-            this.listenTo(this.collection, "sync request change", this.render, this);
+            this.listenTo(this.model, "reset change", this.render, this);
         },
 
         deleteManagement: function(ev) {
@@ -33,13 +33,8 @@ define(function(require) {
            console.log(ev.target.parentNode);
            ev.target.parentNode.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
            ev.target.parentNode.previousSibling.previousSibling.lastChild.focus();
-           $(".managementEdit").attr({"value":"Зберегти", "class":"btn btn-success", "id":"saveManagementEdit"});
-           //ev.target.setAttribute("value","Зберегти");
-           //ev.target.setAttribute("class","btn btn-success");
-           //ev.target.setAttribute("id","saveManagementEdit");
-           //$(evObj)[0].removeAttribute("disabled");
-           //console.log(ev.target);
-           //this.Model.destroy();
+           $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"value":"Зберегти", "class":"btn btn-success", "id":"saveManagementEdit"});
+
         },
 
         saveEditManagement: function(ev) {
@@ -53,6 +48,7 @@ define(function(require) {
            this.model.set({name:newValue});
            this.model.save();
            console.log(this.model);
+           this.model.fetch({reset:true});
         },
 
     });

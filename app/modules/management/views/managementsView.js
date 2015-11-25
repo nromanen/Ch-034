@@ -44,7 +44,7 @@ define(function(require) {
             management.url = this.collection.url();
             this.collection.add(management);
             management.save();
-
+            this.collection.fetch({reset:true});
             console.log(this.collection);
         }
 
