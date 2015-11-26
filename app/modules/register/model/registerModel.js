@@ -16,7 +16,7 @@ define(function(require) {
             pass       : null,
             repeatPass : null
         },
-        urlRoot: "http://localhost:8888/api/signup",
+        urlRoot: "http://localhost:8888/api/register",
         validation: {
             name: {
                 required: true,
