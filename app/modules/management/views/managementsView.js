@@ -5,9 +5,7 @@ define(function(require) {
         ManagementView = require("./managementView"),
         Model = require("../models/managementModel"),
     View = CMS.View.extend({
-        //el: "#CrsMSContainer",
         template: _.template(require("text!../templates/managementsTemplate.html")),
-
         events: {
             "click #managementAddButton": "addManagement",
         },
@@ -41,8 +39,6 @@ define(function(require) {
             management.save();
             this.collection.fetch({reset:true});
         }
-
-
      });
 
     return View;

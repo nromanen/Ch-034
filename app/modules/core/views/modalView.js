@@ -35,7 +35,6 @@ define(function(require) {
             this.remove();
         },
         submitHandlerClick: function(){
-            console.log("shit")
         },
         declinePopup: function(){
             this.$el.modal("hide");
