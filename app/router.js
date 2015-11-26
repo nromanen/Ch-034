@@ -27,7 +27,6 @@ define(function(require) {
                 session = this.userSession.getItem("UserSession") || null,
                 isRestricted = _.contains(CMS.guestPages, path),
                 isAuth = session ? session.authenticated : false;
-                console.log(this.userSession.getProfile());
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
                 Backbone.history.navigate("#login", {
@@ -66,6 +65,7 @@ define(function(require) {
             "register" : "showRegisterPage",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
+            "courses/:courseId/modules/create": "createCourseModuleDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
@@ -132,9 +132,12 @@ define(function(require) {
             }
             this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
             this.containerView.setView(".content", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
-
             this.module.fetch();
-
+        },
+        createCourseModuleDetails: function(courseId) {
+            this.module = new ModulesModule.Model([], {courseId: courseId});
+            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
+            this.containerView.render();
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();

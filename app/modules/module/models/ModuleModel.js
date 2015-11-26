@@ -7,7 +7,7 @@ define(function(require, extend, module) {
         idAttribute: '_id',
         defaults: {
             courseId: null,
-            name: null,
+            title: null,
             description: null,
             available: null,
             numberOfTests: null,
@@ -15,14 +15,18 @@ define(function(require, extend, module) {
             resources: {}
         },
         initialize: function(attributes, options) {
-
             this.courseId = options.courseId;
-        },
-        url: function() {
-            return this.urlRoot() + this.id;
         },
         urlRoot: function() {
             return CMS.api + "courses/"+this.courseId+"/modules/";
+        },
+        validate: function(attr, options) {
+            var error = {};
+            if (!attr.title) {
+                error.title = "Пуста назва модуля";
+                error.message = "Заповніть, будь ласка, назву модуля";
+            }
+            return $.isEmptyObject(error) ? false : error;
         }
     });
     return Model;
