@@ -8,10 +8,11 @@ define(function(require) {
         template: _.template(require("text!../templates/managementTemplate.html")),
 
         events: {
-            "click #managementDel": "deleteManagement",
+            "click #managementDel": "deleteManagementModal",
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
             "click #cenceleManagementEdit": "cenceleEdit",
+            //"click #modalOkBtn": "deleteManagement",
         },
 
         serialize: function() {
@@ -22,11 +23,23 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(this.model, "reset change", this.render, this);
+            CMS.ModalView.prototype.submitHandlerClick = function() {
+              console.log("modal OK");
+              this.model.destroy();
+              this.$el.modal("hide");
+            };
+            this.deleteModal = new CMS.ModalView({model: this.model, modalHeader: "Ви дійсно хочете видалити :", submitButton: "Видалити"});
         },
 
-        deleteManagement: function(ev) {
-            this.model.destroy();
+        deleteManagementModal: function(ev) {
+            this.deleteModal.render();
+            this.deleteModal.show();
         },
+
+/*        deleteManagement: function(ev) {
+            console.log("modal OK");
+            this.model.destroy();
+        },*/
 
         editManagement: function(ev) {
            var evModelEl = ev.target.parentNode;

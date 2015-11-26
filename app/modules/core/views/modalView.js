@@ -9,7 +9,7 @@ define(function(require) {
         className: "modal fade",
         events:{
             "hidden.bs.modal #applyModal": "closePopup",
-            "click .btn-apply": "submitHandlerClick",
+            "click .btn-success": "submitHandlerClick",
             "click .btn-cancel": "declinePopup"
         },
         initialize: function(options) {
@@ -35,6 +35,7 @@ define(function(require) {
             this.remove();
         },
         submitHandlerClick: function(){
+            console.log("shit")
         },
         declinePopup: function(){
             this.$el.modal("hide");
