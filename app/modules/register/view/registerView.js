@@ -65,7 +65,7 @@ define(function(require) {
                 name: this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
                 email: this.$el.find('#email').val(),
-                pass: this.$el.find('#pass').val(),
+                password: this.$el.find('#password').val(),
                 repeatPass: this.$el.find('#repeatPass').val()
             };
 

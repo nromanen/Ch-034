@@ -13,7 +13,7 @@ define(function(require) {
             name       : null,
             surname    : null,
             email      : null,
-            pass       : null,
+            password   : null,
             repeatPass : null
         },
         urlRoot: "http://localhost:8888/api/register",
@@ -35,14 +35,14 @@ define(function(require) {
                 pattern: RegexPattern.emailRegex,
                 msg: Message.emailMsg
             },
-            pass: {
+            password: {
                 required: true,
                 pattern: RegexPattern.passwordRegex,
                 msg: Message.passMsg
             },
             repeatPass: {
                 required: true,
-                equalTo: 'pass',
+                equalTo: 'password',
                 msg: Message.repeatPassMsg
             }
         }
