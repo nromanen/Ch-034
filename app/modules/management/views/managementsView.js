@@ -25,13 +25,10 @@ define(function(require) {
         },
 
         beforeRender: function(){
-            console.log(this.collection);
-            console.log(this);
             this.collection.each(this.renderOne, this);
         },
 
         renderOne: function(el){
-            console.log(el);
             this.insertView("#managementlist", new ManagementView({
                 model: el
             }));
@@ -39,13 +36,10 @@ define(function(require) {
 
         addManagement: function () {
             var managementName = this.$el.find("#managementAddInput").val();
-            console.log(managementName);
             var management= new Model({name: managementName });
             management.url = this.collection.url();
-            this.collection.add(management);
             management.save();
             this.collection.fetch({reset:true});
-            console.log(this.collection);
         }
 
 

@@ -11,10 +11,10 @@ define(function(require) {
             "click #managementDel": "deleteManagement",
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
+            "click #cenceleManagementEdit": "cenceleEdit",
         },
 
         serialize: function() {
-            console.log(this.model);
             return {
                 model: this.model,
             };
@@ -25,30 +25,33 @@ define(function(require) {
         },
 
         deleteManagement: function(ev) {
-            console.log(this.model);
             this.model.destroy();
         },
 
         editManagement: function(ev) {
+           var evModelEl = ev.target.parentNode;
            console.log(ev.target.parentNode);
-           ev.target.parentNode.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-           ev.target.parentNode.previousSibling.previousSibling.lastChild.focus();
-           $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"value":"Зберегти", "class":"btn btn-success", "id":"saveManagementEdit"});
-
+           evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
+           evModelEl.previousSibling.previousSibling.lastChild.focus();
+           $(evModelEl.parentNode).find(".managementEdit").attr({"value":"Зберегти", "class":"btn btn-success", "id":"saveManagementEdit"});
+           $(evModelEl.parentNode).find("#managementDel").attr({"value":"Відмінити", "class":"btn btn-warning", "id":"cenceleManagementEdit"});
         },
 
         saveEditManagement: function(ev) {
-           var newValue = ev.target.parentNode.previousSibling.previousSibling.lastChild.value;
+           console.log(ev);
+           var newValue = $(ev.target.parentNode.parentNode).find("#managementName").val(); //previousSibling.previousSibling.lastChild.value;
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
            console.log(newValue);
-           ev.target.setAttribute("value","Редагувати");
-           ev.target.setAttribute("class","btn btn-primary");
-           ev.target.setAttribute("id","managementEdit");
-           console.log(this.model);
+            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"value":"Редагувати", "class":"btn btn-primary", "id":"managementEdit"});
            this.model.set({name:newValue});
            this.model.save();
-           console.log(this.model);
            this.model.fetch({reset:true});
+        },
+
+        cenceleEdit: function(ev) {
+          $(ev.target.parentNode.parentNode).find("#managementName").val(this.model.get("name"));
+          console.log($(ev.target.parentNode.parentNode).find("#managementName").val(this.model.get("name")));
+          this.saveEditManagement(ev);
         },
 
     });

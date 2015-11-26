@@ -8,6 +8,7 @@ define(function(require) {
         Model: require("./models/managementModel"),
         Collections: {
             Areas: require("./collections/areasCollection"),
+            Groups: require("./collections/groupsCollection"),
         }
     };
 });

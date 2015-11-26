@@ -10,13 +10,10 @@ define(function(require) {
         serialize: function() {
             //console.log(this.model.HTML)
             if (typeof(this.model.HTML)==="object"){
-                console.log("object!")
-                console.log(this.model.HTML.el)
                 return {
                     widget: this.model.HTML.el
                 };
             } else {
-                console.log("string!")
                 return {
                     widget: this.model
                 };
@@ -24,6 +21,5 @@ define(function(require) {
             }
         }
     });
-    console.log("View" + View)
     return View;
 });

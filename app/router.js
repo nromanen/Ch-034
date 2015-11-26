@@ -68,7 +68,8 @@ define(function(require) {
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
-            "management/:areas" : "showManagementModule"
+            "management/areas" : "showManagementAreas",
+            "management/groups" : "showManagementGroups",
         },
 
         showLoginPage: function() {
@@ -157,9 +158,14 @@ define(function(require) {
             }
         },
 
-        showManagementModule: function(){
+        showManagementAreas: function(){
             this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
-            this.containerView.hrefPath = "management/areas";
+            //this.containerView.hrefPath = "management/areas";
+        },
+
+        showManagementGroups: function(){
+            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
+            this.containerView.hrefPath = "management/groups";
             //this.management = new ManagementModule.ManagementView({collection: new ManagementModule.ManagementCollection()});
             //this.management.fetch();
             //this.management.render();
