@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router();
 
+<<<<<<< HEAD
 router.use('/courses', require('./courses'));
 router.use('/courses/:courseId/modules', require('./modules'));
 router.use('/areas', require('./areas'));

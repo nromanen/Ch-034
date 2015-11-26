@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema,
 
-TestSchema = new Schema({
+QuestionSchema = new Schema({
     num: {
         type: Number,
         default: 0
@@ -14,10 +14,17 @@ TestSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Module"
     },
-    nameTest: {
+    question: {
         type: String,
-        required: "Please fill test title"
+        required: "Please fill question"
+    },
+    typeVariant: {
+        type: Number,
+        default: 0
+    },
+    variants: {
+        type: Object
     }
 });
 
-module.exports = mongoose.model('Test', TestSchema);
+module.exports = mongoose.model('Question', QuestionSchema);
