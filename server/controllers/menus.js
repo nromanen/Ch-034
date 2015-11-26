@@ -8,7 +8,10 @@ var express = require('express'),
 router.get('/', function(req, res) {
     Menu
         .find()
-        .populate("_menuLinks")
+        .populate({
+            path: '_menuLinks',
+            match: {access: req.authUser.role}
+        })
         .exec(function(err, menus) {
             if (err) throw err
             return res.json(menus);
@@ -24,9 +27,13 @@ router.post('/', function(req, res) {
     });
 })
 router.get('/:id', function(req, res) {
+    console.log(req.authUser.role);
     Menu
         .findById(req.params.id)
-        .populate("_menuLinks")
+        .populate({
+            path: '_menuLinks',
+            match: {access: req.authUser.role}
+        })
         .exec(function(err, menu) {
             return res.json(menu);
         });
@@ -48,7 +55,10 @@ router.delete('/:id', function(req, res) {
 router.get('/:menuId/links', function(req, res) {
     Menu
         .findById(req.params.menuId)
-        .populate("_menuLinks")
+        .populate({
+            path: '_menuLinks',
+            match: {access: req.authUser.role}
+        })
         .exec(function(err, menu) {
             if (err) throw err
             return res.json(menu._menuLinks);

@@ -11,8 +11,8 @@ MenuLinkSchema = new Schema({
         default: true
     },
     access: {
-        type: [],
-        default: [1]
+        type: [Number],
+        required: true
     },
     url: {
         type: String,
