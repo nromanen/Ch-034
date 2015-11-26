@@ -2,6 +2,8 @@ var jwt = require("jsonwebtoken"),
     User = require("../models/user");
 
 module.exports = function (role) {
+  role = [].concat(role);
+
   return function (req, res, next) {
 
     var token = req.body.token || req.query.token || req.headers["x-access-token"];
@@ -32,26 +34,41 @@ module.exports = function (role) {
 
             if (user) {
 
-              if (user.role === role) {
+              role.forEach(function (role) {
 
-                next();
+                if (user.role === role) {
 
-              } else {
+                  return next();
 
-                res
-                .status(401)
-                .send({success: false, message: "Woooops, access denied!"})
-              }
+                } else {
+
+                  return res
+                          .status(401)
+                          .send({
+                            success: false, 
+                            message: "Woooops, access denied!"
+                          });
+
+                }
+
+              });
+                
+            } else {
+
+              return next(err);
+
             }
+
           });
-        }
+
+        };
+
       });
 
     } else {
 
       return next(err);
 
-    }
-
-  }
+    };
+  };
 };
