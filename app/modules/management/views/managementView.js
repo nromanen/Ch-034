@@ -41,7 +41,6 @@ define(function(require) {
         },
 
         saveEditManagement: function(ev) {
-           console.log(ev);
            var newValue = _.escape($(ev.target.parentNode.parentNode).find("#managementName").val());
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
             $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"value":"Редагувати", "class":"btn btn-primary", "id":"managementEdit"});
