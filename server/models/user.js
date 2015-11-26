@@ -3,17 +3,24 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var UserSchema = new Schema({
-    email: String,
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
     fullName: String,
-    password: String,
+    password: {
+        type: String,
+        required: true
+    },
     role: {
         type: Number,
         default: 0
     },
-    _courses: {
+    _courses: [{
         type: Schema.Types.ObjectId,
         ref: 'Course'
-    }
+    }]
 });
 UserSchema.pre('save', function (next) {
     var user = this;

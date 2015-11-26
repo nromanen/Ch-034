@@ -5,6 +5,8 @@ var express = require('express'),
     User = require('../models/user'),
     UserProfile = require('../models/profile'),
     Course = require('../models/course'),
+    Test = require('../models/test'),
+    Question = require('../models/question'),
     Area = require('../models/area'),
     Group = require('../models/group'),
     Module = require('../models/module'),
@@ -70,6 +72,129 @@ router.get('/', function(req, res) {
     daily.save();
     evening.save();
 
+    var question1 = new Question({
+        "num": 1,
+        "question": "Введіть класичний варіант написання тегу",
+        "typeVariant": 0,
+        "variants": {
+            "variant1": "&lt;name&gt;&lt;/name&gt;",
+            "variant2": "other variant"
+        }
+    });
+
+    var question2 = new Question({
+        "num": 2,
+        "question": "Введіть doctype HTML5 без &lt;&gt;",
+        "typeVariant": 1
+    });
+
+    var question3 = new Question({
+        "num": 3,
+        "question": "Відмітьте теги, які не підтримуються HTML 4.0",
+        "typeVariant": 2,
+        "variants": {
+            "variant1": "header",
+            "variant2": "img",
+            "variant3": "footer",
+            "variant4": "span"
+        }
+    });
+
+    var question4 = new Question({
+        "num": 4,
+        "question": "Яка форма запису є коректною ? (два варіанти)",
+        "typeVariant": 2,
+        "variants": {
+            "variant1": "&lt;input required=on&gt;",
+            "variant2": "&lt;input required=yes&gt;",
+            "variant3": "&lt;input required&gt;",
+            "variant4": "&lt;input required=required&gt;"
+        }
+    });
+
+    var question5 = new Question({
+        "num": 5,
+        "question": "Як встановити кодировку документа?",
+        "typeVariant": 0,
+        "variants": {
+            "variant1": "&lt;body charset=&#34;utf-8&#34;&gt;",
+            "variant2": "&lt;meta charset=&#34;utf-8&#34;&gt;",
+            "variant3": "&lt;meta codebase=&#34;utf-8&#34;&gt;"
+        }
+    });
+
+    var question6 = new Question({
+        "num": 6,
+        "question": "Який елемент у секції &lt;head&gt; є обов'язковим?",
+        "typeVariant": 0,
+        "variants": {
+            "variant1": "&lt;meta&gt;",
+            "variant2": "&lt;link&gt;",
+            "variant3": "&lt;style&gt;",
+            "variant4": "&lt;base&gt;",
+            "variant5": "&lt;title&gt;"
+        }
+    });
+
+    var question7 = new Question({
+        "num": 1,
+        "question": "Який тег не є тегом форматування таблиці?",
+        "typeVariant": 0,
+        "variants": {
+            "variant1": "&lt;target&gt;",
+            "variant2": "&lt;td&gt;",
+            "variant3": "&lt;hd&gt;",
+            "variant4": "&lt;colspan&gt;"
+        }
+    });
+
+    var question8 = new Question({
+        "num": 2,
+        "question": "Який тег потрібен для організації назви таблиці?",
+        "typeVariant": 1
+    });
+
+    question1.save();
+    question2.save();
+    question3.save();
+    question4.save();
+    question5.save();
+    question6.save();
+    question7.save();
+    question8.save();
+
+    var test1 = new Test({
+        "num": 1,
+        "nameTest": "Теги: поняття, типи, підтримка"
+    });
+    var test2 = new Test({
+        "num": 2,
+        "nameTest": "Форми"
+    });
+    var test3 = new Test({
+        "num": 3,
+        "nameTest": "Таблиці"
+    });
+    var test4 = new Test({
+        "num": 4,
+        "nameTest": "Спеціальні теги HTML 5"
+    });
+    var test5 = new Test({
+        "num": 5,
+        "nameTest": "Побудова оптимізованого DOM дерева"
+    });
+    var test6 = new Test({
+        "num": 6,
+        "nameTest": "Екзаменаційне завдання"
+    });
+
+    test1.save();
+    test2.save();
+    test3.save();
+    test4.save();
+    test5.save();
+    test6.save();
+
     var module1 = new Module({
         title: "Lesson 1: Preaparing our environment",
         description: "Just do it!",
@@ -86,10 +211,65 @@ router.get('/', function(req, res) {
         title: "Lesson 3: Finishing preaparing our environment",
         description: "Just do it again and again and again!",
     });
+    var module41 = new Module({
+        title: "Модуль 1.Теги: поняття, типи, підтримка",
+        description: "Just do it again!",
+        available: true,
+        _tests: [test1._id]
+    });
+
+    var module42 = new Module({
+        title: "Модуль 2. Форми",
+        description: "Just do it again!",
+        available: true,
+        result: 7,
+        numberOfTests: 8,
+        _tests: [test2._id]
+    });
+
+    var module43 = new Module({
+        title: "Модуль 3. Таблиці",
+        description: "Just do it again!",
+        _tests: [test3._id]
+    });
 
     module1.save();
     module2.save();
     module3.save();
+    module41.save(function(err) {
+        if (err) throw err;
+        test1._module = module41._id;
+        test1.save();
+        question1._module = module41._id;
+        question2._module = module41._id;
+        question3._module = module41._id;
+        question4._module = module41._id;
+        question5._module = module41._id;
+        question6._module = module41._id;
+        question1.save();
+        question2.save();
+        question3.save();
+        question4.save();
+        question5.save();
+        question6.save();
+        console.log('Module saved successfully');
+    });
+    module42.save(function(err) {
+        if (err) throw err;
+        test2._module = module42._id;
+        test2.save();
+        console.log('Module saved successfully');
+    });
+    module43.save(function(err) {
+        if (err) throw err;
+        test3._module = module43._id;
+        test3.save();
+        question7._module = module43._id;
+        question8._module = module43._id;
+        question7.save();
+        question8.save();
+        console.log('Module saved successfully');
+    });
 
     var resource1 = new Resource({
         type: "video",
@@ -153,7 +333,7 @@ router.get('/', function(req, res) {
         image: "img/html.png",
         area: ui,
         groups: [early, evening],
-        _modules: [module1._id, module2._id]
+        _modules: [module41._id, module42._id, module43._id]
     });  
     var course2 = new Course({ 
         name: 'Flat UI',
@@ -208,21 +388,46 @@ router.get('/', function(req, res) {
         _modules: [module1._id, module2._id]
     });  
 
-
     course1.save(function(err) {
         if (err) throw err;
-        module1._course = course1._id;
-        module2._course = course1._id;
-        module3._course = course1._id;
-        module1._resources.push(resource1._id);
-        module1._resources.push(resource2._id);
-        module1._resources.push(resource3._id);
-        module2._resources.push(resource1._id);
-        module1.save();
-        module2.save();
-        module3.save();
+        module41._course = course1._id;
+        module42._course = course1._id;
+        module43._course = course1._id;
+        module41._resources.push(resource1._id);
+        module42._resources.push(resource2._id);
+        module43._resources.push(resource3._id);
+        module41.save();
+        module42.save();
+        module43.save();
+        test1._course = course1._id;
+        test2._course = course1._id;
+        test3._course = course1._id;
+        test4._course = course1._id;
+        test5._course = course1._id;
+        test6._course = course1._id;
+        test1.save();
+        test2.save();
+        test3.save();
+        test4.save();
+        test5.save();
+        test6.save(); 
+        question1._course = course1._id;
+        question2._course = course1._id;
+        question3._course = course1._id;
+        question4._course = course1._id;
+        question5._course = course1._id;
+        question6._course = course1._id;
+        question7._course = course1._id;
+        question8._course = course1._id;
+        question1.save();
+        question2.save();
+        question3.save();
+        question4.save();
+        question5.save();
+        question6.save();
+        question7.save();
+        question8.save();
         console.log('Course saved successfully');
-        
     });
     course2.save(function(err) {
         if (err) throw err;
@@ -236,8 +441,17 @@ router.get('/', function(req, res) {
     });
     course4.save(function(err) {
         if (err) throw err;
+        module1._course = course4._id;
+        module2._course = course4._id;
+        module3._course = course4._id;
+        module1._resources.push(resource1._id);
+        module1._resources.push(resource2._id);
+        module1._resources.push(resource3._id);
+        module2._resources.push(resource1._id);
+        module1.save();
+        module2.save();
+        module3.save();
         console.log('Course saved successfully');
-        
     });
     course5.save(function(err) {
         if (err) throw err;
