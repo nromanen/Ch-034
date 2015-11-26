@@ -24,6 +24,10 @@ ModuleSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Course"
     },
+    _tests: [{
+        type: Schema.Types.ObjectId,
+        ref: "Test"
+    }],
     _resources: [{
         type: Schema.Types.ObjectId,
         ref: "Resource"

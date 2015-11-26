@@ -35,7 +35,7 @@ define(function(require) {
             this.userAnswers = options.storage;
             this.userAnswers.fetch();
             this.countAnswer = this.userAnswers.length;
-            this.test = new TestModel({id: this.moduleId});
+            this.test = new TestModel({}, {courseId: this.courseId, moduleId: this.moduleId});
             this.test.fetch();
             this.sendModal = new CMS.ModalView({
                 modalHeader  : "Ви впевнені, що завершили проходження тестування та готові відправити дані на перевірку?",
@@ -92,9 +92,9 @@ define(function(require) {
                 if (!_.isEmpty(value)) {
                     this.userAnswers.create({
                         id         : num,
-                        moduleId   : parseInt(this.moduleId),
-                        courseId   : parseInt(this.courseId),
-                        answerUser : value
+                        _module    : this.moduleId,
+                        _course    : this.courseId,
+                        userAnswer : value
                     });
                 }
                 else if(!_.isUndefined(this.userAnswers.get(num))) {
