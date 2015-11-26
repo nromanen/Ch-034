@@ -8,7 +8,7 @@ define(function(require) {
         model : Question,
         api   : CMS.api,
         url: function() {
-            return this.api + "questions?courseId=" + this.courseId + "&moduleId=" + this.moduleId;
+            return this.api + "courses/" + this.courseId + "/modules/" + this.moduleId + "/questions";
         },
         initialize: function(models, options) {
             this.courseId = options.courseId;
