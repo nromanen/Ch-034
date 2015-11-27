@@ -9,6 +9,7 @@ define(function(require) {
         tagName: 'div',
         initialize: function() {
             this.listenTo(this.collection, "sync request change", this.render);
+
         },
         serialize: function() {
             return {

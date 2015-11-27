@@ -8,7 +8,7 @@ define(function(require, exports, module) {
         model: Vacancy,
         api: CMS.api,
         url: function() {
-            return this.api+"vacancies?_limit=5&_sort=id&_order=DESC";
+            return this.api+"vacancies";
         }
 
     });
