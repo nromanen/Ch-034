@@ -33,7 +33,7 @@ define(function(require) {
         },
 
         addManagement: function () {
-            var managementName = this.$el.find("#managementAddInput").val();
+            var managementName = _.escape(this.$el.find("#managementAddInput").val());
             var management= new Model({name: managementName });
             management.url = this.collection.url();
             management.save();
