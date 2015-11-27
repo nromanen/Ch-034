@@ -2,20 +2,18 @@ define(function(require) {
     "use strict";
 
     _.extend(Backbone.Validation.callbacks, {
+
         valid: function (view, attr, selector) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.form-group');
-
             $group.removeClass('has-error');
-            $group.find('.help-block').html('').addClass('hidden');
             $el.popover('destroy');
         },
+
         invalid: function (view, attr, error, selector) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.form-group');
-
             $group.addClass('has-error');
-            $group.find('.help-block').html(error).removeClass('hidden');
             $el.popover({title: Message.errorWord, content: error, trigger: "focus"});
         }
     });
@@ -27,6 +25,7 @@ define(function(require) {
     Model = require("modules/register/model/registerModel"),
 
     View = CMS.View.extend({
+
         el: false,
 
         template: _.template(require("text!../template/registerTemplate.html")),
@@ -66,19 +65,26 @@ define(function(require) {
                 name: this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
                 email: this.$el.find('#email').val(),
-                pass: this.$el.find('#pass').val(),
+                password: this.$el.find('#password').val(),
                 repeatPass: this.$el.find('#repeatPass').val()
             };
-            this.model.set(feedback);
+
+            this.model.set(feedback, {validate: true});
+
             if(this.model.isValid()) {
+                console.log("this.model.isValid()");
                 this.model.save(null, {
                     success: function(model, response) {
                         CMS.router.renderHomepage();
-                        CMS.router.navigate("courses", {trigger: true});
+                        CMS.router.navigate("/courses", {trigger: true});
                     },
                     error: function(model, response) {
+                        console.log("Error: " + response);
                     }
                 });
+                this.hideErrors();
+                CMS.router.navigate("/courses", {trigger: true});
+
             } else {
                 this.showErrors();
             }
