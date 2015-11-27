@@ -10,26 +10,23 @@ var express = require('express'),
     Area = require('../models/area'),
     Group = require('../models/group'),
     Module = require('../models/module'),
-    Resource = require('../models/resource'),
-    Vacancy = require('../models/vacancy');
+    Resource = require('../models/resource');
 
 router.get('/', function(req, res) {
 
     var user1 = new User({
-        email: "buispr@gmail.com",
-        fullName: "Sergiy Diak",
-        password: "Diak540910",
-        role: 1
+        'email': "buispr@gmail.com",
+        'name.first': "Sergiy",
+        'name.last': "Diak",
+        'password': "Diak540910",
+        'role': 1
     });
     
     user1.save();
     var profile = new UserProfile({
         _user: user1._id,
         email: user1.email,
-        name: {
-            first: user1.fullName.split(" ")[0],
-            last: user1.fullName.split(" ")[1]
-        },
+        name: user1.name,
         avatar: "",
         social: {
             phone: "req.body.phone",
@@ -286,41 +283,10 @@ router.get('/', function(req, res) {
         name: "Модуль 1. Конспект. Частина 2.",
         url: "/web-resources/forms.zip",
     });
-    var vacancy1 = new Vacancy({
-        "name": "DevOps Technology Consultant",
-        "url": "https://softserve.ua/en/vacancies/open-vacancies/devops-technology-consultant/"
-    });
-    var vacancy2 = new Vacancy({
-        "name": "Intermediate DevOps Software Engineer",
-        "url": "https://softserve.ua/en/vacancies/open-vacancies/intermediate-devops-software-engineer/"
-    });
-    var vacancy3 = new Vacancy({
-        "name": ".NET Software Engineer",
-        "url": "https://softserve.ua/en/vacancies/open-vacancies/net-software-engineer/"
-    });
-    var vacancy4 = new Vacancy({
-        "name": "C++ Software Engineer",
-        "url": "https://softserve.ua/en/vacancies/open-vacancies/c-software-engineer-3/"
-    });
-    var vacancy5 = new Vacancy({
-        "name": "Cloud Storage Software Engineer",
-        "url": "https://softserve.ua/en/vacancies/open-vacancies/cloud-storage-software-engineer/"
-    });
-    var vacancy6 = new Vacancy({
-        "name": "Delivery Director",
-        "url": "https://softserve.ua/en/vacancies/open-vacancies/delivery-director/"
-    });
-
+    
     resource1.save();
     resource2.save();
     resource3.save();
-
-    vacancy1.save();
-    vacancy2.save();
-    vacancy3.save();
-    vacancy4.save();
-    vacancy5.save();
-    vacancy6.save();
 
     var course1 = new Course({ 
         name: 'HTML',

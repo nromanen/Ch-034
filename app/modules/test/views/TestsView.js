@@ -21,6 +21,7 @@ define(function(require) {
             "click #next-question"     : "nextQuestion"
         },
         initialize: function(collection, options) {
+            var thisView = this;
             this.btnTemplate = [
                 require("text!../templates/btn_templates/btnNextTemplate.html"),
                 require("text!../templates/btn_templates/btnCloseTemplate.html"),
@@ -41,6 +42,29 @@ define(function(require) {
                 modalHeader  : "Ви впевнені, що завершили проходження тестування та готові відправити дані на перевірку?",
                 submitButton : "Так, відправити на перевірку"
             });
+            CMS.ModalView.prototype.submitHandlerClick = function(e) {
+                e.preventDefault();
+                var thisModal = this;
+                thisView.userAnswers.each(function (model){
+                    $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: CMS.api + "answers",
+                        data: model.toJSON(),
+                        dataType: "json",
+                        beforeSend: function(xhr) {
+                            var token = CMS.SessionModel.getItem("UserSession").token;
+                            xhr.setRequestHeader('x-access-token', token);
+                        },
+                        success: function(res, textStatus) {
+                            thisModal.declinePopup();
+                            Backbone.history.navigate("#courses/" + thisView.courseId, {
+                                trigger: true
+                            });
+                        }
+                    });
+                }, thisModal);
+            };
             this.listenTo(this.collection, "reset sync request", this.render);
         },
         serialize: function(){
@@ -74,7 +98,7 @@ define(function(require) {
         renderOne: function(model) {
             var answer = "";
             if(this.userAnswers.get(model.get("num"))){
-                answer = this.userAnswers.get(model.get("num")).get("answerUser");
+                answer = this.userAnswers.get(model.get("num")).get("userAnswer");
             }
             this.insertView(".test", new TestView({model: model, answer: answer, typeTest: this.typeTest}).render());
         },

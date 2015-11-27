@@ -14,15 +14,13 @@ define(function(require) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.form-group');
             $group.addClass('has-error');
-            $el.popover({title: Message.errorWord, content: error, trigger: "focus"});
+            $el.popover({title: CMS.Helpers.Messages.errorWord, content: error, trigger: "focus"});
         }
     });
 
     var CMS = require("CMS"),
 
-    Message = require("modules/messages"),
-
-    Model = require("modules/register/model/registerModel"),
+    Model = require("../model/registerModel"),
 
     View = CMS.View.extend({
 
@@ -49,14 +47,14 @@ define(function(require) {
 
         showErrors: function(model, errors) {
             this.$el.find('#warnMsg').addClass('error-message');
-            this.$el.find('.title-msg').html(Message.errorWord);
-            this.$el.find('.text-msg').html(Message.tryAgain);
+            this.$el.find('.title-msg').html(CMS.Helpers.Messages.errorWord);
+            this.$el.find('.text-msg').html(CMS.Helpers.Messages.tryAgain);
         },
 
         hideErrors: function() {
             this.$el.find('#warnMsg').removeClass('error-message');
-            this.$el.find('.title-msg').html(Message.attentionWord);
-            this.$el.find('.text-msg').html(Message.fieldsRequired);
+            this.$el.find('.title-msg').html(CMS.Helpers.Messages.attentionWord);
+            this.$el.find('.text-msg').html(CMS.Helpers.Messages.fieldsRequired);
         },
 
         submitClicked: function(e) {
