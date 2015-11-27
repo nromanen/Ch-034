@@ -1,10 +1,7 @@
 define(function(require, exports, module) {
     "use strict";
 
-    rangy = require("rangy");
-
-    require("bootstrap.wysihtml5.ua-UA");
-    require("bootstrap.wysihtml5");
+    require("ckeditor-jquery");
 
     var CMS = require("CMS"),
 
@@ -24,19 +21,11 @@ define(function(require, exports, module) {
         },
 
         afterRender: function() {
-            $("#description").wysihtml5({
-                locale: "ua-UA",
-                toolbar: {
-                    "font-styles": false,
-                    "emphasis": true,
-                    "lists": true,
-                    "html": true,
-                    "link": true,
-                    "image": true,
-                    "color": false,
-                    "blockquote": false
-                }
+            $("#description").ckeditor({
+                language: 'uk',
+                skin:'office2013,/vendor/bower/ckeditor-office2013-skin/office2013/'
             });
+
             $("module-name").focus();
         },
 

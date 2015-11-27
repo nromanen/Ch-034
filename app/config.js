@@ -3,7 +3,6 @@ require.config({
     baseUrl: '/',
     paths: {
         'jquery'                  : '../vendor/bower/jquery/dist/jquery.min',
-        'rangy'                   : '../vendor/bower/wysihtml5x/lib/rangy/rangy-core',
         'jquery-serialize-object' : '../vendor/bower/jquery-serialize-object/dist/jquery.serialize-object.min',
         'lodash'                  : '../vendor/bower/lodash/lodash.min',
         'backbone'                : '../vendor/bower/backbone/backbone-min',
@@ -14,8 +13,8 @@ require.config({
         'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min',
         'moment'                  : '../vendor/bower/moment/moment',
         'uk-locale'               : '../vendor/bower/moment/locale/uk',
-        'bootstrap.wysihtml5'     : '../vendor/bower/bootstrap3-wysihtml5-bower/dist/amd/bootstrap3-wysihtml5.all',
-        'bootstrap.wysihtml5.ua-UA': '../vendor/bower/bootstrap3-wysihtml5-bower/dist/locales/bootstrap-wysihtml5.ua-UA',
+        'ckeditor-core'           :'../vendor/bower/ckeditor/ckeditor',
+        'ckeditor-jquery'         :'../vendor/bower/ckeditor/adapters/jquery',
         'CMS'                     : './app'
     },
 
@@ -28,6 +27,9 @@ require.config({
     shim: {
         'lodash': {
             exports: '_'
+        },
+        'ckeditor-jquery':{
+            deps:['jquery','ckeditor-core']
         },
         'bootstrap': {
             deps: ['jquery']
