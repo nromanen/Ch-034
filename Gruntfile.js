@@ -53,7 +53,8 @@ module.exports = function(grunt ) {
                     destPrefix: 'build/styles'
                 },
                 files: {
-                    'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+                    'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
+                    'bootstrap3-wysihtml5.min.css': 'bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css'
                 }
             },
             fonts: {

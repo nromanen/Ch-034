@@ -25,4 +25,19 @@ router.get('/:moduleId', function(req, res) {
         })
 });
 
+router.post('/', function(req, res) {
+    var module = new Module({ 
+        title: req.body.title,
+        description: req.body.description,
+        _course: req.body.courseId,
+        available: req.body.available
+    });
+
+    module.save(function(err) {
+        if (err) throw err;
+        console.log('Module saved successfully');
+        return res.json({ success: true });
+    });
+});
+
 module.exports = router;
