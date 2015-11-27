@@ -3,8 +3,6 @@ define(function(require) {
 
     var CMS = require("CMS"),
 
-
-
     Model = CMS.Model.extend({
 
         defaults: {
