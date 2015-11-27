@@ -7,6 +7,7 @@ define(function(require) {
         SidebarModule = require("modules/sidebar/index"),
         ModulesModule = require("modules/module/index"),
         RegisterModule = require("modules/register/index"),
+        ProfileModule = require("modules/profile/index"),
         TestsModule = require("modules/test/index"),
         Login = require("modules/login/index"),
         NavigationModule = require("modules/navigation/index"),
@@ -62,6 +63,7 @@ define(function(require) {
             "login": "showLoginPage",
             "logout": "logoutToLoginPage",
             "register" : "showRegisterPage",
+            "profile" : "showProfilePage",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/create": "createCourseModuleDetails",
@@ -82,9 +84,14 @@ define(function(require) {
             });
         },
         showRegisterPage: function() {
-            this.registerModel      = new RegisterModule.Model();
-            this.registerView = new RegisterModule.View( {model: this.registerModel} );
+            this.registerModel  = new RegisterModule.Model();
+            this.registerView   = new RegisterModule.View( {model: this.registerModel} );
             this.appView.setView("#CrsMSContainer", this.registerView).render();
+        },
+        showProfilePage: function() {
+            this.profileModel   = new ProfileModule.Model();
+            this.profileView    = new ProfileModule.View( {model: this.profileModel} );
+            this.appView.setView("#CrsMSContainer", this.profileView).render();
         },
         showCoursesList: function(currentPage, queryParams) {
             this.courses = new CoursesModule.Collection();

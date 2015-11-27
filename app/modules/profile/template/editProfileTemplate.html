@@ -2,43 +2,44 @@
     <div class="row" id="general-form">
     <div class="text-center">
         <img src="img\ss_logo2.png" alt="SoftServe">
-        <h2 class="bold"> Course Management System </h2> <h3 class="bold"> Реєстрація </h3>
+        <h2 class="bold"> Course Management System </h2> <h3 class="bold"> Редагування профілю </h3>
     </div>
     <div id="warnMsg" class="warning-message center-block warning">
         <h5><span class="bold title-msg"></span> <span class="text-msg"></span></h5>
     </div>
-    <form action="" class="registerForm" id="registerForm">
+    <form action="" class="profileForm" id="profileForm">
         <div class="form-group">
             <div class="input-group name">
                 <span class="input-group-addon"> І </span>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Ім'я (напр. Петро)">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Змінити ім'я (напр. Петро)">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group surname">
                 <span class="input-group-addon"> П </span>
-                <input type="text" class="form-control" name="surname" id="surname" placeholder="Прізвище (напр. Петренко)">
+                <input type="text" class="form-control" name="surname" id="surname" placeholder="Змінити прізвище (напр. Петренко)">
             </div>
         </div>
         <div class="form-group ">
             <div class="input-group email">
                 <span class="input-group-addon"> @ </span>
-                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Змінити e-mail">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group password">
                 <span class="input-group-addon"> * </span>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Пароль (мін. 8 символів)">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Змінити пароль (мін. 8 символів)">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group repeatPass">
                 <span class="input-group-addon"> * </span>
-                <input type="password" class="form-control" id="repeatPass" name="repeatPass" placeholder="Підтвердженя паролю">
+                <input type="password" class="form-control" id="repeatPass" name="repeatPass" placeholder="Підтвердженя зміни паролю">
             </div>
         </div>
-        <input type="submit" name="submit" id="submit" value="Реєстрація" class="btn btn-info center-block">
+        <input type="submit" name="submit" id="submit" value="Підтвердити зміни" class="btn btn-info center-block">
+        <input type="submit" name="cancel" id="cancel" value="Відмінити" class="btn btn-info center-block">
     </form>
     </div>
 </div>

@@ -13,5 +13,6 @@ router.use('/vacancies', require('./vacancies'));
 router.use('/menus', require('./menus'));
 
 router.use( "/users", require( "./users" ) );
+router.use( "/profile", require( "./profile" ) );
 
 module.exports = router;
