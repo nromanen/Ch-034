@@ -15,20 +15,18 @@ var express = require('express'),
 router.get('/', function(req, res) {
 
     var user1 = new User({
-        email: "buispr@gmail.com",
-        fullName: "Sergiy Diak",
-        password: "Diak540910",
-        role: 1
+        'email': "buispr@gmail.com",
+        'name.first': "Sergiy",
+        'name.last': "Diak",
+        'password': "Diak540910",
+        'role': 1
     });
     
     user1.save();
     var profile = new UserProfile({
         _user: user1._id,
         email: user1.email,
-        name: {
-            first: user1.fullName.split(" ")[0],
-            last: user1.fullName.split(" ")[1]
-        },
+        name: user1.name,
         avatar: "",
         social: {
             phone: "req.body.phone",

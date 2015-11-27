@@ -3,9 +3,7 @@ define(function(require) {
 
     var CMS = require("CMS"),
 
-    Message = require("modules/messages"),
 
-    RegexPattern = require("modules/regexPatterns"),
 
     Model = CMS.Model.extend({
 
@@ -21,29 +19,29 @@ define(function(require) {
             name: {
                 required: true,
                 minLength: 2,
-                pattern: RegexPattern.nameRegex,
-                msg: Message.nameMsg
+                pattern: CMS.Helpers.RegexPatterns.nameRegex,
+                msg: CMS.Helpers.Messages.nameMsg
             },
             surname: {
                 required: true,
                 minLength: 2,
-                pattern: RegexPattern.nameRegex,
-                msg: Message.surnameMsg
+                pattern: CMS.Helpers.RegexPatterns.nameRegex,
+                msg: CMS.Helpers.Messages.surnameMsg
             },
             email: {
                 required: true,
-                pattern: RegexPattern.emailRegex,
-                msg: Message.emailMsg
+                pattern: CMS.Helpers.RegexPatterns.emailRegex,
+                msg: CMS.Helpers.Messages.emailMsg
             },
             password: {
                 required: true,
-                pattern: RegexPattern.passwordRegex,
-                msg: Message.passMsg
+                pattern: CMS.Helpers.RegexPatterns.passwordRegex,
+                msg: CMS.Helpers.Messages.passMsg
             },
             repeatPass: {
                 required: true,
                 equalTo: 'password',
-                msg: Message.repeatPassMsg
+                msg: CMS.Helpers.Messages.repeatPassMsg
             }
         }
     });

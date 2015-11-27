@@ -1,6 +1,6 @@
 var express = require("express"),
-	router = express.Router(),
-bodyParser = require('body-parser'),
+    router = express.Router(),
+    bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     
     User = require("../models/user"),
@@ -8,9 +8,10 @@ bodyParser = require('body-parser'),
 
 router.post("/", function(req, res, next) {
         newUser = new User({
-            email: req.body.email,
-            password: req.body.pass,
-            role: req.body.role
+            'email': req.body.email,
+            'password': req.body.password,
+            'name.first': req.body.name,
+            'name.last': req.body.surname
         });
 
     User
