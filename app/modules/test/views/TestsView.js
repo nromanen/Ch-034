@@ -58,7 +58,7 @@ define(function(require) {
                         },
                         success: function(res, textStatus) {
                             thisModal.declinePopup();
-                            Backbone.history.navigate("#courses", {
+                            Backbone.history.navigate("#courses/" + thisView.courseId, {
                                 trigger: true
                             });
                         }
