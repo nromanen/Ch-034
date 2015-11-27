@@ -1,40 +1,26 @@
 var express = require('express'),
     router = express.Router(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    Vacancy = require('../models/vacancy');
+    request = require('request'),
+    cheerio = require('cheerio'),
+    url = "https://softserve.ua/ua/vacancies/open-vacancies/?tax-direction=0&tax-country=117&tax-city=140";
 
-router.post('/', function(req, res) {
-  
-    var Vacancy = new Vacancy({ 
-        name: req.body.name,
+router.get('/', function(req, res, next) {
+    var vacancies = [];
+    request(url, function(err, resp, body){
+        if (err) next(err);
+
+        $ = cheerio.load(body);
+        links = $('a.card-vacancy-link').slice(0,5);
+        $(links).each(function(i, link){
+            var name = $(link).find('h3').text(),
+                url = $(link).attr('href');
+
+            vacancies.push({name: name, url: url})
+        });
+
+        return vacancies.length > 0 ? res.json(vacancies) : res.status(204).json({success:false, message: "Can't parse vacancies"});
     });
-
-    Vacancy.save(function(err) {
-        if (err) throw err;
-
-        console.log('Vacancy saved successfully');
-        res.json({ success: true });
-    });
-});
-
-router.put('/:id', function(req, res) {
-    Vacancy.findByIdAndUpdate(req.param.id, {$set: {name: req.body.name}}, function(err, vacancy) {
-      if (err) return handleError(err);
-      res.send(vacancy);
-    });
-});
-
-router.get('/', function(req, res) {
-    Vacancy.find({}, function(errr, vacancies) {
-        res.json(vacancies);
-    });
-});
-
-router.get('/:id', function(req, res) {
-    Vacancy.findById(req.param.id, function(err, vacancy) {
-        res.json(vacancy);
-    });
+    
 });
 
 module.exports = router
