@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
     "use strict";
 
-    require("ckeditor-jquery");
+    require('ckeditor-jquery');
 
     var CMS = require("CMS"),
 
@@ -21,9 +21,11 @@ define(function(require, exports, module) {
         },
 
         afterRender: function() {
-            $("#description").ckeditor({
-                language: 'uk',
-                skin:'office2013,/vendor/bower/ckeditor-office2013-skin/office2013/'
+            $(document).ready(function() {
+                $("#description").ckeditor({
+                    language: 'uk',
+                    skin:'moono'
+                });
             });
 
             $("module-name").focus();
