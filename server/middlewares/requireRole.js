@@ -1,4 +1,5 @@
-var jwt = require("jsonwebtoken"),
+var async = require("async"),
+    jwt = require("jsonwebtoken"),
     User = require("../models/user");
 
 module.exports = function (role) {
@@ -8,63 +9,27 @@ module.exports = function (role) {
 
     var token = req.body.token || req.query.token || req.headers["x-access-token"];
 
-    if (err) {
-
-      return next(err);
-
-    }
-
     if (token) {
 
-      jwt.verify(token, req.app.get("superSecret"), function (err, decoded) {
+      async.waterfall([
 
-        if (err) {
+        function (cb) {
+          jwt.verify(token, req.app.get("superSecret"), cb);
+        },
 
-          return next(err);
+          function (decoded, cb) {
+            User.findOne({email: decoded.name}, cb);
+          },
 
-        } else {
-
-          User.findOne({email: decoded.name}, function (err, user) {
-
-            if (err) {
-
-              return next(err);
-
-            }
-
-            if (user) {
-
+            function (user, cb) {
               role.forEach(function (role) {
-
-                if (user.role === role) {
-
+                if(user.role === role) {
                   return next();
-
-                } else {
-
-                  return res
-                          .status(401)
-                          .send({
-                            success: false, 
-                            message: "Woooops, access denied!"
-                          });
-
-                }
-
-              });
-                
-            } else {
-
-              return next(err);
-
+                });
+              }
             }
-
-          });
-
-        };
-
-      });
-
+      ], cb(err) );
+     
     } else {
 
       return next(err);
