@@ -8,9 +8,9 @@ define(function(require) {
         id: "applyModal",
         className: "modal fade",
         events:{
-            "hidden.bs.modal #applyModal" : "closePopup",
-            "click .btn-success"          : "submitHandlerClick",
-            "click .btn-cancel"           : "declinePopup"
+            "hidden.bs.modal #applyModal": "closePopup",
+            "click .btn-success": "submitHandlerClick",
+            "click .btn-cancel": "declinePopup"
         },
         initialize: function(options) {
             if (!options.modalHeader)
