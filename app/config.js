@@ -11,8 +11,11 @@ require.config({
         'backbone.layoutmanager'  : '../vendor/bower/layoutmanager/backbone.layoutmanager',
         'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
         'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min',
-        "moment"                  : "../vendor/bower/moment/moment",
-        "uk-locale"               : "../vendor/bower/moment/locale/uk"
+        'moment'                  : '../vendor/bower/moment/moment',
+        'uk-locale'               : '../vendor/bower/moment/locale/uk',
+        'rangy'                   : '../vendor/bower/rangy-official/rangy-core',
+        'bootstrap.wysihtml5'     : '../vendor/bower/bootstrap3-wysihtml5-bower/dist/amd/bootstrap3-wysihtml5.all',
+        'bootstrap.wysihtml5.ua-UA': '../vendor/bower/bootstrap3-wysihtml5-bower/dist/locales/bootstrap-wysihtml5.ua-UA'
     },
 
     map: {
