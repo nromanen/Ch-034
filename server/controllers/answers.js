@@ -10,6 +10,7 @@ router.post("/", function(req, res) {
         num        : req.body.id,
         _course    : req.body._course,
         _module    : req.body._module,
+        _user      : req.body._user,
         userAnswer : req.body.userAnswer,
     });
 

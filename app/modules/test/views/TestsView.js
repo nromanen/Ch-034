@@ -46,11 +46,13 @@ define(function(require) {
                 e.preventDefault();
                 var thisModal = this;
                 thisView.userAnswers.each(function (model){
+                    var sentData = model.toJSON();
+                    sentData._user = CMS.SessionModel.getItem("UserSession").profile._user;
                     $.ajax({
                         type: "POST",
                         cache: false,
                         url: CMS.api + "answers",
-                        data: model.toJSON(),
+                        data: sentData,
                         dataType: "json",
                         beforeSend: function(xhr) {
                             var token = CMS.SessionModel.getItem("UserSession").token;

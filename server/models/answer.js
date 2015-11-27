@@ -14,6 +14,10 @@ AnswerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Module"
     },
+    _user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },    
     userAnswer: {
         type: String,
         required: "Please fill user answer"
