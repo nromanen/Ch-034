@@ -7,7 +7,7 @@ var express = require('express'),
     Profile = require('../models/profile');
 
 router.post('/', function(req, res) {
-
+    console.log(req.body);
     User.findOne({
         email: req.body.email
     }, function(err, user) {

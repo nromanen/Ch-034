@@ -135,7 +135,7 @@ define(function(require) {
         },
         createCourseModuleDetails: function(courseId) {
             this.module = new ModulesModule.Model([], {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
+            this.containerView.setView(".content", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
             this.containerView.render();
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {

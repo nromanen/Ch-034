@@ -22,10 +22,23 @@ define(function(require, exports, module) {
 
         afterRender: function() {
             $(document).ready(function() {
-                $("#description").ckeditor({
-                    language: 'uk',
-                    skin:'moono'
-                });
+                _.delay(function() {
+                    var editor = $("#description").ckeditor({
+                            extraPlugins: 'justify,image,uploadimage',
+                            imageUploadUrl: CMS.api+"upload/image",
+                            language: 'uk',
+                            skin:'moono'
+                        }).editor;
+                    editor.on('fileUploadRequest', function( evt ) {
+                            console.log("asdasdasdasd");
+                            var xhr = evt.data.fileLoader.xhr;
+
+                            xhr.setRequestHeader( 'ContentType', "form/multi-part");
+                            xhr.setRequestHeader( 'x-access-token', CMS.SessionModel.getItem('UserSession').token );
+                            xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+
+                        } );
+                    }, 5);
             });
 
             $("module-name").focus();

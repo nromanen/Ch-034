@@ -4,6 +4,7 @@
 var express = require('express'),
     app = express(),
     router = express.Router(),
+    busboy = require('connect-busboy'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     mongoose = require('mongoose'),
@@ -21,7 +22,7 @@ app.set('superSecret', config.secret); // secret variable
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(busboy());
 // use morgan to log requests to the console
 app.use(morgan('dev'));
 
@@ -31,7 +32,7 @@ app.use( function ( req, res, next ) {
     next();
 });
 app.use(cors());
-
+app.use('/uploads',express.static(__dirname + '/uploads')); 
 app.use(require('./middlewares/cors'));
 app.use('/api/authenticate', require('./controllers/authenticate'));
 app.use('/api/setup', require('./controllers/setup'));
