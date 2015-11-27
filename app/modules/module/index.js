@@ -6,7 +6,8 @@ define(function(require, exports, module) {
         Collection: require("./collections/ModulesCollection"),
         Views: {
             Module: require("./views/ModuleView"),
-            Modules: require("./views/ModulesView")
+            Modules: require("./views/ModulesView"),
+            CreateModule: require("./views/CreateModuleView")
         }
     };
 });

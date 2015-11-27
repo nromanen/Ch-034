@@ -1,4 +1,5 @@
-var jwt = require('jsonwebtoken');
+var jwt = require('jsonwebtoken'),
+    User = require('../models/user');
 
 module.exports = function(req, res, next) {
 
@@ -10,7 +11,14 @@ module.exports = function(req, res, next) {
                 return res.json({ success: false, message: 'Failed to authenticate token.' });
             } else {
                 req.decoded = decoded;
-                next();
+                User
+                    .findOne({email: decoded.name})
+                    .select("-_courses -password")
+                    .exec(function(err, user) {
+                      if (err) next(err)
+                        req.authUser = user;
+                      next();
+                    });
             }
         });
     } else {

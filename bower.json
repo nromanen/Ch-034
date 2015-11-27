@@ -29,8 +29,9 @@
     "backbone.localStorage": "backbone.localstorage#~1.1.16",
     "jquery-serialize-object": "~2.5.0",
     "backbone.validation": "backbone-validation#~0.11.5",
-    "moment": "~2.10.6"
-
+    "moment": "~2.10.6",
+    "ckeditor": "~4.5.5",
+    "ckeditor-office2013-skin": "*"
   },
   "resolutions": {
     "backbone": "~1.2.3"
