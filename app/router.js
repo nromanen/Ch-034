@@ -20,7 +20,6 @@ define(function(require) {
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
-
         },
         before: function(params, next) {
             var path = Backbone.history.location.hash,
