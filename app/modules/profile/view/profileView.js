@@ -26,8 +26,6 @@ define(function(require) {
 
         el: false,
 
-        //template: _.template(require("text!../template/profileTemplate.html")),
-
         events: {
             'click #submit' : "submitClicked",
             'click #edit'   : "editProfile",
@@ -55,8 +53,8 @@ define(function(require) {
             return this;
         },
 
-        serialize: function() { console.log(this.model);
-            return {model: this.model, t: "hfh"};
+        serialize: function() {
+            return {model: this.model};
         },
 
         afterRender: function() {
@@ -71,8 +69,6 @@ define(function(require) {
 
         hideErrors: function() {
             this.$el.find('#warnMsg').removeClass('error-message');
-            this.$el.find('.title-msg').html(CMS.Helpers.Messages.attentionWord);
-            this.$el.find('.text-msg').html(CMS.Helpers.Messages.fieldsRequired);
         },
 
         editProfile: function(e) {
@@ -108,7 +104,6 @@ define(function(require) {
                     }
                 });
                 this.hideErrors();
-                //CMS.router.navigate("/courses", {trigger: true});
                 switchToProfile();
 
             } else {
