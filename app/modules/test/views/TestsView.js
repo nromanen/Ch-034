@@ -45,11 +45,11 @@ define(function(require) {
             CMS.ModalView.prototype.submitHandlerClick = function(e) {
                 e.preventDefault();
                 var thisModal = this;
-                thisView.userAnswers.each(function (model){
-                    var sentData = model.toJSON();
-                    sentData._user = CMS.SessionModel.getItem("UserSession").profile._user;
-                    sentData.countAnswers = thisView.userAnswers.length;
-                    $.ajax({
+                var sentData = {
+                    _user: CMS.SessionModel.getItem("UserSession").profile._user,
+                     data: thisView.userAnswers.toJSON()
+                };
+                $.ajax({
                         type: "POST",
                         cache: false,
                         url: CMS.api + "answers",
@@ -66,7 +66,6 @@ define(function(require) {
                             });
                         }
                     });
-                }, thisModal);
             };
             this.listenTo(this.collection, "reset sync request", this.render);
         },
