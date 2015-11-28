@@ -26,13 +26,15 @@ define(function(require) {
         subscribeDialog: function(e){
             var _this = this;
             CMS.ModalView.prototype.submitHandlerClick = function() {
-                $.ajax({
-                    url: _this.subscribeUrl,
-                    method: "POST",
-                    data: {id: this.model.id, name: this.model.get("name")},
+                $.ajaxSetup({
                     beforeSend: function(jqXHR){
                         jqXHR.setRequestHeader("x-access-token", CMS.SessionModel.getItem("UserSession").token);
                     },
+                });
+                $.ajax({
+                    url: _this.subscribeUrl,
+                    method: this.model.ajaxMethod.POST,
+                    data: {id: this.model.id, name: this.model.get("name")},
                     success: function(data){
                         CMS.SessionModel.setItem("UserSession", JSON.stringify(data));
                         _this.subscribeModal.showSuccessMesasage(data.message);
@@ -48,13 +50,15 @@ define(function(require) {
         unSubscribeDialog: function(e){
             var _this = this;
             CMS.ModalView.prototype.submitHandlerClick = function() {
-                $.ajax({
+            $.ajaxSetup({
+                beforeSend: function(jqXHR){
+                    jqXHR.setRequestHeader("x-access-token", CMS.SessionModel.getItem("UserSession").token);
+                },
+            });
+            $.ajax({
                     url: _this.subscribeUrl,
-                    method: "DELETE",
+                    method: this.model.ajaxMethod.DELETE,
                     data: {id: this.model.id, name: this.model.get("name")},
-                    beforeSend: function(jqXHR){
-                        jqXHR.setRequestHeader("x-access-token", CMS.SessionModel.getItem("UserSession").token);
-                    },
                     success: function(data){
                         CMS.SessionModel.setItem("UserSession", JSON.stringify(data));
                         _this.subscribeModal.showSuccessMesasage(data.message);

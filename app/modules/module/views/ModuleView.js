@@ -20,7 +20,6 @@ define(function(require, exports, module) {
 
             return {
                 module: module,
-                courses: CMS.SessionModel.getItem("UserSession").profile._courses
             };
         }
 
