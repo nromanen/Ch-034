@@ -40,7 +40,8 @@ define(function(require) {
                     }
                 });
             };
-
+            this.subscribeModal.modalHeader = "Я підтверджую подачу заявки на курс:";
+            this.subscribeModal.submitButton = "Подати заявку";
             this.subscribeModal.render();
             this.subscribeModal.show();
         },
