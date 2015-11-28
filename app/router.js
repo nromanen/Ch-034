@@ -68,6 +68,7 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/create": "createCourseModuleDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
             "management/areas" : "showManagementAreas",
             "management/groups" : "showManagementGroups",
         },
