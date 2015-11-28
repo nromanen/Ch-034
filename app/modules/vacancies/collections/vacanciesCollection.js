@@ -10,7 +10,6 @@ define(function(require, exports, module) {
         url: function() {
             return this.api+"vacancies";
         }
-
     });
 
     return Collection;
