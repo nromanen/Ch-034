@@ -48,6 +48,7 @@ define(function(require) {
                 thisView.userAnswers.each(function (model){
                     var sentData = model.toJSON();
                     sentData._user = CMS.SessionModel.getItem("UserSession").profile._user;
+                    sentData.countAnswers = thisView.userAnswers.length;
                     $.ajax({
                         type: "POST",
                         cache: false,

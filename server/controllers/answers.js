@@ -1,9 +1,9 @@
-var express = require('express'),
+var express = require("express"),
     router = express.Router(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    Module = require('../models/module'),
-    Answer = require('../models/answer');
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    Module = require("../models/module"),
+    Answer = require("../models/answer");
 
 router.post("/", function(req, res) {
     var answer = new Answer({ 
@@ -16,11 +16,11 @@ router.post("/", function(req, res) {
 
     answer.save(function(err) {
         if (err) throw err;
-        Module.findOneAndUpdate({"_id": req.body._module}, {$set: {"available": false}}, function(err, module) {
+        if (req.body.id == req.body.countAnswers) {
+            Module.findOneAndUpdate({"_id": req.body._module}, {$set: {"available": false}}, function(err, module) {
             if (err) return err;
-            console.log("Available to module was closed");
         });
-        console.log("Answer saved successfully");
+        }
         return res.json({ success: true });
     });
 });

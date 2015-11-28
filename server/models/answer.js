@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 AnswerSchema = new Schema({
@@ -24,4 +24,4 @@ AnswerSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Answer', AnswerSchema);
+module.exports = mongoose.model("Answer", AnswerSchema);
