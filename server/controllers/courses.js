@@ -2,7 +2,8 @@ var express = require('express'),
     router = express.Router(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    Course = require('../models/course');
+    Course = require('../models/course'),
+    Profile = require('../models/profile');
 
 var pageAble = function(req, res, next) {
     var data = res.locals.data;
@@ -83,6 +84,23 @@ router.get('/:id', function(req, res) {
     Course
         .findById(req.params.id, function(err, course) {
             res.json(course);
+        });
+});
+
+router.post('/subscribe', function(req, res, next){
+    Profile
+        .findOneAndUpdate({_user: req.authUser._id}, {$push: {_courses: req.body.id}}, {new: true}, function(err, profile){
+            if (err){
+                next(err);
+            } else {
+                return res.json({
+                    authenticated: true,
+                    message: 'User has successfully subscribed on course ' + req.body.name,
+                    profile: profile,
+                    token: req.headers['x-access-token']
+                });
+            }
+
         });
 });
 

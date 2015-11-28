@@ -36,8 +36,8 @@ app.use(require('./middlewares/cors'));
 app.use('/api/authenticate', require('./controllers/authenticate'));
 app.use('/api/setup', require('./controllers/setup'));
 app.use('/api/register', require('./controllers/register'));
-app.use('/api', require('./middlewares/auth'));
-app.use('/api', require('./controllers'));
+//app.use('/api', );
+app.use('/api', require('./middlewares/auth'), require('./controllers'));
 app.use(require('./middlewares/errorHandler'));
 
 app.listen( config.port );
