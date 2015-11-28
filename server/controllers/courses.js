@@ -95,7 +95,24 @@ router.post('/subscribe', function(req, res, next){
             } else {
                 return res.json({
                     authenticated: true,
-                    message: 'User has successfully subscribed on course ' + req.body.name,
+                    message: 'Ви успішно підписалися на курс "' + req.body.name + '"',
+                    profile: profile,
+                    token: req.headers['x-access-token']
+                });
+            }
+
+        });
+});
+
+router.delete('/subscribe', function(req, res, next){
+    Profile
+        .findOneAndUpdate({_user: req.authUser._id}, {$pull: {_courses: req.body.id}}, {new: true}, function(err, profile){
+            if (err){
+                next(err);
+            } else {
+                return res.json({
+                    authenticated: true,
+                    message: 'Ви успішно відписалися вд курсу "' + req.body.name + '"',
                     profile: profile,
                     token: req.headers['x-access-token']
                 });
