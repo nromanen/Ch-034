@@ -162,12 +162,18 @@ define(function(require) {
         },
 
         showManagementAreas: function(){
-            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+            this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
             //this.containerView.hrefPath = "management/areas";
         },
 
         showManagementGroups: function(){
-            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+            this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
             this.containerView.hrefPath = "management/groups";
             //this.management = new ManagementModule.ManagementView({collection: new ManagementModule.ManagementCollection()});
             //this.management.fetch();

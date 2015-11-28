@@ -54,7 +54,6 @@ router.post("/", function(req, res, next) {
     })
 })
 router.post("/check_email", function(req, res, next) {
-    console.log(req.body.email);
     User
         .findOne({"email": req.body.email})
         .exec(function(err, user) {

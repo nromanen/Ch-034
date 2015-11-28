@@ -13,7 +13,7 @@ router.post('/image', function(req, res) {
             res.json({
                 "uploaded": 1,
                 "fileName": filename,
-                "url": "http://localhost:8888/uploads/images/"+filename
+                "url": req.serverUrl + "/uploads/images/"+filename
             })
         });
     });
@@ -27,7 +27,7 @@ router.post('/resource', function(req, res) {
             res.json({
                 "uploaded": 1,
                 "fileName": filename,
-                "url": "http://localhost:8888/uploads/resources/"+filename
+                "url": req.serverUrl + "/uploads/resources/"+filename
             })
         });
     });

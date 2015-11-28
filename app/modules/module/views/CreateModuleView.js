@@ -30,7 +30,6 @@ define(function(require, exports, module) {
                             skin:'moono'
                         }).editor;
                     editor.on('fileUploadRequest', function( evt ) {
-                            console.log("asdasdasdasd");
                             var xhr = evt.data.fileLoader.xhr;
 
                             xhr.setRequestHeader( 'ContentType', "form/multi-part");
@@ -64,7 +63,7 @@ define(function(require, exports, module) {
                     $("#module-name").focus();
                 },
                 error: function(model, error){
-                    console.log(error);
+
                 },
             });
         },

@@ -249,13 +249,13 @@ router.get('/', function(req, res) {
         question4.save();
         question5.save();
         question6.save();
-        console.log('Module saved successfully');
+        
     });
     module42.save(function(err) {
         if (err) throw err;
         test2._module = module42._id;
         test2.save();
-        console.log('Module saved successfully');
+        
     });
     module43.save(function(err) {
         if (err) throw err;
@@ -265,7 +265,7 @@ router.get('/', function(req, res) {
         question8._module = module43._id;
         question7.save();
         question8.save();
-        console.log('Module saved successfully');
+        
     });
 
     var resource1 = new Resource({
@@ -393,16 +393,13 @@ router.get('/', function(req, res) {
         question6.save();
         question7.save();
         question8.save();
-        console.log('Course saved successfully');
     });
     course2.save(function(err) {
         if (err) throw err;
-        console.log('Course saved successfully');
         
     });
     course3.save(function(err) {
         if (err) throw err;
-        console.log('Course saved successfully');
         
     });
     course4.save(function(err) {
@@ -417,11 +414,9 @@ router.get('/', function(req, res) {
         module1.save();
         module2.save();
         module3.save();
-        console.log('Course saved successfully');
     });
     course5.save(function(err) {
         if (err) throw err;
-        console.log('Course saved successfully');
         
     });
     res.json({ success: true });

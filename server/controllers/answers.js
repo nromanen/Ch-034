@@ -17,9 +17,7 @@ router.post("/", function(req, res) {
         if (err) throw err;
         Module.findOneAndUpdate({"_id": req.body._module}, {$set: {"available": false}}, function(err, module) {
             if (err) return err;
-            console.log("Available to module was closed");
         });
-        console.log("Answer saved successfully");
         return res.json({ success: true });
     });
 });

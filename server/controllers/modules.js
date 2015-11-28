@@ -35,7 +35,6 @@ router.post('/', function(req, res) {
 
     module.save(function(err) {
         if (err) throw err;
-        console.log('Module saved successfully');
         return res.json({ success: true });
     });
 });

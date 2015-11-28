@@ -27,7 +27,6 @@ router.post('/', function(req, res) {
     });
 })
 router.get('/:id', function(req, res) {
-    console.log(req.authUser.role);
     Menu
         .findById(req.params.id)
         .populate({

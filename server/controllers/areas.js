@@ -12,14 +12,12 @@ router.post('/', function(req, res) {
 
     area.save(function(err) {
         if (err) throw err;
-        console.log('Area saved successfully');
         return res.json({ success: true });
     });
 });
 router.delete('/:id', function(req, res) {
     Area.findByIdAndRemove({_id: req.params.id}, function(err) {
         if (err) throw err;
-        console.log('Area deleted successfully');
         return res.json({success: true, message: "Area deleted successfully"});
     });
 });

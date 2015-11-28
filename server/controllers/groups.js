@@ -18,7 +18,6 @@ router.post('/', function(req, res) {
 
     group.save(function(err) {
         if (err) throw err;
-        console.log('Group saved successfully');
         return res.json({ success: true });
     });
 });
@@ -38,7 +37,6 @@ router.put('/:id', function(req, res) {
 router.delete('/:id', function(req, res) {
     Group.findByIdAndRemove({_id: req.params.id}, function(err) {
         if (err) throw err;
-        console.log('Group deleted successfully');
         return res.json({success: true, message: "group deleted successfully"});
     });
 });

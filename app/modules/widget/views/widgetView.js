@@ -8,7 +8,6 @@ define(function(require) {
         template: _.template(require("text!../template/widgetTemplate.html")),
 
         serialize: function() {
-            //console.log(this.model.HTML)
             if (typeof(this.model.HTML)==="object"){
                 return {
                     widget: this.model.HTML.el

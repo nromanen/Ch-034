@@ -7,7 +7,6 @@ var express = require('express'),
     Profile = require('../models/profile');
 
 router.post('/', function(req, res) {
-    console.log(req.body);
     User.findOne({
         email: req.body.email
     }, function(err, user) {
@@ -41,7 +40,6 @@ router.post('/', function(req, res) {
 router.post('/check_auth', function(req, res) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
     if (token) {
-        console.log(token);
         jwt.verify(token, req.app.get('superSecret'), function(err, decoded) {
             if (err) {
                 return res.status(403).json({ success: false, message: 'Failed to authenticate token.' });
@@ -51,7 +49,6 @@ router.post('/check_auth', function(req, res) {
             }
         });
     } else {
-        console.log("no token");
       return res.status(403).send({
           success: false,
           message: 'No token provided.'
