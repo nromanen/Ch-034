@@ -13,7 +13,6 @@ require.config({
         'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min',
         'moment'                  : '../vendor/bower/moment/moment',
         'uk-locale'               : '../vendor/bower/moment/locale/uk',
-        'ckeditor-core'           :'../vendor/bower/ckeditor/ckeditor',
         'ckeditor-jquery'         :'../vendor/bower/ckeditor/adapters/jquery',
         'CMS'                     : './app'
     },
@@ -29,7 +28,7 @@ require.config({
             exports: '_'
         },
         'ckeditor-jquery':{
-            deps:['jquery','ckeditor-core']
+            deps:['jquery']
         },
         'bootstrap': {
             deps: ['jquery']
