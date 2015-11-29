@@ -40,9 +40,9 @@
 }
 
 #submit {
-    width: 140px;
+    width: 160px;
     background-color: #00C1DE;
-    margin-top: 35px;
+    margin-top: 0;
 }
 
 .error-message {
@@ -55,4 +55,8 @@
 
 .popover {
     min-width: 300px;
+}
+
+.profile-btn {
+    text-align: center;
 }
