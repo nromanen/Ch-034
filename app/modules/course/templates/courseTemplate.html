@@ -40,7 +40,11 @@
                   <span>Курс почнеться <%= course.parseDate(course.get('startDate')) %>, з <strong>мін. <%= course.get('minStudents') %> студентів</strong> (заявок <%= course.get('applicantsNumber') %>)</span>
               </div>
               <div class="col-lg-5 course-schedule">
-                  <button class="btn btn-success pull-right">Подати заявку</button>
+                  <% if (_.includes(courses, course.get("id"))) { %>
+                      <button class="btn-unsubscribe btn btn-danger pull-right">Відписатися</button>
+                  <% } else { %>
+                      <button class="btn btn-success pull-right">Подати заявку</button>
+                  <% } %>
               </div>
           </div>
         </div>
