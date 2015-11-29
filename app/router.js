@@ -72,7 +72,7 @@ define(function(require) {
                     this.headerView.render();
                 }, this));
                 this.profileMenu.fetch().done($.proxy(function() {
-                    var name = this.userSession.getItem("UserSession").profile.name.first + " " + this.userSession.getItem("UserSession").profile.name.last;
+                    var name = this.userSession.getItem("UserSession").profile.name + " " + this.userSession.getItem("UserSession").profile.surname;
                     this.profileMenu.set("title", name);
                     this.headerView.setView(".personal-menu", new NavigationModule.Views.DefaultView({model: this.profileMenu}));
                     this.headerView.render();
@@ -114,6 +114,9 @@ define(function(require) {
             this.appView.setView("#CrsMSContainer", this.registerView).render();
         },
         showProfilePage: function() {
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
             this.profileModel   = new ProfileModule.Model();
             this.profileView    = new ProfileModule.View( {model: this.profileModel} );
             this.containerView.setView(".content", this.profileView).render();

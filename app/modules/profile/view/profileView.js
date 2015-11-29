@@ -83,7 +83,7 @@ define(function(require) {
 
         submitClicked: function(e) {
             e.preventDefault();
-            
+
             var feedback = {
                 name   : this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
@@ -96,14 +96,14 @@ define(function(require) {
                     fb      : this.$el.find('#fb').val(),
                     vk      : this.$el.find('#vk').val()
                 },
-                
+
             };
             var password = this.$el.find('#password').val(),
                 repeatPass = this.$el.find('#repeatPass').val();
 
-            if (password.length != 0) {
+            if (password.length !== 0) {
                 feedback.password = password;
-            };
+            }
 
             this.model.set(feedback, {validate: true});
 
@@ -111,7 +111,6 @@ define(function(require) {
 
                 this.model.save(null, {
                     success: function(model, response) {
-                        console.log(response.profile);
                         var session = CMS.SessionModel.getItem("UserSession");
                         session.profile = response.profile;
                         session = JSON.stringify(session);
