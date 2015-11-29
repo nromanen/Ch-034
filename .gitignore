@@ -7,6 +7,7 @@ app/assets/css
 app/assets/fonts
 app/styles/main.min.css
 app/styles/main.min.css.map
+server/log.log
 .idea
 grunt_start.bat
 node_start.bat

@@ -26,6 +26,10 @@ define(function(require) {
             this.collection.each(this.renderOne, this);
         },
 
+        afterRender: function(){
+            this.$el.find("#" + this.name).addClass("active").find("a").addClass("active");
+        },
+
         renderOne: function(el){
             this.insertView("#managementlist", new ManagementView({
                 model: el

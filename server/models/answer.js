@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 AnswerSchema = new Schema({
@@ -14,10 +14,14 @@ AnswerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Module"
     },
+    _user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },    
     userAnswer: {
         type: String,
         required: "Please fill user answer"
     }
 });
 
-module.exports = mongoose.model('Answer', AnswerSchema);
+module.exports = mongoose.model("Answer", AnswerSchema);

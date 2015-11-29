@@ -17,6 +17,12 @@ define(function(require, exports, module) {
                 courseId : this.courseId,
                 courses: CMS.SessionModel.getItem("UserSession").profile._courses
             };
+        },
+        events: {
+            "click .save-anchor": "saveAnchor"
+        },
+        saveAnchor: function() {
+            window.localStorage.setItem("scrollModuleList", window.pageYOffset);
         }
     });
     return View;
