@@ -35,6 +35,12 @@ router.get("/", function(req, res) {
         access: [0],
         url: "#my-courses"
     });
+    var mainMenuLink3 = new MenuLink({
+        name: "Управління",
+        published: true,
+        access: [1,2],
+        url: "#management/areas"
+    });
     var profileMenuLink1 = new MenuLink({
         name: "Мій профіль",
         published: true,
@@ -49,10 +55,9 @@ router.get("/", function(req, res) {
     });
     mainMenuLink1.save();
     mainMenuLink2.save();
+    mainMenuLink3.save();
     profileMenuLink1.save();
     profileMenuLink2.save();
-
-
 
     var user1 = new User({
         "email": "buispr@gmail.com",
@@ -467,7 +472,7 @@ router.get("/", function(req, res) {
         if (err) throw err;
     }); 
 
-    mainMenu._menuLinks.push(mainMenuLink1._id, mainMenuLink2._id);
+    mainMenu._menuLinks.push(mainMenuLink1._id, mainMenuLink2._id, mainMenuLink3._id);
     profileMenu._menuLinks.push(profileMenuLink1._id, profileMenuLink2._id);
     mainMenu.save();
     profileMenu.save();
