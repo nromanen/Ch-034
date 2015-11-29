@@ -8,50 +8,50 @@
     <form action="" class="profileForm" id="profileForm">
         <div class="form-group">
             <div class="input-group name">
-                <span class="input-group-addon"> Прізвище: </span>
-                <span class="input-group-addon"><%= model.get("name") %></span>
+                <span class="input-group-addon"> І </span>
+                <input type="text" class="form-control bold" value="<%= model.get("name") %>" disabled>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group surname">
-                <span class="input-group-addon"> Ім’я: </span>
-                <span class="input-group-addon"><%= model.get("surname") %></span>
+                <span class="input-group-addon"> П </span>
+                <input type="text" class="form-control bold" value="<%= model.get("surname") %>" disabled>
             </div>
         </div>
         <div class="form-group ">
             <div class="input-group email">
-                <span class="input-group-addon"> E-mail: </span>
-                <span class="input-group-addon"><%= model.get("email") %></span>
+                <span class="input-group-addon"> @ </span>
+                <input type="text" class="form-control bold" value="<%= model.get("email") %>" disabled>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group phone">
-                <span class="input-group-addon">Тел.:</span>
-                <span class="input-group-addon"><%= model.get("social").phone %></span>
+                <span class="input-group-addon"> <img src="/img/phone.ico" alt="Т" style="width:20px;height:20px;"> </span>
+                <input type="text" class="form-control bold" value="<%= model.get("social").phone %>" disabled>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group skype">
-                <span class="input-group-addon">Skype:</span>
-                <span class="input-group-addon"><%= model.get("social").skype %></span>
+                <span class="input-group-addon"> <img src="/img/skype.png" alt="S" style="width:20px;height:20px;"> </span>
+                <input type="text" class="form-control bold" value="<%= model.get("social").skype %>" disabled>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group linkedin">
-                <span class="input-group-addon">LinkedIn:</span>
-                <span class="input-group-addon"><%= model.get("social").linkedin %></span>
+                <span class="input-group-addon"> <img src="/img/linkedin.png" alt="L" style="width:20px;height:20px;"> </span>
+                <input type="text" class="form-control bold" value="<%= model.get("social").linkedin %>" disabled>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group fb">
-                <span class="input-group-addon">Facebook:</span>
-                <span class="input-group-addon"><%= model.get("social").fb %></span>
+                <span class="input-group-addon"> <img src="/img/fb.png" alt="F" style="width:20px;height:20px;"> </span>
+                <input type="text" class="form-control bold" value="<%= model.get("social").fb %>" disabled>
             </div>
         </div>
         <div class="form-group">
             <div class="input-group vk">
-                <span class="input-group-addon">ВКонтакті:</span>
-                <span class="input-group-addon"><%= model.get("social").vk %></span>
+                <span class="input-group-addon"> <img src="/img/vk.png" alt="VK" style="width:20px;height:20px;"> </span>
+                <input type="text" class="form-control bold" value="<%= model.get("social").vk %>" disabled>
             </div>
         </div>
         <input type="button" name="edit" id="edit" value="Редагування" class="btn btn-info center-block">

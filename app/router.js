@@ -94,7 +94,7 @@ define(function(require) {
         showProfilePage: function() {
             this.profileModel   = new ProfileModule.Model();
             this.profileView    = new ProfileModule.View( {model: this.profileModel} );
-            this.appView.setView("#CrsMSContainer", this.profileView).render();
+            this.containerView.setView(".content", this.profileView).render();
         },
         showCoursesList: function(currentPage, queryParams) {
             this.courses = new CoursesModule.Collection();

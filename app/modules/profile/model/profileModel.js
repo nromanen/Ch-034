@@ -23,29 +23,27 @@ define(function(require) {
 
         validation: {
             name: {
-                required:   true,
-                minLength:  2,
-                pattern:    CMS.Helpers.RegexPatterns.nameRegex,
-                msg:        CMS.Helpers.Messages.nameMsg
+                required:  true,
+                minLength: 2,
+                pattern:   CMS.Helpers.RegexPatterns.nameRegex,
+                msg:       CMS.Helpers.Messages.nameMsg
             },
             surname: {
-                required:   true,
-                minLength:  2,
-                pattern:    CMS.Helpers.RegexPatterns.nameRegex,
-                msg:        CMS.Helpers.Messages.surnameMsg
+                required:  true,
+                minLength: 2,
+                pattern:   CMS.Helpers.RegexPatterns.nameRegex,
+                msg:       CMS.Helpers.Messages.surnameMsg
             },
             email: {
-                required:   true,
-                pattern:    CMS.Helpers.RegexPatterns.emailRegex,
-                msg:        CMS.Helpers.Messages.emailMsg
+                required:  true,
+                pattern:   CMS.Helpers.RegexPatterns.emailRegex,
+                msg:       CMS.Helpers.Messages.emailMsg
             },
             password: {
-                required:   true,
-                pattern:    CMS.Helpers.RegexPatterns.passwordRegex,
-                msg:        CMS.Helpers.Messages.passMsg
+                pattern:   CMS.Helpers.RegexPatterns.passwordRegex,
+                msg:       CMS.Helpers.Messages.passMsg
             },
             repeatPass: {
-                required:   true,
                 equalTo:    'password',
                 msg:        CMS.Helpers.Messages.repeatPassMsg
             }

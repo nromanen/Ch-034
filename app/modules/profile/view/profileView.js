@@ -27,10 +27,9 @@ define(function(require) {
         el: false,
 
         events: {
-            'click #submit' : "submitClicked",
-            'click #edit'   : "editProfile",
-            'click #cancel' : "cancelEditing"
-
+            'click #submit': "submitClicked",
+            'click #edit'  : "editProfile",
+            'click #cancel': "cancelEditing"
         },
 
         initialize: function() {
@@ -62,13 +61,14 @@ define(function(require) {
         },
 
         showErrors: function(model, errors) {
+            this.$el.find('#warnMsg').show();
             this.$el.find('#warnMsg').addClass('error-message');
             this.$el.find('.title-msg').html(CMS.Helpers.Messages.errorWord);
             this.$el.find('.text-msg').html(CMS.Helpers.Messages.tryAgain);
         },
 
         hideErrors: function() {
-            this.$el.find('#warnMsg').removeClass('error-message');
+            this.$el.find('#warnMsg').hide();
         },
 
         editProfile: function(e) {
@@ -83,6 +83,7 @@ define(function(require) {
 
         submitClicked: function(e) {
             e.preventDefault();
+            
             var feedback = {
                 name   : this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
@@ -95,8 +96,13 @@ define(function(require) {
                     fb      : this.$el.find('#fb').val(),
                     vk      : this.$el.find('#vk').val()
                 },
-                password  : this.$el.find('#password').val(),
-                repeatPass: this.$el.find('#repeatPass').val()
+                
+            };
+            var password = this.$el.find('#password').val(),
+                repeatPass = this.$el.find('#repeatPass').val();
+
+            if (password.length != 0) {
+                feedback.password = password;
             };
 
             this.model.set(feedback, {validate: true});
@@ -111,13 +117,13 @@ define(function(require) {
                         session = JSON.stringify(session);
                         CMS.SessionModel.setItem("UserSession", session);
                         CMS.router.renderHomepage();
-                        CMS.router.navigate("/", {trigger: true});
+                        Backbone.history.navigate("#profile", {trigger: true});
                     },
                     error: function(model, response) {
                     }
                 });
                 this.hideErrors();
-                switchToProfile();
+                this.switchToProfile();
 
             } else {
                 this.showErrors();
