@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 ResourceSchema = new Schema({
@@ -16,4 +16,4 @@ ResourceSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('Resource', ResourceSchema);
+module.exports = mongoose.model("Resource", ResourceSchema);

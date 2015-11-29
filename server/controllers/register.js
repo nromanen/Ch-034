@@ -1,17 +1,17 @@
 var express = require("express"),
     router = express.Router(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
     
     User = require("../models/user"),
     Profile = require("../models/profile");
 
 router.post("/", function(req, res, next) {
         newUser = new User({
-            'email': req.body.email,
-            'password': req.body.password,
-            'name.first': req.body.name,
-            'name.last': req.body.surname
+            "email": req.body.email,
+            "password": req.body.password,
+            "name.first": req.body.name,
+            "name.last": req.body.surname
         });
 
     User
@@ -54,7 +54,6 @@ router.post("/", function(req, res, next) {
     })
 })
 router.post("/check_email", function(req, res, next) {
-    console.log(req.body.email);
     User
         .findOne({"email": req.body.email})
         .exec(function(err, user) {
