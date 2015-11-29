@@ -186,7 +186,7 @@ define(function(require) {
         editCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
             this.module.fetch();
-            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
+            this.containerView.setView(".content", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();

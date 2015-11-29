@@ -23,6 +23,7 @@ define(function(require, exports, module) {
 
         afterRender: function() {
             $(document).ready(function() {
+
                 _.delay(function() {
                     var editor = $("#description").ckeditor({
                             extraPlugins: 'justify,image,uploadimage',
@@ -30,15 +31,19 @@ define(function(require, exports, module) {
                             language: 'uk',
                             skin:'moono'
                         }).editor;
-                    editor.on('fileUploadRequest', function( evt ) {
-                            var xhr = evt.data.fileLoader.xhr;
 
-                            xhr.setRequestHeader( 'ContentType', "form/multi-part");
-                            xhr.setRequestHeader( 'x-access-token', CMS.SessionModel.getItem('UserSession').token );
-                            xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+                    if (editor !== "undefined") {
+                        editor.on('fileUploadRequest', function( evt ) {
+                                var xhr = evt.data.fileLoader.xhr;
 
-                        } );
-                    }, 5);
+                                xhr.setRequestHeader( 'ContentType', "form/multi-part");
+                                xhr.setRequestHeader( 'x-access-token', CMS.SessionModel.getItem('UserSession').token );
+                                xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+
+                            } );
+                    }
+                }, 300);
+
             });
             $("module-name").focus();
             if (this.edit === true) {
@@ -69,7 +74,7 @@ define(function(require, exports, module) {
                     $("#module-name").focus();
 
                     if (that.edit) {
-                        Backbone.history.navigate("#courses/" + this.courseId + "/modules/" + that.model.id, {
+                        Backbone.history.navigate("#courses/" + that.courseId + "/modules/" + that.model.id, {
                             trigger: true
                         });
                     } else {
@@ -77,10 +82,8 @@ define(function(require, exports, module) {
                             trigger: true
                         });
                     }
-                },
-                error: function(model, error){
+                }
 
-                },
             });
         },
 
