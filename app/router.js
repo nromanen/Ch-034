@@ -18,8 +18,10 @@ define(function(require) {
         initialize: function() {
             this.userSession = CMS.SessionModel;
 
-            this.mainMenu = new NavigationModule.Model({slug: "main_menu"});
-            this.profileMenu = new NavigationModule.Model({slug: "profile_menu"});
+            this.mainMenu = new NavigationModule.Model();
+            this.mainMenu.setSlug("main_menu");
+            this.profileMenu = new NavigationModule.Model();
+            this.profileMenu.setSlug("profile_menu");
 
             this.appView       = new CMS.CoreView();
 

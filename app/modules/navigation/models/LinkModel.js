@@ -4,14 +4,14 @@ define(function(require) {
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
-        idAttribute: '_id',
+
         defaults: {
             name: null,
             published: null,
             succes: null,
             url: null
         },
-        urlRoot: function() {
+        url: function() {
             return CMS.api + "menus/" + this.getSlug();
         },
         setSlug: function(slug) {
