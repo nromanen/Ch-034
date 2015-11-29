@@ -467,7 +467,6 @@ router.get("/", function(req, res) {
         if (err) throw err;
     }); 
 
-
     mainMenu._menuLinks.push(mainMenuLink1._id, mainMenuLink2._id);
     profileMenu._menuLinks.push(profileMenuLink1._id, profileMenuLink2._id);
     mainMenu.save();

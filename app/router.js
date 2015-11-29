@@ -66,6 +66,7 @@ define(function(require) {
                     }
                 });
                 this.appView.setView("#CrsMSContainer", this.homeView);
+
                 this.mainMenu.fetch().done($.proxy(function() {
                     this.headerView.setView(".navigation-menu", new NavigationModule.Views.DefaultView({model: this.mainMenu}));
                     this.headerView.render();
@@ -186,13 +187,13 @@ define(function(require) {
         },
         createCourseModuleDetails: function(courseId) {
             this.module = new ModulesModule.Model([], {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: false}));
+            this.containerView.setView(".content", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
             this.containerView.render();
         },
         editCourseModuleDetails: function(courseId, id) {
             this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
             this.module.fetch();
-            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
+            this.containerView.setView(".content", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();
@@ -213,6 +214,7 @@ define(function(require) {
                 this.testsPage.fetch();
             }
         },
+
         showManagement: function(page){
             switch (page) {
                 case "areas":

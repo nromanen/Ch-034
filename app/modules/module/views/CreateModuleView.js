@@ -23,12 +23,27 @@ define(function(require, exports, module) {
 
         afterRender: function() {
             $(document).ready(function() {
-                 _.delay(function() {
-                    $("#description").ckeditor({
-                        language: 'uk',
-                        skin:'moono'
-                    });
+
+                _.delay(function() {
+                    var editor = $("#description").ckeditor({
+                            extraPlugins: 'justify,image,uploadimage',
+                            imageUploadUrl: CMS.api+"upload/image",
+                            language: 'uk',
+                            skin:'moono'
+                        }).editor;
+
+                    if (editor !== "undefined") {
+                        editor.on('fileUploadRequest', function( evt ) {
+                                var xhr = evt.data.fileLoader.xhr;
+
+                                xhr.setRequestHeader( 'ContentType', "form/multi-part");
+                                xhr.setRequestHeader( 'x-access-token', CMS.SessionModel.getItem('UserSession').token );
+                                xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
+
+                            } );
+                    }
                 }, 300);
+
             });
             $("module-name").focus();
             if (this.edit === true) {
@@ -57,12 +72,18 @@ define(function(require, exports, module) {
                 success: function(model, response){
                     $("#module-form").trigger("reset");
                     $("#module-name").focus();
+
                     if (that.edit) {
-                        Backbone.history.navigate("#courses/" + model.courseId + "/modules/" + model.id, {
+                        Backbone.history.navigate("#courses/" + that.courseId + "/modules/" + that.model.id, {
+                            trigger: true
+                        });
+                    } else {
+                        Backbone.history.navigate("#courses/" + that.courseId, {
                             trigger: true
                         });
                     }
                 }
+
             });
         },
 

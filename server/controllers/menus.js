@@ -27,6 +27,7 @@ router.post("/", function(req, res) {
         return res.json({success: true, message: "Menu added successfully"})
     });
 })
+
 router.get("/:slug", function(req, res) {
     Menu
         .findOne({slug: req.params.slug})
