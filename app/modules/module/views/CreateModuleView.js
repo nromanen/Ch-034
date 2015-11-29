@@ -61,7 +61,6 @@ define(function(require, exports, module) {
                         Backbone.history.navigate("#courses/" + model.courseId + "/modules/" + model.id, {
                             trigger: true
                         });
-//                        location.href = "#courses/" + model.courseId + "/modules/" + model.id;
                     }
                 }
             });
