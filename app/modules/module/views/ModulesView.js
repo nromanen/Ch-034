@@ -16,6 +16,12 @@ define(function(require, exports, module) {
                 imgUrl: this.imgUrl,
                 courseId : this.courseId
             };
+        },
+        events: {
+            "click .save-anchor": "saveAnchor"
+        },
+        saveAnchor: function() {
+            window.localStorage.setItem("scrollModuleList", window.pageYOffset);
         }
     });
     return View;
