@@ -2,18 +2,16 @@ var mongoose = require("mongoose"),
     Schema   = mongoose.Schema;
 
 var ProfileSchema = new Schema({
-    email: String,
-    name: {
-        first: String,
-        last: String
-    },
-    avatar: String,
+    email  : String,
+    name   : String,
+    surname: String,
+    avatar : String,
     social: {
-        phone: String,
-        skype: String,
+        phone   : String,
+        skype   : String,
         linkedin: String,
-        fb: String,
-        vk: String
+        fb      : String,
+        vk      : String
     },
     _user: {
         type: Schema.Types.ObjectId,

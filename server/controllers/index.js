@@ -23,5 +23,6 @@ router.use('/upload', require('./uploads'));
 router.use("/static", require("./static"));
 
 router.use( "/users", require( "./users" ) );
+router.use( "/profile", require( "./profile" ) );
 
 module.exports = router;

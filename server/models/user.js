@@ -9,12 +9,10 @@ var UserSchema = new Schema({
         required: true
     },
     name: {
-        first: {
-            type: String
-        },
-        last: {
-            type: String
-        }
+        type: String
+    },
+    surname: {
+        type: String
     },
     password: {
         type: String,
