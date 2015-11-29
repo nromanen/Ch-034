@@ -70,6 +70,8 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "management/areas" : "showManagementAreas",
             "management/groups" : "showManagementGroups",
+            "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
+            "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule"
         },
 
         showLoginPage: function() {
@@ -138,8 +140,13 @@ define(function(require) {
         },
         createCourseModuleDetails: function(courseId) {
             this.module = new ModulesModule.Model([], {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
+            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: false}));
             this.containerView.render();
+        },
+        editCourseModuleDetails: function(courseId, id) {
+            this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
+            this.module.fetch();
+            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();
