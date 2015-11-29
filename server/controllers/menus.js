@@ -19,16 +19,17 @@ router.get("/", function(req, res) {
 });
 router.post("/", function(req, res) {
     var menu = new Menu({
-        title: req.body.title
+        title: req.body.title,
+        slug: req.body.slug
     });
     menu.save(function(err) {
         if (err) throw err
         return res.json({success: true, message: "Menu added successfully"})
     });
 })
-router.get("/:id", function(req, res) {
+router.get("/:slug", function(req, res) {
     Menu
-        .findById(req.params.id)
+        .findOne({slug: req.params.slug})
         .populate({
             path: "_menuLinks",
             match: {access: req.authUser.role}

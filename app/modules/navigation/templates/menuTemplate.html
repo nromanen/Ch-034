@@ -1,0 +1,15 @@
+<li class="dropdown active">
+    <a href="" class="dropdown-toggle" data-bypass="true" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+        <% if (menu.showTitle) { 
+             print(menu.get("title"));
+           }
+        %>
+        <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+        <% _.each(menu.get("_menuLinks"), function(link) { %>
+            <li><a href="<%= link.url %>"><%= link.name %></a></li>
+        <% }) %>
+    </ul>
+</li>
