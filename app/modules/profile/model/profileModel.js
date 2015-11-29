@@ -40,11 +40,9 @@ define(function(require) {
                 msg:       CMS.Helpers.Messages.emailMsg
             },
             password: {
-                pattern:   CMS.Helpers.RegexPatterns.passwordRegex,
                 msg:       CMS.Helpers.Messages.passMsg
             },
             repeatPass: {
-                equalTo:    'password',
                 msg:        CMS.Helpers.Messages.repeatPassMsg
             }
         },
