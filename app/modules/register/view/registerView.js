@@ -70,7 +70,7 @@ define(function(require) {
             this.model.set(feedback, {validate: true});
 
             if(this.model.isValid()) {
-                console.log("this.model.isValid()");
+
                 this.model.save(null, {
                     success: function(model, response) {
                         CMS.router.renderHomepage();

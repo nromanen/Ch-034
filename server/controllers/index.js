@@ -22,5 +22,6 @@ router.use("/menus", require("./menus"));
 router.use("/static", require("./static"));
 
 router.use( "/users", require( "./users" ) );
+router.use( "/profile", require( "./profile" ) );
 
 module.exports = router;

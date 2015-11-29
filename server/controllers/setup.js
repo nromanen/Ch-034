@@ -56,8 +56,8 @@ router.get("/", function(req, res) {
 
     var user1 = new User({
         "email": "buispr@gmail.com",
-        "name.first": "Sergiy",
-        "name.last": "Diak",
+        "name": "Sergiy",
+        "surname": "Diak",
         "password": "Diak540910",
         "role": 1
     });
@@ -67,6 +67,7 @@ router.get("/", function(req, res) {
         _user: user1._id,
         email: user1.email,
         name: user1.name,
+        surname: user1.surname,
         avatar: "",
         social: {
             phone: "req.body.phone",
