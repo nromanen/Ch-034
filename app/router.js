@@ -11,17 +11,25 @@ define(function(require) {
         Login = require("modules/login/index"),
         NavigationModule = require("modules/navigation/index"),
         ManagementModule = require("modules/management/index"),
+        StaticModule = require("modules/static/index"),
 
 
     Router = CMS.Router.extend({
         initialize: function() {
             this.userSession = CMS.SessionModel;
 
+            this.mainMenu = new NavigationModule.Model();
+            this.mainMenu.setSlug("main_menu");
+            this.profileMenu = new NavigationModule.Model();
+            this.profileMenu.setSlug("profile_menu");
+
             this.appView       = new CMS.CoreView();
 
             this.headerView    = new CMS.Views.Header();
             this.containerView = new CMS.Views.Container();
             this.footerView    = new CMS.Views.Footer();
+
+            this.StaticPagesView = StaticModule.View;
         },
         before: function(params, next) {
             var path = Backbone.history.location.hash,
@@ -46,6 +54,7 @@ define(function(require) {
         },
         renderHomepage: function() {
             if (!this.appView.getView(this.homeView) || !this.homeView) {
+
                 this.homeView = new CMS.View({
                     views: {
                         "": [
@@ -56,6 +65,16 @@ define(function(require) {
                     }
                 });
                 this.appView.setView("#CrsMSContainer", this.homeView);
+                this.mainMenu.fetch().done($.proxy(function() {
+                    this.headerView.setView(".navigation-menu", new NavigationModule.Views.DefaultView({model: this.mainMenu}));
+                    this.headerView.render();
+                }, this));
+                this.profileMenu.fetch().done($.proxy(function() {
+                    var name = this.userSession.getItem("UserSession").profile.name.first + " " + this.userSession.getItem("UserSession").profile.name.last;
+                    this.profileMenu.set("title", name);
+                    this.headerView.setView(".personal-menu", new NavigationModule.Views.DefaultView({model: this.profileMenu}));
+                    this.headerView.render();
+                }, this));
                 this.appView.render();
             }
         },
@@ -64,6 +83,8 @@ define(function(require) {
             "login": "showLoginPage",
             "logout": "logoutToLoginPage",
             "register" : "showRegisterPage",
+            "copyrights": "showAgreementsPage",
+            "report": "showReportPage",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/create": "createCourseModuleDetails",
@@ -71,7 +92,6 @@ define(function(require) {
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
             "management/:page" : "showManagement"
         },
-
         showLoginPage: function() {
             this.loginView = new Login.View();
             this.appView.setView("#CrsMSContainer", this.loginView);
@@ -88,6 +108,26 @@ define(function(require) {
             this.registerModel      = new RegisterModule.Model();
             this.registerView = new RegisterModule.View( {model: this.registerModel} );
             this.appView.setView("#CrsMSContainer", this.registerView).render();
+        },
+        showAgreementsPage: function(){
+
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+
+            this.StaticPagesView.swapTemplate("agreement");
+            this.containerView.setView(".content", this.StaticPagesView);
+            this.containerView.render();
+        },
+        showReportPage: function(){
+
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+
+            this.StaticPagesView.swapTemplate("report");
+            this.containerView.setView(".content", this.StaticPagesView);
+            this.containerView.render();
         },
         showCoursesList: function(currentPage, queryParams) {
             this.courses = new CoursesModule.Collection();
