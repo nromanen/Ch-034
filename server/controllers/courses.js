@@ -1,8 +1,8 @@
-var express = require('express'),
+var express = require("express"),
     router = express.Router(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    Course = require('../models/course');
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    Course = require("../models/course");
 
 var pageAble = function(req, res, next) {
     var data = res.locals.data;
@@ -10,7 +10,7 @@ var pageAble = function(req, res, next) {
         res.status(204);
         return res.json([{success: false}]);
     }
-    res.header('X-Total-Count', data.length);
+    res.header("X-Total-Count", data.length);
 
     Course
         .find({"_id": {$in: data}})
@@ -23,7 +23,7 @@ var pageAble = function(req, res, next) {
         })
 }
 
-router.get('/', function(req, res, next) {
+router.get("/", function(req, res, next) {
     var chain = Course.find().exec(function(err, courses) {
         res.locals.data = courses;
         next();
@@ -32,24 +32,24 @@ router.get('/', function(req, res, next) {
 
 }, pageAble );
 
-router.get('/filter', function(req, res, next) {
+router.get("/filter", function(req, res, next) {
     
     if (req.query.s) {
-        var searchString = req.query.s.split(' '),
+        var searchString = req.query.s.split(" "),
             regexString = "",
             q;
 
         for (var i = 0; i < searchString.length; i++)
         {
             regexString += searchString[i];
-            if (i < searchString.length - 1) regexString += '|';
+            if (i < searchString.length - 1) regexString += "|";
         }
 
-        q = new RegExp(regexString, 'ig');
+        q = new RegExp(regexString, "ig");
         Course
             .find()
-            .or([{'name': {$regex: q}}, {'description': {$regex: q}}, {'schedule': {$regex: q}}])
-            .select('-area -groups')
+            .or([{"name": {$regex: q}}, {"description": {$regex: q}}, {"schedule": {$regex: q}}])
+            .select("-area -groups")
             .exec(function(err, courses) {
                 res.locals.data = courses;
                 next();
@@ -79,7 +79,7 @@ router.get('/filter', function(req, res, next) {
     }
 }, pageAble);
 
-router.get('/:id', function(req, res) {
+router.get("/:id", function(req, res) {
     Course
         .findById(req.params.id, function(err, course) {
             res.json(course);

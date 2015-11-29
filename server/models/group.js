@@ -1,6 +1,6 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema;
 
-module.exports = mongoose.model('Group', new Schema({
+module.exports = mongoose.model("Group", new Schema({
     name: String,
 }));
