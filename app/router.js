@@ -69,8 +69,7 @@ define(function(require) {
             "courses/:courseId/modules/create": "createCourseModuleDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/areas" : "showManagementAreas",
-            "management/groups" : "showManagementGroups",
+            "management/:page" : "showManagement"
         },
 
         showLoginPage: function() {
@@ -161,18 +160,16 @@ define(function(require) {
                 this.testsPage.fetch();
             }
         },
-
-        showManagementAreas: function(){
-            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
-            //this.containerView.hrefPath = "management/areas";
-        },
-
-        showManagementGroups: function(){
-            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
-            this.containerView.hrefPath = "management/groups";
-            //this.management = new ManagementModule.ManagementView({collection: new ManagementModule.ManagementCollection()});
-            //this.management.fetch();
-            //this.management.render();
+        showManagement: function(page){
+            switch (page) {
+                case "areas":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+                    break;
+                case "groups":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
+                    this.containerView.hrefPath = "management/groups";
+                    break;
+            }
         },
 
         parseQueryString: function(queryString) {
