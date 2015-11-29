@@ -89,6 +89,7 @@ define(function(require) {
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/create": "createCourseModuleDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
+            "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
             "management/:page" : "showManagement"
         },
@@ -178,8 +179,13 @@ define(function(require) {
         },
         createCourseModuleDetails: function(courseId) {
             this.module = new ModulesModule.Model([], {courseId: courseId});
-            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
+            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: false}));
             this.containerView.render();
+        },
+        editCourseModuleDetails: function(courseId, id) {
+            this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
+            this.module.fetch();
+            this.containerView.setView(".wrapper", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
         },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();
