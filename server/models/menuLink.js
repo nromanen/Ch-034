@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 MenuLinkSchema = new Schema({
@@ -20,4 +20,4 @@ MenuLinkSchema = new Schema({
     }
 })
 
-module.exports = mongoose.model('MenuLink', MenuLinkSchema);
+module.exports = mongoose.model("MenuLink", MenuLinkSchema);

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema;
 
 var CourseSchema = new Schema({
@@ -21,7 +21,7 @@ var CourseSchema = new Schema({
     },
     description: {
         type: String,
-        default: '',
+        default: "",
         trim: true
     },
     startDate: {
@@ -56,9 +56,9 @@ var CourseSchema = new Schema({
         ref: "Module"
     }]
 });
-CourseSchema.pre('save', function(next){
+CourseSchema.pre("save", function(next){
     now = new Date();
     this.updated_at = now;
     next();
 });
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model("Course", CourseSchema);
