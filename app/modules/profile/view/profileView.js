@@ -84,10 +84,18 @@ define(function(require) {
         submitClicked: function(e) {
             e.preventDefault();
             var feedback = {
-                name: this.$el.find('#name').val(),
+                name   : this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
-                email: this.$el.find('#email').val(),
-                password: this.$el.find('#password').val(),
+                email  : this.$el.find('#email').val(),
+                avatar : this.$el.find('#avatar').val(),
+                social : {
+                    phone   : this.$el.find('#phone').val(),
+                    skype   : this.$el.find('#skype').val(),
+                    linkedin: this.$el.find('#linkedin').val(),
+                    fb      : this.$el.find('#fb').val(),
+                    vk      : this.$el.find('#vk').val()
+                },
+                password  : this.$el.find('#password').val(),
                 repeatPass: this.$el.find('#repeatPass').val()
             };
 
@@ -97,8 +105,13 @@ define(function(require) {
 
                 this.model.save(null, {
                     success: function(model, response) {
+                        console.log(response.profile);
+                        var session = CMS.SessionModel.getItem("UserSession");
+                        session.profile = response.profile;
+                        session = JSON.stringify(session);
+                        CMS.SessionModel.setItem("UserSession", session);
                         CMS.router.renderHomepage();
-                        CMS.router.navigate("/courses", {trigger: true});
+                        CMS.router.navigate("/", {trigger: true});
                     },
                     error: function(model, response) {
                     }

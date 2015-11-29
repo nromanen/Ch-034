@@ -11,13 +11,13 @@
         <div class="form-group">
             <div class="input-group name">
                 <span class="input-group-addon"> І </span>
-                <input type="text" class="form-control" name="name" id="name" value="<%= model.get("name").first %>">
+                <input type="text" class="form-control" name="name" id="name" value="<%= model.get("name") %>">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group surname">
                 <span class="input-group-addon"> П </span>
-                <input type="text" class="form-control" name="surname" id="surname" value="<%= model.get("name").last %>">
+                <input type="text" class="form-control" name="surname" id="surname" value="<%= model.get("surname") %>">
             </div>
         </div>
         <div class="form-group ">
@@ -29,37 +29,42 @@
         <div class="form-group ">
             <div class="input-group phone">
                 <span class="input-group-addon"> <img src="/img/phone.ico" alt="Т" style="width:20px;height:20px;"> </span>
-                <input type="tel" class="form-control" id="phone" name="phone" value="<%= model.get("social").phone %>">
+                <input type="tel" class="form-control" id="phone" name="phone" value="<%= model.get("social").phone %>" 
+                placeholder="Номер телефону">
             </div>
         </div>
         <div class="form-group ">
             <div class="input-group skype">
                 <span class="input-group-addon"> <img src="/img/skype.png" alt="S" style="width:20px;height:20px;"> </span>
-                <input type="text" class="form-control" id="skype" name="skype" value="<%= model.get("social").skype %>">
+                <input type="text" class="form-control" id="skype" name="skype" value="<%= model.get("social").skype %>" 
+                placeholder="Обліковий запис у Skype">
             </div>
         </div>
         <div class="form-group ">
             <div class="input-group linkedin">
                 <span class="input-group-addon"> <img src="/img/linkedin.png" alt="L" style="width:20px;height:20px;"> </span>
-                <input type="text" class="form-control" id="linkedin" name="linkedin" value="<%= model.get("social").linkedin %>">
+                <input type="text" class="form-control" id="linkedin" name="linkedin" value="<%= model.get("social").linkedin %>"
+                placeholder="Обліковий запис в LinkedIn">
             </div>
         </div>
         <div class="form-group ">
             <div class="input-group fb">
                 <span class="input-group-addon"> <img src="/img/fb.png" alt="F" style="width:20px;height:20px;"> </span>
-                <input type="text" class="form-control" id="fb" name="fb" value="<%= model.get("social").fb %>">
+                <input type="text" class="form-control" id="fb" name="fb" value="<%= model.get("social").fb %>" 
+                placeholder="Обліковий запис у Facebook">
             </div>
         </div>
         <div class="form-group ">
             <div class="input-group vk">
                 <span class="input-group-addon"> <img src="/img/vk.png" alt="F" style="width:20px;height:20px;"> </span>
-                <input type="text" class="form-control" id="vk" name="vk" value="<%= model.get("social").vk %>">
+                <input type="text" class="form-control" id="vk" name="vk" value="<%= model.get("social").vk %>" 
+                placeholder="Обліковий запис у VK">
             </div>
         </div>
         <div class="form-group">
             <div class="input-group password">
                 <span class="input-group-addon"> * </span>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Змінити пароль (мін. 8 символів)">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Новий пароль (мін. 8 символів)">
             </div>
         </div>
         <div class="form-group">

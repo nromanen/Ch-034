@@ -4,14 +4,13 @@ define(function(require) {
     var CMS = require("CMS"),
 
     Model = CMS.Model.extend({
+        url: CMS.api + 'profile',
 
         defaults: {
-            name: {
-                first:      null,
-                last:       null
-            },
-            email:      null,
-            avatar:     null,
+            name   : null,
+            surname: null,
+            email:   null,
+            avatar:  null,
             social: {
                 phone:      null,
                 skype:      null,
@@ -50,7 +49,7 @@ define(function(require) {
                 equalTo:    'password',
                 msg:        CMS.Helpers.Messages.repeatPassMsg
             }
-        }
+        },
     });
     return Model;
 });
