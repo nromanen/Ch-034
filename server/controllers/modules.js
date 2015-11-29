@@ -39,4 +39,12 @@ router.post("/", function(req, res) {
     });
 });
 
+router.put('/:moduleId', function(req, res) {
+    Module.findByIdAndUpdate({_id: req.params.moduleId}, {title: req.body.title}, function(err, module) {
+        if (err) throw err;
+        return res.json(module);
+    });
+
+});
+
 module.exports = router;

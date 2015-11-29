@@ -6,7 +6,6 @@ define(function(require, exports, module) {
     var CMS = require("CMS"),
 
     View = CMS.View.extend({
-
         template: _.template(require("text!../templates/createModuleTemplate.html")),
         el: false,
 
@@ -18,6 +17,8 @@ define(function(require, exports, module) {
             this.model = options.model;
             this.courseId = options.courseId;
             this.listenTo(this.model, "invalid", this.errorMessage);
+            this.listenTo(this.model, "reset sync request", this.render);
+            this.edit = options.edit;
         },
 
         afterRender: function() {
@@ -39,8 +40,12 @@ define(function(require, exports, module) {
                         } );
                     }, 5);
             });
-
             $("module-name").focus();
+            if (this.edit === true) {
+                $("#module-name").val(this.model.attributes.title);
+                $("#description").val(this.model.attributes.description);
+                document.getElementById("test-available").checked = this.model.attributes.available;
+            }
         },
 
         submitHandler: function (e) {
@@ -55,12 +60,23 @@ define(function(require, exports, module) {
                 title: $("#module-name").val(),
                 description: $("#description").val(),
                 courseId: this.courseId,
-                available: $("#test-available").prop("checked")
+                available: $("#test-available").prop("checked"),
             });
+            var that = this;
             this.model.save(null, {
                 success: function(model, response){
                     $("#module-form").trigger("reset");
                     $("#module-name").focus();
+
+                    if (that.edit) {
+                        Backbone.history.navigate("#courses/" + this.courseId + "/modules/" + that.model.id, {
+                            trigger: true
+                        });
+                    } else {
+                        Backbone.history.navigate("#courses/" + that.courseId, {
+                            trigger: true
+                        });
+                    }
                 },
                 error: function(model, error){
 
