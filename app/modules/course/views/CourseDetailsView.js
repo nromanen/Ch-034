@@ -15,6 +15,10 @@ define(function(require) {
             this.modules.fetch();
             this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image'), courseId: this.courseId}));
         },
+        afterRender: function() {
+            $("body,html").animate({"scrollTop": window.localStorage.getItem("scrollModuleList")}, "slow");
+            window.localStorage.setItem("scrollModuleList", 0);
+        },
         serialize: function() {
             var course = this.model;
             course.attributes.id = this.model.id;

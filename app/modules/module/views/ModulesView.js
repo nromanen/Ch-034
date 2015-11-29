@@ -14,8 +14,15 @@ define(function(require, exports, module) {
             return {
                 modules: this.collection,
                 imgUrl: this.imgUrl,
-                courseId : this.courseId
+                courseId : this.courseId,
+                courses: CMS.SessionModel.getItem("UserSession").profile._courses
             };
+        },
+        events: {
+            "click .save-anchor": "saveAnchor"
+        },
+        saveAnchor: function() {
+            window.localStorage.setItem("scrollModuleList", window.pageYOffset);
         }
     });
     return View;

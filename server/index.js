@@ -1,8 +1,8 @@
-var low = require('lowdb')
-    jsonServer = require('json-server')
-    express = require('json-server/node_modules/express')
-    bodyParser = require('json-server/node_modules/body-parser'),
-    db = low('db.json'),
+var low = require("lowdb")
+    jsonServer = require("json-server")
+    express = require("json-server/node_modules/express")
+    bodyParser = require("json-server/node_modules/body-parser"),
+    db = low("db.json"),
     server = jsonServer.create(),
     router = jsonServer.router(db.object);
 
@@ -125,8 +125,8 @@ server.get("/courses/filter", function(req, res) {
     }
 
     if (_end || _limit) {
-      res.setHeader('X-Total-Count', results.size());
-      res.setHeader('Access-Control-Expose-Headers', 'X-Total-Count');
+      res.setHeader("X-Total-Count", results.size());
+      res.setHeader("Access-Control-Expose-Headers", "X-Total-Count");
     }
 
     _start = parseInt(_start, 10) || 0;
@@ -139,7 +139,7 @@ server.get("/courses/filter", function(req, res) {
       results = results.slice(_start, _start + _limit);
     }
 
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader("Content-Type", "application/json");
     res.status(200);
     res.jsonp(results.value());
 });

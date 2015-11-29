@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema;
 
 var ProfileSchema = new Schema({
@@ -17,11 +17,11 @@ var ProfileSchema = new Schema({
     },
     _user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User"
     },
     _courses: [{
         type: Schema.Types.ObjectId,
-        ref: 'Course'
+        ref: "Course"
     }]
 });
-module.exports = mongoose.model('Profile', ProfileSchema);
+module.exports = mongoose.model("Profile", ProfileSchema);
