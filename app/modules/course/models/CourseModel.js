@@ -20,6 +20,11 @@ define(function(require){
             modules: []
         },
 
+        ajaxMethod : {
+            DELETE : "DELETE",
+            POST   : "POST"
+        },
+
         parse: function(data, options) {
             this.startDate = moment(data.startDate.toString());
             this.duration = data.duration;
@@ -34,7 +39,8 @@ define(function(require){
         urlRoot: CMS.api+'courses',
         url: function() {
             return this.urlRoot + '/' + this.id;
-        }
+        },
+
     });
     return Model;
 });

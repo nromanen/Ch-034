@@ -1,0 +1,24 @@
+.report-page {
+    text-align: center;
+
+    .report-title {
+        margin-bottom: 30px;
+    }
+}
+.report-form {
+    margin: 0 auto;
+    display: inline-block;
+
+    textarea{
+        resize: none;
+    }
+
+    .form-control {
+        margin-bottom: $defaultMarginBottom;
+        height: auto;
+    }
+}
+.agreement-page img {
+    max-width: 100%;
+    margin-bottom: $defaultMarginBottom;
+}

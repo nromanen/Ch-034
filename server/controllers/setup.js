@@ -10,14 +10,59 @@ var express = require("express"),
     Area = require("../models/area"),
     Group = require("../models/group"),
     Module = require("../models/module"),
+    Menu = require("../models/menu"),
+    MenuLink = require("../models/menuLink"),
     Resource = require("../models/resource");
 
 router.get("/", function(req, res) {
+    var mainMenu = new Menu({
+        title: "Меню",
+        slug: "main_menu"
+    });
+    var profileMenu = new Menu({
+        title: "Профайл",
+        slug: "profile_menu"
+    });
+    var mainMenuLink1 = new MenuLink({
+        name: "Всі курси",
+        published: true,
+        access: [0,1,2],
+        url: "#courses"
+    });
+    var mainMenuLink2 = new MenuLink({
+        name: "Мої курси",
+        published: true,
+        access: [0],
+        url: "#my-courses"
+    });
+    var mainMenuLink3 = new MenuLink({
+        name: "Управління",
+        published: true,
+        access: [1,2],
+        url: "#management/areas"
+    });
+    var profileMenuLink1 = new MenuLink({
+        name: "Мій профіль",
+        published: true,
+        access: [0,1,2],
+        url: "#profile"
+    });
+    var profileMenuLink2 = new MenuLink({
+        name: "Вихід",
+        published: true,
+        access: [0,1,2],
+        url: "#logout"
+    });
+    mainMenuLink1.save();
+    mainMenuLink2.save();
+    mainMenuLink3.save();
+    profileMenuLink1.save();
+    profileMenuLink2.save();
 
     var user1 = new User({
         "email": "buispr@gmail.com",
-        "name.first": "Sergiy",
-        "name.last": "Diak",
+        "name": "Sergiy",
+        "surname": "Diak",
         "password": "Diak540910",
         "role": 1
     });
@@ -27,6 +72,7 @@ router.get("/", function(req, res) {
         _user: user1._id,
         email: user1.email,
         name: user1.name,
+        surname: user1.surname,
         avatar: "",
         social: {
             phone: "req.body.phone",
@@ -425,6 +471,11 @@ router.get("/", function(req, res) {
     course5.save(function(err) {
         if (err) throw err;
     }); 
+
+    mainMenu._menuLinks.push(mainMenuLink1._id, mainMenuLink2._id, mainMenuLink3._id);
+    profileMenu._menuLinks.push(profileMenuLink1._id, profileMenuLink2._id);
+    mainMenu.save();
+    profileMenu.save();
 
     res.json({ success: true });
 });
