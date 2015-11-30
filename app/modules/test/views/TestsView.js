@@ -15,7 +15,7 @@ define(function(require) {
             "change .form-control"     : "saveAnswers",
             "change .form-checkbox"    : "saveAnswers",
             "keyup .form-control"      : "saveAnswers",
-            "click #not-all-answers"   : "openBtn",
+            "click #not-all-answers"   : "btnCtrl",
             "click #btn-submit"        : "submitHandler",
             "click #btn-forbid-submit" : "submitForbid",
             "click #next-question"     : "nextQuestion"
@@ -45,12 +45,16 @@ define(function(require) {
             CMS.ModalView.prototype.submitHandlerClick = function(e) {
                 e.preventDefault();
                 var thisModal = this;
-                thisView.userAnswers.each(function (model){
-                    $.ajax({
+                var sentData = {
+                    _user        : CMS.SessionModel.getItem("UserSession").profile._user,
+                    numberOfTests: thisView.countQuestions,
+                    data         : thisView.userAnswers.toJSON()
+                };
+                $.ajax({
                         type: "POST",
                         cache: false,
                         url: CMS.api + "answers",
-                        data: model.toJSON(),
+                        data: sentData,
                         dataType: "json",
                         beforeSend: function(xhr) {
                             var token = CMS.SessionModel.getItem("UserSession").token;
@@ -63,7 +67,6 @@ define(function(require) {
                             });
                         }
                     });
-                }, thisModal);
             };
             this.listenTo(this.collection, "reset sync request", this.render);
         },
@@ -156,7 +159,7 @@ define(function(require) {
         },
         btnCtrl: function () {
             var btnState;
-            if (this.countQuestions == this.userAnswers.length) {
+            if (this.countQuestions == this.userAnswers.length || (this.$("#not-all-answers").prop("checked"))) {
                 btnState = CMS.btnTestView.open;
             }
             else if (this.mode == "list" || (this.mode == "page" && this.countQuestions == this.page)) {
@@ -166,14 +169,6 @@ define(function(require) {
                 btnState = CMS.btnTestView.nextQuestion;
             }
             this.$el.find("#test-submit").html(this.btnTemplate[btnState]);
-        },
-        openBtn: function (e) {
-            if (this.$("#not-all-answers").prop("checked")) {
-                this.$el.find("#test-submit").html(this.btnTemplate[CMS.btnTestView.open]);
-            }
-            else {
-                this.btnCtrl();
-            }
         }
     });
     return View;

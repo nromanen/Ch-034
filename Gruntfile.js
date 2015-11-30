@@ -53,8 +53,16 @@ module.exports = function(grunt ) {
                     destPrefix: 'build/styles'
                 },
                 files: {
-                    'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
-                    'bootstrap3-wysihtml5.min.css': 'bootstrap3-wysihtml5-bower/dist/bootstrap3-wysihtml5.min.css'
+                    'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'
+                }
+            },
+            js: {
+                options: {
+                    destPrefix: 'build/vendor'
+                },
+                files: {
+                    'ckeditor': 'ckeditor',
+                    'ckeditor/skins/office2013': 'ckeditor-office2013-skin/office2013'
                 }
             },
             fonts: {
@@ -73,7 +81,7 @@ module.exports = function(grunt ) {
                 options: {
                     livereload: true
                 },
-                files: ['app/**', '!app/styles/'],
+                files: ['app/**', '!app/styles/', '!app/img/**'],
                 tasks: ['jshint:dev', 'sass:dev', 'autoprefixer', 'trimtrailingspaces:main']
             }
         },
@@ -153,7 +161,7 @@ module.exports = function(grunt ) {
 
         trimtrailingspaces: {
             main: {
-                src: ['app/**/*.js'],
+                src: ['app/**/*.js', '!app/img'],
                 options: {
                     filter: 'isFile',
                     encoding: 'utf8',

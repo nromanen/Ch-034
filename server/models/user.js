@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    bcrypt = require('bcrypt-nodejs'),
+var mongoose = require("mongoose"),
+    bcrypt = require("bcrypt-nodejs"),
     Schema   = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -9,12 +9,10 @@ var UserSchema = new Schema({
         required: true
     },
     name: {
-        first: {
-            type: String
-        },
-        last: {
-            type: String
-        }
+        type: String
+    },
+    surname: {
+        type: String
     },
     password: {
         type: String,
@@ -26,12 +24,12 @@ var UserSchema = new Schema({
     },
     _courses: [{
         type: Schema.Types.ObjectId,
-        ref: 'Course'
+        ref: "Course"
     }]
 });
-UserSchema.pre('save', function (next) {
+UserSchema.pre("save", function (next) {
     var user = this;
-    if (this.isModified('password') || this.isNew) {
+    if (this.isModified("password") || this.isNew) {
         bcrypt.genSalt(10, function (err, salt) {
             if (err) {
                 return next(err);
@@ -57,4 +55,4 @@ UserSchema.methods.comparePassword = function (password, callback) {
         callback(null, response);
     });
 };
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model("User", UserSchema);

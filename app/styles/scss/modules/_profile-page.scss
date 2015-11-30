@@ -1,0 +1,62 @@
+#general-form {
+
+    margin-right: 0;
+    margin-left: 0;
+
+    #profileForm {
+      max-width:300px;
+      margin: 0 auto;
+    }
+
+    .input-group {
+        width:310px;
+        margin-bottom: 20px;
+        height: 40px;
+  }
+
+    .form-control {
+        height:40px;
+    }
+
+    .input-group-addon {
+        width: 40px;
+        font-size: 116%;
+        font-weight: bold;
+    }
+
+}
+
+.error {
+    border: 1px solid #FF0000;
+}
+
+.warning {
+    max-width: 420px;
+    padding: 10px 0;
+    margin: 20px auto;
+    color:#CD9953;
+    background: #FEF7E4;
+    text-align: center;
+}
+
+#profileForm #submit {
+    width: 160px;
+    background-color: #5cb85c;
+    margin-top: 0;
+}
+
+.error-message {
+    padding: 10px 0;
+    margin: 20px auto;
+    background-color: #FADFDF;
+    color: #D24A4A;
+    text-align: center;
+}
+
+.popover {
+    min-width: 300px;
+}
+
+.profile-btn {
+    text-align: center;
+}
