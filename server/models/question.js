@@ -24,6 +24,9 @@ QuestionSchema = new Schema({
     },
     variants: {
         type: Object
+    },
+    answer: {
+        type: String
     }
 });
 

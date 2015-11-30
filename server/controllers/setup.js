@@ -128,7 +128,8 @@ router.get("/", function(req, res) {
     var question2 = new Question({
         num: 2,
         question: "Введіть doctype HTML5 без &lt;&gt;",
-        typeVariant: 1
+        typeVariant: 1,
+        answer: "DOCTYPE html"
     });
 
     var question3 = new Question({
@@ -194,7 +195,8 @@ router.get("/", function(req, res) {
     var question8 = new Question({
         num: 2,
         question: "Який тег потрібен для організації назви таблиці?",
-        typeVariant: 1
+        typeVariant: 1,
+        answer: "&lt;thead>&gt;"
     });
 
     question1.save();
