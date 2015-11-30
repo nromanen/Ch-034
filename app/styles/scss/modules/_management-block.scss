@@ -1,11 +1,42 @@
 #managementlist{
+    .managementVal[disabled]{
+        background: inherit;
+        border: none;
+        margin: 2px; 
+    }
+    .managementEdit{
+    }
+    > tr{
+        height: 43px;
+            .glyphicon {
+                 font-size: 1.3em;
+            }
+    }
+
+}
+#managementAddContainer{
+   min-width: 265px;
     .btn{
-        width: 100px;
+        width: 75px;
+    }
+    #managementAddInput{
+        margin: 9px 13px 0 9px;
     }
 }
-#managementAddInput{
-    margin: 9px 13px 0 9px;
+
+#managementNav {
+    .active{
+        border-right: none;
+        margin-right: 0px;
+        border-radius: 0;
+    }
 }
+
+
+
+
+
+
 .table-striped{
     margin-bottom: 0;
 }
@@ -24,6 +55,7 @@
 }
 .tab-area .active {
     text-decoration: none;
+    border-right: 0;
 }
 .nav-tabs {
     border-bottom: none;
