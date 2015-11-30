@@ -44,13 +44,14 @@ router.post("/", function(req, res) {
                         mark++;
                     }
                 }
+                Module.findOneAndUpdate({"_id": req.body.data[0]._module},
+                    {$set: {"numberOfTests": req.body.numberOfTests, "result": mark}},
+                    function(err, module) {
+                        if (err) return err;
+                });
             });
         });
-        Module.findOneAndUpdate({"_id": req.body.data[0]._module},
-            {$set: {"numberOfTests": req.body.numberOfTests, "result": mark}},
-            function(err, module) {
-                if (err) return err;
-        });
+
     }
 
     return res.json({ success: true });
