@@ -120,8 +120,8 @@ router.get("/", function(req, res) {
         question: "Введіть класичний варіант написання тегу",
         typeVariant: 0,
         variants: {
-            variant1: "&lt;name&gt;&lt;/name&gt;",
-            variant2: "other variant"
+            variant1: ["&lt;name&gt;&lt;/name&gt;", true],
+            variant2: ["other variant", false]
         }
     });
 
@@ -136,17 +136,11 @@ router.get("/", function(req, res) {
         question: "Відмітьте теги, які не підтримуються HTML 4.0",
         typeVariant: 2,
         variants: {
-            variant1: "header",
-            variant2: "img",
-            variant3: "footer",
-            variant4: "span"
-        },
-        answers: {
-            variant1: true,
-            variant2: false,
-            variant3: true,
-            variant4: false
-        },
+            variant1: ["header", true],
+            variant2: ["img", false],
+            variant3: ["footer", true],
+            variant4: ["span", false]
+        }
     });
 
     var question4 = new Question({
@@ -154,17 +148,11 @@ router.get("/", function(req, res) {
         question: "Яка форма запису є коректною ? (два варіанти)",
         typeVariant: 2,
         variants: {
-            variant1: "&lt;input required=on&gt;",
-            variant2: "&lt;input required=yes&gt;",
-            variant3: "&lt;input required&gt;",
-            variant4: "&lt;input required=required&gt;"
-        },
-        answers: {
-            variant1: true,
-            variant2: false,
-            variant3: false,
-            variant4: true
-        }        
+            variant1: ["&lt;input required=on&gt;", false],
+            variant2: ["&lt;input required=yes&gt;", false],
+            variant3: ["&lt;input required&gt;", true],
+            variant4: ["&lt;input required=required&gt;", true]
+        }
     });
 
     var question5 = new Question({
@@ -172,9 +160,9 @@ router.get("/", function(req, res) {
         question: "Як встановити кодировку документа?",
         typeVariant: 0,
         variants: {
-            variant1: "&lt;body charset=&#34;utf-8&#34;&gt;",
-            variant2: "&lt;meta charset=&#34;utf-8&#34;&gt;",
-            variant3: "&lt;meta codebase=&#34;utf-8&#34;&gt;"
+            variant1: ["&lt;body charset=&#34;utf-8&#34;&gt;", false],
+            variant2: ["&lt;meta charset=&#34;utf-8&#34;&gt;", true],
+            variant3: ["&lt;meta codebase=&#34;utf-8&#34;&gt;", false]
         }
     });
 
@@ -183,11 +171,11 @@ router.get("/", function(req, res) {
         question: "Який елемент у секції &lt;head&gt; є обов'язковим?",
         typeVariant: 0,
         variants: {
-            variant1: "&lt;meta&gt;",
-            variant2: "&lt;link&gt;",
-            variant3: "&lt;style&gt;",
-            variant4: "&lt;base&gt;",
-            variant5: "&lt;title&gt;"
+            variant1: ["&lt;meta&gt;", true],
+            variant2: ["&lt;link&gt;", false],
+            variant3: ["&lt;style&gt;", false],
+            variant4: ["&lt;base&gt;", false],
+            variant5: ["&lt;title&gt;", false]
         }
     });
 
@@ -196,10 +184,10 @@ router.get("/", function(req, res) {
         question: "Який тег не є тегом форматування таблиці?",
         typeVariant: 0,
         variants: {
-            variant1: "&lt;target&gt;",
-            variant2: "&lt;td&gt;",
-            variant3: "&lt;hd&gt;",
-            variant4: "&lt;colspan&gt;"
+            variant1: ["&lt;target&gt;", false],
+            variant2: ["&lt;td&gt;", true],
+            variant3: ["&lt;hd&gt;", false],
+            variant4: ["&lt;colspan&gt;", true]
         }
     });
 
