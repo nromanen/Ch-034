@@ -38,6 +38,7 @@ define(function(require) {
 
         addManagement: function () {
             var managementName = _.escape(this.$el.find("#managementAddInput").val());
+            if(!managementName) return;
             var management= new Model({name: managementName });
             management.url = this.collection.url();
             management.save();
