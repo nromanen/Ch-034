@@ -44,7 +44,7 @@ define(function(require) {
            var newValue = _.escape($(ev.target.parentNode.parentNode).find(".managementVal").val());
            if (!newValue) return;
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
-            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"value":"Редагувати", "class":"glyphicon glyphicon-pencil", "id":"managementEdit"});
+            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil", "id":"managementEdit"});
            this.model.set({name:newValue});
            this.model.save();
            this.model.fetch({reset:true});

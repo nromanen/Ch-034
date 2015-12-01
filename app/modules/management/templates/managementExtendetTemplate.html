@@ -1,8 +1,5 @@
        <tr>
         <td width=*;"> <input class="managementVal bold" type="text" name="name" value="<%= model.get('name') %>" disabled></td>
-        <% if (model.get('groups')) { %>
-            <td width=50px;"> <input class="managementVal bold" type="text" name="name" value="<%= model.get('groups') %>" disabled></td>
-        <% } %>
         <td width="50px;"> <span class="managementEdit glyphicon glyphicon-pencil" id="managementEdit" title="Редагувати"></span></td>
         <td width="50px;"> <span type="submit" class="managementDel glyphicon glyphicon-trash" id="managementDel" title="Видалити"></span> </td>
       </tr>
