@@ -12,6 +12,13 @@
                  font-size: 1.3em;
                  cursor: pointer;
             }
+            .glyphicon-list-alt{
+                text-decoration: none;
+                color: #333;
+            }
+    }
+    .duration{
+        max-width: 60px;
     }
 
 }
@@ -60,4 +67,5 @@
 }
 .nav-tabs {
     border-bottom: none;
+    border-top: none;
 }

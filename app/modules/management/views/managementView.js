@@ -27,6 +27,10 @@ define(function(require) {
             this.deleteModal = new CMS.ModalView({model: this.model, modalHeader: "Ви дійсно хочете видалити :", submitButton: "Видалити"});
         },
 
+        afterRender: function(){
+
+        },
+
         deleteManagementModal: function(ev) {
             this.deleteModal.render();
             this.deleteModal.show();
