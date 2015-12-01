@@ -1,16 +1,17 @@
 var express = require("express"),
-	router = express.Router(),
-bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
+    router = express.Router(),
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
     
     User = require("../models/user"),
     Profile = require("../models/profile");
 
 router.post("/", function(req, res, next) {
         newUser = new User({
-            email: req.body.email,
-            password: req.body.pass,
-            role: req.body.role
+            "email": req.body.email,
+            "password": req.body.password,
+            "name": req.body.name,
+            "surname": req.body.surname
         });
 
     User
@@ -27,10 +28,8 @@ router.post("/", function(req, res, next) {
                     var userProfile = new Profile({
                         _user: user._id,
                         email: req.body.email,
-                        name: {
-                            first: req.body.name,
-                            last: req.body.surname
-                        },
+                        name: req.body.name,
+                        surname: req.body.surname,
                         avatar: req.body.avatar,
                         social: {
                             phone: req.body.phone,
@@ -53,7 +52,6 @@ router.post("/", function(req, res, next) {
     })
 })
 router.post("/check_email", function(req, res, next) {
-    console.log(req.body.email);
     User
         .findOne({"email": req.body.email})
         .exec(function(err, user) {

@@ -19,7 +19,7 @@ define(function(require, exports, module) {
             module.attributes.embeddable = CMS.embeddable;
 
             return {
-                module: module
+                module: module,
             };
         }
 

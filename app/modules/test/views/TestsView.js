@@ -15,12 +15,13 @@ define(function(require) {
             "change .form-control"     : "saveAnswers",
             "change .form-checkbox"    : "saveAnswers",
             "keyup .form-control"      : "saveAnswers",
-            "click #not-all-answers"   : "openBtn",
+            "click #not-all-answers"   : "btnCtrl",
             "click #btn-submit"        : "submitHandler",
             "click #btn-forbid-submit" : "submitForbid",
             "click #next-question"     : "nextQuestion"
         },
         initialize: function(collection, options) {
+            var thisView = this;
             this.btnTemplate = [
                 require("text!../templates/btn_templates/btnNextTemplate.html"),
                 require("text!../templates/btn_templates/btnCloseTemplate.html"),
@@ -41,6 +42,32 @@ define(function(require) {
                 modalHeader  : "Ви впевнені, що завершили проходження тестування та готові відправити дані на перевірку?",
                 submitButton : "Так, відправити на перевірку"
             });
+            CMS.ModalView.prototype.submitHandlerClick = function(e) {
+                e.preventDefault();
+                var thisModal = this;
+                var sentData = {
+                    _user        : CMS.SessionModel.getItem("UserSession").profile._user,
+                    numberOfTests: thisView.countQuestions,
+                    data         : thisView.userAnswers.toJSON()
+                };
+                $.ajax({
+                        type: "POST",
+                        cache: false,
+                        url: CMS.api + "answers",
+                        data: sentData,
+                        dataType: "json",
+                        beforeSend: function(xhr) {
+                            var token = CMS.SessionModel.getItem("UserSession").token;
+                            xhr.setRequestHeader('x-access-token', token);
+                        },
+                        success: function(res, textStatus) {
+                            thisModal.declinePopup();
+                            Backbone.history.navigate("#courses/" + thisView.courseId, {
+                                trigger: true
+                            });
+                        }
+                    });
+            };
             this.listenTo(this.collection, "reset sync request", this.render);
         },
         serialize: function(){
@@ -74,7 +101,7 @@ define(function(require) {
         renderOne: function(model) {
             var answer = "";
             if(this.userAnswers.get(model.get("num"))){
-                answer = this.userAnswers.get(model.get("num")).get("answerUser");
+                answer = this.userAnswers.get(model.get("num")).get("userAnswer");
             }
             this.insertView(".test", new TestView({model: model, answer: answer, typeTest: this.typeTest}).render());
         },
@@ -132,7 +159,7 @@ define(function(require) {
         },
         btnCtrl: function () {
             var btnState;
-            if (this.countQuestions == this.userAnswers.length) {
+            if (this.countQuestions == this.userAnswers.length || (this.$("#not-all-answers").prop("checked"))) {
                 btnState = CMS.btnTestView.open;
             }
             else if (this.mode == "list" || (this.mode == "page" && this.countQuestions == this.page)) {
@@ -142,14 +169,6 @@ define(function(require) {
                 btnState = CMS.btnTestView.nextQuestion;
             }
             this.$el.find("#test-submit").html(this.btnTemplate[btnState]);
-        },
-        openBtn: function (e) {
-            if (this.$("#not-all-answers").prop("checked")) {
-                this.$el.find("#test-submit").html(this.btnTemplate[CMS.btnTestView.open]);
-            }
-            else {
-                this.btnCtrl();
-            }
         }
     });
     return View;
