@@ -61,6 +61,7 @@ define(function(require) {
                             xhr.setRequestHeader('x-access-token', token);
                         },
                         success: function(res, textStatus) {
+                            thisView.userAnswers.clearCollection();
                             thisModal.declinePopup();
                             Backbone.history.navigate("#courses/" + thisView.courseId, {
                                 trigger: true
@@ -122,7 +123,7 @@ define(function(require) {
                         _module    : this.moduleId,
                         _course    : this.courseId,
                         userAnswer : value
-                    });
+                    }, {merge: true});
                 }
                 else if(!_.isUndefined(this.userAnswers.get(num))) {
                     this.userAnswers.get(num).destroy();
