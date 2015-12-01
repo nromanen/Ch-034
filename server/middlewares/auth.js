@@ -8,7 +8,7 @@ module.exports = function(req, res, next) {
         jwt.verify(token, req.app.get("superSecret"), function(err, decoded) {
             if (err) {
                 res.status(403);
-                return res.json({ success: false, message: "Failed to authenticate token." });
+                return res.json({ success: false, message: "Не вдалося перевірити токен аутентифікації." });
             } else {
                 req.decoded = decoded;
                 User
@@ -24,7 +24,7 @@ module.exports = function(req, res, next) {
     } else {
       return res.status(403).send({
           success: false,
-          message: "No token provided."
+          message: "Не передався токен."
       });
     }
 };
