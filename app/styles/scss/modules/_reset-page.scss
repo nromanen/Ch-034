@@ -1,0 +1,38 @@
+#resetForm {
+    max-width:311px;
+    margin: 0 auto;
+
+    .input-group {
+        width:310px;
+        margin-bottom: 20px;
+        height: 40px;
+    }
+
+    .form-control {
+        height:40px;
+    }
+
+    .input-group-addon {
+        width: 40px;
+        font-size: 116%;
+        font-weight: bold;
+    }
+}
+
+#resetPassword {
+    width: 140px;
+    background-color: $loginBtnColor;
+    margin-top: 10px;
+}
+
+
+.error-message {
+    width: 460px;
+    height: 50px;
+    padding: 10px 20px;
+    margin: 20px auto;
+}
+
+.error {
+    outline: 1px solid #AA3838;
+}
