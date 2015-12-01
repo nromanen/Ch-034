@@ -1,10 +1,16 @@
-var express = require('express'),
+var express = require("express"),
     router = express.Router(),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    Group = require('../models/group');
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose"),
+    Group = require("../models/group");
 
-router.post('/', function(req, res) {
+router.get("/", function(req, res) {
+    Group.find({}, function(err, groups) {
+        if (err) throw err;
+        return res.json(groups);
+    });
+});
+router.post("/", function(req, res) {
   
     var group = new Group({ 
         name: req.body.name,
@@ -12,28 +18,26 @@ router.post('/', function(req, res) {
 
     group.save(function(err) {
         if (err) throw err;
-
-        console.log('Group saved successfully');
-        res.json({ success: true });
+        return res.json({ success: true });
     });
 });
+router.get("/:id", function(req, res) {
+    Group.findById(req.params.id, function(err, group) {
+        if (err) throw err;
+        return res.json(group);
+    });
+});
+router.put("/:id", function(req, res) {
 
-router.put('/:id', function(req, res) {
-    Group.findByIdAndUpdate(req.param.id, {$set: {name: req.body.name}}, function(err, group) {
+    Group.findByIdAndUpdate({_id: req.params.id}, {name: req.body.name}, function(err, group) {
       if (err) return handleError(err);
-      res.send(group);
+      return res.json(group);
     });
 });
-
-router.get('/', function(req, res) {
-    Group.find({}, function(errr, groups) {
-        res.json(groups);
-    });
-});
-
-router.get('/:id', function(req, res) {
-    Group.findById(req.param.id, function(err, group) {
-        res.json(group);
+router.delete("/:id", function(req, res) {
+    Group.findByIdAndRemove({_id: req.params.id}, function(err) {
+        if (err) throw err;
+        return res.json({success: true, message: "group deleted successfully"});
     });
 });
 

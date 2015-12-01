@@ -1,4 +1,4 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 ModuleSchema = new Schema({
@@ -24,10 +24,14 @@ ModuleSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Course"
     },
+    _tests: [{
+        type: Schema.Types.ObjectId,
+        ref: "Test"
+    }],
     _resources: [{
         type: Schema.Types.ObjectId,
         ref: "Resource"
     }]
 })
 
-module.exports = mongoose.model('Module', ModuleSchema);
+module.exports = mongoose.model("Module", ModuleSchema);

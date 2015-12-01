@@ -1,27 +1,25 @@
-var mongoose = require('mongoose'),
+var mongoose = require("mongoose"),
     Schema   = mongoose.Schema;
 
 var ProfileSchema = new Schema({
-    email: String,
-    name: {
-        first: String,
-        last: String
-    },
-    avatar: String,
+    email  : String,
+    name   : String,
+    surname: String,
+    avatar : String,
     social: {
-        phone: String,
-        skype: String,
+        phone   : String,
+        skype   : String,
         linkedin: String,
-        fb: String,
-        vk: String
+        fb      : String,
+        vk      : String
     },
     _user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: "User"
     },
     _courses: [{
         type: Schema.Types.ObjectId,
-        ref: 'Course'
+        ref: "Course"
     }]
 });
-module.exports = mongoose.model('Profile', ProfileSchema);
+module.exports = mongoose.model("Profile", ProfileSchema);

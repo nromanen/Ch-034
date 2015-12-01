@@ -8,6 +8,10 @@ define(function(require) {
         Model: require("./model"),
         Event: require("./event"),
         Router: require("./router"),
+        Helpers: {
+            Messages: require('./helpers/messages'),
+            RegexPatterns: require('./helpers/regexPatterns')
+        },
 
         CoreView: require("./views/CoreView"),
 

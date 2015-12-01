@@ -9,7 +9,7 @@ define(function(require) {
         className: "modal fade",
         events:{
             "hidden.bs.modal #applyModal": "closePopup",
-            "click .btn-apply": "submitHandlerClick",
+            "click .btn-success": "submitHandlerClick",
             "click .btn-cancel": "declinePopup"
         },
         initialize: function(options) {
@@ -17,6 +17,7 @@ define(function(require) {
                 this.modalHeader = "Я підтверджую подачу заявки на курс:";
             if (!options.submitButton)
                 this.submitButton = "Подати заявку";
+            this.successTemplate = _.template(require("text!../templates/modalSuccessTemplate.html"));
         },
         serialize: function() {
             return {
@@ -38,7 +39,12 @@ define(function(require) {
         },
         declinePopup: function(){
             this.$el.modal("hide");
+        },
+        showSuccessMesasage: function(mess){
+            $(".modal-dialog").html(this.successTemplate({successMessage: mess }));
+            return this;
         }
+
     });
     return View;
 });

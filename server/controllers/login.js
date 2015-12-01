@@ -34,7 +34,7 @@ router.post( "/", function ( req, res, next ) {
 
                     res.status( 200 ).send({
                         success: true,
-                        message: 'Enjoy your token!',
+                        message: "Enjoy your token!",
                         token: token,
                         role: user.role
                     });

@@ -2,31 +2,28 @@ define(function(require) {
     "use strict";
 
     _.extend(Backbone.Validation.callbacks, {
+
         valid: function (view, attr, selector) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.form-group');
-
             $group.removeClass('has-error');
-            $group.find('.help-block').html('').addClass('hidden');
             $el.popover('destroy');
         },
+
         invalid: function (view, attr, error, selector) {
             var $el = view.$('[name=' + attr + ']'),
                 $group = $el.closest('.form-group');
-
             $group.addClass('has-error');
-            $group.find('.help-block').html(error).removeClass('hidden');
-            $el.popover({title: Message.errorWord, content: error, trigger: "focus"});
+            $el.popover({title: CMS.Helpers.Messages.errorWord, content: error, trigger: "focus"});
         }
     });
 
     var CMS = require("CMS"),
 
-    Message = require("modules/messages"),
-
-    Model = require("modules/register/model/registerModel"),
+    Model = require("../model/registerModel"),
 
     View = CMS.View.extend({
+
         el: false,
 
         template: _.template(require("text!../template/registerTemplate.html")),
@@ -50,14 +47,14 @@ define(function(require) {
 
         showErrors: function(model, errors) {
             this.$el.find('#warnMsg').addClass('error-message');
-            this.$el.find('.title-msg').html(Message.errorWord);
-            this.$el.find('.text-msg').html(Message.tryAgain);
+            this.$el.find('.title-msg').html(CMS.Helpers.Messages.errorWord);
+            this.$el.find('.text-msg').html(CMS.Helpers.Messages.tryAgain);
         },
 
         hideErrors: function() {
             this.$el.find('#warnMsg').removeClass('error-message');
-            this.$el.find('.title-msg').html(Message.attentionWord);
-            this.$el.find('.text-msg').html(Message.fieldsRequired);
+            this.$el.find('.title-msg').html(CMS.Helpers.Messages.attentionWord);
+            this.$el.find('.text-msg').html(CMS.Helpers.Messages.fieldsRequired);
         },
 
         submitClicked: function(e) {
@@ -66,19 +63,24 @@ define(function(require) {
                 name: this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
                 email: this.$el.find('#email').val(),
-                pass: this.$el.find('#pass').val(),
+                password: this.$el.find('#password').val(),
                 repeatPass: this.$el.find('#repeatPass').val()
             };
-            this.model.set(feedback);
+
+            this.model.set(feedback, {validate: true});
+
             if(this.model.isValid()) {
                 this.model.save(null, {
                     success: function(model, response) {
                         CMS.router.renderHomepage();
-                        CMS.router.navigate("courses", {trigger: true});
+                        CMS.router.navigate("/courses", {trigger: true});
                     },
                     error: function(model, response) {
                     }
                 });
+                this.hideErrors();
+                CMS.router.navigate("/courses", {trigger: true});
+
             } else {
                 this.showErrors();
             }

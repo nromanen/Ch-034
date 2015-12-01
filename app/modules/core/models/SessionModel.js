@@ -63,10 +63,17 @@ define(function(require) {
                 that.setItem("UserSession", JSON.stringify(response));
                 if (that.getItem("UserSession.targetPage")) {
                     var path = that.getItem("UserSession.targetPage");
-                    that.unsetItem("UserSession.targetPage");
-                    Backbone.history.navigate(path, {
-                        trigger: true
-                    });
+                    if (path !== "#logout") {
+                        that.unsetItem("UserSession.targetPage");
+                        Backbone.history.navigate(path, {
+                            trigger: true
+                        });
+                    } else {
+                        Backbone.history.navigate("", {
+                            trigger: true
+                        });
+                    }
+
                 } else {
                     Backbone.history.navigate("", {
                         trigger: true
