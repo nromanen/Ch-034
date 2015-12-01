@@ -46,9 +46,9 @@ router.post("/", function(req, res) {
                             mark++;
                         }
                     }
+                    callback();
                 });
             });
-            callback();
         }, function(err) {
             if (err) throw err;
             Module.findOneAndUpdate({"_id": data[0]._module},
