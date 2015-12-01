@@ -36,8 +36,8 @@ define(function(require) {
             var evModelEl = ev.target.parentNode;
             evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
             evModelEl.previousSibling.previousSibling.lastChild.focus();
-            $(evModelEl.parentNode).find(".managementEdit").attr({"value":"Зберегти", "class":"glyphicon glyphicon-ok", "id":"saveManagementEdit"});
-            $(evModelEl.parentNode).find("#managementDel").attr({"value":"Відмінити", "class":"glyphicon glyphicon-remove", "id":"cenceleManagementEdit"});
+            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok", "id":"saveManagementEdit"});
+            $(evModelEl.parentNode).find("#managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove", "id":"cenceleManagementEdit"});
         },
 
         saveEditManagement: function(ev) {
