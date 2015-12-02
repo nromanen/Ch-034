@@ -20,7 +20,6 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(this.collection, "sync request change", this.render, this);
-            console.log(this.collection);
         },
 
         beforeRender: function(){
