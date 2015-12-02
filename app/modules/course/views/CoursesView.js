@@ -7,6 +7,7 @@ define(function(require) {
 
     View = CMS.View.extend({
         template: _.template(require("text!../templates/coursesTemplate.html")),
+        noContentTemplate: require("text!../templates/noCourses.html"),
         el: false,
         events: {
             "keypress #search-input": "searchCoursesOnEnter",
@@ -15,11 +16,12 @@ define(function(require) {
         },
         beforeRender: function() {
             this.renderList();
-            if (!_.isEmpty(this.collection.models)) {
-                this.insertView("nav", new PaginationView({collection: this.collection}));
-            }
         },
         afterRender: function() {
+            if (_.isEmpty(this.collection.models)) {
+                this.$el.find(".courses").html(this.noContentTemplate);
+                this.$el.find("nav").remove();
+            }
             if (this.collection.filterParams.s) {
                 this.$el.find("#search-input").parent().append('<span class="glyphicon glyphicon-remove remove-search" aria-hidden="true"></span>');
                 this.$el.find("#search-input").val(this.collection.filterParams.s);
@@ -27,6 +29,7 @@ define(function(require) {
         },
         renderList: function() {
             this.collection.each(this.renderOne, this);
+            this.insertView("nav", new PaginationView({collection: this.collection}));
         },
         renderOne: function(model) {
             this.insertView(".courses", new CourseView({
@@ -37,7 +40,7 @@ define(function(require) {
             var code = e.keyCode ? e.keyCode : e.charCode;
             if (code === 13) {
                 if ($(e.target).val()) {
-                    Backbone.history.navigate("#courses?s='"+$(e.target).val()+"'", {trigger: true});
+                    Backbone.history.navigate(this.getPath()+"?s='"+$(e.target).val()+"'", {trigger: true});
                 } else {
                     this.clearSearchInput();
                 }
@@ -47,18 +50,25 @@ define(function(require) {
             e.preventDefault();
             var searchString = this.$el.find("#search-input").val();
             if (searchString) {
-                Backbone.history.navigate("#courses?s='"+searchString+"'", {trigger: true});
+                Backbone.history.navigate(this.getPath()+"?s='"+searchString+"'", {trigger: true});
             } else {
                 this.clearSearchInput();
             }
         },
         clearSearchInput: function() {
-            Backbone.history.navigate("#courses", {trigger: true});
+            Backbone.history.navigate(this.getPath(), {trigger: true});
         },
         serialize: function() {
             return {
                 courseId: this.id,
             };
+        },
+        getPath: function() {
+            var path = Backbone.history.location.hash;
+            if (path !== "") {
+                path = path.match(CMS.Helpers.RegexPatterns.rootPathRegex)[0];
+            }
+            return path;
         }
     });
     return View;

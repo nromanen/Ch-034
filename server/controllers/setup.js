@@ -67,9 +67,7 @@ router.get("/", function(req, res) {
         "role": 1
     });
     
-    user1.save();
     var profile = new UserProfile({
-        _user: user1._id,
         email: user1.email,
         name: user1.name,
         surname: user1.surname,
@@ -82,6 +80,10 @@ router.get("/", function(req, res) {
             vk: "req.body.vk"
         },
     });
+    user1._profile = profile;
+    profile._user = user1;
+
+    user1.save();
     profile.save();
     var ui = new Area({
         name: "UI"

@@ -15,6 +15,14 @@ var CourseSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    publish_at: {
+        type: Date,
+        default: Date.now
+    },
+    unpublished_at: {
+        type: Date,
+        default: 8640000000000000
+    },
     isPublished: {
         type: Boolean,
         default: true
@@ -44,21 +52,36 @@ var CourseSchema = new Schema({
         type: String
     },
     area: {
-        _id: {type: Schema.Types.ObjectId, ref: "Area" },
-        name: String
+        type: Schema.Types.ObjectId, 
+        ref: "Area"
     },
     groups: [{
-        _id: {type: Schema.Types.ObjectId, ref: "Group" },
-        name: String
+        type: Schema.Types.ObjectId, 
+        ref: "Group"
     }],
     _modules: [{
         type: Schema.Types.ObjectId,
         ref: "Module"
     }]
+}, {
+    toObject: {
+        virtuals: true
+    }
 });
 CourseSchema.pre("save", function(next){
     now = new Date();
     this.updated_at = now;
     next();
+});
+CourseSchema.virtual('subscribed').get(function() {
+    return this._subscribed;
+});
+
+CourseSchema.virtual('subscribed').set(function(subscribed) {
+    return this._subscribed = subscribed;
+});
+
+CourseSchema.set('toObject', {
+    getters: true
 });
 module.exports = mongoose.model("Course", CourseSchema);

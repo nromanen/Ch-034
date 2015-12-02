@@ -10,7 +10,7 @@ define(function(require) {
         api: CMS.api,
         perPage: CMS.perPage,
         paginationSize: CMS.paginationSize,
-        hrefPath: "#courses/page/",
+        hrefPath: "/page/",
         resource: "courses",
         initialize: function() {
             CMS.Event.on("filter:change", _.bind(function(){

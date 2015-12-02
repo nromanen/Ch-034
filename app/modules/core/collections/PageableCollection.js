@@ -2,6 +2,7 @@ define(function(require) {
     "use strict";
 
     var CoreCollection = require("../collection"),
+        RegexPatterns = require("../helpers/regexPatterns"),
 
     PageableCollection = CoreCollection.extend({
 
@@ -11,12 +12,13 @@ define(function(require) {
         currentPage: 1,
         hrefPath   : "",
         pageOffset : 0,
-
+        locationPath: "",
+        
         getResource: function() {
             return this.resource;
         },
         getHrefPath: function() {
-            return this.hrefPath;
+            return this.locationPath + this.hrefPath;
         },
         setCurrentPage: function(page) {
             if (page)

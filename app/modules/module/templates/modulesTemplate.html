@@ -8,12 +8,14 @@
             <div class="module-title clearfix"><strong><a class="module-item-name save-anchor" href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>"><%= module.get('title') %></a></strong></div>
             <div class="bottom-line clearfix">
                 <a href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>" class="left-side pull-left save-anchor">методичні матеріали</a>
-                <% if (module.get('available') !== true) { %>
-                    <div class="btn btn-success disable pull-right padding-right padding-left">Пройти тест</div>
-                <% } else if (module.get('result') != null){ %>
-                    <div class="pull-right">Результат:&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= module.get('result') %>/<%= module.get('numberOfTests') %> </strong>&nbsp;&nbsp;&nbsp;&nbsp;(<%= Math.round(module.get('result')/module.get('numberOfTests')*100) %>%)</div>
-                <% } else { %>
-                    <a href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>/tests/list-mode" class="btn btn-success pull-right padding-right padding-left save-anchor">Пройти тест</a>
+                <% if (subscribed) { %>
+                    <% if (module.get('available') !== true) { %>
+                        <div class="btn btn-success disable pull-right padding-right padding-left">Пройти тест</div>
+                    <% } else if (module.get('result') != null){ %>
+                        <div class="pull-right">Результат:&nbsp;&nbsp;&nbsp;&nbsp;<strong><%= module.get('result') %>/<%= module.get('numberOfTests') %> </strong>&nbsp;&nbsp;&nbsp;&nbsp;(<%= Math.round(module.get('result')/module.get('numberOfTests')*100) %>%)</div>
+                    <% } else { %>
+                        <a href="#courses/<%= module.get('_course')._id %>/modules/<%= module.get('_id') %>/tests/list-mode" class="btn btn-success pull-right padding-right padding-left save-anchor">Пройти тест</a>
+                    <% } %>
                 <% } %>
             </div>
         </div>

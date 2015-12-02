@@ -16,10 +16,6 @@ var ProfileSchema = new Schema({
     _user: {
         type: Schema.Types.ObjectId,
         ref: "User"
-    },
-    _courses: [{
-        type: Schema.Types.ObjectId,
-        ref: "Course"
-    }]
+    }
 });
 module.exports = mongoose.model("Profile", ProfileSchema);

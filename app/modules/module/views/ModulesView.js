@@ -7,15 +7,15 @@ define(function(require, exports, module) {
 
         template: _.template(require("text!../templates/modulesTemplate.html")),
         el: false,
-        initialize: function() {
-            this.listenTo(this.collection, "reset sync request", this.render);
+        initialize: function(options) {
+            this.subscribed = options.subscribed;
         },
         serialize: function() {
             return {
                 modules: this.collection,
                 imgUrl: this.imgUrl,
                 courseId : this.courseId,
-                courses: CMS.SessionModel.getItem("UserSession").profile._courses
+                subscribed: this.subscribed
             };
         },
         events: {

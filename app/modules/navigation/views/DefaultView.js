@@ -7,7 +7,8 @@ define(function(require) {
             template: _.template(require("text!../templates/menuTemplate.html")),
             el: false,
             initialize: function(showTitle) {
-               this.listenTo(this.model, "sync request change", this.render);
+               //this.listenTo(this.model, "sync request change", this.render);
+               CMS.Event.on("session:change", this.render, this);
                this.showTitle = showTitle ? showTitle : true;
             },
              serialize: function() {

@@ -7,7 +7,6 @@ var express = require("express"),
 router.use(logger("tiny", {
     stream: fs.createWriteStream("./server/log.log", {flags: "a"})
 }));
-router.use(logger("dev"));
 
 router.use("/courses", require("./courses"));
 router.use("/courses/:courseId/modules", require("./modules"));

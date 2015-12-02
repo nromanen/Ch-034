@@ -1,5 +1,6 @@
 var jwt = require("jsonwebtoken"),
-    User = require("../models/user");
+    User = require("../models/user"),
+    Profile = require("../models/profile");
 
 module.exports = function(req, res, next) {
 
@@ -13,7 +14,7 @@ module.exports = function(req, res, next) {
                 req.decoded = decoded;
                 User
                     .findOne({email: decoded.name})
-                    .select("-_courses -password")
+                    .select("-password")
                     .exec(function(err, user) {
                       if (err) next(err)
                         req.authUser = user;
