@@ -1,6 +1,6 @@
        <tr>
         <td width=*;"> <input class="managementVal bold" type="text" name="name" value="<%= model.get('name') %>" disabled></td>
-        <% if (model.get('groups')) { %>
+        <% if (this.kind == "courses") { %>
                 <% if (model.get('isPublished') == true) { %>
                       <td width="60px;"> <span class="isPublished glyphicon glyphicon-ok-circle" id="isPublished" title=""></span></td>
                   <% } else { %>
@@ -10,7 +10,7 @@
             <td width="60px;"> <input class="managementVal bold duration" type="text" name="name" value="<%= model.get('duration') %> тиж." disabled></td>
             <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title=""></a></td>
         <% }  %>
-        <td width="60px;"> <span class="glyphicon glyphicon-pencil" id="" title="Редагувати"></span></td>
+        <td width="60px;"> <span class="managementEdit glyphicon glyphicon-pencil" id="managementEdit" title="Редагувати"></span></td>
         <td width="60px;"> <span type="submit" class="managementDel glyphicon glyphicon-trash" id="managementDel" title="Видалити"></span> </td>
       </tr>
 
