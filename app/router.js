@@ -13,7 +13,7 @@ define(function(require) {
         NavigationModule = require("modules/navigation/index"),
         ManagementModule = require("modules/management/index"),
         StaticModule = require("modules/static/index"),
-
+        ResourcesModule = require("modules/resource/index"),
 
     Router = CMS.Router.extend({
         initialize: function() {
@@ -91,7 +91,8 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/:page" : "showManagement"
+            "management/:page" : "showManagement",
+            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
         },
         showLoginPage: function() {
             this.loginView = new Login.View();
@@ -228,6 +229,10 @@ define(function(require) {
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
                     this.containerView.hrefPath = "management/groups";
                     break;
+                case "courses":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
+                    this.containerView.hrefPath = "management/courses";
+                    break;
             }
         },
 
@@ -239,6 +244,12 @@ define(function(require) {
                 path = "#courses";
             }
             return path;
+        },
+
+        showResourcesList: function(courseId, id) {
+            this.resources = new ResourcesModule.Collection();
+            this.resources.fetch();
+            this.containerView.setView(".content", new ResourcesModule.Views.Resources({collection: this.resources, courseId: courseId, moduleId: id}));
         },
 
         parseQueryString: function(queryString) {

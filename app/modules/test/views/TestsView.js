@@ -46,9 +46,11 @@ define(function(require) {
                 e.preventDefault();
                 var thisModal = this;
                 var sentData = {
-                    _user        : CMS.SessionModel.getItem("UserSession").profile._user,
-                    numberOfTests: thisView.countQuestions,
-                    data         : thisView.userAnswers.toJSON()
+                    _user         : CMS.SessionModel.getItem("UserSession").profile._user,
+                    numberOfTests : thisView.countQuestions,
+                 // in future: get method of estimate from DB <Tests>
+                    estimateMethod: "simple",
+                    data          : thisView.userAnswers.toJSON()
                 };
                 $.ajax({
                         type: "POST",
@@ -61,6 +63,7 @@ define(function(require) {
                             xhr.setRequestHeader('x-access-token', token);
                         },
                         success: function(res, textStatus) {
+                            thisView.userAnswers.clearCollection();
                             thisModal.declinePopup();
                             Backbone.history.navigate("#courses/" + thisView.courseId, {
                                 trigger: true
@@ -122,7 +125,7 @@ define(function(require) {
                         _module    : this.moduleId,
                         _course    : this.courseId,
                         userAnswer : value
-                    });
+                    }, {merge: true});
                 }
                 else if(!_.isUndefined(this.userAnswers.get(num))) {
                     this.userAnswers.get(num).destroy();
