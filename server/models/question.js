@@ -16,7 +16,7 @@ QuestionSchema = new Schema({
     },
     question: {
         type: String,
-        required: "Please fill question"
+        required: "Будьласка перевірте запитання"
     },
     typeVariant: {
         type: Number,

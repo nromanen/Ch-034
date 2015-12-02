@@ -4,7 +4,7 @@ var mongoose = require("mongoose"),
 var CourseSchema = new Schema({
     name: {
         type: String,
-        required: "Please fill course name",
+        required: "Будьласка перевірте назву курсу",
         trim: true
     },
     created_at: {

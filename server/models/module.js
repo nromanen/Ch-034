@@ -4,7 +4,7 @@ var mongoose = require("mongoose"),
 ModuleSchema = new Schema({
     title: {
         type: String,
-        required: "Please fill module title",
+        required: "Будьласка перевірте назву модулю",
     },
     description: {
         type: String,
