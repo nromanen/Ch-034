@@ -13,23 +13,32 @@ router.post("/", function (req, res, next) {
       User.findOne({email: req.body.email}, cb);
     },
       function (user, cb) {
+
+        user.password = 999 / Math.random();
+
         var transporter = nodemailer.createTransport({
           service: "gmail",
           auth: {
             user: "ssita.cms@gmail.com",
             pass: "ssita_cms"
           }
-        }, {
-          from: "ssita.cms@gmail.com",
-          headers: {
-            "My-Awesome-Header": "123"
-          }
         });
 
-        transporter.sendMail({
+        var text = "Hello, " + user.name + "your new password is: " + user.password
+
+
+        var mailOptions = {
+          from: "ssita.cms@gmail.com",
           to: user.email,
-          subject: "Reset password",
-          text: "Hello user.name! Your new password:aA1234567"
+          subject: "reset password",
+          text: text
+        };
+
+        transporter.sendMail(mailOptions, function (err, info) {
+          if (err) {
+            return next(err);
+          }
+          console.log("Message sent: " + info.response);
         });
       }
     ], cb(err));
