@@ -10,7 +10,6 @@ define(function(require) {
         el: false,
 
         initialize: function() {
-
             this.areaParams = this.filterParams.area ? [].concat(this.filterParams.area) : [];
             this.groupParams = this.filterParams.group ? [].concat(this.filterParams.group) : [];
 
@@ -18,36 +17,28 @@ define(function(require) {
             this.groupsCollection = new FilterModule.Collection.Groups();
             this.vacanciesCollection = new VacanciesModule.Collection();
 
+            this.areasCollection.fetch();
+            this.groupsCollection.fetch();
+            this.vacanciesCollection.fetch();
         },
 
-        afterRender: function() {
-            var _this = this;
-
-            $.when(
-                    this.areasCollection.fetch(),
-                    this.groupsCollection.fetch(),
-                    this.vacanciesCollection.fetch()
-            ).done(function() {
-                _this.removeView();
-                _this.areaFilter = new FilterModule.Views.Filter({
-                    collection: _this.areasCollection,
-                    type: "Напрямок",
-                    params: _this.areaParams
-                });
-                _this.groupFilter = new FilterModule.Views.Filter({
-                    collection: _this.groupsCollection,
-                    type: "Тип групи",
-                    params: _this.groupParams
-                });
-                _this.vacanciesView = new VacanciesModule.Vacancies({
-                    collection: _this.vacanciesCollection
-                });
-
-                _this.insertView("#filter", _this.areaFilter).render();
-                _this.insertView("#filter", _this.groupFilter).render();
-                _this.insertView("#vacancies", _this.vacanciesView).render();
-
+        beforeRender: function() {
+            this.areaFilter = new FilterModule.Views.Filter({
+                collection: this.areasCollection,
+                type: "Напрямок",
+                params: this.areaParams
             });
+            this.groupFilter = new FilterModule.Views.Filter({
+                collection: this.groupsCollection,
+                type: "Тип групи",
+                params: this.groupParams
+            });
+            this.vacanciesView = new VacanciesModule.Vacancies({
+                collection: this.vacanciesCollection
+            });
+            this.insertView("#filter", this.areaFilter);
+            this.insertView("#filter", this.groupFilter);
+            this.insertView("#vacancies", this.vacanciesView);
         }
     });
     return View;

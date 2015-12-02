@@ -19,8 +19,7 @@ define(function(require) {
             course.attributes.id = this.model.id;
             course.parseDate = this.convertToMonthAndDate;
             return {
-                course: course,
-                courses: CMS.SessionModel.getItem("UserSession").profile._courses
+                course: course
             };
         },
         subscribeDialog: function(e){
@@ -36,7 +35,7 @@ define(function(require) {
                     method: this.model.ajaxMethod.POST,
                     data: {id: this.model.id, name: this.model.get("name")},
                     success: function(data){
-                        CMS.SessionModel.setItem("UserSession", JSON.stringify(data));
+                        _this.model.fetch({reset: true});
                         _this.subscribeModal.showSuccessMesasage(data.message);
                         _this.render();
                     }
@@ -60,7 +59,7 @@ define(function(require) {
                     method: this.model.ajaxMethod.DELETE,
                     data: {id: this.model.id, name: this.model.get("name")},
                     success: function(data){
-                        CMS.SessionModel.setItem("UserSession", JSON.stringify(data));
+                        _this.model.fetch({reset: true});
                         _this.subscribeModal.showSuccessMesasage(data.message);
                         _this.render();
                     }
