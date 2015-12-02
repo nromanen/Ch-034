@@ -8,8 +8,8 @@ var express = require("express"),
     Answer = require("../models/answer");
 
 router.post("/", function(req, res) {
-    var mark = 0;
-    var data = req.body.data;
+    var mark = 0,
+        data = req.body.data;
     if(data){  // check universal rule
         async.forEach(data, function(values, callback){
             var answer = new Answer({
@@ -39,12 +39,12 @@ router.post("/", function(req, res) {
                     }
                  // estimate of answer on close question with few right variants
                     else {
-                            var userAnswers = answer.userAnswer.split(",");
-                            var countAnswers = userAnswers.length;
-                            var countVariants = 0;
+                            var userAnswers = answer.userAnswer.split(","),
+                                countAnswers = userAnswers.length,
+                                countVariants = 0;
                             if (countAnswers != countVariants) {   // check universal rule
-                                var rightAnswers = [];
-                                var rightCounter = 0;
+                                var rightAnswers = [],
+                                    rightCounter = 0;
                              // for all three methods: simple, proportional and gravimetric
                                 for(variant in questions) {
                                     if(questions[variant][1]){
@@ -59,10 +59,10 @@ router.post("/", function(req, res) {
                                 }
                              // only for proportional and gravimetric methods
                                 if(req.body.estimateMethod == "proportional" || req.body.estimateMethod =="gravimetric"){
-                                    var wrongAnswers = [];
-                                    var wrongCounter = 0;
-                                    var countRightVariants = 0;
-                                    var countWrongVariants = 0;
+                                    var wrongAnswers = [],
+                                        wrongCounter = 0,
+                                        countRightVariants = 0,
+                                        countWrongVariants = 0;
                                     for(variant in questions) {
                                         if(!questions[variant][1]){
                                             wrongAnswers.push(variant);
