@@ -228,6 +228,10 @@ define(function(require) {
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
                     this.containerView.hrefPath = "management/groups";
                     break;
+                case "courses":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
+                    this.containerView.hrefPath = "management/courses";
+                    break;
             }
         },
 
