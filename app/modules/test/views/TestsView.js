@@ -46,9 +46,11 @@ define(function(require) {
                 e.preventDefault();
                 var thisModal = this;
                 var sentData = {
-                    _user        : CMS.SessionModel.getItem("UserSession").profile._user,
-                    numberOfTests: thisView.countQuestions,
-                    data         : thisView.userAnswers.toJSON()
+                    _user         : CMS.SessionModel.getItem("UserSession").profile._user,
+                    numberOfTests : thisView.countQuestions,
+                 // in future: get method of estimate from DB <Tests>
+                    estimateMethod: "simple",
+                    data          : thisView.userAnswers.toJSON()
                 };
                 $.ajax({
                         type: "POST",
