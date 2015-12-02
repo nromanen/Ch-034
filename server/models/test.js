@@ -16,7 +16,7 @@ TestSchema = new Schema({
     },
     nameTest: {
         type: String,
-        required: "Please fill test title"
+        required: "Будьласка перевірте назву тесту"
     }
 });
 

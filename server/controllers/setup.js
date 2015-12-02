@@ -23,6 +23,26 @@ router.get("/", function(req, res) {
         title: "Профайл",
         slug: "profile_menu"
     });
+    var coursesMenu = new Menu({
+        title: "Курси",
+        slug: "courses_menu"
+    });
+    var testsMenu = new Menu({
+        title: "Тести",
+        slug: "tests_menu"
+    });
+    var listsMenu = new Menu({
+        title: "Списки",
+        slug: "lists_menu"
+    });
+    var menusMenu = new Menu({
+        title: "Меню",
+        slug: "menus_menu"
+    });
+    var usersMenu = new Menu({
+        title: "Користувачі",
+        slug: "users_menu"
+    });
     var mainMenuLink1 = new MenuLink({
         name: "Всі курси",
         published: true,
@@ -53,11 +73,81 @@ router.get("/", function(req, res) {
         access: [0,1,2],
         url: "#logout"
     });
+    var coursesMenuLink1 = new MenuLink({
+        name: "Список курсів",
+        published: true,
+        access: [1,2],
+        url: "#management/courses(/)"
+    });
+    var coursesMenuLink2 = new MenuLink({
+        name: "Додати курс",
+        published: true,
+        access: [1,2],
+        url: "#management/courses/new"
+    });
+    var testsMenuLink1 = new MenuLink({
+        name: "Список тестів",
+        published: true,
+        access: [1,2],
+        url: "#management/tests(/)"
+    });
+    var testsMenuLink2 = new MenuLink({
+        name: "Додати тест",
+        published: true,
+        access: [1,2],
+        url: "#management/tests/new"
+    });
+    var listsMenuLink1 = new MenuLink({
+        name: "Напрямки",
+        published: true,
+        access: [2],
+        url: "#management/areas(/)"
+    });
+    var listsMenuLink2 = new MenuLink({
+        name: "Типи груп",
+        published: true,
+        access: [2],
+        url: "#management/groups(/)"
+    });
+    var menusMenuLink1 = new MenuLink({
+        name: "Список меню",
+        published: true,
+        access: [2],
+        url: "#management/menus(/)"
+    });
+    var menusMenuLink2 = new MenuLink({
+        name: "Додати меню",
+        published: true,
+        access: [2],
+        url: "#management/menus/new"
+    });
+    var usersMenuLink1 = new MenuLink({
+        name: "Список користувачів",
+        published: true,
+        access: [2],
+        url: "#management/users(/)"
+    });
+    var usersMenuLink2 = new MenuLink({
+        name: "Додати користувача",
+        published: true,
+        access: [2],
+        url: "#management/users/new"
+    });
     mainMenuLink1.save();
     mainMenuLink2.save();
     mainMenuLink3.save();
     profileMenuLink1.save();
     profileMenuLink2.save();
+    coursesMenuLink1.save();
+    coursesMenuLink2.save();
+    testsMenuLink1.save();
+    testsMenuLink2.save();
+    listsMenuLink1.save();
+    listsMenuLink2.save();
+    menusMenuLink1.save();
+    menusMenuLink2.save();
+    usersMenuLink1.save();
+    usersMenuLink2.save();
 
     var user1 = new User({
         "email": "buispr@gmail.com",
@@ -466,8 +556,18 @@ router.get("/", function(req, res) {
 
     mainMenu._menuLinks.push(mainMenuLink1._id, mainMenuLink2._id, mainMenuLink3._id);
     profileMenu._menuLinks.push(profileMenuLink1._id, profileMenuLink2._id);
+    coursesMenu._menuLinks.push(coursesMenuLink1._id, coursesMenuLink2._id);
+    testsMenu._menuLinks.push(testsMenuLink1._id, testsMenuLink2._id);
+    listsMenu._menuLinks.push(listsMenuLink1._id, listsMenuLink2._id);
+    menusMenu._menuLinks.push(menusMenuLink1._id, menusMenuLink2._id);
+    usersMenu._menuLinks.push(usersMenuLink1._id, usersMenuLink2._id);
     mainMenu.save();
     profileMenu.save();
+    coursesMenu.save();
+    testsMenu.save();
+    listsMenu.save();
+    menusMenu.save();
+    usersMenu.save();
 
     res.json({ success: true });
 });

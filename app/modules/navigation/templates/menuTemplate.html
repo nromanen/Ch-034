@@ -1,8 +1,9 @@
 <li class="dropdown active">
     <a href="" class="dropdown-toggle" data-bypass="true" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-
         <% if (menu.showTitle) { 
-             print(menu.get("title"));
+            %>
+             <span class="user-name"><% print(menu.get("title")); %></span>
+             <%
            }
         %>
         <span class="caret"></span>
