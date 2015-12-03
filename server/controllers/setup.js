@@ -424,6 +424,9 @@ router.get("/", function(req, res) {
     resource1.save();
     resource2.save();
     resource3.save();
+    
+    var unpublish_date = new Date();
+    unpublish_date.setDate(unpublish_date.getDate()-3);
 
     var course1 = new Course({ 
         name: "HTML",
@@ -442,6 +445,7 @@ router.get("/", function(req, res) {
         name: "Flat UI",
         description: "Даний курс вивчає мінімалістичний підхід до дизайну об'єктів, який підкреслює зручність використання, більшою мірою орієнтований на кінцевого користувача. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-9-16",
+        isPublished: false,
         duration: 1,
         schedule: ["Пн, Вт, Пт"],
         minStudents: 12,
@@ -450,11 +454,13 @@ router.get("/", function(req, res) {
         area: ui,
         groups: [early, evening],
         _modules: [module1._id, module2._id]
-    });  
+    });
+    
     var course3 = new Course({ 
         name: "CSS",
         description: "Будуть розглянуті сучасні можливості каскадних таблиць стилів і їхню підтримку востанніх популярних браузерах",
         startDate: "2015-8-26",
+        unpublish_at: unpublish_date,
         duration: 2,
         schedule: ["Пн, Вт, Пт"],
         minStudents: 12,

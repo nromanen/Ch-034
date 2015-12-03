@@ -109,7 +109,8 @@ define(function(require) {
         showRegisterPage: function() {
             this.registerModel  = new RegisterModule.Model();
             this.registerView   = new RegisterModule.View( {model: this.registerModel} );
-            this.appView.setView("#CrsMSContainer", this.registerView).render();
+            this.appView.setView("#CrsMSContainer", this.registerView);
+            this.appView.render();
         },
         showProfilePage: function() {
             if (this.containerView.getView(".sidebar-a")) {
