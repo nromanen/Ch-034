@@ -4,36 +4,42 @@ var express = require( "express" ),
     async = require("async"),
     User = require("../models/user"),
     mongoose = require("mongoose"),
-    nodemailer = require("nodemailer");
+    nodemailer = require("nodemailer"),
+    smtpPool = require("nodemailer-smtp-pool");
 
 router.post("/", function (req, res, next) {
 
-  async.waterfall([
-    function (cb) {
-      User.findOne({email: req.body.email}, cb);
-    },
-      function (user, cb) {
-        var transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: "ssita.cms@gmail.com",
-            pass: "ssita_cms"
-          }
-        }, {
-          from: "ssita.cms@gmail.com",
-          headers: {
-            "My-Awesome-Header": "123"
-          }
-        });
+  User.findOne({email: req.body.email}, function (err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (user) {
+      var userEmail = user.email,
+          transporter = nodemailer.createTransport(smtpPool({
+            service: 'Gmail',
+            auth: {
+                user: 'ssita.cms@gmail.com',
+                pass: 'ssita_cms'
+            }
+          })),
 
-        transporter.sendMail({
-          to: user.email,
-          subject: "Reset password",
-          text: "Hello user.name! Your new password:aA1234567"
-        });
-      }
-    ], cb(err));
+          message = {
+            from: "Softserve ITA <ssita.cms@gmail.com>",
+            to: userEmail,
+            subject: "Reset password", 
+            text: "Hello, this is your new password"
+          };
 
+      transporter.sendMail(message, function (err, info) {
+        if (err) {
+          return next(err);
+        }
+        console.log("Message sent successfully!", info.res);
+      });
+    } else {
+      return next();
+   }
+  });
 });
 
 module.exports = router;
