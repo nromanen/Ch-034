@@ -22,6 +22,10 @@ var UserSchema = new Schema({
         type: Number,
         default: 0
     },
+    _profile: {
+        type: Schema.Types.ObjectId,
+        ref: "Profile"
+    },
     _courses: [{
         type: Schema.Types.ObjectId,
         ref: "Course"

@@ -4,7 +4,7 @@ var mongoose = require("mongoose"),
 MenuLinkSchema = new Schema({
     name: {
         type: String,
-        required: "Please fill link title",
+        required: "Будьласка заповніть назву меню",
     },
     published: {
         type: Boolean,

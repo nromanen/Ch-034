@@ -1,5 +1,6 @@
 var jwt = require("jsonwebtoken"),
-    User = require("../models/user");
+    User = require("../models/user"),
+    Profile = require("../models/profile");
 
 module.exports = function(req, res, next) {
 
@@ -8,12 +9,12 @@ module.exports = function(req, res, next) {
         jwt.verify(token, req.app.get("superSecret"), function(err, decoded) {
             if (err) {
                 res.status(403);
-                return res.json({ success: false, message: "Failed to authenticate token." });
+                return res.json({ success: false, message: "Не вдалося перевірити токен аутентифікації." });
             } else {
                 req.decoded = decoded;
                 User
                     .findOne({email: decoded.name})
-                    .select("-_courses -password")
+                    .select("-password")
                     .exec(function(err, user) {
                       if (err) next(err)
                         req.authUser = user;
@@ -24,7 +25,7 @@ module.exports = function(req, res, next) {
     } else {
       return res.status(403).send({
           success: false,
-          message: "No token provided."
+          message: "Не передався токен."
       });
     }
 };

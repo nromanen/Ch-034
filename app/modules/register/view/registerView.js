@@ -73,13 +73,13 @@ define(function(require) {
                 this.model.save(null, {
                     success: function(model, response) {
                         CMS.router.renderHomepage();
-                        CMS.router.navigate("/courses", {trigger: true});
+                        CMS.router.navigate("/", {trigger: true});
                     },
                     error: function(model, response) {
                     }
                 });
                 this.hideErrors();
-                CMS.router.navigate("/courses", {trigger: true});
+                CMS.router.navigate("/", {trigger: true});
 
             } else {
                 this.showErrors();

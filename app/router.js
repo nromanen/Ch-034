@@ -14,15 +14,15 @@ define(function(require) {
         ManagementModule = require("modules/management/index"),
         StaticModule = require("modules/static/index"),
         ResetModule = require("modules/reset/index"),
-
+        ResourcesModule = require("modules/resource/index"),
 
     Router = CMS.Router.extend({
         initialize: function() {
             this.userSession = CMS.SessionModel;
 
             this.mainMenu = new NavigationModule.Model();
-            this.mainMenu.setSlug("main_menu");
             this.profileMenu = new NavigationModule.Model();
+            this.mainMenu.setSlug("main_menu");
             this.profileMenu.setSlug("profile_menu");
 
             this.appView       = new CMS.CoreView();
@@ -38,6 +38,7 @@ define(function(require) {
                 session = this.userSession.getItem("UserSession") || null,
                 isRestricted = _.contains(CMS.guestPages, path),
                 isAuth = session ? session.authenticated : false;
+
             if (!isRestricted && !isAuth) {
                 this.userSession.setItem('UserSession.targetPage', path);
                 Backbone.history.navigate("#login", {
@@ -67,18 +68,13 @@ define(function(require) {
                     }
                 });
                 this.appView.setView("#CrsMSContainer", this.homeView);
-
-                this.mainMenu.fetch().done($.proxy(function() {
-                    this.headerView.setView(".navigation-menu", new NavigationModule.Views.DefaultView({model: this.mainMenu}));
-                    this.headerView.render();
-                }, this));
-                this.profileMenu.fetch().done($.proxy(function() {
+                $.when(this.mainMenu.fetch(), this.profileMenu.fetch()).done($.proxy(function() {
                     var name = this.userSession.getItem("UserSession").profile.name + " " + this.userSession.getItem("UserSession").profile.surname;
                     this.profileMenu.set("title", name);
+                    this.headerView.setView(".navigation-menu", new NavigationModule.Views.DefaultView({model: this.mainMenu}));
                     this.headerView.setView(".personal-menu", new NavigationModule.Views.DefaultView({model: this.profileMenu}));
-                    this.headerView.render();
+                    this.appView.render();
                 }, this));
-                this.appView.render();
             }
         },
         routes: {
@@ -91,12 +87,14 @@ define(function(require) {
             "copyrights": "showAgreementsPage",
             "report": "showReportPage",
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
+            "my-courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
             "courses/:courseId/modules/create": "createCourseModuleDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/:page" : "showManagement"
+            "management/:page" : "showManagement",
+            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
         },
         showLoginPage: function() {
             this.loginView = new Login.View();
@@ -150,9 +148,13 @@ define(function(require) {
         },
         showCoursesList: function(currentPage, queryParams) {
             this.courses = new CoursesModule.Collection();
-            var parsedParams = {};
-            if (this.courses.length) {
-                this.courses.reset();
+            var path = this.getCurrentRootPath(),
+                parsedParams = {},
+                options = {};
+                this.courses.locationPath = path;
+
+            if (path.indexOf("my-courses") !== -1) {
+                options = {data: $.param({subscribed: true})};
             }
 
             if (!_.isNull(queryParams)) {
@@ -169,7 +171,7 @@ define(function(require) {
             this.courses.setFilterQueries(parsedParams, queryParams);
             this.courses.setCurrentPage(parseInt(currentPage, 10));
 
-            this.courses.fetch()
+            this.courses.fetch(options)
                 .done($.proxy(function() {
                     this.containerView.setView(".content", new CoursesModule.Views.Courses({
                         collection: this.courses,
@@ -234,7 +236,27 @@ define(function(require) {
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
                     this.containerView.hrefPath = "management/groups";
                     break;
+                case "courses":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
+                    this.containerView.hrefPath = "management/courses";
+                    break;
             }
+        },
+
+        getCurrentRootPath: function() {
+            var path = Backbone.history.location.hash;
+            if (path !== '') {
+                path = path.match(CMS.Helpers.RegexPatterns.rootPathRegex)[0];
+            } else {
+                path = "#courses";
+            }
+            return path;
+        },
+
+        showResourcesList: function(courseId, id) {
+            this.resources = new ResourcesModule.Collection();
+            this.resources.fetch();
+            this.containerView.setView(".content", new ResourcesModule.Views.Resources({collection: this.resources, courseId: courseId, moduleId: id}));
         },
 
         parseQueryString: function(queryString) {

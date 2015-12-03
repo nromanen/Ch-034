@@ -7,7 +7,6 @@ var express = require("express"),
 router.use(logger("tiny", {
     stream: fs.createWriteStream("./server/log.log", {flags: "a"})
 }));
-router.use(logger("dev"));
 
 router.use("/courses", require("./courses"));
 router.use("/courses/:courseId/modules", require("./modules"));
@@ -19,9 +18,11 @@ router.use("/modules", require("./modules"));
 router.use("/answers", require("./answers"));
 router.use("/vacancies", require("./vacancies"));
 router.use("/menus", require("./menus"));
+router.use("/resources", require("./resources"));
 router.use('/upload', require('./uploads'));
 router.use("/static", require("./static"));
 router.use("/reset", require("./reset"));
+
 router.use( "/users", require( "./users" ) );
 router.use( "/profile", require( "./profile" ) );
 

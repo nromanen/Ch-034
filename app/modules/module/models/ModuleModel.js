@@ -16,6 +16,7 @@ define(function(require, extend, module) {
         },
         initialize: function(attributes, options) {
             this.courseId = options.courseId;
+            this.subscribed = options.subscribed;
         },
         urlRoot: function() {
             return CMS.api + "courses/"+this.courseId+"/modules/";

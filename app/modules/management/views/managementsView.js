@@ -32,7 +32,8 @@ define(function(require) {
 
         renderOne: function(el){
             this.insertView("#managementlist", new ManagementView({
-                model: el
+                model: el,
+                kind: this.name
             }));
         },
 
