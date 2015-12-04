@@ -13,7 +13,7 @@ define(function(require) {
         hrefPath   : "",
         pageOffset : 0,
         locationPath: "",
-        
+
         getResource: function() {
             return this.resource;
         },

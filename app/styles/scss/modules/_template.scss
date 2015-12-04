@@ -1,3 +1,4 @@
+$black: #000000;
 $mainBgColor: #F7F7F7;
 $regBtnColor: #00C1DE;
 $loginBtnColor: #00B859;
@@ -108,4 +109,14 @@ a {
 }
 .bottom-padding {
     padding-bottom: $padding-bottom-25;
+}
+.clear-filter {
+    font-size: 0.85em;
+    color: $black;
+    cursor: pointer;
+    border-bottom: 1px dashed;
+
+    &:hover {
+        color: $accordionTextColor;
+    }
 }

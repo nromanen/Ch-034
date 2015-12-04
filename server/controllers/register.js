@@ -19,8 +19,8 @@ router.post("/", function(req, res, next) {
         if (err) next(err);
         if (user) {
             return res
-                .status(401)
-                .json({"success": false, "message": "This email is already registered"});
+                .status(409)
+                .json({"success": false, "message": "Користувач з даною e-mail адресою вже існує"});
         } else {
             var newUser = new User(data),
             userProfile = new Profile({
@@ -61,7 +61,7 @@ router.post("/check_email", function(req, res, next) {
             if (err) next(err);
             if (user) {
                 return res
-                    .status(401)
+                    .status(409)
                     .json({"success": false, "message": "This email is already registered"});
             } else {
                 return res

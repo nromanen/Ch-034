@@ -20,6 +20,10 @@ var pageAble = function(req, res, next) {
                 {"_id": {$in: req.authUser._courses}}
             ])
     }
+    if (req.authUser.role == 0) {
+        var today = new Date();
+        chain.and([{"isPublished": true}, {"publish_at": {"$lte": today}},{"unpublish_at": {"$gte": today}}])
+    }
     countChain = Object.create(chain);
     countChain.count();
 

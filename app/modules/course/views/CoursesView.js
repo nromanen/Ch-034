@@ -40,7 +40,7 @@ define(function(require) {
             var code = e.keyCode ? e.keyCode : e.charCode;
             if (code === 13) {
                 if ($(e.target).val()) {
-                    Backbone.history.navigate(this.getPath()+"?s='"+$(e.target).val()+"'", {trigger: true});
+                    Backbone.history.navigate(CMS.router.getCurrentRootPath()+"?s='"+$(e.target).val()+"'", {trigger: true});
                 } else {
                     this.clearSearchInput();
                 }
@@ -50,25 +50,18 @@ define(function(require) {
             e.preventDefault();
             var searchString = this.$el.find("#search-input").val();
             if (searchString) {
-                Backbone.history.navigate(this.getPath()+"?s='"+searchString+"'", {trigger: true});
+                Backbone.history.navigate(CMS.router.getCurrentRootPath()+"?s='"+searchString+"'", {trigger: true});
             } else {
                 this.clearSearchInput();
             }
         },
         clearSearchInput: function() {
-            Backbone.history.navigate(this.getPath(), {trigger: true});
+            Backbone.history.navigate(CMS.router.getCurrentRootPath(), {trigger: true});
         },
         serialize: function() {
             return {
                 courseId: this.id,
             };
-        },
-        getPath: function() {
-            var path = Backbone.history.location.hash;
-            if (path !== "") {
-                path = path.match(CMS.Helpers.RegexPatterns.rootPathRegex)[0];
-            }
-            return path;
         }
     });
     return View;

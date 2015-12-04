@@ -14,12 +14,12 @@ router.post('/', function(req, res) {
             if (err) throw err;
             if (!user) {
                 res.status(401);
-                return res.json({ success: false, message: "Authentication failed. User not found." });
+                return res.json({ success: false, message: "Помилка аутентифікації. Користувач не знайдений." });
             } else if (user) {
                 user.comparePassword(req.body.password, function(err, match) {
                     if (err || !match) {
                         res.status(401);
-                        return res.json({ success: false, message: "Authentication failed. Wrong password." });
+                        return res.json({ success: false, message: "Помилка аутентифікації. Неправильний пароль." });
                     } else {
                         var token = jwt.sign({name: user.email}, req.app.get("superSecret"), { expiresIn: 60000 });
                         res.status(200);
