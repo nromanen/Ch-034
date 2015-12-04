@@ -21,7 +21,7 @@ router.use("/menus", require("./menus"));
 router.use("/resources", require("./resources"));
 router.use('/upload', require('./uploads'));
 router.use("/static", require("./static"));
-
+router.use("/reset", require("./reset"));
 
 router.use( "/users", require( "./users" ) );
 router.use( "/profile", require( "./profile" ) );

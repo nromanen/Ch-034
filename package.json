@@ -37,7 +37,7 @@
     "serve-static": "^1.10.0"
   },
   "dependencies": {
-    "async": "^1.5.0",
+    "async": "~1.5.0",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.0.5",
     "body-parser": "~1.14.1",
@@ -50,6 +50,8 @@
     "jsonwebtoken": "~5.4.1",
     "mongoose": "~4.2.3",
     "morgan": "~1.6.1",
+    "nodemailer": "~1.10.0",
+    "nodemailer-smtp-pool": "latest",
     "request": "^2.67.0",
     "requirejs": "^2.1.20"
   }

@@ -2,12 +2,11 @@ var express = require( "express" ),
     router = express.Router(),
     bodyParser = require( "body-parser" ),
     mongoose = require( "mongoose" ),
-    bcrypt = require( "bcrypt-nodejs" ),
-    User = require( "../models/userModel" );
+    User = require( "../models/user" );
 
 router.get( "/", function ( req, res ) {
   User.find({}, function ( err, users ){
-    if( err ) throw err;
+    if( err ) return next(err);
     res.json( users );
   });
 });

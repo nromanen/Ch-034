@@ -13,6 +13,7 @@ define(function(require) {
         NavigationModule = require("modules/navigation/index"),
         ManagementModule = require("modules/management/index"),
         StaticModule = require("modules/static/index"),
+        ResetModule = require("modules/reset/index"),
         ResourcesModule = require("modules/resource/index"),
 
     Router = CMS.Router.extend({
@@ -81,6 +82,7 @@ define(function(require) {
             "login": "showLoginPage",
             "logout": "logoutToLoginPage",
             "register" : "showRegisterPage",
+            "reset": "showResetPage",
             "profile" : "showProfilePage",
             "copyrights": "showAgreementsPage",
             "report": "showReportPage",
@@ -139,6 +141,11 @@ define(function(require) {
             this.StaticPagesView.swapTemplate("report");
             this.containerView.setView(".content", this.StaticPagesView);
             this.containerView.render();
+        },
+        showResetPage: function () {
+            this.resetView = new ResetModule.View();
+            this.appView.setView("#CrsMSContainer", this.resetView);
+            this.appView.render();
         },
         showCoursesList: function(currentPage, queryParams) {
             this.courses = new CoursesModule.Collection();
