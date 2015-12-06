@@ -15,6 +15,7 @@ router.use("/courses/:courseId/modules/:moduleId/questions", require("./question
 router.use("/areas", require("./areas"));
 router.use("/groups", require("./groups"));
 router.use("/modules", require("./modules"));
+router.use("/tests", require("./tests"));
 router.use("/answers", require("./answers"));
 router.use("/vacancies", require("./vacancies"));
 router.use("/menus", require("./menus"));

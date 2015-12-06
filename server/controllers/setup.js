@@ -302,27 +302,27 @@ router.get("/", function(req, res) {
 
     var test1 = new Test({
         num: 1,
-        nameTest: "Теги: поняття, типи, підтримка"
+        name: "Теги: поняття, типи, підтримка"
     });
     var test2 = new Test({
         num: 2,
-        nameTest: "Форми"
+        name: "Форми"
     });
     var test3 = new Test({
         num: 3,
-        nameTest: "Таблиці"
+        name: "Таблиці"
     });
     var test4 = new Test({
         num: 4,
-        nameTest: "Спеціальні теги HTML 5"
+        name: "Спеціальні теги HTML 5"
     });
     var test5 = new Test({
         num: 5,
-        nameTest: "Побудова оптимізованого DOM дерева"
+        name: "Побудова оптимізованого DOM дерева"
     });
     var test6 = new Test({
         num: 6,
-        nameTest: "Екзаменаційне завдання"
+        name: "Екзаменаційне завдання"
     });
 
     test1.save();
