@@ -20,7 +20,7 @@ AnswerSchema = new Schema({
     },    
     userAnswer: {
         type: String,
-        required: "Please fill user answer"
+        required: "Будьласка перевірте відповідь користувача"
     }
 });
 

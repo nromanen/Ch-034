@@ -9,6 +9,7 @@ define(function(require) {
         Collections: {
             Areas: require("./collections/areasCollection"),
             Groups: require("./collections/groupsCollection"),
+            Courses: require("./collections/coursesCollection"),
         }
     };
 });

@@ -11,11 +11,12 @@ define(function(require) {
             this.modules = new ModulesModule.Collection([],{courseId: this.model.id});
             this.listenTo(this.model, "reset sync request", this.render);
         },
-        beforeRender: function() {
-            this.modules.fetch();
-            this.insertView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image'), courseId: this.courseId}));
-        },
         afterRender: function() {
+            this.modules.fetch().done($.proxy(function() {
+                this.setView("#modules-container", new ModulesModule.Views.Modules({collection: this.modules, imgUrl: this.model.get('image'), subscribed: this.model.get('subscribed'), courseId: this.courseId}));
+                this.renderViews();
+            }, this));
+
             $("body,html").animate({"scrollTop": window.localStorage.getItem("scrollModuleList")}, "slow");
             window.localStorage.setItem("scrollModuleList", 0);
         },

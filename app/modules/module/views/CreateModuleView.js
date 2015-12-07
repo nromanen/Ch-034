@@ -10,7 +10,8 @@ define(function(require, exports, module) {
         el: false,
 
         events: {
-            "click #test-btn": "submitHandler"
+            "click #save-btn": "submitHandler",
+            "click #choose-resources": "chooseResourses"
         },
 
         initialize: function(options) {
@@ -19,6 +20,15 @@ define(function(require, exports, module) {
             this.listenTo(this.model, "invalid", this.errorMessage);
             this.listenTo(this.model, "reset sync request", this.render);
             this.edit = options.edit;
+        },
+
+        serialize: function() {
+            var module = this.model;
+            module.attributes.id = this.model.id;
+            module.attributes.courseId = this.model.courseId;
+            return {
+                module: module,
+            };
         },
 
         afterRender: function() {
@@ -46,7 +56,7 @@ define(function(require, exports, module) {
 
             });
             $("module-name").focus();
-            if (this.edit === true) {
+            if (this.edit) {
                 $("#module-name").val(this.model.attributes.title);
                 $("#description").val(this.model.attributes.description);
                 document.getElementById("test-available").checked = this.model.attributes.available;
@@ -98,6 +108,13 @@ define(function(require, exports, module) {
             });
             $("#module-name").popover("toggle");
         },
+
+        chooseResourses: function () {
+            var that = this;
+            Backbone.history.navigate("#courses/" + that.courseId + "/modules/" + that.model.id + "/edit/resources", {
+                trigger: true
+            });
+        }
     });
     return View;
 });

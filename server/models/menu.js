@@ -4,12 +4,12 @@ var mongoose = require("mongoose"),
 MenuSchema = new Schema({
     title: {
         type: String,
-        required: "Please set menu title",
+        required: "Будьласка введіть назву меню",
     },
     slug: {
         type: String,
         unique: true,
-        required: "Please set menu slug"
+        required: "Будьласка введіть slug меню"
     },
     _menuLinks: [{
         type: Schema.Types.ObjectId,

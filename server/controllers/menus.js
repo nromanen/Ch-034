@@ -24,7 +24,7 @@ router.post("/", function(req, res) {
     });
     menu.save(function(err) {
         if (err) throw err
-        return res.json({success: true, message: "Menu added successfully"})
+        return res.json({success: true, message: "Меню додано успішно"})
     });
 })
 
@@ -43,14 +43,14 @@ router.put("/:id", function(req, res) {
     Menu
         .findByIdAndUpdate(req.params.id, req.body, function(err) {
             if (err) throw err
-            return res.json({success: true, message: "Menu updated successfully"});
+            return res.json({success: true, message: "Меню оновнело успішно"});
         });
 });
 router.delete("/:id", function(req, res) {
     Menu
         .findByIdAndRemove(req.params.id, function(err) {
             if (err) throw err
-            return res.json({success: true, message: "Menu deleted successfully"});
+            return res.json({success: true, message: "Меню видалено успішно"});
         });
 });
 router.get("/:menuId/links", function(req, res) {
@@ -75,7 +75,7 @@ router.post("/:menuId/links", function(req, res) {
     link.save(function(err, link) {
         if (err) throw err
             Menu.findByIdAndUpdate(req.params.menuId, {$push: {_menuLinks: link._id}}, function(err) {
-                return res.json({success: true, message: "Menu Link added successfully"})
+                return res.json({success: true, message: "Посилання меню додано успішно"})
             });
     });
 })
@@ -90,14 +90,14 @@ router.put("/:menuId/links/:linkId", function(req, res) {
     MenuLink
         .findByIdAndUpdate(req.params.linkId, req.body, function(err) {
             if (err) throw err
-            return res.json({success: true, message: "Menu updated successfully"});
+            return res.json({success: true, message: "Меню оновлено успішно"});
         });
 });
 router.delete("/:menuId/links/:linkId", function(req, res) {
     MenuLink
         .findByIdAndRemove(req.params.linkId, function(err) {
             if (err) throw err
-            return res.json({success: true, message: "Menu deleted successfully"});
+            return res.json({success: true, message: "Меню видалено успішно"});
         });
 });
 module.exports = router;

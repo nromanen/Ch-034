@@ -115,6 +115,7 @@ define(function(require) {
                         session.profile = response.profile;
                         session = JSON.stringify(session);
                         CMS.SessionModel.setItem("UserSession", session);
+                        CMS.Event.trigger("session:change");
                         CMS.router.renderHomepage();
                         Backbone.history.navigate("#profile", {trigger: true});
                     },

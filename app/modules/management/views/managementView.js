@@ -9,12 +9,13 @@ define(function(require) {
             "click #managementDel": "deleteManagementModal",
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
-            "click #cenceleManagementEdit": "cenceleEdit",
+            "click #cenceleManagementEdit": "canceleEdit",
         },
 
         serialize: function() {
             return {
                 model: this.model,
+                name: this.name
             };
         },
 
@@ -27,6 +28,10 @@ define(function(require) {
             this.deleteModal = new CMS.ModalView({model: this.model, modalHeader: "Ви дійсно хочете видалити :", submitButton: "Видалити"});
         },
 
+        afterRender: function(){
+
+        },
+
         deleteManagementModal: function(ev) {
             this.deleteModal.render();
             this.deleteModal.show();
@@ -36,21 +41,22 @@ define(function(require) {
             var evModelEl = ev.target.parentNode;
             evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
             evModelEl.previousSibling.previousSibling.lastChild.focus();
-            $(evModelEl.parentNode).find(".managementEdit").attr({"value":"Зберегти", "class":"btn btn-success", "id":"saveManagementEdit"});
-            $(evModelEl.parentNode).find("#managementDel").attr({"value":"Відмінити", "class":"btn btn-warning", "id":"cenceleManagementEdit"});
+            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok", "id":"saveManagementEdit"});
+            $(evModelEl.parentNode).find("#managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove", "id":"cenceleManagementEdit"});
         },
 
         saveEditManagement: function(ev) {
-           var newValue = _.escape($(ev.target.parentNode.parentNode).find("#managementName").val());
+           var newValue = _.escape($(ev.target.parentNode.parentNode).find(".managementVal").val());
+           if (!newValue) return;
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
-            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"value":"Редагувати", "class":"btn btn-primary", "id":"managementEdit"});
+            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil", "id":"managementEdit"});
            this.model.set({name:newValue});
            this.model.save();
            this.model.fetch({reset:true});
         },
 
-        cenceleEdit: function(ev) {
-            $(ev.target.parentNode.parentNode).find("#managementName").val(this.model.get("name"));
+        canceleEdit: function(ev) {
+            $(ev.target.parentNode.parentNode).find(".managementVal").val(this.model.get("name"));
             this.saveEditManagement(ev);
         },
 
