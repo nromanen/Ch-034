@@ -8,8 +8,14 @@
                   <% } %>
             
             <td width="60px;"> <input class="managementVal bold duration" type="text" name="name" value="<%= model.get('duration') %> тиж." disabled></td>
-            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title=""></a></td>
-        <% }  %>
+            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title="Курси"></a></td>
+        <% } else if (this.kind == "modules") { %>
+            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title="Тести"></a></td>
+
+        <% } else if (this.kind == "tests") { %>
+            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title="Питання"></a></td>
+        <% } %>
+
         <td width="60px;"> <span class="managementEdit glyphicon glyphicon-pencil" id="managementEdit" title="Редагувати"></span></td>
         <td width="60px;"> <span type="submit" class="managementDel glyphicon glyphicon-trash" id="managementDel" title="Видалити"></span> </td>
       </tr>

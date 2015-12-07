@@ -5,12 +5,24 @@ var express = require("express"),
     Test = require("../models/test");
 
 router.get("/", function(req, res) {
-    Test
-        .findOne({"_course": req.params.courseId, "_module": req.params.moduleId})
-        .exec(function(error, test) {
-            if (error) throw error;
-            return res.json(test);
+
+    if(req.params.courseId && req.params.moduleId){
+        Test
+            .findOne({"_course": req.params.courseId, "_module": req.params.moduleId})
+            .exec(function(error, test) {
+                if (error) throw error;
+                return res.json(test);
         });
+    }
+    else{
+        Test
+            .find({})
+            .sort({"num": 1})
+            .exec(function(error, test) {
+                return res.json(test);
+        });
+    }
+
 });
 
 module.exports = router;
