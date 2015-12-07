@@ -31,9 +31,33 @@ define(function(require) {
         },
 
         renderOne: function(el){
+            switch (this.name) {
+                case "courses":
+                    this.child = {
+                        name     : "модулі",
+                        hrefPart : "modules"
+                    };
+                    break;
+                case "modules":
+                    this.child = {
+                        name     : "тести",
+                        hrefPart : "tests"
+                    };
+                    break;
+                case "tests":
+                    this.child = {
+                        name     : "питання",
+                        hrefPart : "questions"
+                    };
+                    break;
+                default:
+                    this.child = "";
+                    break;
+            }
             this.insertView("#managementlist", new ManagementView({
                 model: el,
-                kind: this.name
+                kind: this.name,
+                child: this.child
             }));
         },
 

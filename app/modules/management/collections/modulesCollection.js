@@ -8,10 +8,11 @@ define(function(require) {
         model: Management,
 
         url: function() {
-            return CMS.api + "modules";
+            return CMS.api + "courses/" + this.courseId + "/modules";
         },
 
-        initialize: function() {
+        initialize: function(models, options) {
+            this.courseId = options.id;
             this.fetch();
         }
     });
