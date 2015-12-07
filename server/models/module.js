@@ -2,7 +2,7 @@ var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 ModuleSchema = new Schema({
-    title: {
+    name: {
         type: String,
         required: "Будьласка перевірте назву модулю",
     },

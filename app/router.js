@@ -241,6 +241,10 @@ define(function(require) {
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
                     this.containerView.hrefPath = "management/courses";
                     break;
+                case "modules":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules(), title: "Модулі", name: "modules"}));
+                    this.containerView.hrefPath = "management/modules";
+                    break;
                 case "tests":
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests(), title: "Тести", name: "tests"}));
                     this.containerView.hrefPath = "management/tests";
