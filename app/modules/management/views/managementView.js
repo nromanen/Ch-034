@@ -38,12 +38,16 @@ define(function(require) {
             this.deleteModal.show();
         },
 
-        editManagement: function(ev) {
+        editManagement: function(ev){
             var evModelEl = ev.target.parentNode;
-            evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-            evModelEl.previousSibling.previousSibling.lastChild.focus();
+            $(evModelEl.parentNode.parentNode).find(".cenceleManagementEdit").click();
+            if (this.kind == "areas"|| this.kind == "groups"){
+                evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
+                evModelEl.previousSibling.previousSibling.lastChild.focus();
+            }
             $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok saveManagementEdit"});
             $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove cenceleManagementEdit"});
+            $(evModelEl.parentNode).find(".editForm").fadeIn();
         },
 
         saveEditManagement: function(ev) {
