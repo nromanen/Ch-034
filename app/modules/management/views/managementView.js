@@ -15,7 +15,8 @@ define(function(require) {
         serialize: function() {
             return {
                 model: this.model,
-                name: this.name
+                name : this.name,
+                child: this.child
             };
         },
 

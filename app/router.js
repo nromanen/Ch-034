@@ -93,7 +93,7 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/:page" : "showManagement",
+            "management/:mainPage(/:id)(/:extPage)" : "showManagement",
             "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
         },
         showLoginPage: function() {
@@ -228,8 +228,8 @@ define(function(require) {
             }
         },
 
-        showManagement: function(page){
-            switch (page) {
+        showManagement: function(mainPage, idParent, extPage) {
+            switch (mainPage) {
                 case "areas":
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
                     break;
@@ -238,15 +238,19 @@ define(function(require) {
                     this.containerView.hrefPath = "management/groups";
                     break;
                 case "courses":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
-                    this.containerView.hrefPath = "management/courses";
+                    switch (extPage) {
+                        case "modules":
+                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules([],{id: idParent}), title: "Модулі", name: "modules"}));
+                            this.containerView.hrefPath = "management/modules";
+                            break;
+                        default:
+                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
+                            this.containerView.hrefPath = "management/courses";
+                            break;
+                    }
                     break;
                 case "modules":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules(), title: "Модулі", name: "modules"}));
-                    this.containerView.hrefPath = "management/modules";
-                    break;
-                case "tests":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests(), title: "Тести", name: "tests"}));
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests([],{id: idParent}), title: "Тести", name: "tests"}));
                     this.containerView.hrefPath = "management/tests";
                     break;
             }

@@ -14,6 +14,15 @@ router.get("/", function(req, res) {
                 return res.json(test);
         });
     }
+    else if(req.params.moduleId){
+        Test
+            .findOne({"_module": req.params.moduleId})
+            .sort({"num": 1})
+            .exec(function(error, test) {
+                if (error) throw error;
+                return res.json(test);
+        });
+    }
     else{
         Test
             .find({})

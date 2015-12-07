@@ -1,22 +1,19 @@
-       <tr>
-        <td width=*;"> <input class="managementVal bold" type="text" name="name" value="<%= model.get('name') %>" disabled></td>
-        <% if (this.kind == "courses") { %>
-                <% if (model.get('isPublished') == true) { %>
-                      <td width="60px;"> <span class="isPublished glyphicon glyphicon-ok-circle" id="isPublished" title=""></span></td>
-                  <% } else { %>
-                      <td width="60px;"> <span class="isPublished glyphicon glyphicon-ban-circle" id="isPublished" title=""></span></td>
-                  <% } %>
-            
-            <td width="60px;"> <input class="managementVal bold duration" type="text" name="name" value="<%= model.get('duration') %> тиж." disabled></td>
-            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title="Курси"></a></td>
-        <% } else if (this.kind == "modules") { %>
-            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title="Тести"></a></td>
-
-        <% } else if (this.kind == "tests") { %>
-            <td width="60px;"> <a href="#courses/<%= model.get('_id') %>" class="glyphicon glyphicon-list-alt" id="" title="Питання"></a></td>
+<tr>
+<td width=*;"> <input class="managementVal bold" type="text" name="name" value="<%= model.get('name') %>" disabled></td>
+<% if (this.kind == "courses") { %>
+        <% if (model.get('isPublished') == true) { %>
+              <td width="60px;"> <span class="isPublished glyphicon glyphicon-ok-circle" id="isPublished" title="Опубліковано"></span></td>
+        <% } else { %>
+              <td width="60px;"> <span class="isPublished glyphicon glyphicon-ban-circle" id="isPublished" title="Не опубліковано"></span></td>
         <% } %>
+    <td width="60px;"> <input class="managementVal bold duration" type="text" name="name" title="Тривалість" value="<%= model.get('duration') %> тиж." disabled></td>
+<% }  %>
 
-        <td width="60px;"> <span class="managementEdit glyphicon glyphicon-pencil" id="managementEdit" title="Редагувати"></span></td>
-        <td width="60px;"> <span type="submit" class="managementDel glyphicon glyphicon-trash" id="managementDel" title="Видалити"></span> </td>
-      </tr>
+<% if (this.kind == "courses" || this.kind == "modules" || this.kind == "tests") { %>
+    <td width="60px;"> <a href="#management/<%= this.kind %>/<%= model.get('_id') %>/<%= this.child.hrefPart %>" class="glyphicon glyphicon-list-alt" id="" title="Переглянути <%= this.child.name %>"></a></td>
+    </td>
+<% }  %>
 
+    <td width="60px;"> <span class="managementEdit glyphicon glyphicon-pencil" id="managementEdit" title="Редагувати"></span></td>
+    <td width="60px;"> <span type="submit" class="managementDel glyphicon glyphicon-trash" id="managementDel" title="Видалити"></span></td>
+</tr>
