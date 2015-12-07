@@ -10,6 +10,7 @@ define(function(require) {
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
             "click #cenceleManagementEdit": "canceleEdit",
+            "click #courseModules": "showModules"
         },
 
         serialize: function() {
@@ -60,6 +61,10 @@ define(function(require) {
             $(ev.target.parentNode.parentNode).find(".managementVal").val(this.model.get("name"));
             this.saveEditManagement(ev);
         },
+
+        showModules: function() {
+
+        }
 
     });
 

@@ -11,7 +11,7 @@ define(function(require, exports, module) {
 
         events: {
             "click #save-btn": "submitHandler",
-            "click #choose-resources": "chooseResourses"
+            "click #choose-resources": "addResourses"
         },
 
         initialize: function(options) {
@@ -57,7 +57,7 @@ define(function(require, exports, module) {
             });
             $("module-name").focus();
             if (this.edit) {
-                $("#module-name").val(this.model.attributes.title);
+                $("#module-name").val(this.model.attributes.name);
                 $("#description").val(this.model.attributes.description);
                 document.getElementById("test-available").checked = this.model.attributes.available;
             }
@@ -72,7 +72,7 @@ define(function(require, exports, module) {
             $("#module-name").removeClass("error");
             $("#module-name").popover("destroy");
             this.model.set({
-                title: $("#module-name").val(),
+                name: $("#module-name").val(),
                 description: $("#description").val(),
                 courseId: this.courseId,
                 available: $("#test-available").prop("checked"),
@@ -101,7 +101,7 @@ define(function(require, exports, module) {
             $("#module-name").addClass("error");
             $("#module-name").popover({
                 container: "body",
-                title: error.title,
+                name: error.name,
                 content: error.message,
                 placement: "right",
                 trigger: "focus, hover"
@@ -109,7 +109,7 @@ define(function(require, exports, module) {
             $("#module-name").popover("toggle");
         },
 
-        chooseResourses: function () {
+        addResourses: function () {
             var that = this;
             Backbone.history.navigate("#courses/" + that.courseId + "/modules/" + that.model.id + "/edit/resources", {
                 trigger: true

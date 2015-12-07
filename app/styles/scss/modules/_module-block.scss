@@ -8,11 +8,11 @@
         text-decoration: underline;
     }
 }
-a.module-item-name {
+a.module-item-title {
     color: #000;
     text-decoration: none;
 }
-.module-item-name:hover {
+.module-item-title:hover {
     text-decoration: underline;
 }
 .left-side {
@@ -31,12 +31,12 @@ a.module-item-name {
     background-color: #959595;
     border: 1px solid #ccc;
 }
-.module-title {
+.module-name {
     font-size: 150%;
     color: $aticleTitleColor;
     font-weight: bold;
 }
-.resource-title {
+.resource-name {
     font-size: 120%;
     list-style-type: none;
 }
@@ -65,4 +65,8 @@ a.module-item-name {
     margin-bottom: $defaultMarginBottom;
     background-color: $courseBgColor;
     padding: $modulePadding;
+    .glyphicon {
+         font-size: 1.3em;
+         cursor: pointer;
+    }
 }

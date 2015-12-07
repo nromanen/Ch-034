@@ -26,7 +26,8 @@ define(function(require) {
            open         : 2
         },
         embeddable: ['avi', 'mp4', 'video'],
-        downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx']
+        downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx'],
+        externalLink: ['video']
     });
 
     return CMS;

@@ -4,9 +4,9 @@
         <a href="#courses/<%= module.get('courseId') %>/modules/<%= module.get('id') %>/tests/list-mode" class="right-side">пройти тест &gt;</a>
     <% } %>
     <div id="module-info">
-        <h3 class="module-title"><%= module.get('name') %></h3>
+        <h3 class="module-name"><%= module.get('name') %></h3>
         <div class="text-justify"><%= module.get('description') %></div>
-        <ul class="resource-title"><% _.each(module.get('_resources'), function(resource){ %>
+        <ul class="resource-name"><% _.each(module.get('_resources'), function(resource){ %>
                 <% if (module.get('embeddable').indexOf(resource.type) !== -1) { %>
                     <li><span class="glyphicon glyphicon-film"></span>&nbsp<%= resource.name %>
                     <div class="embed-responsive embed-responsive-16by9">

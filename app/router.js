@@ -267,7 +267,7 @@ define(function(require) {
         },
 
         showResourcesList: function(courseId, id) {
-            this.resources = new ResourcesModule.Collection();
+            this.resources = new ResourcesModule.Collection([], {moduleId: id});
             this.resources.fetch();
             this.containerView.setView(".content", new ResourcesModule.Views.Resources({collection: this.resources, courseId: courseId, moduleId: id}));
         },

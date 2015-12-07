@@ -8,9 +8,13 @@ define(function(require) {
         defaults: {
             name: "",
             type: "",
-            url: ""
+            url: "",
+            moduleId: ""
+        },
+
+        urlRoot: function() {
+            return CMS.api + "modules/" + this.attributes.moduleId + "/resources/";
         }
     });
-
     return Model;
 });
