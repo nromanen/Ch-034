@@ -40,8 +40,15 @@ define(function(require) {
 
         editManagement: function(ev) {
             var evModelEl = ev.target.parentNode;
-            evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-            evModelEl.previousSibling.previousSibling.lastChild.focus();
+            var inputEdit = evModelEl.previousSibling.previousSibling;
+            if (["tests", "modules"].indexOf(this.kind) != -1) {
+                inputEdit = inputEdit.previousSibling.previousSibling.lastChild;
+            }
+            else {
+                inputEdit = inputEdit.lastChild;
+            }
+            inputEdit.removeAttribute("disabled");
+            inputEdit.focus();
             $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok", "id":"saveManagementEdit"});
             $(evModelEl.parentNode).find("#managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove", "id":"cenceleManagementEdit"});
         },
