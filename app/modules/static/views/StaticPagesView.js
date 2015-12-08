@@ -2,6 +2,7 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
+        ReportModel = require("static/models/reportmessage"),
 
     View = CMS.View.extend({
         el: false,
@@ -13,6 +14,15 @@ define(function(require) {
         },
         swapTemplate: function(template){
             this.template = this.templates[template];
+        },
+        events: {
+            "click #report_submit"     : "sendReport"
+        },
+        sendReport: function(e){
+            e.preventDefault();
+            var reportForm = this.$el.find('.report-form').serializeObject();
+            console.log(reportForm);
+            this.model.save(reportForm);
         }
     });
     return new View();

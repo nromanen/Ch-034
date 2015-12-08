@@ -13,6 +13,7 @@ router.use("/courses/:courseId/modules", require("./modules"));
 router.use("/courses/:courseId/modules/:moduleId/tests", require("./tests"));
 router.use("/modules/:moduleId/tests", require("./tests"));
 router.use("/courses/:courseId/modules/:moduleId/questions", require("./questions"));
+router.use("/reportmessage", require("./reportmessage"));
 router.use("/areas", require("./areas"));
 router.use("/groups", require("./groups"));
 router.use("/modules", require("./modules"));

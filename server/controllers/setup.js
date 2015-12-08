@@ -149,6 +149,8 @@ router.get("/", function(req, res) {
     usersMenuLink1.save();
     usersMenuLink2.save();
 
+    reportForm.save();
+
     var user1 = new User({
         "email": "buispr@gmail.com",
         "name": "Sergiy",
