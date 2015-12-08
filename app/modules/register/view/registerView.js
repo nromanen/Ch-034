@@ -45,10 +45,10 @@ define(function(require) {
             this.hideErrors();
         },
 
-        showErrors: function(model, errors) {
+        showErrors: function(model, errors, message) {
             this.$el.find('#warnMsg').addClass('error-message');
             this.$el.find('.title-msg').html(CMS.Helpers.Messages.errorWord);
-            this.$el.find('.text-msg').html(CMS.Helpers.Messages.tryAgain);
+            this.$el.find('.text-msg').html(message || CMS.Helpers.Messages.tryAgain);
         },
 
         hideErrors: function() {
@@ -59,7 +59,8 @@ define(function(require) {
 
         submitClicked: function(e) {
             e.preventDefault();
-            var feedback = {
+            var _this = this,
+                feedback = {
                 name: this.$el.find('#name').val(),
                 surname: this.$el.find('#surname').val(),
                 email: this.$el.find('#email').val(),
@@ -72,14 +73,14 @@ define(function(require) {
             if(this.model.isValid()) {
                 this.model.save(null, {
                     success: function(model, response) {
-                        CMS.router.renderHomepage();
-                        CMS.router.navigate("/", {trigger: true});
+                        _this.hideErrors();
+                        CMS.router.navigate("#login", {trigger: true});
                     },
                     error: function(model, response) {
+                        Backbone.Validation.callbacks.invalid( _this, "email", "Введіть інший e-mail чи відновіть Ваш пароль", _this.$el.find('#email').val());
+                        _this.showErrors(_this.model, null, response.responseJSON.message);
                     }
                 });
-                this.hideErrors();
-                CMS.router.navigate("/", {trigger: true});
 
             } else {
                 this.showErrors();

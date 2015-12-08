@@ -5,13 +5,23 @@ var express = require("express"),
     Module = require("../models/module");
 
 router.get("/", function(req, res, next) {
-    Module
-        .find({"_course": req.params.courseId})
-        .populate("_course", "_id")
-        .sort({"_id": 1})
-        .exec(function(error, modules) {
-            return res.json(modules);
+    if (req.params.courseId) {
+        Module
+            .find({"_course": req.params.courseId})
+            .populate("_course", "_id")
+            .sort({"_id": 1})
+            .exec(function(error, modules) {
+                return res.json(modules);
         });
+    }
+    else {
+        Module
+            .find({})
+            .sort({"_id": 1})
+            .exec(function(error, modules) {
+                return res.json(modules);
+        });
+    }
 });
 
 router.get("/:moduleId", function(req, res) {

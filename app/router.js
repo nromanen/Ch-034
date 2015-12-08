@@ -93,7 +93,7 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/:page" : "showManagement",
+            "management/:mainPage(/:id)(/:extPage)" : "showManagement",
             "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
         },
         showLoginPage: function() {
@@ -111,7 +111,8 @@ define(function(require) {
         showRegisterPage: function() {
             this.registerModel  = new RegisterModule.Model();
             this.registerView   = new RegisterModule.View( {model: this.registerModel} );
-            this.appView.setView("#CrsMSContainer", this.registerView).render();
+            this.appView.setView("#CrsMSContainer", this.registerView);
+            this.appView.render();
         },
         showProfilePage: function() {
             if (this.containerView.getView(".sidebar-a")) {
@@ -227,8 +228,8 @@ define(function(require) {
             }
         },
 
-        showManagement: function(page){
-            switch (page) {
+        showManagement: function(mainPage, idParent, extPage) {
+            switch (mainPage) {
                 case "areas":
                     this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
                     break;
@@ -237,8 +238,20 @@ define(function(require) {
                     this.containerView.hrefPath = "management/groups";
                     break;
                 case "courses":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
-                    this.containerView.hrefPath = "management/courses";
+                    switch (extPage) {
+                        case "modules":
+                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules([],{id: idParent}), title: "Модулі", name: "modules"}));
+                            this.containerView.hrefPath = "management/modules";
+                            break;
+                        default:
+                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
+                            this.containerView.hrefPath = "management/courses";
+                            break;
+                    }
+                    break;
+                case "modules":
+                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests([],{id: idParent}), title: "Тести", name: "tests"}));
+                    this.containerView.hrefPath = "management/tests";
                     break;
             }
         },

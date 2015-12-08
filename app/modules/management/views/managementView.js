@@ -6,16 +6,17 @@ define(function(require) {
         el: false,
         template: _.template(require("text!../templates/managementTemplate.html")),
         events: {
-            "click #managementDel": "deleteManagementModal",
-            "click #managementEdit": "editManagement",
-            "click #saveManagementEdit": "saveEditManagement",
-            "click #cenceleManagementEdit": "canceleEdit",
+            "click .managementDel": "deleteManagementModal",
+            "click .managementEdit": "editManagement",
+            "click .saveManagementEdit": "saveEditManagement",
+            "click .cenceleManagementEdit": "canceleEdit",
         },
 
         serialize: function() {
             return {
                 model: this.model,
-                name: this.name
+                name : this.name,
+                child: this.child
             };
         },
 
@@ -37,19 +38,23 @@ define(function(require) {
             this.deleteModal.show();
         },
 
-        editManagement: function(ev) {
+        editManagement: function(ev){
             var evModelEl = ev.target.parentNode;
-            evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-            evModelEl.previousSibling.previousSibling.lastChild.focus();
-            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok", "id":"saveManagementEdit"});
-            $(evModelEl.parentNode).find("#managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove", "id":"cenceleManagementEdit"});
+            $(evModelEl.parentNode.parentNode).find(".cenceleManagementEdit").click();
+            if (this.kind == "areas"|| this.kind == "groups"){
+                evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
+                evModelEl.previousSibling.previousSibling.lastChild.focus();
+            }
+            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok saveManagementEdit"});
+            $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove cenceleManagementEdit"});
+            $(evModelEl.parentNode).find(".editForm").fadeIn();
         },
 
         saveEditManagement: function(ev) {
            var newValue = _.escape($(ev.target.parentNode.parentNode).find(".managementVal").val());
            if (!newValue) return;
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
-            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil", "id":"managementEdit"});
+            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil"});
            this.model.set({name:newValue});
            this.model.save();
            this.model.fetch({reset:true});

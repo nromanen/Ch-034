@@ -19,7 +19,7 @@ var CourseSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    unpublished_at: {
+    unpublish_at: {
         type: Date,
         default: 8640000000000000
     },

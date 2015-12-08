@@ -17,8 +17,11 @@
                 color: #333;
             }
     }
-    .duration{
-        max-width: 60px;
+    .editForm{
+        display: none;
+    }
+    .bold{
+        font-size: 15px;
     }
 
 }
@@ -40,10 +43,9 @@
     }
 }
 
-
-
-
-
+.managementVal {
+    width: 100%;
+}
 
 .table-striped{
     margin-bottom: 0;
