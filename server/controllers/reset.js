@@ -5,17 +5,12 @@ var express = require( "express" ),
     User = require("../models/user"),
     mongoose = require("mongoose"),
     nodemailer = require("nodemailer"),
-    smtpPool = require("nodemailer-smtp-pool"),
 
     transporter = nodemailer.createTransport("SMTP", {
       service: 'Gmail',
       auth: {
-        XOAuth2: {
-          user: "ssita.cms@gmail.com", 
-          clientId: "985561173030-4qfrtnejqapgdpe4l16k6mqvis2qa3hg.apps.googleusercontent.com",
-          clientSecret: "C8j3U8g13q44ImPSMWBlHoh5",
-          refreshToken: "1/e8dqLT8p0SZrGFrYlU6M1Em_1LyhZiQGbQ1elHB3UT5IgOrJDtdun6zK6XiATCKT"
-        }
+        user: "ssita.cms@gmail.com", 
+        pass: "ssita_cms"
       }
     });
 
@@ -25,18 +20,19 @@ router.post("/", function (req, res, next) {
       return next(err);
     }
     if (user) {
+      user.set("password", Math.random());
+      user.save();
       var message = {
             from: "Softserve ITA <ssita.cms@gmail.com>",
-            to: req.body.email,
-            subject: "Reset password", 
-            text: "Hello, this is your new password"
+            to: user.email,
+            subject: "Відновлення паролю", 
+            text: "Привіт " + user.name + "! Ваш новий пароль: " + user.password
           };
-
-      transporter.sendMail(message, function (error, response) {
-        if (error) {
-          return next(error);
+      transporter.sendMail(message, function (err, res) {
+        if (err) {
+          return next(err);
         }
-        console.log("Message sent successfully!", response.message);
+        console.log("Повідомлення про зміну пароля успішно відправлено!", res.message);
       });
     } else {
       return next();

@@ -44,14 +44,14 @@
     "cheerio": "^0.19.0",
     "connect-busboy": "0.0.2",
     "cors": "^2.7.1",
+    "cron": "~1.1.0",
     "express": "~4.13.3",
     "express-mongoose-docs": "~0.3.1",
     "fs": "0.0.2",
     "jsonwebtoken": "~5.4.1",
     "mongoose": "~4.2.3",
     "morgan": "~1.6.1",
-    "nodemailer": "~1.10.0",
-    "nodemailer-smtp-pool": "latest",
+    "nodemailer": "~0.7",
     "request": "^2.67.0",
     "requirejs": "^2.1.20"
   }
