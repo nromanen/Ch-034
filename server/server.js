@@ -31,7 +31,7 @@ app.use( function ( req, res, next ) {
     next();
 });
 
-app.use(require("./middlewares/cron"));
+//app.use(require("./middlewares/cron"));
 app.use(cors());
 app.use('/uploads',express.static(__dirname + '/uploads')); 
 app.use(require('./middlewares/cors'));
