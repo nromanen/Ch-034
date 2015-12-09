@@ -12,6 +12,7 @@ require.config({
         'backbone.localStorage'   : '../vendor/bower/backbone.localStorage/backbone.localStorage-min',
         'backbone.validation'     : '../vendor/bower/backbone.validation/dist/backbone-validation-amd-min',
         'moment'                  : '../vendor/bower/moment/moment',
+        'bootstrapdatetimepicker' : '../vendor/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min',
         'uk-locale'               : '../vendor/bower/moment/locale/uk',
         'ckeditor-jquery'         :'../vendor/bower/ckeditor/adapters/jquery',
         'CMS'                     : './app'
@@ -35,6 +36,9 @@ require.config({
         },
         'jquery-serialize-object': {
             deps: ['jquery']
+        },
+        'bootstrapdatetimepicker': {
+            deps: ['jquery', 'bootstrap']
         },
         'backbone.localStorage': {
             deps: ['backbone'],

@@ -10,26 +10,40 @@ define(function(require) {
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
             "click #cenceleManagementEdit": "canceleEdit",
+            //"click #isPublished": ""
         },
 
         serialize: function() {
             return {
                 model: this.model,
-                name: this.name
+                name: this.name,
+                listPath: this.listPath,
+                type: this.type
             };
         },
 
         initialize: function() {
-            this.listenTo(this.model, "reset change", this.render, this);
+            //this.listenTo(this.model, "reset change", this.render, this);
+
             CMS.ModalView.prototype.submitHandlerClick = function() {
                 this.model.destroy();
                 this.$el.modal("hide");
             };
-            this.deleteModal = new CMS.ModalView({model: this.model, modalHeader: "Ви дійсно хочете видалити :", submitButton: "Видалити"});
+            this.deleteModal = new CMS.ModalView({
+                model: this.model,
+                modalHeader: "Ви дійсно хочете видалити :",
+                submitButton: "Видалити"
+            });
         },
-
-        afterRender: function(){
-
+        afterRender: function() {
+            this.$inputSelector = this.$el.find('.managementVal');
+            this.$editButton = this.$el.find("#managementEdit");
+            this.$delButton = this.$el.find("#managementDel");
+            if (this.type === "extended" || this.editView) {
+                var rows = this.$el.find("td").length;
+                this.$el.after("<tr class='edit-row'><td colspan="+rows+"><div class='col-lg-12' id='collapsable-"+this.model.id+"'></div></td></tr>");
+                this.$collapsable = $("#collapsable-"+this.model.id);
+            }
         },
 
         deleteManagementModal: function(ev) {
@@ -38,25 +52,62 @@ define(function(require) {
         },
 
         editManagement: function(ev) {
-            var evModelEl = ev.target.parentNode;
-            evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-            evModelEl.previousSibling.previousSibling.lastChild.focus();
-            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok", "id":"saveManagementEdit"});
-            $(evModelEl.parentNode).find("#managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove", "id":"cenceleManagementEdit"});
+            var _this = this;
+            switch (this.type) {
+                case "extended":
+                    this.$el.next().fadeToggle("slow");
+                    if (!(this.subView instanceof this.editView)) {
+                        this.subView = new this.editView({model: this.model});
+                        this.subView.render().then(function(view){
+                            _this.$collapsable.html(view.el);
+
+                            $("#discard").on("click", function(e) {
+                                _this.$el.next().fadeToggle("slow", function() {
+                                    _this.subView.remove();
+                                    delete _this.subView;
+                                });
+
+                            });
+                        });
+                    }
+                    break;
+
+                case "list":
+                    this.$inputSelector
+                        .prop("disabled", function(_, prop) {return !prop;})
+                        .focus();
+
+                    this.$editButton.attr({
+                        "title":"Зберегти",
+                        "class":"glyphicon glyphicon-ok",
+                        "id":"saveManagementEdit"
+                    });
+                    this.$delButton.attr({
+                        "title":"Відмінити",
+                        "class":"glyphicon glyphicon-remove",
+                        "id":"cenceleManagementEdit"
+                    });
+                    break;
+            }
+
         },
 
         saveEditManagement: function(ev) {
-           var newValue = _.escape($(ev.target.parentNode.parentNode).find(".managementVal").val());
-           if (!newValue) return;
-           ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
-            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil", "id":"managementEdit"});
-           this.model.set({name:newValue});
-           this.model.save();
-           this.model.fetch({reset:true});
+            var newValue = _.escape(this.$inputSelector.val());
+            if (!newValue) return;
+            this.$inputSelector.prop("disabled","disabled");
+            this.$editButton.attr({
+                "title":"Редагувати",
+                "class":"glyphicon glyphicon-pencil",
+                "id":"managementEdit"
+            });
+            this.model.set({name:newValue});
+            this.model.save();
+            this.model.fetch({reset:true});
         },
 
         canceleEdit: function(ev) {
-            $(ev.target.parentNode.parentNode).find(".managementVal").val(this.model.get("name"));
+            this.$inputSelector.val(this.model.get("name"));
             this.saveEditManagement(ev);
         },
 

@@ -12,9 +12,8 @@ define(function(require) {
 
         serialize: function() {
             return {
-                management: this.collection,
-                name      : this.name,
-                title     : this.title,
+                collection: this.collection,
+                name      : this.name
             };
         },
 
@@ -33,7 +32,9 @@ define(function(require) {
         renderOne: function(el){
             this.insertView("#managementlist", new ManagementView({
                 model: el,
-                kind: this.name
+                type: this.type,
+                editView: this.editView,
+                listPath: this.listPath
             }));
         },
 

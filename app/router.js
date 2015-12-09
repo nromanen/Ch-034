@@ -93,7 +93,7 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/:page" : "showManagement",
+            "management(/)*page" : "showManagement",
             "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
         },
         showLoginPage: function() {
@@ -229,19 +229,73 @@ define(function(require) {
         },
 
         showManagement: function(page){
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+            var type, name, collection, editView, subItems, listPath,
+                rootPath = this.getCurrentRootPath()+"/"+page;
+
             switch (page) {
                 case "areas":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+                    type = "list";
+                    name = "Напрямки";
+                    collection = new ManagementModule.Collections.Areas();
+                    editView = false;
+                    listPath = false;
                     break;
                 case "groups":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
-                    this.containerView.hrefPath = "management/groups";
+                    type = "list";
+                    name = "Типи груп";
+                    collection = new ManagementModule.Collections.Groups();
+                    editView = false;
+                    listPath = false;
                     break;
                 case "courses":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
-                    this.containerView.hrefPath = "management/courses";
+                    type = "extended";
+                    name = "Курси";
+                    collection = new ManagementModule.Collections.Courses();
+                    editView = ManagementModule.Views.EditViews.Course;
+                    listPath = rootPath+"/modules";
+                    break;
+                case "tests":
+                    type = "extended";
+                    name = "Тести";
+                    collection = new ManagementModule.Collections.Tests();
+                    editView = new ManagementModule.Views.EditViews.Test();
+                    listPath = rootPath+"/questions";
+                    break;
+                case "menus":
+                    type = "extended";
+                    name = "Меню";
+                    collection = new ManagementModule.Collections.Menus();
+                    editView = new ManagementModule.Views.EditViews.Menu();
+                    listPath = rootPath+"/links";
+                    break;
+                case "users":
+                    type = "list";
+                    name = "Користувачі";
+                    collection = new ManagementModule.Collections.Users();
+                    editView = new ManagementModule.Views.EditViews.User();
+                    listPath = false;
+                    break;
+                default:
+                    type = "extended";
+                    name = "Курси";
+                    collection = new ManagementModule.Collections.Courses();
+                    editView = new ManagementModule.Views.EditViews.Course();
+                    listPath = this.getCurrentRootPath()+"/courses/modules";
                     break;
             }
+            var options = {
+                type: type,
+                name: name,
+                collection: collection,
+                editView: editView,
+                listPath: listPath,
+                newItemPath: rootPath+"/new"
+            };
+
+            this.containerView.setView(".content", new ManagementModule.Views.managements(options));
         },
 
         getCurrentRootPath: function() {

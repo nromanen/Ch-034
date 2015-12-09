@@ -5,10 +5,12 @@ var express = require("express"),
     Group = require("../models/group");
 
 router.get("/", function(req, res) {
-    Group.find({}, function(err, groups) {
-        if (err) throw err;
-        return res.json(groups);
-    });
+    Group.find({})
+        .sort("order")
+        .exec(function(err, groups) {
+            if (err) throw err;
+            return res.json(groups);
+        });
 });
 router.post("/", function(req, res) {
   

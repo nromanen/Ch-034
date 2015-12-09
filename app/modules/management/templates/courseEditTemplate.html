@@ -1,0 +1,164 @@
+<form class="form-horizontal" id="edit-course">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="form-group">
+              <label class="col-md-12 " for="name">Назва курсу</label>  
+              <div class="col-md-12">
+              <input id="course_name" name="name" type="text" placeholder="Напр.: UI" class="form-control input-md" required="" value="<%= model.get('name') %>">
+
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="description">Опис курсу</label>
+              <div class="col-md-12">
+                <textarea class="form-control" id="description" rows=10 name="description"><%= model.get('description') %></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="groups">Тип групи</label>
+              <div class="col-md-12">
+                <select id="group_type" name="groups[]" class="form-control" multiple="multiple">
+
+                </select>
+              </div>
+            </div>  
+
+            <div class="form-group course-schedule">
+              <label class="col-md-12 " for="schedule">Графік курсу</label>
+              <div class="col-md-12">
+              <div class="checkbox">
+                <label for="course_schedule-0">
+                  <input type="checkbox" name="schedule[]" id="schedule-0" value="Пн">
+                  Пн
+                </label>
+                </div>
+              <div class="checkbox">
+                <label for="schedule-1">
+                  <input type="checkbox" name="schedule[]" id="schedule-1" value="Вт">
+                  Вт
+                </label>
+                </div>
+              <div class="checkbox">
+                <label for="schedule-2">
+                  <input type="checkbox" name="schedule[]" id="schedule-2" value="Ср">
+                  Ср
+                </label>
+                </div>
+              <div class="checkbox">
+                <label for="schedule-3">
+                  <input type="checkbox" name="schedule[]" id="schedule-3" value="Чт">
+                  Чт
+                </label>
+                </div>
+              <div class="checkbox">
+                <label for="schedule-4">
+                  <input type="checkbox" name="schedule[]" id="schedule-4" value="Пт">
+                  Пт
+                </label>
+                </div>
+              <div class="checkbox">
+                <label for="schedule-5">
+                  <input type="checkbox" name="schedule[]" id="schedule-5" value="Сб">
+                  Сб
+                </label>
+                </div>
+              <div class="checkbox">
+                <label for="schedule-6">
+                  <input type="checkbox" name="schedule[]" id="schedule-6" value="Нд">
+                  Нд
+                </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="image">Зображення курсу</label>
+              <div class="col-md-12">
+                <input id="course_poster" name="image" class="input-file" type="file">
+              </div>
+            </div>
+
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+              <label class="col-md-8 control-label" for="isPublished">Опублікований</label>
+              <div class="col-md-4"> 
+                  <input type="checkbox" name="isPublished" id="isPublished-0" class="pull-right" <% model.get('isPublished') ? print('checked="checked"') : false %>>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="area">Напрямок курсу</label>
+              <div class="col-md-12">
+                <select id="course_area" name="area" class="form-control">
+
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="minStudents">Кількість студентів</label>  
+              <div class="col-md-12">
+              <input id="course_minStudents" name="minStudents" type="number" placeholder="10" class="form-control input-md" required="" value="<%= model.get("minStudents") %>">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="startDate">Початок курсу</label>
+              <div class="col-md-12">
+                <div class="input-group date" id="course-<%= this.model.id %>_start_picker">
+                    <input id="course_start" data-provide="datepicker" name="startDate" type="text" placeholder="дд/мм/рррр" class="form-control input-md">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="duration">Тривалість курсу</label>
+              <div class="col-md-12">
+                
+                <input id="course_duration" name="duration" type="number" placeholder="тижнів" class="form-control input-md" required="" value="<%= model.get('duration') %>">
+                
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="publish_at">Початок публікації</label>  
+              <div class="col-md-12">
+                  <div class="input-group date" id="course-<%= this.model.id %>_publishAt_picker">
+                        <input id="course_publishAt" data-provide="datepicker" name="publish_at" type="text" placeholder="дд/мм/рррр гг:хх" class="form-control input-md">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                  </div>
+                
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="unpublish_at">Кінець публікації</label>  
+              <div class="col-md-12">
+                  <div class="input-group date" id="course-<%= this.model.id %>_unpublishAt_picker">
+                        <input id="course_unpublishAt" data-provide="datepicker" name="unpublish_at" type="text" placeholder="дд/мм/рррр гг:хх" class="form-control input-md">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                  </div>
+              </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-12 " for="save_course"></label>
+      <div class="col-md-12 pull-right">
+        <button type="button" id="save_course" name="save_course" class="btn btn-success">Зберегти</button>
+        <button type="button" id="discard" name="discard" class="btn btn-danger">Відминити зміни</button>
+      </div>
+    </div>
+</form>
