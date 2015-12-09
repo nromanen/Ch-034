@@ -37,7 +37,7 @@ router.get("/:moduleId", function(req, res) {
 
 router.post("/", function(req, res) {
     var module = new Module({ 
-        title: req.body.title,
+        name: req.body.name,
         description: req.body.description,
         _course: req.body.courseId,
         available: req.body.available
@@ -50,10 +50,8 @@ router.post("/", function(req, res) {
 });
 
 router.put('/:moduleId', function(req, res) {
-    console.log(Module.findById({_id: req.params.moduleId}));
     Module
-        .findByIdAndUpdate({_id: req.params.moduleId}, req.body)
-        .exac(function(error, module) {
+        .findByIdAndUpdate({_id: req.params.moduleId}, req.body, function(error, module) {
             if (error) throw error
             return res.json(module);
         });

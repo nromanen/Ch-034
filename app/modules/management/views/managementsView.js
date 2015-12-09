@@ -27,6 +27,7 @@ define(function(require) {
                 case "modules":
                     this.addEditModuleTemplate = _.template(require("text!../templates/addEditModuleTemplate.html"));
                     this.ModulesModule = require("../../module/index");
+                    this.idParent = this.collection.courseId;
                     break;
             }
         },
@@ -117,15 +118,8 @@ define(function(require) {
             var that = this;
             module.save(null, {
                 success: function(model, response){
-                    console.log("bbb");
-                    $("#module-form").trigger("reset");
-                    $("#module-name").focus();
                     this.removeModuleTemplate();
-                },
-                error: function(model, responce) {
-                    console.log("ups" + responce);
                 }
-
             });
         },
 

@@ -4,12 +4,12 @@ define(function(require) {
     Model = require("../models/managementModel"),
     View = CMS.View.extend({
         el: false,
-        template: _.template(require("text!../templates/managementTemplate.html")),
+        template    : _.template(require("text!../templates/managementTemplate.html")),
         events: {
             "click .managementDel": "deleteManagementModal",
             "click .managementEdit": "editManagement",
             "click .saveManagementEdit": "saveEditManagement",
-            "click .cancelManagementEdit": "cancelEdit",
+            "click .cancelManagementEdit": "cancelEdit"
         },
 
         serialize: function() {
@@ -46,7 +46,7 @@ define(function(require) {
             this.deleteModal.show();
         },
 
-        editManagement: function(ev) {
+        editManagement: function(ev){
             var evModelEl = ev.target.parentNode;
             if(["questions"].indexOf(this.kind) != -1) {
                 this.$el.after(this.editTemplate(this.model.toJSON()));
@@ -65,6 +65,7 @@ define(function(require) {
             $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"saveManagementEdit glyphicon glyphicon-ok"});
             $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"cancelManagementEdit glyphicon glyphicon-remove"});
             if (this.kind == "modules") {
+                $("#managementAddButton").addClass("disable");
                 this.$el.after(this.addEditModuleTemplate(this.model.toJSON()));
                 $(document).ready(function() {
                 _.delay(function() {
@@ -104,7 +105,7 @@ define(function(require) {
            var newValue = _.escape($(ev.target.parentNode.parentNode).find(".managementVal").val());
            if (!newValue) return;
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
-            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil", "id":"managementEdit"});
+            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil"});
            this.model.set({name:newValue});
            console.log();
            if (this.kind == "modules") {
