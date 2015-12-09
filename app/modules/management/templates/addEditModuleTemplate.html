@@ -10,7 +10,7 @@
         <input id="test-available" type="checkbox" <% if (this.mode !== "add" && this.model.attributes.available) {%> checked <%} %>></input><label><strong>тест доступний</strong></label>
     </div>
     <% if (this.mode !== "add") { %><div class="text-left top-margin">
-        <button id="choose-resources" class="btn btn-success">Редагувати ресурси до модуля</button>
+        <button id="moduleResources" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span><strong>/</strong><span class="glyphicon glyphicon-minus"></span>&nbsp;&nbsp;ресурси модуля</button>
     </div><% } else { %> 
     <div class="text-center">
         <button id="saveModule" type="submit" class="btn btn-success">Зберегти модуль</button>

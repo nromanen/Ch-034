@@ -9,7 +9,8 @@ define(function(require) {
             "click .managementDel": "deleteManagementModal",
             "click .managementEdit": "editManagement",
             "click .saveManagementEdit": "saveEditManagement",
-            "click .cancelManagementEdit": "cancelEdit"
+            "click .cancelManagementEdit": "cancelEdit",
+            "click #test-available" : "getResources"
         },
 
         serialize: function() {
@@ -121,6 +122,13 @@ define(function(require) {
         cancelEdit: function(ev) {
             $(ev.target.parentNode.parentNode).find(".managementVal").val(this.model.get("name"));
             this.saveEditManagement(ev);
+        },
+
+        getResources: function() {
+            console.log("aaa");
+            this.resourcesModal = new CMS.ModalView({model: this.model, modalHeader: "", submitButton: "ОК"});
+            this.resourcesModal.render();
+            this.resourcesModal.show();
         }
     });
 
