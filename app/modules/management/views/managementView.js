@@ -32,11 +32,13 @@ define(function(require) {
                 modalHeader: "Ви дійсно хочете видалити :",
                 submitButton: "Видалити"
             });
-
-            var pathParams = this.listPath.match(CMS.Helpers.RegexPatterns.paramsRegex);
-            if (!_.isEmpty(pathParams)) {
-                this.listPath = this.listPath.replace(pathParams[0], this.model.id);
+            if (this.listPath) {
+                var pathParams = this.listPath.match(CMS.Helpers.RegexPatterns.paramsRegex);
+                if (!_.isEmpty(pathParams)) {
+                    this.listPath = this.listPath.replace(pathParams[0], this.model.id);
+                }
             }
+
         },
         afterRender: function() {
             this.$inputSelector = this.$el.find('.managementVal');
