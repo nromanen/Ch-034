@@ -10,6 +10,7 @@ define(function(require) {
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
             "click #cenceleManagementEdit": "canceleEdit",
+            "click #isPublished": "changePublishState"
         },
 
         serialize: function() {
@@ -22,7 +23,6 @@ define(function(require) {
         },
 
         initialize: function() {
-            //this.listenTo(this.model, "reset change", this.render, this);
             CMS.ModalView.prototype.submitHandlerClick = function() {
                 this.model.destroy();
                 this.$el.modal("hide");
@@ -115,7 +115,11 @@ define(function(require) {
             this.$inputSelector.val(this.model.get("name"));
             this.saveEditManagement(ev);
         },
-
+        changePublishState: function() {
+            var old = this.model.get("isPublished");
+            this.model.set({isPublished: !old});
+            this.model.save();
+        }
     });
 
     return View;
