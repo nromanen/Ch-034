@@ -29,9 +29,10 @@
    min-width: 265px;
     .btn{
         width: 75px;
+        margin: 9px 0;
     }
     #managementAddInput{
-        margin: 9px 13px 0 9px;
+        margin: 0px 12px 0 9px;
     }
 }
 
@@ -66,6 +67,7 @@
 .create-area {
     background: #fff;
     min-height: 350px;
+    padding: 15px 40px 15px 40px;
 }
 .tab-area .active {
     text-decoration: none;
@@ -74,4 +76,7 @@
 .nav-tabs {
     border-bottom: none;
     border-top: none;
+}
+#module-form {
+    margin: 10px 8px;
 }

@@ -352,6 +352,26 @@ router.get("/", function(req, res) {
     test5.save();
     test6.save();
 
+    var resource1 = new Resource({
+        type: "video",
+        name: "Модуль 1. Відео.",
+        url: "https://www.youtube.com/embed/LICSA6iJd6w",
+    });    
+    var resource2 = new Resource({
+        type: "zip",
+        name: "Модуль 1. Конспект. Частина 1.",
+        url: "/web-resources/forms.zip",
+    });
+    var resource3 = new Resource({
+        type: "zip",
+        name: "Модуль 1. Конспект. Частина 2.",
+        url: "/web-resources/forms.zip",
+    });
+    
+    resource1.save();
+    resource2.save();
+    resource3.save();
+
     var module1 = new Module({
         name: "Модуль 1. Встановлення і налаштування середовища",
         description: "Just do it again!",
@@ -372,7 +392,8 @@ router.get("/", function(req, res) {
         name: "Модуль 1.Теги: поняття, типи, підтримка",
         description: "\"Теги\"? Теги це мітки, які ви використовуєте для вказівки браузеру, як він повинен показувати ваш web-сайт. Всі теги мають однаковий формат: вони починаються знаком \"&lt;\" і закінчуються знаком sign \"&gt;\". Зазвичай є два теги - відкриваючий: &lt;html&gt; і закриваючий: &lt;/html&gt;. Різниця в тому, що в закриваючому є слеш \"/\". Весь вміст, що вміщено між відкриваючими і закриваючими тегами, є вмістом тега. Але, як то кажуть, в кожному правилі є винятки, і в HTML також є теги, які є і відкривають, і закривають. Ці теги не містять тексту, а є мітками, наприклад, перенесення рядка виглядає так: &lt;br />. HTML - це теги, і нічого крім тегів. Для вивчення HTML потрібно вивчити різні теги. Наприклад, тег &lt;b&gt; інформує браузер, що весь текст між &lt;b&gt; і &lt;/b&gt; повинен бути надрукований жирним шрифтом. (\"b\" це скорочення від \"bold\".)",
         available: true,
-        _tests: [test1._id]
+        _tests: [test1._id],
+        _resources: [resource1._id]
     });
 
     var module12 = new Module({
@@ -381,13 +402,15 @@ router.get("/", function(req, res) {
         available: true,
         result: 7,
         numberOfTests: 8,
-        _tests: [test2._id]
+        _tests: [test2._id],
+        _resources: [resource2._id]
     });
 
     var module13 = new Module({
         name: "Модуль 3. Таблиці",
         description: "Як використовувати стандарти Web для організації безлічі даних? Сама ідея множини вкладених елементів, необхідних для перетворення всіх даних в симпатичні рядки та клітинки, повинна привести мозок у стан тривоги, але на щастя рішення є – на допомогу приходять таблиці! <br /> У Web-дизайні таблиці є хорошим способом організації даних в табличній формі. Іншими словами, завдяки таблицям, діаграмам та іншій графічній інформації, яка допомагає побачити і перетворити великий обсяг інформації в зведення, яке дозволяє порівнювати і зіставляти різні фрагменти даних. Ви зустрічаєте їх постійно на Web-сайтах, де вони представляють підсумки порівняння результатів політичних виборів, спортивної статистики, порівняння цін, таблиці розмірів, або інші дані. <br /> Раніше, в доісторичні часи Інтернет, перш ніж CSS став популярний як засіб поділу подання та структури HTML, таблиці використовувалися як засіб компонування Web-сторінок – для створення стовпців, боксів і загальної організації контенту. Це неправильний спосіб вирішення цих питань; використання таблиць для компонування призводить до громіздких, безладних сторінок з безліччю вкладених одна в одну таблиць – тобто великі розміри файлів, труднощі з обслуговуванням, труднощі з модифікацією після створення. Можна до цього часу бачити в Web такі сайти, але сьогодні необхідно використовувати таблиці тільки для того,для чого вони призначені – табличних даних – і використовувати CSS для управління компоновкою.<br /> Тут ми розглянемо, як правильно використовувати таблиці HTML – стаття має наступну структуру: <ul><li>Найбільша загальна таблиця</li><li>Додавання деяких властивостей</li><li>Додаткова структуризація таблиці</li><li>Допомога CSS: поліпшення вигляду таблиці</li></ul>",
-        _tests: [test3._id]
+        _tests: [test3._id],
+        _resources: [resource3._id]
     });
 
     module1.save();
@@ -409,11 +432,15 @@ router.get("/", function(req, res) {
         question4.save();
         question5.save();
         question6.save();
+        resource1._module = module11._id;
+        resource1.save();
     });
     module12.save(function(err) {
         if (err) throw err;
         test2._module = module12._id;
         test2.save();
+        resource2._module = module12._id;
+        resource2.save();
     });
     module13.save(function(err) {
         if (err) throw err;
@@ -423,28 +450,10 @@ router.get("/", function(req, res) {
         question8._module = module13._id;
         question7.save();
         question8.save();
+        resource3._module = module13._id;
+        resource3.save();
     });
 
-    var resource1 = new Resource({
-        type: "video",
-        name: "Модуль 1. Відео.",
-        url: "https://www.youtube.com/embed/LICSA6iJd6w",
-    });    
-    var resource2 = new Resource({
-        type: "zip",
-        name: "Модуль 1. Конспект. Частина 1.",
-        url: "/web-resources/forms.zip",
-    });
-    var resource3 = new Resource({
-        type: "zip",
-        name: "Модуль 1. Конспект. Частина 2.",
-        url: "/web-resources/forms.zip",
-    });
-    
-    resource1.save();
-    resource2.save();
-    resource3.save();
-    
     var unpublish_date = new Date();
     unpublish_date.setDate(unpublish_date.getDate()-3);
 
@@ -522,9 +531,6 @@ router.get("/", function(req, res) {
         module11._course = course1._id;
         module12._course = course1._id;
         module13._course = course1._id;
-        module11._resources.push(resource1._id);
-        module12._resources.push(resource2._id);
-        module13._resources.push(resource3._id);
         test1._course = course1._id;
         test2._course = course1._id;
         test3._course = course1._id;
@@ -568,10 +574,6 @@ router.get("/", function(req, res) {
         module1._course = course4._id;
         module2._course = course4._id;
         module3._course = course4._id;
-        module1._resources.push(resource1._id);
-        module1._resources.push(resource2._id);
-        module1._resources.push(resource3._id);
-        module2._resources.push(resource1._id);
         module1.save();
         module2.save();
         module3.save();
