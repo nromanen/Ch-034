@@ -26,6 +26,7 @@ define(function(require) {
         },
 
         afterRender: function(){
+            this.$el.find("#managementlist>tr:not(.edit-row):even").addClass('zebra');
             this.$el.find("#" + this.name).addClass("active").find("a").addClass("active");
         },
 
