@@ -4,6 +4,9 @@ define(function(require) {
         Views: {
             management: require("./views/managementView"),
             managements: require("./views/managementsView"),
+            EditViews: {
+                Course: require("./views/courseEditView")
+            }
         },
         Model: require("./models/managementModel"),
         Collections: {
