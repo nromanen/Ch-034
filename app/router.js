@@ -93,8 +93,8 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management(/)*page" : "showManagement",
-            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
+            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList",
+            "management(/:mainPage)(/:id)(/:extPage)" : "showManagement",
         },
         showLoginPage: function() {
             this.loginView = new Login.View();
@@ -228,14 +228,14 @@ define(function(require) {
             }
         },
 
-        showManagement: function(page){
+        showManagement: function(mainPage, idParent, extPage){
             if (this.containerView.getView(".sidebar-a")) {
                 this.containerView.getView(".sidebar-a").remove();
             }
             var type, name, collection, editView, subItems, listPath,
-                rootPath = this.getCurrentRootPath()+"/"+page;
+                rootPath = this.getCurrentRootPath();
 
-            switch (page) {
+            switch (mainPage) {
                 case "areas":
                     type = "list";
                     name = "Напрямки";
@@ -251,25 +251,38 @@ define(function(require) {
                     listPath = false;
                     break;
                 case "courses":
-                    type = "extended";
-                    name = "Курси";
-                    collection = new ManagementModule.Collections.Courses();
-                    editView = ManagementModule.Views.EditViews.Course;
-                    listPath = rootPath+"/modules";
+                    switch (extPage) {
+                        case "modules":
+                            type = "extended";
+                            name = "Курси";
+                            collection = new ManagementModule.Collections.Modules([],{id: idParent});
+                            editView = ManagementModule.Views.EditViews.Course;
+                            listPath = rootPath+"/modules/:id/tests";
+                            break;
+
+                        default:
+                            type = "extended";
+                            name = "Курси";
+                            collection = new ManagementModule.Collections.Courses();
+                            editView = ManagementModule.Views.EditViews.Course;
+                            listPath = rootPath+"/courses/:id/modules";
+                            break;
+                        }
                     break;
+
                 case "tests":
                     type = "extended";
                     name = "Тести";
                     collection = new ManagementModule.Collections.Tests();
                     editView = new ManagementModule.Views.EditViews.Test();
-                    listPath = rootPath+"/questions";
+                    listPath = rootPath+"/tests/:id/questions";
                     break;
                 case "menus":
                     type = "extended";
                     name = "Меню";
                     collection = new ManagementModule.Collections.Menus();
                     editView = new ManagementModule.Views.EditViews.Menu();
-                    listPath = rootPath+"/links";
+                    listPath = rootPath+"/menus/:id/links";
                     break;
                 case "users":
                     type = "list";
@@ -282,8 +295,8 @@ define(function(require) {
                     type = "extended";
                     name = "Курси";
                     collection = new ManagementModule.Collections.Courses();
-                    editView = new ManagementModule.Views.EditViews.Course();
-                    listPath = this.getCurrentRootPath()+"/courses/modules";
+                    editView = ManagementModule.Views.EditViews.Course;
+                    listPath = rootPath+"/courses/:id/modules";
                     break;
             }
             var options = {

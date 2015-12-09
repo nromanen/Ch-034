@@ -4,13 +4,12 @@ define(function(require) {
     Model = require("../models/managementModel"),
     View = CMS.View.extend({
         el: false,
-        template: _.template(require("text!../templates/managementTemplate.html")),
+        template    : _.template(require("text!../templates/managementTemplate.html")),
         events: {
             "click #managementDel": "deleteManagementModal",
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
             "click #cenceleManagementEdit": "canceleEdit",
-            //"click #isPublished": ""
         },
 
         serialize: function() {
@@ -24,7 +23,6 @@ define(function(require) {
 
         initialize: function() {
             //this.listenTo(this.model, "reset change", this.render, this);
-
             CMS.ModalView.prototype.submitHandlerClick = function() {
                 this.model.destroy();
                 this.$el.modal("hide");
@@ -34,6 +32,11 @@ define(function(require) {
                 modalHeader: "Ви дійсно хочете видалити :",
                 submitButton: "Видалити"
             });
+
+            var pathParams = this.listPath.match(CMS.Helpers.RegexPatterns.paramsRegex);
+            if (!_.isEmpty(pathParams)) {
+                this.listPath = this.listPath.replace(pathParams[0], this.model.id);
+            }
         },
         afterRender: function() {
             this.$inputSelector = this.$el.find('.managementVal');

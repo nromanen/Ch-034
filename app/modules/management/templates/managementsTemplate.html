@@ -5,20 +5,20 @@
                 <li id="areas"><a href="#management/areas">Напрямки</a></li>
                 <li id="groups"><a href="#management/groups">Групи</a></li>
                 <li id="courses"><a href="#management/courses">Курси</a></li>
-                <li id="modules"><a href="#">Модулі</a></li>
-                <li id="tests"><a href="#">Тести</a></li>
+                <li id="modules"><a href="#management/modules">Модулі</a></li>
+                <li id="tests"><a href="#management/tests">Тести</a></li>
                 <li id="questions"><a href="#">Запитання</a></li>
                 <li id="users"><a href="#settings">Користувачі</a></li>
             </ul>
         </div>
         <div class="col-md-10 create-area">
-            <h2><%= this.name %></h2>
+            <h2><%= this.title %></h2>
             <div class="table-responsive">
             <table class="table table-striped">
                <tbody id="managementlist"></tbody>
             </table>
             <div id="managementAddContainer">
-                <input id="managementAddInput" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
+                <input id="managementAddInput" class="addFor<%= this.name %>" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
             </div>
         </div>
     </div>

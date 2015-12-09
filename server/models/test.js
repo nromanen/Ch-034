@@ -14,7 +14,7 @@ TestSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Module"
     },
-    nameTest: {
+    name: {
         type: String,
         required: "Будьласка перевірте назву тесту"
     }

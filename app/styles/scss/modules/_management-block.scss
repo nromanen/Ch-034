@@ -18,8 +18,11 @@
             }
 
     }
-    .duration{
-        max-width: 60px;
+    .editForm{
+        display: none;
+    }
+    .bold{
+        font-size: 15px;
     }
     .edit-row {
         display: none;
@@ -45,10 +48,13 @@
     }
 }
 
+.addFortests {
+    width: 70%;
+}
 
-
-
-
+.managementVal {
+    width: 100%;
+}
 
 .table-striped{
     margin-bottom: 0;

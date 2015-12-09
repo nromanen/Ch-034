@@ -9,7 +9,7 @@ define(function(require){
             num         : null,
             courseId    : null,
             moduleId    : null,
-            question    : null,
+            name        : null,
             typeVariant : null,
             variants    : {}
         }
