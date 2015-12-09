@@ -9,7 +9,7 @@ define(function(require) {
             "click .managementDel": "deleteManagementModal",
             "click .managementEdit": "editManagement",
             "click .saveManagementEdit": "saveEditManagement",
-            "click .cancelManagementEdit": "cancelEdit",
+            "click .cenceleManagementEdit": "canceleEdit",
         },
 
         serialize: function() {
@@ -31,9 +31,6 @@ define(function(require) {
                 case "questions":
                     this.editTemplate = _.template(require("text!../templates/editQuestionsFormTemplate.html"));
                     break;
-                case "modules":
-                    this.addEditModuleTemplate = _.template(require("text!../templates/addEditModuleTemplate.html"));
-                    break;
             }
         },
 
@@ -54,7 +51,7 @@ define(function(require) {
             else {
                 var inputEdit = evModelEl.previousSibling.previousSibling;
                 if (["tests", "modules"].indexOf(this.kind) != -1) {
-                    inputEdit = inputEdit.previousSibling.previousSibling.lastChild;
+                    inputEdit = inputEdit.previousSibling.previousSibling.lastChild; console.log(inputEdit);
                 }
                 else {
                     inputEdit = inputEdit.lastChild;
@@ -63,41 +60,7 @@ define(function(require) {
                 inputEdit.focus();
             }
             $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"saveManagementEdit glyphicon glyphicon-ok"});
-            $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"cancelManagementEdit glyphicon glyphicon-remove"});
-            if (this.kind == "modules") {
-                this.$el.after(this.addEditModuleTemplate(this.model.toJSON()));
-                $(document).ready(function() {
-                _.delay(function() {
-                    var editor = $("#moduleDescription").ckeditor({
-                            extraPlugins: 'justify,image,uploadimage',
-                            imageUploadUrl: CMS.api+"upload/image",
-                            language: 'uk',
-                            skin:'moono'
-                        }).editor;
-                    if (editor !== "undefined") {
-                        editor.on('fileUploadRequest', function( evt ) {
-                                var xhr = evt.data.fileLoader.xhr;
-                                xhr.setRequestHeader( 'ContentType', "form/multi-part");
-                                xhr.setRequestHeader( 'x-access-token', CMS.SessionModel.getItem('UserSession').token );
-                                xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-                            } );
-                        }
-                    }, 300);
-                });
-                $("module-name").focus();
-                    $("#module-name").val(this.model.attributes.name);
-                    $("#description").val(this.model.attributes.description);
-                    document.getElementById("test-available").checked = this.model.attributes.available;
-            } else {
-                $(evModelEl.parentNode.parentNode).find(".cenceleManagementEdit").click();
-                if (this.kind == "areas"|| this.kind == "groups"){
-                    evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-                    evModelEl.previousSibling.previousSibling.lastChild.focus();
-                }
-                $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok saveManagementEdit"});
-                $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove cenceleManagementEdit"});
-                $(evModelEl.parentNode).find(".editForm").fadeIn();
-            }
+            $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"cenceleManagementEdit glyphicon glyphicon-remove"});
         },
 
         saveEditManagement: function(ev) {
@@ -106,20 +69,15 @@ define(function(require) {
            ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
             $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil"});
            this.model.set({name:newValue});
-           if (this.kind == "modules") {
-                this.model.set({
-                    description: $("#moduleDescription").val(),
-                    available: $("#test-available").prop("checked")
-                });
-           }
            this.model.save();
            this.model.fetch({reset:true});
         },
 
-        cancelEdit: function(ev) {
+        canceleEdit: function(ev) {
             $(ev.target.parentNode.parentNode).find(".managementVal").val(this.model.get("name"));
             this.saveEditManagement(ev);
-        }
+        },
+
     });
 
     return View;

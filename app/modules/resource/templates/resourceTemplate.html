@@ -1,7 +1,5 @@
 <tr>
-    <td id="resourceName"><%= resource.get('name') %></td>
+    <td id="resourceName"><input id="test-available" type="checkbox"></input><label><%= resource.get('name') %></label></td>
+    <td id="resourceUrl"><%= resource.get('url') %></td>
     <td id="resourceType"><%= resource.get('type') %></td>
-    <td id="resourceUrl"><%= resource.get('url') %></td>    
-    <td><span id="editResource"class="glyphicon glyphicon-pencil"></span></td>
-    <td><span id="deleteResource" class="glyphicon glyphicon-trash"></span></td>
 </tr>

@@ -1,57 +1,14 @@
 var express = require("express"),
-    router = express.Router({mergeParams: true}),
+    router = express.Router(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     Resource = require("../models/resource");
 
 router.get("/", function(req, res) {
-    Resource
-        .find({"_module": req.params.moduleId})
-        .exec(function(error, resources) {
-            if (error) throw error
-            return res.json(resources);
-        });
-});
-
-router.get("/resourceId", function(req, res) {
-    Resource
-        .findOne({"_id": req.params.resourceId})
-        .exec(function(error, resources) {
-            if (error) throw error
-            return res.json(resources);
-        });
-});
-
-router.delete('/:resourceId', function(req, res) {
-    Resource
-        .findByIdAndRemove({_id: req.params.resourceId})
-        .exec(function(error) {
-            if (error) throw error
-            return res.json({success: true, message: "Resource is deleted successfully"});
-        });
-});
-
-router.post("/", function(req, res) {
-    var resource = new Resource({ 
-        name: req.body.name,
-        type: req.body.type,
-        url: req.body.url,
-        _module: req.body.moduleId
+    Resource.find({}, function(err, resources) {
+        if (err) throw err;
+        return res.json(resources);
     });
-
-    resource.save(function(error) {
-        if (error) throw error;
-        return res.json({success: true, message: "Resource is created successfully"});
-    });
-});
-
-router.put('/:resourceId', function(req, res) {
-    Resource
-        .findByIdAndUpdate({_id: req.params.resourceId}, req.body)
-        .exac(function(error, resource) {
-            if (error) throw error
-            return res.json(resource);
-        });
 });
 
 module.exports = router

@@ -7,7 +7,7 @@ define(function(require, extend, module) {
         idAttribute: '_id',
         defaults: {
             courseId: null,
-            name: null,
+            title: null,
             description: null,
             available: null,
             numberOfTests: null,
@@ -23,8 +23,8 @@ define(function(require, extend, module) {
         },
         validate: function(attr, options) {
             var error = {};
-            if (!attr.name) {
-                error.name = "Пуста назва модуля";
+            if (!attr.title) {
+                error.title = "Пуста назва модуля";
                 error.message = "Заповніть, будь ласка, назву модуля";
             }
             return $.isEmptyObject(error) ? false : error;

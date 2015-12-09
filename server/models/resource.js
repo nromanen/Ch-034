@@ -13,11 +13,7 @@ ResourceSchema = new Schema({
     url: {
         type: String,
         default: ""
-    },
-    _module: {
-        type: Schema.Types.ObjectId,
-        ref: "Module"
-    },
+    }
 })
 
 module.exports = mongoose.model("Resource", ResourceSchema);
