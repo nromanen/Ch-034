@@ -8,6 +8,11 @@
     }
     & > tr{
         height: 43px;
+        background-color: transparent;
+
+            &.zebra {
+                background-color: #f9f9f9;
+            }
             .glyphicon {
                  font-size: 1.3em;
                  cursor: pointer;
@@ -27,7 +32,6 @@
     .edit-row {
         display: none;
     }
-
 
 }
 #managementAddContainer{

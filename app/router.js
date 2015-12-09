@@ -70,7 +70,7 @@ define(function(require) {
                 this.appView.setView("#CrsMSContainer", this.homeView);
                 $.when(this.mainMenu.fetch(), this.profileMenu.fetch()).done($.proxy(function() {
                     var name = this.userSession.getItem("UserSession").profile.name + " " + this.userSession.getItem("UserSession").profile.surname;
-                    this.profileMenu.set("title", name);
+                    this.profileMenu.set("name", name);
                     this.headerView.setView(".navigation-menu", new NavigationModule.Views.DefaultView({model: this.mainMenu}));
                     this.headerView.setView(".personal-menu", new NavigationModule.Views.DefaultView({model: this.profileMenu}));
                     this.appView.render();
@@ -277,13 +277,27 @@ define(function(require) {
                     editView = new ManagementModule.Views.EditViews.Test();
                     listPath = rootPath+"/tests/:id/questions";
                     break;
+
                 case "menus":
-                    type = "extended";
-                    name = "Меню";
-                    collection = new ManagementModule.Collections.Menus();
-                    editView = new ManagementModule.Views.EditViews.Menu();
-                    listPath = rootPath+"/menus/:id/links";
+                    switch (extPage) {
+                        case "links":
+                            type = "extended";
+                            name = "Посилання";
+                            collection = new ManagementModule.Collections.MenuLinks([],{menuId: idParent});
+                            editView = ManagementModule.Views.EditViews.MenuLink;
+                            listPath = false;
+                            break;
+
+                        default:
+                            type = "extended";
+                            name = "Меню";
+                            collection = new ManagementModule.Collections.Menus();
+                            editView = ManagementModule.Views.EditViews.Menu;
+                            listPath = rootPath+"/menus/:id/links";
+                            break;
+                        }
                     break;
+
                 case "users":
                     type = "list";
                     name = "Користувачі";

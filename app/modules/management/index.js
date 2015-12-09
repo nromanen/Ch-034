@@ -5,7 +5,9 @@ define(function(require) {
             management: require("./views/managementView"),
             managements: require("./views/managementsView"),
             EditViews: {
-                Course: require("./views/courseEditView")
+                Course: require("./views/courseEditView"),
+                Menu: require("./views/menuEditView"),
+                MenuLink: require("./views/menuLinkEditView")
             }
         },
         Model: require("./models/managementModel"),
@@ -15,7 +17,9 @@ define(function(require) {
             Courses   : require("./collections/coursesCollection"),
             Modules   : require("./collections/modulesCollection"),
             Tests     : require("./collections/testsCollection"),
-            Questions : require("./collections/questionsCollection")
+            Questions : require("./collections/questionsCollection"),
+            Menus     : require("./collections/menusCollection"),
+            MenuLinks : require("./collections/menuLinksCollection")
         }
     };
 });

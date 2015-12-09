@@ -2,7 +2,7 @@ var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
 MenuSchema = new Schema({
-    title: {
+    name: {
         type: String,
         required: "Будьласка введіть назву меню",
     },
@@ -10,6 +10,14 @@ MenuSchema = new Schema({
         type: String,
         unique: true,
         required: "Будьласка введіть slug меню"
+    },
+    isPublished: {
+        type: Boolean,
+        default: true
+    },
+    access: {
+        type: [Number],
+        required: true
     },
     _menuLinks: [{
         type: Schema.Types.ObjectId,

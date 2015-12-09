@@ -6,9 +6,11 @@ var express = require("express"),
     MenuLink = require("../models/menuLink");
 
 router.get("/", function(req, res) {
-    Menu
-        .find()
-        .populate({
+    var query = Menu.find({access: req.authUser.role});
+    if (req.authUser.role !== 2) {
+        query.where({"isPublished": true})
+    }
+    query.populate({
             path: "_menuLinks",
             match: {access: req.authUser.role}
         })
@@ -20,7 +22,9 @@ router.get("/", function(req, res) {
 router.post("/", function(req, res) {
     var menu = new Menu({
         title: req.body.title,
-        slug: req.body.slug
+        slug: req.body.slug,
+        access: req.body.access,
+        isPublished: req.body.isPublished
     });
     menu.save(function(err) {
         if (err) throw err

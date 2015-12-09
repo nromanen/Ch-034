@@ -16,32 +16,46 @@ var express = require("express"),
 
 router.get("/", function(req, res) {
     var mainMenu = new Menu({
-        title: "Меню",
-        slug: "main_menu"
+        name: "Меню",
+        slug: "main_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var profileMenu = new Menu({
-        title: "Профайл",
-        slug: "profile_menu"
+        name: "Профайл",
+        slug: "profile_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var coursesMenu = new Menu({
-        title: "Курси",
-        slug: "courses_menu"
+        name: "Курси",
+        slug: "courses_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var testsMenu = new Menu({
-        title: "Тести",
-        slug: "tests_menu"
+        name: "Тести",
+        slug: "tests_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var listsMenu = new Menu({
-        title: "Списки",
-        slug: "lists_menu"
+        name: "Списки",
+        slug: "lists_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var menusMenu = new Menu({
-        title: "Меню",
-        slug: "menus_menu"
+        name: "Меню",
+        slug: "menus_menu",
+        isPublished: true,
+        access: [2]
     });
     var usersMenu = new Menu({
-        title: "Користувачі",
-        slug: "users_menu"
+        name: "Користувачі",
+        slug: "users_menu",
+        isPublished: true,
+        access: [2]
     });
     var mainMenuLink1 = new MenuLink({
         name: "Всі курси",
@@ -154,7 +168,7 @@ router.get("/", function(req, res) {
         "name": "Sergiy",
         "surname": "Diak",
         "password": "Diak540910",
-        "role": 1
+        "role": 2
     });
     
     var profile = new UserProfile({
