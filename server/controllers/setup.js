@@ -209,7 +209,7 @@ router.get("/", function(req, res) {
 
     var question1 = new Question({
         num: 1,
-        question: "Введіть класичний варіант написання тегу",
+        name: "Введіть класичний варіант написання тегу",
         typeVariant: 0,
         variants: {
             variant1: ["&lt;name&gt;&lt;/name&gt;", true],
@@ -219,14 +219,14 @@ router.get("/", function(req, res) {
 
     var question2 = new Question({
         num: 2,
-        question: "Введіть doctype HTML5 без &lt;&gt;",
+        name: "Введіть doctype HTML5 без &lt;&gt;",
         typeVariant: 1,
         answer: "DOCTYPE html"
     });
 
     var question3 = new Question({
         num: 3,
-        question: "Відмітьте теги, які не підтримуються HTML 4.0",
+        name: "Відмітьте теги, які не підтримуються HTML 4.0",
         typeVariant: 2,
         variants: {
             variant1: ["header", true],
@@ -238,7 +238,7 @@ router.get("/", function(req, res) {
 
     var question4 = new Question({
         num: 4,
-        question: "Яка форма запису є коректною ? (два варіанти)",
+        name: "Яка форма запису є коректною ? (два варіанти)",
         typeVariant: 2,
         variants: {
             variant1: ["&lt;input required=on&gt;", false],
@@ -250,7 +250,7 @@ router.get("/", function(req, res) {
 
     var question5 = new Question({
         num: 5,
-        question: "Як встановити кодировку документа?",
+        name: "Як встановити кодировку документа?",
         typeVariant: 0,
         variants: {
             variant1: ["&lt;body charset=&#34;utf-8&#34;&gt;", false],
@@ -261,7 +261,7 @@ router.get("/", function(req, res) {
 
     var question6 = new Question({
         num: 6,
-        question: "Який елемент у секції &lt;head&gt; є обов'язковим?",
+        name: "Який елемент у секції &lt;head&gt; є обов'язковим?",
         typeVariant: 0,
         variants: {
             variant1: ["&lt;meta&gt;", true],
@@ -274,7 +274,7 @@ router.get("/", function(req, res) {
 
     var question7 = new Question({
         num: 1,
-        question: "Який тег не є тегом форматування таблиці?",
+        name: "Який тег не є тегом форматування таблиці?",
         typeVariant: 0,
         variants: {
             variant1: ["&lt;target&gt;", false],
@@ -286,7 +286,7 @@ router.get("/", function(req, res) {
 
     var question8 = new Question({
         num: 2,
-        question: "Який тег потрібен для організації назви таблиці?",
+        name: "Який тег потрібен для організації назви таблиці?",
         typeVariant: 1,
         answer: "&lt;thead>&gt;"
     });
@@ -325,9 +325,29 @@ router.get("/", function(req, res) {
         name: "Екзаменаційне завдання"
     });
 
-    test1.save();
+    test1.save(function(err) {
+        if (err) throw err;
+        question1._test = test1._id;
+        question2._test = test1._id;
+        question3._test = test1._id;
+        question4._test = test1._id;
+        question5._test = test1._id;
+        question6._test = test1._id;
+        question1.save();
+        question2.save();
+        question3.save();
+        question4.save();
+        question5.save();
+        question6.save();
+    });
     test2.save();
-    test3.save();
+    test3.save(function(err) {
+        if (err) throw err;
+        question7._test = test3._id;
+        question8._test = test3._id;
+        question7.save();
+        question8.save();
+    });
     test4.save();
     test5.save();
     test6.save();

@@ -4,7 +4,7 @@ define(function(require) {
     Model = require("../models/managementModel"),
     View = CMS.View.extend({
         el: false,
-        template: _.template(require("text!../templates/managementTemplate.html")),
+        template    : _.template(require("text!../templates/managementTemplate.html")),
         events: {
             "click .managementDel": "deleteManagementModal",
             "click .managementEdit": "editManagement",
@@ -27,6 +27,11 @@ define(function(require) {
                 this.$el.modal("hide");
             };
             this.deleteModal = new CMS.ModalView({model: this.model, modalHeader: "Ви дійсно хочете видалити :", submitButton: "Видалити"});
+            switch (this.kind) {
+                case "questions":
+                    this.editTemplate = _.template(require("text!../templates/editQuestionsFormTemplate.html"));
+                    break;
+            }
         },
 
         afterRender: function(){
@@ -40,14 +45,22 @@ define(function(require) {
 
         editManagement: function(ev){
             var evModelEl = ev.target.parentNode;
-            $(evModelEl.parentNode.parentNode).find(".cenceleManagementEdit").click();
-            if (this.kind == "areas"|| this.kind == "groups"){
-                evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-                evModelEl.previousSibling.previousSibling.lastChild.focus();
+            if(["questions"].indexOf(this.kind) != -1) {
+                this.$el.after(this.editTemplate(this.model.toJSON()));
             }
-            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok saveManagementEdit"});
-            $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove cenceleManagementEdit"});
-            $(evModelEl.parentNode).find(".editForm").fadeIn();
+            else {
+                var inputEdit = evModelEl.previousSibling.previousSibling;
+                if (["tests", "modules"].indexOf(this.kind) != -1) {
+                    inputEdit = inputEdit.previousSibling.previousSibling.lastChild; console.log(inputEdit);
+                }
+                else {
+                    inputEdit = inputEdit.lastChild;
+                }
+                inputEdit.removeAttribute("disabled");
+                inputEdit.focus();
+            }
+            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"saveManagementEdit glyphicon glyphicon-ok"});
+            $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"cenceleManagementEdit glyphicon glyphicon-remove"});
         },
 
         saveEditManagement: function(ev) {
