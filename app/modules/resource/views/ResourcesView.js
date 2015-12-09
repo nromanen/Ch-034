@@ -75,6 +75,7 @@ define(function(require) {
             });
         },
         addResource: function() {
+            var that = this;
             if (CMS.externalLink.indexOf($('#addResourceType option:selected').text()) === -1) {
                 $.ajaxSetup({
                     beforeSend: function(jqXHR){
@@ -83,7 +84,6 @@ define(function(require) {
                         //jqXHR.setRequestHeader("Content-Type", "multipart/form-data");
                     },
                 });
-                var that = this;
                 var data = new FormData();
                 data.append("key", $("#addResourceUrl").find('input')[0].files[0]);
                 $.ajax({
@@ -100,7 +100,7 @@ define(function(require) {
                             var resource = new Resource();
                             resource.set({
                                 name: $("#addResourceName").val(),
-                                moduleId: this.moduleId,
+                                moduleId: that.moduleId,
                                 type: $("#addResourceType").val(),
                                 url: files_path
                             });

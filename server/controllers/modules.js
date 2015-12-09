@@ -50,6 +50,7 @@ router.post("/", function(req, res) {
 });
 
 router.put('/:moduleId', function(req, res) {
+    console.log(Module.findById({_id: req.params.moduleId}));
     Module
         .findByIdAndUpdate({_id: req.params.moduleId}, req.body)
         .exac(function(error, module) {

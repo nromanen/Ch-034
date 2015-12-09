@@ -249,10 +249,6 @@ define(function(require) {
                             break;
                     }
                     break;
-                case "modules":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests([],{id: idParent}), title: "Тести", name: "tests"}));
-                    this.containerView.hrefPath = "management/tests";
-                    break;
             }
         },
 

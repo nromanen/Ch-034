@@ -1,0 +1,21 @@
+<form id="module-form">
+    <% if (this.mode == "add") { %><div>
+        <div><strong>Назва модуля:</strong></div> 
+        <input id="module-name" type="text" placeholder="Введіть назву модуля ..." class="name"></input>
+    </div><% } %>
+    <div>
+        <textarea id="moduleDescription" placeholder="Введіть зміст модуля ..." class="text-editor"><% if (this.mode !== "add") { %><%= this.model.attributes.description %><% } %></textarea>
+    </div>
+    <div class="small-margin">
+        <input id="test-available" type="checkbox" <% if (this.mode !== "add" && this.model.attributes.available) {%> checked <%} %>></input><label><strong>тест доступний</strong></label>
+    </div>
+    <% if (this.mode !== "add") { %><div class="text-left top-margin">
+        <button id="choose-resources" class="btn btn-success">Редагувати ресурси до модуля</button>
+    </div><% } else { %> 
+    <div class="text-center">
+        <button id="saveModule" type="submit" class="btn btn-success">Зберегти модуль</button>
+        <button id="cancelModule" class="btn btn-danger btn-cancel">Відмінити</button>
+    </div>
+    <% } %>
+</form>
+
