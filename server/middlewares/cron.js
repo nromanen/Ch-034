@@ -48,7 +48,7 @@ var CronJob = require("cron").CronJob,
 	    	});
 	    },
 	    start: false, 
-	    timeZone: ""
+	    timeZone: "Europe/Kiev"
 	});
 	job.start();
 

@@ -22,6 +22,10 @@ var UserSchema = new Schema({
         type: Number,
         default: 0
     },
+    isConfirmed: {
+        type: Boolean,
+        default: false
+    },
     _profile: {
         type: Schema.Types.ObjectId,
         ref: "Profile"
