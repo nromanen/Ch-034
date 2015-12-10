@@ -12,9 +12,8 @@ define(function(require) {
 
         serialize: function() {
             return {
-                management: this.collection,
-                name      : this.name,
-                title     : this.title,
+                collection: this.collection,
+                name      : this.name
             };
         },
 
@@ -27,6 +26,7 @@ define(function(require) {
         },
 
         afterRender: function(){
+            this.$el.find("#managementlist>tr:not(.edit-row):even").addClass('zebra');
             this.$el.find("#" + this.name).addClass("active").find("a").addClass("active");
         },
 
@@ -56,8 +56,9 @@ define(function(require) {
             }
             this.insertView("#managementlist", new ManagementView({
                 model: el,
-                kind: this.name,
-                child: this.child
+                type: this.type,
+                editView: this.editView,
+                listPath: this.listPath
             }));
         },
 

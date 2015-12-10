@@ -29,10 +29,12 @@ router.put("/:id", function(req, res) {
     });
 });
 router.get("/", function(req, res) {
-    Area.find({}, function(err, areas) {
-        if (err) throw err;
-        return res.json(areas);
-    });
+    Area.find({})
+        .sort("order")
+        .exec(function(err, areas) {
+            if (err) throw err;
+            return res.json(areas);
+        });
 });
 router.get("/:id", function(req, res) {
     Area.findById(req.params.id, function(err, area) {

@@ -16,32 +16,46 @@ var express = require("express"),
 
 router.get("/", function(req, res) {
     var mainMenu = new Menu({
-        title: "Меню",
-        slug: "main_menu"
+        name: "Меню",
+        slug: "main_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var profileMenu = new Menu({
-        title: "Профайл",
-        slug: "profile_menu"
+        name: "Профайл",
+        slug: "profile_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var coursesMenu = new Menu({
-        title: "Курси",
-        slug: "courses_menu"
+        name: "Курси",
+        slug: "courses_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var testsMenu = new Menu({
-        title: "Тести",
-        slug: "tests_menu"
+        name: "Тести",
+        slug: "tests_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var listsMenu = new Menu({
-        title: "Списки",
-        slug: "lists_menu"
+        name: "Списки",
+        slug: "lists_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var menusMenu = new Menu({
-        title: "Меню",
-        slug: "menus_menu"
+        name: "Меню",
+        slug: "menus_menu",
+        isPublished: true,
+        access: [2]
     });
     var usersMenu = new Menu({
-        title: "Користувачі",
-        slug: "users_menu"
+        name: "Користувачі",
+        slug: "users_menu",
+        isPublished: true,
+        access: [2]
     });
     var mainMenuLink1 = new MenuLink({
         name: "Всі курси",
@@ -154,7 +168,7 @@ router.get("/", function(req, res) {
         "name": "Sergiy",
         "surname": "Diak",
         "password": "Diak540910",
-        "role": 1
+        "role": 2
     });
     
     var profile = new UserProfile({
@@ -176,16 +190,20 @@ router.get("/", function(req, res) {
     user1.save();
     profile.save();
     var ui = new Area({
-        name: "UI"
+        name: "UI",
+        order: 1
     });
     var java = new Area({
-        name: "Java"
+        name: "Java",
+        order: 2
     });
     var design = new Area({
-        name: "Design"
+        name: "Design",
+        order: 3
     });
     var net = new Area({
-        name: ".Net"
+        name: ".Net",
+        order: 4
     });
 
     ui.save();
@@ -194,13 +212,16 @@ router.get("/", function(req, res) {
     net.save();
 
     var early = new Group({
-        name: "Рання"
+        name: "Рання",
+        order: 1
     });
     var daily = new Group({
-        name: "Денна"
+        name: "Денна",
+        order: 2
     });
     var evening = new Group({
-        name: "Вечірня"
+        name: "Вечірня",
+        order: 3
     });
 
     early.save();
@@ -453,7 +474,7 @@ router.get("/", function(req, res) {
         description: "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-10-06",
         duration: 4,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/html.png",
@@ -467,7 +488,7 @@ router.get("/", function(req, res) {
         startDate: "2015-9-16",
         isPublished: false,
         duration: 1,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/flat_ui.png",
@@ -482,7 +503,7 @@ router.get("/", function(req, res) {
         startDate: "2015-8-26",
         unpublish_at: unpublish_date,
         duration: 2,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/css.png",
@@ -495,7 +516,7 @@ router.get("/", function(req, res) {
         description: "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-10-26",
         duration: 3,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 8,
         applicantsNumber: 2,
         image: "img/java.png",
@@ -508,7 +529,7 @@ router.get("/", function(req, res) {
         description: "У Вас буде можливість вивчити технології та підходи до розробки Web-програм з багаторівневою архітектурою. Ви отримаєте досвід побудови Web-програм засобами AStest1.NET MVC, Silverlight, побудови десктопних програм засобами WPF, реалізацію ORM засобами ADO.NET Entity, а також розробки Web-сервісів з допомогою WСF.",
         startDate: "2015-10-01",
         duration: 6,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/_net.png",

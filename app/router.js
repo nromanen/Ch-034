@@ -70,7 +70,7 @@ define(function(require) {
                 this.appView.setView("#CrsMSContainer", this.homeView);
                 $.when(this.mainMenu.fetch(), this.profileMenu.fetch()).done($.proxy(function() {
                     var name = this.userSession.getItem("UserSession").profile.name + " " + this.userSession.getItem("UserSession").profile.surname;
-                    this.profileMenu.set("title", name);
+                    this.profileMenu.set("name", name);
                     this.headerView.setView(".navigation-menu", new NavigationModule.Views.DefaultView({model: this.mainMenu}));
                     this.headerView.setView(".personal-menu", new NavigationModule.Views.DefaultView({model: this.profileMenu}));
                     this.appView.render();
@@ -93,8 +93,8 @@ define(function(require) {
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
             "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "management/:mainPage(/:id)(/:extPage)" : "showManagement",
-            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList"
+            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList",
+            "management(/:mainPage)(/:id)(/:extPage)" : "showManagement",
         },
         showLoginPage: function() {
             this.loginView = new Login.View();
@@ -228,36 +228,101 @@ define(function(require) {
             }
         },
 
-        showManagement: function(mainPage, idParent, extPage) {
+        showManagement: function(mainPage, idParent, extPage){
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
+            }
+            var type, name, collection, editView, subItems, listPath,
+                rootPath = this.getCurrentRootPath();
+
             switch (mainPage) {
                 case "areas":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+                    type = "list";
+                    name = "Напрямки";
+                    collection = new ManagementModule.Collections.Areas();
+                    editView = false;
+                    listPath = false;
                     break;
                 case "groups":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
-                    this.containerView.hrefPath = "management/groups";
+                    type = "list";
+                    name = "Типи груп";
+                    collection = new ManagementModule.Collections.Groups();
+                    editView = false;
+                    listPath = false;
                     break;
                 case "courses":
                     switch (extPage) {
                         case "modules":
-                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules([],{id: idParent}), title: "Модулі", name: "modules"}));
-                            this.containerView.hrefPath = "management/modules";
+                            type = "extended";
+                            name = "Курси";
+                            collection = new ManagementModule.Collections.Modules([],{id: idParent});
+                            editView = ManagementModule.Views.EditViews.Course;
+                            listPath = rootPath+"/modules/:id/tests";
                             break;
+
                         default:
-                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
-                            this.containerView.hrefPath = "management/courses";
+                            type = "extended";
+                            name = "Курси";
+                            collection = new ManagementModule.Collections.Courses();
+                            editView = ManagementModule.Views.EditViews.Course;
+                            listPath = rootPath+"/courses/:id/modules";
                             break;
-                    }
+                        }
                     break;
-                case "modules":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests([],{id: idParent}), title: "Тести", name: "tests"}));
-                    this.containerView.hrefPath = "management/tests";
-                    break;
+
                 case "tests":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Questions([],{id: idParent}), title: "Питання", name: "questions"}));
-                    this.containerView.hrefPath = "management/questions";
+                    type = "extended";
+                    name = "Тести";
+                    collection = new ManagementModule.Collections.Tests();
+                    editView = new ManagementModule.Views.EditViews.Test();
+                    listPath = rootPath+"/tests/:id/questions";
+                    break;
+
+                case "menus":
+                    switch (extPage) {
+                        case "links":
+                            type = "extended";
+                            name = "Посилання";
+                            collection = new ManagementModule.Collections.MenuLinks([],{menuId: idParent});
+                            editView = ManagementModule.Views.EditViews.MenuLink;
+                            listPath = false;
+                            break;
+
+                        default:
+                            type = "extended";
+                            name = "Меню";
+                            collection = new ManagementModule.Collections.Menus();
+                            editView = ManagementModule.Views.EditViews.Menu;
+                            listPath = rootPath+"/menus/:id/links";
+                            break;
+                        }
+                    break;
+
+                case "users":
+                    type = "list";
+                    name = "Користувачі";
+                    collection = new ManagementModule.Collections.Users();
+                    editView = new ManagementModule.Views.EditViews.User();
+                    listPath = false;
+                    break;
+                default:
+                    type = "extended";
+                    name = "Курси";
+                    collection = new ManagementModule.Collections.Courses();
+                    editView = ManagementModule.Views.EditViews.Course;
+                    listPath = rootPath+"/courses/:id/modules";
                     break;
             }
+            var options = {
+                type: type,
+                name: name,
+                collection: collection,
+                editView: editView,
+                listPath: listPath,
+                newItemPath: rootPath+"/new"
+            };
+
+            this.containerView.setView(".content", new ManagementModule.Views.managements(options));
         },
 
         getCurrentRootPath: function() {
