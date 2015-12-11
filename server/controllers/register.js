@@ -48,9 +48,9 @@ router.post("/", function(req, res, next) {
             });
             newUser._profile = userProfile._id;
             userProfile._user = newUser._id;
-            var token =jwt.sign({name: req.body.email, referer: req.get("Referer")}, req.app.get("superSecret"), {expiresIn: 180}),
-                    fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
-                res.json({token:token});
+            var token = jwt.sign({name: req.body.email, referer: req.get("Referer")}, req.app.get("superSecret"), {expiresIn: 180}),
+                fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
+                newUser.set("token", token);
                 transporter.sendMail({
                     from: "Softserve ITA <ssita.cms@gmail.com>",
                     to: req.body.email,
@@ -99,10 +99,15 @@ router.get("/", function (req, res, next) {
       User.findOne({email: decoded.name}, function (err, user) {
         if (err) return next(err);
         if (user) {
-          user
-            .set("isConfirmed", true)
-            .save();
-          res.redirect(decoded.referer);
+            if (user.token === token) {
+              user
+                .set("isConfirmed", true)
+                .set("token", "")
+                .save();
+              res.redirect(decoded.referer + "#login");
+            } else {
+                res.json({success: false, message: "Даний обліковий запис вже активовано!"});
+            }
         } else {
           return next();
         }

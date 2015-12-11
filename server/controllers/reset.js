@@ -29,7 +29,7 @@ router.post("/", function (req, res, next) {
             text: "Привіт " + user.name + "! Для відновлення паролю перейдіть за посиланням: " + fullUrl + "?token=" + token
           };
       user
-        .set("resetPassword", token)
+        .set("token", token)
         .save();
       transporter.sendMail(message, function (err, res) {
         if (err) return next(err);
@@ -52,7 +52,7 @@ router.get("/", function (req, res, next) {
           if (user.resetPassword === token) {
             user
               .set("password", Math.random())
-              .set("resetPassword", "")
+              .set("token", "")
               .save();
             var message = {
               from: "Softserve ITA <ssita.cms@gmail.com>",

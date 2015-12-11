@@ -26,7 +26,7 @@ var UserSchema = new Schema({
         type: Boolean,
         default: false
     },
-    resetPassword: {
+    token: {
         type: String
     },
     _profile: {
