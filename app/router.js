@@ -281,7 +281,7 @@ define(function(require) {
                             name  = "Тести";
                             child = "питання";
                             collection = new ManagementModule.Collections.Tests([],{id: idParent});
-                            //editView = new ManagementModule.Views.EditViews.Test;
+                            editView = ManagementModule.Views.EditViews.Test;
                             listPath = rootPath+"/tests/:id/questions";
                             break;
                     }
@@ -294,7 +294,7 @@ define(function(require) {
                             name  = "Питання";
                             child = "варіанти відповіді";
                             collection = new ManagementModule.Collections.Questions([],{id: idParent});
-                            //editView = new ManagementModule.Views.EditViews.Question;
+                            editView = ManagementModule.Views.EditViews.Question;
                             listPath = rootPath+"/questions/:id/variants";
                             break;
                     }

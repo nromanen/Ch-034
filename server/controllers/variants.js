@@ -22,7 +22,7 @@ router.delete("/:id", function(req, res) {
         return res.json({success: true, message: "Variant deleted successfully"});
     });
 });
-router.put("/:id", function(req, res) { console.log(req.body.isCorrect);
+router.put("/:id", function(req, res) {
     Variant.findByIdAndUpdate({_id: req.params.id}, {name: req.body.name, isCorrect: req.body.isCorrect}, function(err, variant) {
       if (err) return handleError(err);
       return res.json(variant);

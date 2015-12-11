@@ -6,8 +6,8 @@ define(function(require) {
             managements: require("./views/managementsView"),
             EditViews: {
                 Course   : require("./views/courseEditView"),
-                //Test     : require("./views/testEditView"),
-                //Question : require("./views/questionEditView"),
+                Test     : require("./views/testEditView"),
+                Question : require("./views/questionEditView"),
                 Menu     : require("./views/menuEditView"),
                 MenuLink : require("./views/menuLinkEditView")
             }

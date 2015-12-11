@@ -39,6 +39,7 @@ define(function(require) {
             close        : 1,
             open         : 2
         },
+        estimateMethod: ["simple", "proportional", "gravimetric"],
         embeddable: ['avi', 'mp4', 'video'],
         downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx']
     });

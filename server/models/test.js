@@ -19,7 +19,8 @@ TestSchema = new Schema({
         required: "Будь ласка перевірте назву тесту"
     },
     estimateMethod: {
-        type: String
+        type: String,
+        default: "simple"
     }
 });
 
