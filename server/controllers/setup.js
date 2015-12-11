@@ -169,6 +169,7 @@ router.get("/", function(req, res) {
         "name": "Sergiy",
         "surname": "Diak",
         "password": "Diak540910",
+        "isConfirmed": true,
         "role": 2
     });
     
