@@ -46,7 +46,7 @@ router.get("/", function(req, res) {
         access: [0,1,2]
     });
     var menusMenu = new Menu({
-        name: "Меню",
+        name: "Всі меню",
         slug: "menus_menu",
         isPublished: true,
         access: [2]
