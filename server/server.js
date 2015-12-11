@@ -38,7 +38,7 @@ app.use('/api/authenticate', require('./controllers/authenticate'));
 app.use('/api/setup', require('./controllers/setup'));
 app.use('/api/register', require('./controllers/register'));
 app.use('/api/reset', require('./controllers/reset'));
-//app.use('/api', require('./middlewares/auth'));
+app.use('/api', require('./middlewares/auth'));
 app.use('/api', require('./controllers'));
 app.use(require('./middlewares/errorHandler'));
 

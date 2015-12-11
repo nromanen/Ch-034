@@ -27,8 +27,10 @@ router.post("/", function (req, res, next) {
             to: user.email,
             subject: "Відновлення паролю",
             text: "Привіт " + user.name + "! Для відновлення паролю перейдіть за посиланням: " + fullUrl + "?token=" + token
-          }
-      res.json({token: token});
+          };
+      user
+        .set("resetPassword", token)
+        .save();
       transporter.sendMail(message, function (err, res) {
         if (err) return next(err);
         console.log("Повідомлення надіслано успішно. " + res.message);
@@ -47,19 +49,25 @@ router.get("/", function (req, res, next) {
       User.findOne({email: decoded.name}, function (err, user) {
         if (err) return next(err);
         if (user) {
-          user.set("password", Math.random());
-          user.save();
-          var message = {
-            from: "Softserve ITA <ssita.cms@gmail.com>",
-            to: user.email,
-            subject: "Новий пароль", 
-            text: "Привіт " + user.name + "! Ваш новий пароль: " + user.password
+          if (user.resetPassword === token) {
+            user
+              .set("password", Math.random())
+              .set("resetPassword", "")
+              .save();
+            var message = {
+              from: "Softserve ITA <ssita.cms@gmail.com>",
+              to: user.email,
+              subject: "Новий пароль", 
+              text: "Привіт " + user.name + "! Ваш новий пароль: " + user.password
+            };
+            transporter.sendMail(message, function (err, res) {
+              if (err) return next(err);
+              console.log("Повідомлення надіслано успішно." + res.message);
+            });
+          } else {
+            res.json({success:false, message: "Ви вже змінили пароль!"});
           }
-          transporter.sendMail(message, function (err, res) {
-            if (err) return next(err);
-            console.log("Повідомлення надіслано успішно." + res.message);
-          });
-          res.redirect(decoded.referer + "/#login");
+          res.redirect(decoded.referer + "#login");
         } else {
           return next();
         }

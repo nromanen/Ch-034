@@ -26,6 +26,9 @@ var UserSchema = new Schema({
         type: Boolean,
         default: false
     },
+    resetPassword: {
+        type: String
+    },
     _profile: {
         type: Schema.Types.ObjectId,
         ref: "Profile"
