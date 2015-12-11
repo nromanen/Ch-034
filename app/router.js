@@ -281,7 +281,7 @@ define(function(require) {
                             name  = "Тести";
                             child = "питання";
                             collection = new ManagementModule.Collections.Tests([],{id: idParent});
-                            //editView = new ManagementModule.Views.EditViews.Test();
+                            //editView = new ManagementModule.Views.EditViews.Test;
                             listPath = rootPath+"/tests/:id/questions";
                             break;
                     }
@@ -294,7 +294,7 @@ define(function(require) {
                             name  = "Питання";
                             child = "варіанти відповіді";
                             collection = new ManagementModule.Collections.Questions([],{id: idParent});
-                            //editView = new ManagementModule.Views.EditViews.Test();
+                            //editView = new ManagementModule.Views.EditViews.Question;
                             listPath = rootPath+"/questions/:id/variants";
                             break;
                     }
@@ -303,10 +303,10 @@ define(function(require) {
                 case "questions":
                     switch (extPage) {
                         case "variants":
+                            type  = "variant-list";
                             name  = "Варіанти відповіді";
                             child = false;
-                            collection = new ManagementModule.Collections.Questions([],{id: idParent});
-                            //editView = new ManagementModule.Views.EditViews.Test();
+                            collection = new ManagementModule.Collections.Variants([],{id: idParent});
                             listPath = false;
                             break;
                     }

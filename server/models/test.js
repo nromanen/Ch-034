@@ -16,7 +16,10 @@ TestSchema = new Schema({
     },
     name: {
         type: String,
-        required: "Будьласка перевірте назву тесту"
+        required: "Будь ласка перевірте назву тесту"
+    },
+    estimateMethod: {
+        type: String
     }
 });
 

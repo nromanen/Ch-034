@@ -17,9 +17,11 @@
             <table class="table table-striped">
                <tbody id="managementlist"></tbody>
             </table>
-            <div id="managementAddContainer">
-                <input id="managementAddInput" class="addFor<%= this.name %>" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
-            </div>
+            <% if (!(this.type === "variant-list" && this.collection.models[0].get("_question").typeVariant == 1 && !_.isUndefined(this.collection.length))) { %>
+                        <div id="managementAddContainer">
+                            <input id="managementAddInput" class="addFor<%= this.name %>" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
+                        </div>
+            <% } %>
         </div>
     </div>
 </div>
