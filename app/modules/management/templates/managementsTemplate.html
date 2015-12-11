@@ -15,18 +15,18 @@
             <h2><%= this.name %></h2>
             <div class="table-responsive">
             <table class="table table-striped">
-                <thead>
+                <thead id="managementHeader">
                     <tr>
                         <th width=*;"> Назва </th>
                         <% if (editView) { %>
-                                <th width="60px;"> Опублікувати</th>
+                                <th width="60px;"> Опублікувати </th>
                         <% } %>
                         <% if (listPath) { %>
-                                <th width="60px;">Переглд</th>
+                                <th width="60px;"> Перегляд </th>
                         <% } %>
 
 
-                                <th colspan="2" width="120px;">Редагувати</th>
+                                <th colspan="2" width="60px;">Редагувати</th>
 
                     </tr>
                 </thead>
