@@ -2,7 +2,7 @@ define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),
-        ReportModel = require("static/models/reportmessage"),
+        ReportModel = require("../models/reportmessage"),
 
     View = CMS.View.extend({
         el: false,

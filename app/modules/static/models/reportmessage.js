@@ -1,4 +1,4 @@
-define(function(require, extend, module) {
+define(function(require) {
     "use strict";
 
     var CMS = require("CMS"),

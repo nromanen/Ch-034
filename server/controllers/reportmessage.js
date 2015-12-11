@@ -2,11 +2,11 @@ var express = require("express"),
     router = express.Router(),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    ReportMessage = require("../models/ReportMessage");
+    ReportForm = require("../models/reportmessage");
 
 router.post("/", function(req, res) {
 
-    var reportMessage = new ReportMessage({ 
+    var reportMessage = new ReportForm({ 
         email: req.body.email,
         name: req.body.name,
         text: req.body.text,

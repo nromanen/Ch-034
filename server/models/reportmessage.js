@@ -1,10 +1,11 @@
+
 var mongoose = require("mongoose"),
     Schema   = mongoose.Schema,
 
-TestSchema = new Schema({
+ReportSchema = new Schema({
     email: {
         type: String,
-        required: "Введіть будь-ласка коректну пошту"
+        required: true
     },
     name: {
         type: String
@@ -13,8 +14,8 @@ TestSchema = new Schema({
         type: String
     },
     file: {
-        type: String
+        type: Buffer
     }
 });
 
-module.exports = mongoose.model("Test", TestSchema);
+module.exports = mongoose.model("ReportForm", ReportSchema);

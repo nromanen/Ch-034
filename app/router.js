@@ -163,7 +163,7 @@ define(function(require) {
                 parsedParams.area = !_.isEmpty(parsedParams.area) ? parsedParams.area : [];
                 parsedParams.group = !_.isEmpty(parsedParams.group) ? parsedParams.group : [];
             }
-
+//tut
             if (!this.containerView.getView(".sidebar-a")) {
                 this.containerView.setView(".sidebar-a", new SidebarModule.View({filterParams: parsedParams}));
                 this.containerView.getView(".sidebar-a").render();

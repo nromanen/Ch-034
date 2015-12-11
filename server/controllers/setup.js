@@ -12,7 +12,8 @@ var express = require("express"),
     Module = require("../models/module"),
     Menu = require("../models/menu"),
     MenuLink = require("../models/menuLink"),
-    Resource = require("../models/resource");
+    Resource = require("../models/resource"),
+    ReportForm = require("../models/reportmessage");
 
 router.get("/", function(req, res) {
     var mainMenu = new Menu({
@@ -133,6 +134,11 @@ router.get("/", function(req, res) {
         access: [2],
         url: "#management/users/new"
     });
+    var ReportForm2 = new ReportForm({
+        email: "test@te.tes",
+        name: "",
+        text: ""
+    });
     mainMenuLink1.save();
     mainMenuLink2.save();
     mainMenuLink3.save();
@@ -148,8 +154,7 @@ router.get("/", function(req, res) {
     menusMenuLink2.save();
     usersMenuLink1.save();
     usersMenuLink2.save();
-
-    reportForm.save();
+    ReportForm2.save();
 
     var user1 = new User({
         "email": "buispr@gmail.com",
