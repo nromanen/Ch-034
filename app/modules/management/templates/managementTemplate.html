@@ -8,9 +8,6 @@
                 <td width="60px;"> <span class="isPublished glyphicon glyphicon-ban-circle" id="isPublished" title="Не опубліковано"></span></td>
           <% } %>
         <% } %>
-        <% if (!_.isUndefined(model.get('duration'))) {%>
-          <td width="60px;"> <input class="managementVal bold duration" type="text" name="name" value="<%= model.get('duration') %> тиж." disabled></td>
-        <% } %>
 
         <% if (listPath) { %>
           <td width="60px;"> <a href="<%= listPath %>" class="glyphicon glyphicon-list-alt" id="" title="Переглянути <%= name%>"></a></td>
