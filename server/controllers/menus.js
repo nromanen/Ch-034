@@ -32,14 +32,22 @@ router.post("/", function(req, res) {
     });
 })
 
-router.get("/:slug", function(req, res) {
-    Menu
-        .findOne({slug: req.params.slug})
+router.get("/:slug", function(req, res, next) {
+    var query = Menu.findOne();
+
+    if (/^[a-fA-F0-9]{24}$/.test(req.params.slug)) {
+        query.where({"_id": req.params.slug});
+    } else {
+        query.where({"slug": req.params.slug});
+    }
+
+    query
         .populate({
             path: "_menuLinks",
             match: {access: req.authUser.role}
         })
         .exec(function(err, menu) {
+            if (err) next(err);
             return res.json(menu);
         });
 });

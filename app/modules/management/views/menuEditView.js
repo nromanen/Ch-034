@@ -18,10 +18,6 @@ define(function(require) {
             };
         },
 
-
-        beforeRender: function() {
-
-        },
         afterRender: function() {
             _.each(CMS.userRoles, function(item) {
                     var option = $(document.createElement("option")).val(item.type).text(item.name);
@@ -40,11 +36,9 @@ define(function(require) {
             this.model.set(serialized);
             this.model.save(null, {
                 success: function() {
-                    console.log("success");
                     _this.model.fetch({reset: true});
                 },
                 error: function() {
-                    console.log("error");
                 }
             });
         }

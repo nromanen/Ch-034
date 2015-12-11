@@ -115,11 +115,9 @@ define(function(require) {
             this.model.set(serialized);
             this.model.save(null, {
                 success: function() {
-                    console.log("success");
                     _this.model.fetch({reset: true});
                 },
                 error: function() {
-                    console.log("error");
                 }
             });
         }
