@@ -8,8 +8,9 @@ define(function(require) {
         id: "applyModal",
         className: "modal fade",
         events:{
-            "hidden.bs.modal #applyModal": "closePopup",
-            "click .btn-success": "submitHandlerClick",
+            "hidden.bs.modal": "closePopup",
+            "click #modalOkBtn": "submitHandlerClick",
+            "click #accept": "acceptHanlderClick",
             "click .btn-cancel": "declinePopup"
         },
         initialize: function(options) {
@@ -30,15 +31,21 @@ define(function(require) {
             this.$el.modal({show:false});
         },
         show: function(){
+            this.render();
             this.$el.modal("show");
         },
         closePopup: function(){
+            this.$el.removeData();
             this.remove();
         },
-        submitHandlerClick: function(){
+        submitHandlerClick: function(ev){
+        },
+        acceptHanlderClick: function(ev) {
+            this.model.fetch({reset: true});
         },
         declinePopup: function(){
             this.$el.modal("hide");
+            this.remove();
         },
         showSuccessMesasage: function(mess){
             $(".modal-dialog").html(this.successTemplate({successMessage: mess }));
