@@ -32,6 +32,9 @@
     .edit-row {
         display: none;
     }
+    .managementVal:not([disabled]){
+        max-width: 250px;
+    }
 
 }
 #managementAddContainer{
