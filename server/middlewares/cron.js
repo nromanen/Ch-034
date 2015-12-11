@@ -24,7 +24,7 @@ var CronJob = require("cron").CronJob,
 		    		} 
 		    	users.forEach(function (student) {
 		    		student._courses.forEach(function (course) {
-		    			if (Date.parse(course.startDate) - Date.parse(new Date()) < 864000000 ) {
+		    			if ((Date.parse(course.startDate) - Date.parse(new Date())) < 864000000 && (Date.parse(course.startDate)) >= Date.parse(new Date())) {
 		    				var message = {
 		    					from: "Softserve ITA <ssita.cms@gmail.com>",
 					            to: student.email,
