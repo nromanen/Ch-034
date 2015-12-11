@@ -9,8 +9,9 @@ define(function(require) {
             "click #managementDel": "deleteManagementModal",
             "click #managementEdit": "editManagement",
             "click #saveManagementEdit": "saveEditManagement",
-            "click #cenceleManagementEdit": "canceleEdit",
-            "click #isPublished": "changePublishState"
+            "click #cancelManagementEdit": "cancelEdit",
+            "click #isPublished": "changePublishState",
+            "click #isCorrect"  : "changeVariantStatus"
         },
 
         serialize: function() {
@@ -78,6 +79,7 @@ define(function(require) {
                     break;
 
                 case "list":
+                case "variant-list":
                     this.$inputSelector
                         .prop("disabled", function(_, prop) {return !prop;})
                         .focus();
@@ -90,7 +92,7 @@ define(function(require) {
                     this.$delButton.attr({
                         "title":"Відмінити",
                         "class":"glyphicon glyphicon-remove",
-                        "id":"cenceleManagementEdit"
+                        "id":"cancelManagementEdit"
                     });
                     break;
             }
@@ -111,13 +113,18 @@ define(function(require) {
             this.model.fetch({reset:true});
         },
 
-        canceleEdit: function(ev) {
+        cancelEdit: function(ev) {
             this.$inputSelector.val(this.model.get("name"));
             this.saveEditManagement(ev);
         },
         changePublishState: function() {
             var old = this.model.get("isPublished");
             this.model.set({isPublished: !old});
+            this.model.save();
+        },
+        changeVariantStatus: function() {
+            var old = this.model.get("isCorrect");
+            this.model.set({isCorrect: !old});
             this.model.save();
         }
     });

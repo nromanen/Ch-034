@@ -9,7 +9,7 @@ define(function(require){
             num      : null,
             courseId : null,
             moduleId : null,
-            nameTest : null
+            name    : null
         },
         api     : CMS.api,
         urlRoot : CMS.api + 'tests',

@@ -232,13 +232,14 @@ define(function(require) {
             if (this.containerView.getView(".sidebar-a")) {
                 this.containerView.getView(".sidebar-a").remove();
             }
-            var type, name, collection, editView, subItems, listPath,
+            var type, name, child, collection, editView, subItems, listPath,
                 rootPath = this.getCurrentRootPath();
 
             switch (mainPage) {
                 case "areas":
-                    type = "list";
-                    name = "Напрямки";
+                    type  = "list";
+                    name  = "Напрямки";
+                    child = false;
                     collection = new ManagementModule.Collections.Areas();
                     editView = false;
                     listPath = false;
@@ -246,6 +247,7 @@ define(function(require) {
                 case "groups":
                     type = "list";
                     name = "Типи груп";
+                    child = false;
                     collection = new ManagementModule.Collections.Groups();
                     editView = false;
                     listPath = false;
@@ -253,16 +255,18 @@ define(function(require) {
                 case "courses":
                     switch (extPage) {
                         case "modules":
-                            type = "extended";
-                            name = "Курси";
+                            type  = "extended";
+                            name  = "Модулі";
+                            child = "тести";
                             collection = new ManagementModule.Collections.Modules([],{id: idParent});
                             editView = ManagementModule.Views.EditViews.Course;
                             listPath = rootPath+"/modules/:id/tests";
                             break;
 
                         default:
-                            type = "extended";
-                            name = "Курси";
+                            type  = "extended";
+                            name  = "Курси";
+                            child = "модулі";
                             collection = new ManagementModule.Collections.Courses();
                             editView = ManagementModule.Views.EditViews.Course;
                             listPath = rootPath+"/courses/:id/modules";
@@ -270,12 +274,42 @@ define(function(require) {
                         }
                     break;
 
+                case "modules":
+                    switch (extPage) {
+                        case "tests":
+                            type  = "extended";
+                            name  = "Тести";
+                            child = "питання";
+                            collection = new ManagementModule.Collections.Tests([],{id: idParent});
+                            editView = ManagementModule.Views.EditViews.Test;
+                            listPath = rootPath+"/tests/:id/questions";
+                            break;
+                    }
+                    break;
+
                 case "tests":
-                    type = "extended";
-                    name = "Тести";
-                    collection = new ManagementModule.Collections.Tests();
-                    editView = new ManagementModule.Views.EditViews.Test();
-                    listPath = rootPath+"/tests/:id/questions";
+                    switch (extPage) {
+                        case "questions":
+                            type  = "extended";
+                            name  = "Питання";
+                            child = "варіанти відповіді";
+                            collection = new ManagementModule.Collections.Questions([],{id: idParent});
+                            editView = ManagementModule.Views.EditViews.Question;
+                            listPath = rootPath+"/questions/:id/variants";
+                            break;
+                    }
+                    break;
+
+                case "questions":
+                    switch (extPage) {
+                        case "variants":
+                            type  = "variant-list";
+                            name  = "Варіанти відповіді";
+                            child = false;
+                            collection = new ManagementModule.Collections.Variants([],{id: idParent});
+                            listPath = false;
+                            break;
+                    }
                     break;
 
                 case "menus":
@@ -283,6 +317,7 @@ define(function(require) {
                         case "links":
                             type = "extended";
                             name = "Посилання";
+                            child = false;
                             collection = new ManagementModule.Collections.MenuLinks([],{menuId: idParent});
                             editView = ManagementModule.Views.EditViews.MenuLink;
                             listPath = false;
@@ -291,6 +326,7 @@ define(function(require) {
                         default:
                             type = "extended";
                             name = "Меню";
+                            child = false;
                             collection = new ManagementModule.Collections.Menus();
                             editView = ManagementModule.Views.EditViews.Menu;
                             listPath = rootPath+"/menus/:id/links";
@@ -301,13 +337,15 @@ define(function(require) {
                 case "users":
                     type = "list";
                     name = "Користувачі";
+                    child = false;
                     collection = new ManagementModule.Collections.Users();
                     editView = new ManagementModule.Views.EditViews.User();
                     listPath = false;
                     break;
                 default:
-                    type = "extended";
-                    name = "Курси";
+                    type  = "extended";
+                    name  = "Курси";
+                    child = "модулі";
                     collection = new ManagementModule.Collections.Courses();
                     editView = ManagementModule.Views.EditViews.Course;
                     listPath = rootPath+"/courses/:id/modules";
@@ -316,6 +354,7 @@ define(function(require) {
             var options = {
                 type: type,
                 name: name,
+                child: child,
                 collection: collection,
                 editView: editView,
                 listPath: listPath,
