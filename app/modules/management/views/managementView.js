@@ -6,40 +6,50 @@ define(function(require) {
         el: false,
         template    : _.template(require("text!../templates/managementTemplate.html")),
         events: {
-            "click .managementDel": "deleteManagementModal",
-            "click .managementEdit": "editManagement",
-            "click .saveManagementEdit": "saveEditManagement",
-            "click .cancelManagementEdit": "cancelEdit",
-            "click #test-available" : "getResources"
+            "click #managementDel": "deleteManagementModal",
+            "click #managementEdit": "editManagement",
+            "click #saveManagementEdit": "saveEditManagement",
+            "click #cancelManagementEdit": "cancelEdit",
+            "click #isPublished": "changePublishState",
+            "click #isCorrect"  : "changeVariantStatus"
         },
 
         serialize: function() {
             return {
                 model: this.model,
-                name : this.name,
-                child: this.child
+                name: this.name,
+                listPath: this.listPath,
+                type: this.type
             };
         },
 
         initialize: function() {
-            this.listenTo(this.model, "reset change", this.render, this);
             CMS.ModalView.prototype.submitHandlerClick = function() {
                 this.model.destroy();
                 this.$el.modal("hide");
             };
-            this.deleteModal = new CMS.ModalView({model: this.model, modalHeader: "Ви дійсно хочете видалити :", submitButton: "Видалити"});
-            switch (this.kind) {
-                case "questions":
-                    this.editTemplate = _.template(require("text!../templates/editQuestionsFormTemplate.html"));
-                    break;
-                case "modules":
-                    this.addEditModuleTemplate = _.template(require("text!../templates/addEditModuleTemplate.html"));
-                    break;
+            this.deleteModal = new CMS.ModalView({
+                model: this.model,
+                modalHeader: "Ви дійсно хочете видалити :",
+                submitButton: "Видалити"
+            });
+            if (this.listPath) {
+                var pathParams = this.listPath.match(CMS.Helpers.RegexPatterns.paramsRegex);
+                if (!_.isEmpty(pathParams)) {
+                    this.listPath = this.listPath.replace(pathParams[0], this.model.id);
+                }
             }
+
         },
-
-        afterRender: function(){
-
+        afterRender: function() {
+            this.$inputSelector = this.$el.find('.managementVal');
+            this.$editButton = this.$el.find("#managementEdit");
+            this.$delButton = this.$el.find("#managementDel");
+            if (this.type === "extended" || this.editView) {
+                var rows = this.$el.find("td").length;
+                this.$el.after("<tr class='edit-row'><td colspan="+rows+"><div class='col-lg-12' id='collapsable-"+this.model.id+"'></div></td></tr>");
+                this.$collapsable = $("#collapsable-"+this.model.id);
+            }
         },
 
         deleteManagementModal: function(ev) {
@@ -47,88 +57,75 @@ define(function(require) {
             this.deleteModal.show();
         },
 
-        editManagement: function(ev){
-            var evModelEl = ev.target.parentNode;
-            if(["questions"].indexOf(this.kind) != -1) {
-                this.$el.after(this.editTemplate(this.model.toJSON()));
+        editManagement: function(ev) {
+            var _this = this;
+            switch (this.type) {
+                case "extended":
+                    this.$el.next().fadeToggle("slow");
+                    if (!(this.subView instanceof this.editView)) {
+                        this.subView = new this.editView({model: this.model});
+                        this.subView.render().then(function(view){
+                            _this.$collapsable.html(view.el);
+
+                            $("#discard").on("click", function(e) {
+                                _this.$el.next().fadeToggle("slow", function() {
+                                    _this.subView.remove();
+                                    delete _this.subView;
+                                });
+
+                            });
+                        });
+                    }
+                    break;
+
+                case "list":
+                case "variant-list":
+                    this.$inputSelector
+                        .prop("disabled", function(_, prop) {return !prop;})
+                        .focus();
+
+                    this.$editButton.attr({
+                        "title":"Зберегти",
+                        "class":"glyphicon glyphicon-ok",
+                        "id":"saveManagementEdit"
+                    });
+                    this.$delButton.attr({
+                        "title":"Відмінити",
+                        "class":"glyphicon glyphicon-remove",
+                        "id":"cancelManagementEdit"
+                    });
+                    break;
             }
-            else {
-                var inputEdit = evModelEl.previousSibling.previousSibling;
-                if (["tests", "modules"].indexOf(this.kind) != -1) {
-                    inputEdit = inputEdit.previousSibling.previousSibling.lastChild;
-                }
-                else {
-                    inputEdit = inputEdit.lastChild;
-                }
-                inputEdit.removeAttribute("disabled");
-                inputEdit.focus();
-            }
-            $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"saveManagementEdit glyphicon glyphicon-ok"});
-            $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"cancelManagementEdit glyphicon glyphicon-remove"});
-            if (this.kind == "modules") {
-                $("#managementAddButton").addClass("disable");
-                this.$el.after(this.addEditModuleTemplate(this.model.toJSON()));
-                $(document).ready(function() {
-                _.delay(function() {
-                    var editor = $("#moduleDescription").ckeditor({
-                            extraPlugins: 'justify,image,uploadimage',
-                            imageUploadUrl: CMS.api+"upload/image",
-                            language: 'uk',
-                            skin:'moono'
-                        }).editor;
-                    if (editor !== "undefined") {
-                        editor.on('fileUploadRequest', function( evt ) {
-                                var xhr = evt.data.fileLoader.xhr;
-                                xhr.setRequestHeader( 'ContentType', "form/multi-part");
-                                xhr.setRequestHeader( 'x-access-token', CMS.SessionModel.getItem('UserSession').token );
-                                xhr.setRequestHeader( 'Cache-Control', 'no-cache' );
-                            } );
-                        }
-                    }, 300);
-                });
-                $("module-name").focus();
-                    $("#module-name").val(this.model.attributes.name);
-                    $("#description").val(this.model.attributes.description);
-                    document.getElementById("test-available").checked = this.model.attributes.available;
-            } else {
-                $(evModelEl.parentNode.parentNode).find(".cenceleManagementEdit").click();
-                if (this.kind == "areas"|| this.kind == "groups"){
-                    evModelEl.previousSibling.previousSibling.lastChild.removeAttribute("disabled");
-                    evModelEl.previousSibling.previousSibling.lastChild.focus();
-                }
-                $(evModelEl.parentNode).find(".managementEdit").attr({"title":"Зберегти", "class":"glyphicon glyphicon-ok saveManagementEdit"});
-                $(evModelEl.parentNode).find(".managementDel").attr({"title":"Відмінити", "class":"glyphicon glyphicon-remove cenceleManagementEdit"});
-                $(evModelEl.parentNode).find(".editForm").fadeIn();
-            }
+
         },
 
         saveEditManagement: function(ev) {
-           var newValue = _.escape($(ev.target.parentNode.parentNode).find(".managementVal").val());
-           if (!newValue) return;
-           ev.target.parentNode.previousSibling.previousSibling.lastChild.setAttribute("disabled","disabled");
-            $(ev.target.parentNode.parentNode).find(".managementEdit").attr({"title":"Редагувати", "class":"glyphicon glyphicon-pencil"});
-           this.model.set({name:newValue});
-           console.log();
-           if (this.kind == "modules") {
-                this.model.set({
-                    description: $("#moduleDescription").val(),
-                    available: $("#test-available").prop("checked")
-                });
-           }
-           this.model.save();
-           this.model.fetch({reset:true});
+            var newValue = _.escape(this.$inputSelector.val());
+            if (!newValue) return;
+            this.$inputSelector.prop("disabled","disabled");
+            this.$editButton.attr({
+                "title":"Редагувати",
+                "class":"glyphicon glyphicon-pencil",
+                "id":"managementEdit"
+            });
+            this.model.set({name:newValue});
+            this.model.save();
+            this.model.fetch({reset:true});
         },
 
         cancelEdit: function(ev) {
-            $(ev.target.parentNode.parentNode).find(".managementVal").val(this.model.get("name"));
+            this.$inputSelector.val(this.model.get("name"));
             this.saveEditManagement(ev);
         },
-
-        getResources: function() {
-            console.log("aaa");
-            this.resourcesModal = new CMS.ModalView({model: this.model, modalHeader: "", submitButton: "ОК"});
-            this.resourcesModal.render();
-            this.resourcesModal.show();
+        changePublishState: function() {
+            var old = this.model.get("isPublished");
+            this.model.set({isPublished: !old});
+            this.model.save();
+        },
+        changeVariantStatus: function() {
+            var old = this.model.get("isCorrect");
+            this.model.set({isCorrect: !old});
+            this.model.save();
         }
     });
 

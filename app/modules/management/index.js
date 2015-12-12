@@ -4,6 +4,13 @@ define(function(require) {
         Views: {
             management: require("./views/managementView"),
             managements: require("./views/managementsView"),
+            EditViews: {
+                Course   : require("./views/courseEditView"),
+                Test     : require("./views/testEditView"),
+                Question : require("./views/questionEditView"),
+                Menu     : require("./views/menuEditView"),
+                MenuLink : require("./views/menuLinkEditView")
+            }
         },
         Model: require("./models/managementModel"),
         Collections: {
@@ -12,7 +19,10 @@ define(function(require) {
             Courses   : require("./collections/coursesCollection"),
             Modules   : require("./collections/modulesCollection"),
             Tests     : require("./collections/testsCollection"),
-            Questions : require("./collections/questionsCollection")
+            Questions : require("./collections/questionsCollection"),
+            Variants  : require("./collections/variantsCollection"),
+            Menus     : require("./collections/menusCollection"),
+            MenuLinks : require("./collections/menuLinksCollection")
         }
     };
 });

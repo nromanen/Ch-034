@@ -21,7 +21,6 @@ var CourseSchema = new Schema({
     },
     unpublish_at: {
         type: Date,
-        default: 8640000000000000
     },
     isPublished: {
         type: Boolean,

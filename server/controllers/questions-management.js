@@ -41,7 +41,7 @@ router.post("/", function(req, res) {
 });
 
 router.put("/:id", function(req, res) {
-    Question.findByIdAndUpdate({_id: req.params.id}, {name: req.body.name}, function(err, question) {
+    Question.findByIdAndUpdate({_id: req.params.id}, {name: req.body.name, typeVariant: req.body.typeVariant}, function(err, question) {
       if (err) return handleError(err);
       return res.json(question);
     });

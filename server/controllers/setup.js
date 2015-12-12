@@ -7,6 +7,7 @@ var express = require("express"),
     Course = require("../models/course"),
     Test = require("../models/test"),
     Question = require("../models/question"),
+    Variant = require("../models/variant"),
     Area = require("../models/area"),
     Group = require("../models/group"),
     Module = require("../models/module"),
@@ -16,32 +17,46 @@ var express = require("express"),
 
 router.get("/", function(req, res) {
     var mainMenu = new Menu({
-        title: "Меню",
-        slug: "main_menu"
+        name: "Меню",
+        slug: "main_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var profileMenu = new Menu({
-        title: "Профайл",
-        slug: "profile_menu"
+        name: "Профайл",
+        slug: "profile_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var coursesMenu = new Menu({
-        title: "Курси",
-        slug: "courses_menu"
+        name: "Курси",
+        slug: "courses_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var testsMenu = new Menu({
-        title: "Тести",
-        slug: "tests_menu"
+        name: "Тести",
+        slug: "tests_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var listsMenu = new Menu({
-        title: "Списки",
-        slug: "lists_menu"
+        name: "Списки",
+        slug: "lists_menu",
+        isPublished: true,
+        access: [0,1,2]
     });
     var menusMenu = new Menu({
-        title: "Меню",
-        slug: "menus_menu"
+        name: "Всі меню",
+        slug: "menus_menu",
+        isPublished: true,
+        access: [2]
     });
     var usersMenu = new Menu({
-        title: "Користувачі",
-        slug: "users_menu"
+        name: "Користувачі",
+        slug: "users_menu",
+        isPublished: true,
+        access: [2]
     });
     var mainMenuLink1 = new MenuLink({
         name: "Всі курси",
@@ -154,7 +169,8 @@ router.get("/", function(req, res) {
         "name": "Sergiy",
         "surname": "Diak",
         "password": "Diak540910",
-        "role": 1
+        "isConfirmed": true,
+        "role": 2
     });
     
     var profile = new UserProfile({
@@ -176,16 +192,20 @@ router.get("/", function(req, res) {
     user1.save();
     profile.save();
     var ui = new Area({
-        name: "UI"
+        name: "UI",
+        order: 1
     });
     var java = new Area({
-        name: "Java"
+        name: "Java",
+        order: 2
     });
     var design = new Area({
-        name: "Design"
+        name: "Design",
+        order: 3
     });
     var net = new Area({
-        name: ".Net"
+        name: ".Net",
+        order: 4
     });
 
     ui.save();
@@ -194,18 +214,168 @@ router.get("/", function(req, res) {
     net.save();
 
     var early = new Group({
-        name: "Рання"
+        name: "Рання",
+        order: 1
     });
     var daily = new Group({
-        name: "Денна"
+        name: "Денна",
+        order: 2
     });
     var evening = new Group({
-        name: "Вечірня"
+        name: "Вечірня",
+        order: 3
     });
 
     early.save();
     daily.save();
     evening.save();
+
+    var variant11 = new Variant({
+        num: 1,
+        name: "&lt;name&gt;&lt;/name&gt;",
+        isCorrect: true
+    });
+    var variant12 = new Variant({
+        num: 2,
+        name: "other variant",
+        isCorrect: false
+    });
+    var variant2 = new Variant({
+        num: 0,
+        name: "DOCTYPE html",
+        isCorrect: true
+    });
+    var variant31 = new Variant({
+        num: 1,
+        name: "header",
+        isCorrect: true
+    });
+        var variant32 = new Variant({
+        num: 2,
+        name: "img",
+        isCorrect: false
+    });
+        var variant33 = new Variant({
+        num: 3,
+        name: "footer",
+        isCorrect: true
+    });
+    var variant34 = new Variant({
+        num: 4,
+        name: "span",
+        isCorrect: false
+    });
+
+    var variant41 = new Variant({
+        num: 1,
+        name: "&lt;input required=on&gt;",
+        isCorrect: false
+    });
+        var variant42 = new Variant({
+        num: 2,
+        name: "&lt;input required=yes&gt;",
+        isCorrect: false
+    });
+        var variant43 = new Variant({
+        num: 3,
+        name: "&lt;input required&gt;",
+        isCorrect: true
+    });
+    var variant44 = new Variant({
+        num: 4,
+        name: "&lt;input required=required&gt;",
+        isCorrect: true
+    });
+    var variant51 = new Variant({
+        num: 1,
+        name: "&lt;body charset=&#34;utf-8&#34;&gt;",
+        isCorrect: false
+    });
+    var variant52 = new Variant({
+        num: 2,
+        name: "&lt;meta charset=&#34;utf-8&#34;&gt;",
+        isCorrect: true
+    });
+    var variant53 = new Variant({
+        num: 3,
+        name: "&lt;meta codebase=&#34;utf-8&#34;&gt;",
+        isCorrect: false
+    });
+    var variant61 = new Variant({
+        num: 1,
+        name: "&lt;meta&gt;",
+        isCorrect: true
+    });
+    var variant62 = new Variant({
+        num: 2,
+        name: "&lt;link&gt;",
+        isCorrect: false
+    });
+    var variant63 = new Variant({
+        num: 3,
+        name: "&lt;style&gt;",
+        isCorrect: false
+    });
+    var variant64 = new Variant({
+        num: 4,
+        name: "&lt;base&gt;",
+        isCorrect: false
+    });
+    var variant65 = new Variant({
+        num: 5,
+        name: "&lt;title&gt;",
+        isCorrect: false
+    });
+    var variant71 = new Variant({
+        num: 1,
+        name: "&lt;target&gt;",
+        isCorrect: false
+    });
+    var variant72 = new Variant({
+        num: 2,
+        name: "&lt;td&gt;",
+        isCorrect: true
+    });
+    var variant73 = new Variant({
+        num: 3,
+        name: "&lt;hd&gt;",
+        isCorrect: false
+    });
+    var variant74 = new Variant({
+        num: 4,
+        name: "&lt;colspan&gt;",
+        isCorrect: true
+    });
+    var variant8 = new Variant({
+        num: 0,
+        name: "&lt;thead>&gt;",
+        isCorrect: true
+    });
+
+    variant11.save();
+    variant12.save();
+    variant2.save();
+    variant31.save();
+    variant32.save();
+    variant33.save();
+    variant34.save();
+    variant41.save();
+    variant42.save();
+    variant43.save();
+    variant44.save();
+    variant51.save();
+    variant52.save();
+    variant53.save();
+    variant61.save();
+    variant62.save();
+    variant63.save();
+    variant64.save();
+    variant65.save();
+    variant71.save();
+    variant72.save();
+    variant73.save();
+    variant74.save();
+    variant8.save();
 
     var question1 = new Question({
         num: 1,
@@ -291,26 +461,93 @@ router.get("/", function(req, res) {
         answer: "&lt;thead>&gt;"
     });
 
-    question1.save();
-    question2.save();
-    question3.save();
-    question4.save();
-    question5.save();
-    question6.save();
-    question7.save();
-    question8.save();
+    question1.save(function(err) {
+        if (err) throw err;
+        variant11._question = question1._id;
+        variant12._question = question1._id;
+        variant11.save();
+        variant12.save();
+    });
+    question2.save(function(err) {
+        if (err) throw err;
+        variant2._question = question2._id;
+        variant2.save();
+    });
+    question3.save(function(err) {
+        if (err) throw err;
+        variant31._question = question3._id;
+        variant32._question = question3._id;
+        variant33._question = question3._id;
+        variant34._question = question3._id;
+        variant31.save();
+        variant32.save();
+        variant33.save();
+        variant34.save();
+    });
+    question4.save(function(err) {
+        if (err) throw err;
+        variant41._question = question4._id;
+        variant42._question = question4._id;
+        variant43._question = question4._id;
+        variant44._question = question4._id;
+        variant41.save();
+        variant42.save();
+        variant43.save();
+        variant44.save();
+    });
+    question5.save(function(err) {
+        if (err) throw err;
+        variant51._question = question5._id;
+        variant52._question = question5._id;
+        variant53._question = question5._id;
+        variant51.save();
+        variant52.save();
+        variant53.save();
+    });
+    question6.save(function(err) {
+        if (err) throw err;
+        variant61._question = question6._id;
+        variant62._question = question6._id;
+        variant63._question = question6._id;
+        variant64._question = question6._id;
+        variant65._question = question6._id;
+        variant61.save();
+        variant62.save();
+        variant63.save();
+        variant64.save();
+        variant65.save();
+    });
+    question7.save(function(err) {
+        if (err) throw err;
+        variant71._question = question7._id;
+        variant72._question = question7._id;
+        variant73._question = question7._id;
+        variant74._question = question7._id;
+        variant71.save();
+        variant72.save();
+        variant73.save();
+        variant74.save();
+    });
+    question8.save(function(err) {
+        if (err) throw err;
+        variant8._question = question8._id;
+        variant8.save();
+    });
 
     var test1 = new Test({
         num: 1,
-        name: "Теги: поняття, типи, підтримка"
+        name: "Теги: поняття, типи, підтримка",
+        estimateMethod: "simple"
     });
     var test2 = new Test({
         num: 2,
-        name: "Форми"
+        name: "Форми",
+        estimateMethod: "gravimetric"
     });
     var test3 = new Test({
         num: 3,
-        name: "Таблиці"
+        name: "Таблиці",
+        estimateMethod: "proportional"
     });
     var test4 = new Test({
         num: 4,
@@ -462,7 +699,7 @@ router.get("/", function(req, res) {
         description: "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-10-06",
         duration: 4,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/html.png",
@@ -476,7 +713,7 @@ router.get("/", function(req, res) {
         startDate: "2015-9-16",
         isPublished: false,
         duration: 1,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/flat_ui.png",
@@ -491,7 +728,7 @@ router.get("/", function(req, res) {
         startDate: "2015-8-26",
         unpublish_at: unpublish_date,
         duration: 2,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/css.png",
@@ -504,7 +741,7 @@ router.get("/", function(req, res) {
         description: "Даний курс складається з п'яти модулів та екзаменаційного завдання. Кожен модуль містить посилання на матеріали відеохарактеру та допоміжну інформацію. Курс буде цікавий студентам, які хотіли б оволодіти мистецтвом розробки веб-ресурсів згідно нових тенденцій дизайну",
         startDate: "2015-10-26",
         duration: 3,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 8,
         applicantsNumber: 2,
         image: "img/java.png",
@@ -517,7 +754,7 @@ router.get("/", function(req, res) {
         description: "У Вас буде можливість вивчити технології та підходи до розробки Web-програм з багаторівневою архітектурою. Ви отримаєте досвід побудови Web-програм засобами AStest1.NET MVC, Silverlight, побудови десктопних програм засобами WPF, реалізацію ORM засобами ADO.NET Entity, а також розробки Web-сервісів з допомогою WСF.",
         startDate: "2015-10-01",
         duration: 6,
-        schedule: ["Пн, Вт, Пт"],
+        schedule: ["Пн", "Вт", "Пт"],
         minStudents: 12,
         applicantsNumber: 2,
         image: "img/_net.png",

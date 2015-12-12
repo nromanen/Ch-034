@@ -6,8 +6,13 @@
     }
     .managementEdit{
     }
-    > tr{
+    & > tr{
         height: 43px;
+        background-color: transparent;
+
+            &.zebra {
+                background-color: #f9f9f9;
+            }
             .glyphicon {
                  font-size: 1.3em;
                  cursor: pointer;
@@ -16,12 +21,16 @@
                 text-decoration: none;
                 color: #333;
             }
+
     }
     .editForm{
         display: none;
     }
     .bold{
         font-size: 15px;
+    }
+    .edit-row {
+        display: none;
     }
 
 }

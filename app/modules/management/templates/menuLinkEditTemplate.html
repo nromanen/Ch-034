@@ -1,0 +1,45 @@
+<form class="form-horizontal" id="edit-course">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="form-group">
+              <label class="col-md-12 " for="name">Назва курсу</label>  
+              <div class="col-md-12">
+              <input id="link_name" name="name" type="text" class="form-control input-md" required="" value="<%= model.get('name') %>">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="url">Посилання</label>  
+              <div class="col-md-12">
+              <input id="link_url" name="url" type="url" class="form-control input-md" required="" value="<%= model.get('url') %>">
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4"></div>
+        <div class="col-lg-3">
+            <div class="form-group">
+              <label class="col-md-8 control-label" for="isPublished">Опублікований</label>
+              <div class="col-md-4"> 
+                  <input type="checkbox" name="isPublished" id="isPublished-0" class="pull-right" <% model.get('isPublished') ? print('checked="checked"') : false %>>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-md-12 " for="access">Доступ</label>
+              <div class="col-md-12">
+                <select id="menu_access" name="access[]" class="form-control" multiple="multiple">
+                </select>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-12 " for="save_button"></label>
+      <div class="col-md-12 pull-right">
+        <button type="button" id="save_button" name="save_button" class="btn btn-success">Зберегти</button>
+        <button type="button" id="discard" name="discard" class="btn btn-danger">Відминити зміни</button>
+      </div>
+    </div>
+</form>
