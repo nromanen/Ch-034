@@ -96,7 +96,7 @@ define(function(require) {
                     contentType: false,
                     success: function( respond, textStatus, jqXHR ){
                         if( typeof respond.error === 'undefined' ){
-                            var files_path = respond.files;
+                            var files_path = respond.url;
                             var resource = new Resource();
                             resource.set({
                                 name: $("#addResourceName").val(),
@@ -104,7 +104,6 @@ define(function(require) {
                                 type: $("#addResourceType").val(),
                                 url: files_path
                             });
-
                             resource.save(null, {
                                 success: function(resource, response){
                                     that.collection.fetch({reset:true});

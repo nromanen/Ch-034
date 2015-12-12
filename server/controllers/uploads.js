@@ -19,7 +19,6 @@ router.post('/image', function(req, res) {
     });
 });
 router.post('/resource', function(req, res) {
-    console.log(req.busboy);
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename) {
         var fstream = fs.createWriteStream('./server/uploads/resources/' + filename); 

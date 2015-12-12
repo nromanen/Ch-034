@@ -3,6 +3,7 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
     Resource = require("../models/resource");
+    Module = require("../models/module");
 
 router.get("/", function(req, res) {
     Resource
@@ -39,8 +40,11 @@ router.post("/", function(req, res) {
         _module: req.body.moduleId
     });
 
-    resource.save(function(error) {
-        if (error) throw error;
+    resource.save(function(error, resource) {
+        if (error) throw error
+        Module.findOneAndUpdate({_id: req.body.moduleId}, {$push: {_resources: resource.id}}, function(error) {
+            if (error) throw error
+        });
         return res.json({success: true, message: "Resource is created successfully"});
     });
 });
