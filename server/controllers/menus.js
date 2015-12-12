@@ -6,9 +6,11 @@ var express = require("express"),
     MenuLink = require("../models/menuLink");
 
 router.get("/", function(req, res) {
-    Menu
-        .find()
-        .populate({
+    var query = Menu.find({access: req.authUser.role});
+    if (req.authUser.role !== 2) {
+        query.where({"isPublished": true})
+    }
+    query.populate({
             path: "_menuLinks",
             match: {access: req.authUser.role}
         })
@@ -20,7 +22,9 @@ router.get("/", function(req, res) {
 router.post("/", function(req, res) {
     var menu = new Menu({
         title: req.body.title,
-        slug: req.body.slug
+        slug: req.body.slug,
+        access: req.body.access,
+        isPublished: req.body.isPublished
     });
     menu.save(function(err) {
         if (err) throw err
@@ -28,14 +32,22 @@ router.post("/", function(req, res) {
     });
 })
 
-router.get("/:slug", function(req, res) {
-    Menu
-        .findOne({slug: req.params.slug})
+router.get("/:slug", function(req, res, next) {
+    var query = Menu.findOne();
+
+    if (/^[a-fA-F0-9]{24}$/.test(req.params.slug)) {
+        query.where({"_id": req.params.slug});
+    } else {
+        query.where({"slug": req.params.slug});
+    }
+
+    query
         .populate({
             path: "_menuLinks",
             match: {access: req.authUser.role}
         })
         .exec(function(err, menu) {
+            if (err) next(err);
             return res.json(menu);
         });
 });

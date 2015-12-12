@@ -11,3 +11,4 @@ server/log.log
 .idea
 grunt_start.bat
 node_start.bat
+npm-debug.log

@@ -60,7 +60,7 @@ router.post("/", function(req, res) {
 });
 
 router.put("/:id", function(req, res) {
-    Test.findByIdAndUpdate({_id: req.params.id}, {name: req.body.name}, function(err, test) {
+    Test.findByIdAndUpdate({_id: req.params.id}, {name: req.body.name, estimateMethod: req.body.estimateMethod}, function(err, test) {
       if (err) return handleError(err);
       return res.json(test);
     });

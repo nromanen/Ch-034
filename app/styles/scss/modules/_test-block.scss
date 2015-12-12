@@ -6,6 +6,10 @@
     max-width: 630px;
     min-height: 450px;
     position: relative;
+
+    .form-control {
+        width: 300px;
+    }
 }
 
 /* style for page: course-test   */
@@ -56,9 +60,7 @@ h1 {
     margin-bottom: 80px;
 }
 
-.form-control {
-    width: 300px;
-}
+
 
 #area-submit {
     position: absolute;

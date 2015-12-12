@@ -12,9 +12,8 @@ define(function(require) {
 
         serialize: function() {
             return {
-                management: this.collection,
-                name      : this.name,
-                title     : this.title,
+                collection: this.collection,
+                name      : this.name
             };
         },
 
@@ -27,37 +26,17 @@ define(function(require) {
         },
 
         afterRender: function(){
+            this.$el.find("#managementlist>tr:not(.edit-row):even").addClass('zebra');
             this.$el.find("#" + this.name).addClass("active").find("a").addClass("active");
         },
 
         renderOne: function(el){
-            switch (this.name) {
-                case "courses":
-                    this.child = {
-                        name     : "модулі",
-                        hrefPart : "modules"
-                    };
-                    break;
-                case "modules":
-                    this.child = {
-                        name     : "тести",
-                        hrefPart : "tests"
-                    };
-                    break;
-                case "tests":
-                    this.child = {
-                        name     : "питання",
-                        hrefPart : "questions"
-                    };
-                    break;
-                default:
-                    this.child = "";
-                    break;
-            }
             this.insertView("#managementlist", new ManagementView({
-                model: el,
-                kind: this.name,
-                child: this.child
+                model   : el,
+                type    : this.type,
+                name    : this.child,
+                editView: this.editView,
+                listPath: this.listPath
             }));
         },
 

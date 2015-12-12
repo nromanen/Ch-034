@@ -6,7 +6,7 @@ MenuLinkSchema = new Schema({
         type: String,
         required: "Будьласка заповніть назву меню",
     },
-    published: {
+    isPublished: {
         type: Boolean,
         default: true
     },
