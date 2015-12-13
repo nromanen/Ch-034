@@ -1,14 +1,29 @@
+#managementHeader {
+    tr > th {
+        
+        font-size: 1.1em;
+        font-weight: bold;
+        &:not(:first-child) {
+            text-align: center;
+        }
+    }
+}
 #managementlist{
+
     .managementVal[disabled]{
         background: inherit;
         border: none;
         margin: 2px; 
+    }
+    .managementVal:not([disabled]){
+        max-width: 250px;
     }
     .managementEdit{
     }
     & > tr{
         height: 43px;
         background-color: transparent;
+        text-align: center;
 
             &.zebra {
                 background-color: #f9f9f9;
@@ -29,11 +44,12 @@
     .bold{
         font-size: 15px;
     }
-    .edit-row {
+    .edit-row, .add-row {
         display: none;
+        text-align: left;
     }
-
 }
+
 #managementAddContainer{
    min-width: 265px;
     .btn{
@@ -77,6 +93,15 @@
     background: #fff;
     min-height: 350px;
     padding: 15px 40px 15px 40px;
+}
+.management-title{
+    margin: 20px 18px 20px 0;
+}
+.management-title h2{
+    display: inline;
+}
+.management-title .glyphicon {
+    cursor: pointer;
 }
 .tab-area .active {
     text-decoration: none;

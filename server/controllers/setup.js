@@ -381,84 +381,56 @@ router.get("/", function(req, res) {
         num: 1,
         name: "Введіть класичний варіант написання тегу",
         typeVariant: 0,
-        variants: {
-            variant1: ["&lt;name&gt;&lt;/name&gt;", true],
-            variant2: ["other variant", false]
-        }
+        _variants: [variant11._id, variant12._id]
     });
 
     var question2 = new Question({
         num: 2,
         name: "Введіть doctype HTML5 без &lt;&gt;",
         typeVariant: 1,
-        answer: "DOCTYPE html"
+        _variants: [variant2._id]
     });
 
     var question3 = new Question({
         num: 3,
         name: "Відмітьте теги, які не підтримуються HTML 4.0",
         typeVariant: 2,
-        variants: {
-            variant1: ["header", true],
-            variant2: ["img", false],
-            variant3: ["footer", true],
-            variant4: ["span", false]
-        }
+        _variants: [variant31._id, variant32._id, variant33._id, variant34._id]
     });
 
     var question4 = new Question({
         num: 4,
         name: "Яка форма запису є коректною ? (два варіанти)",
         typeVariant: 2,
-        variants: {
-            variant1: ["&lt;input required=on&gt;", false],
-            variant2: ["&lt;input required=yes&gt;", false],
-            variant3: ["&lt;input required&gt;", true],
-            variant4: ["&lt;input required=required&gt;", true]
-        }
+         _variants: [variant41._id, variant42._id, variant43._id, variant44._id]
     });
 
     var question5 = new Question({
         num: 5,
         name: "Як встановити кодировку документа?",
         typeVariant: 0,
-        variants: {
-            variant1: ["&lt;body charset=&#34;utf-8&#34;&gt;", false],
-            variant2: ["&lt;meta charset=&#34;utf-8&#34;&gt;", true],
-            variant3: ["&lt;meta codebase=&#34;utf-8&#34;&gt;", false]
-        }
+         _variants: [variant51._id, variant52._id, variant53._id]
     });
 
     var question6 = new Question({
         num: 6,
         name: "Який елемент у секції &lt;head&gt; є обов'язковим?",
         typeVariant: 0,
-        variants: {
-            variant1: ["&lt;meta&gt;", true],
-            variant2: ["&lt;link&gt;", false],
-            variant3: ["&lt;style&gt;", false],
-            variant4: ["&lt;base&gt;", false],
-            variant5: ["&lt;title&gt;", false]
-        }
+         _variants: [variant61._id, variant62._id, variant63._id, variant64._id, variant65._id]
     });
 
     var question7 = new Question({
         num: 1,
         name: "Який тег не є тегом форматування таблиці?",
         typeVariant: 0,
-        variants: {
-            variant1: ["&lt;target&gt;", false],
-            variant2: ["&lt;td&gt;", true],
-            variant3: ["&lt;hd&gt;", false],
-            variant4: ["&lt;colspan&gt;", true]
-        }
+        _variants: [variant71._id, variant72._id, variant73._id, variant74._id]
     });
 
     var question8 = new Question({
         num: 2,
         name: "Який тег потрібен для організації назви таблиці?",
         typeVariant: 1,
-        answer: "&lt;thead>&gt;"
+        _variants: [variant8._id]
     });
 
     question1.save(function(err) {
