@@ -22,8 +22,11 @@
                 <thead id="managementHeader">
                     <tr>
                         <th width=*;"> Назва </th>
-                        <% if (editView) { %>
+                        <% if (this.instance === "courses") { %>
                                 <th width="60px;"> Опублікувати </th>
+                        <% } %>
+                        <% if (this.instance === "variants") { %>
+                                <th width="60px;"> Вірність</th>
                         <% } %>
                         <% if (listPath) { %>
                                 <th width="60px;"> Перегляд </th>

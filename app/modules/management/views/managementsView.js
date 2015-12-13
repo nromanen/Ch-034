@@ -48,7 +48,22 @@ define(function(require) {
 
         addManagement: function () {
             if(this.type == "extended" ) {
+                var _this = this;
                 this.$el.find(".add-row").fadeToggle("slow");
+                if (!(this.subView instanceof this.editView)) {
+                    this.subView = new this.editView();
+                    this.subView.render().then(function(view){
+                        _this.$collapsable.html(view.el);
+
+                        $("#discard").on("click", function(e) {
+                            _this.$el.next().fadeToggle("slow", function() {
+                                _this.subView.remove();
+                                delete _this.subView;
+                            });
+
+                        });
+                    });
+                }
             }
             else {
                 var managementName = _.escape(this.$el.find("#managementAddInput").val());

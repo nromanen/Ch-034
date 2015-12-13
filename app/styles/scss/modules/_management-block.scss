@@ -46,6 +46,7 @@
     }
     .edit-row, .add-row {
         display: none;
+        text-align: left;
     }
 }
 
@@ -92,7 +93,7 @@
     min-height: 350px;
 }
 .management-title{
-    margin: 20px 35px 20px 0;
+    margin: 20px 18px 20px 0;
 }
 .management-title h2{
     display: inline;
