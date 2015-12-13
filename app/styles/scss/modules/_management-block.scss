@@ -29,7 +29,7 @@
     .bold{
         font-size: 15px;
     }
-    .edit-row {
+    .edit-row, .add-row {
         display: none;
     }
 
@@ -75,6 +75,15 @@
 .create-area {
     background: #fff;
     min-height: 350px;
+}
+.management-title{
+    margin: 20px 35px 20px 0;
+}
+.management-title h2{
+    display: inline;
+}
+.management-title .glyphicon {
+    cursor: pointer;
 }
 .tab-area .active {
     text-decoration: none;
