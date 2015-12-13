@@ -108,7 +108,7 @@
             <div class="form-group">
               <label class="col-md-12 " for="startDate">Початок курсу</label>
               <div class="col-md-12">
-                <div class="input-group date" id="course-<%= this.model.id %>_start_picker">
+                <div class="input-group date" id="course-<%= model.cid %>_start_picker">
                     <input id="course_start" data-provide="datepicker" name="startDate" type="text" placeholder="дд/мм/рррр" class="form-control input-md">
                     <div class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -129,7 +129,7 @@
             <div class="form-group">
               <label class="col-md-12 " for="publish_at">Початок публікації</label>  
               <div class="col-md-12">
-                  <div class="input-group date" id="course-<%= this.model.id %>_publishAt_picker">
+                  <div class="input-group date" id="course-<%= model.cid %>_publishAt_picker">
                         <input id="course_publishAt" data-provide="datepicker" name="publish_at" type="text" placeholder="дд/мм/рррр гг:хх" class="form-control input-md">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -142,7 +142,7 @@
             <div class="form-group">
               <label class="col-md-12 " for="unpublish_at">Кінець публікації</label>  
               <div class="col-md-12">
-                  <div class="input-group date" id="course-<%= this.model.id %>_unpublishAt_picker">
+                  <div class="input-group date" id="course-<%= model.cid %>_unpublishAt_picker">
                         <input id="course_unpublishAt" data-provide="datepicker" name="unpublish_at" type="text" placeholder="дд/мм/рррр гг:хх" class="form-control input-md">
                         <div class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
