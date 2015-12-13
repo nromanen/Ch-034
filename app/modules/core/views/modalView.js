@@ -41,8 +41,13 @@ define(function(require) {
             this.$el.modal("hide");
         },
         showSuccessMesasage: function(mess){
-            $(".modal-dialog").html(this.successTemplate({successMessage: mess }));
-            return this;
+            var _this = this;
+            setTimeout(function() {
+                _this.$el.find(".modal-dialog").html(_this.successTemplate({successMessage: mess }));
+                return this;
+            }, 200);
+
+
         }
 
     });

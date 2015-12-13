@@ -1,10 +1,10 @@
 <div class="col-md-12 report-page">
     <div class="report-title"><h2>Повідомити про помилку</h2></div>
-    <form class="report-form">
+    <form class="report-form" enctype="multipart/form-data">
         <input class="form-control" type="email" placeholder="Введіть email" id="report_email" name="email">
         <input class="form-control" type="text" placeholder="Введіть назву помилки" id="error_name" name="name">
         <textarea class="form-control" placeholder="Ваше повідомлення" id="error_message" rows="8" name="text"></textarea>
-        <input class="form-control" type="file" placeholder="Прикріпити зображення" name="file">
+        <input class="form-control" type="file" placeholder="Прикріпити зображення" name="file" id="reportFile">
         <button id="report_submit" class="form-control btn btn-success">Відправити</button>
     </form>
 </div>
