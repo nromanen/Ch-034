@@ -18,10 +18,8 @@ define(function(require, exports, module) {
         },
 
         initialize: function(options) {
-            console.log(options.courseId);
-            if (!options.model) {
-                this.model = new ModuleModel({courseId: options.courseId});
-                console.log(this.model);
+            if (!options) {
+                this.model = new ModuleModel();
             }
             this.listenTo(this.model, "invalid", this.errorMessage);
         },
