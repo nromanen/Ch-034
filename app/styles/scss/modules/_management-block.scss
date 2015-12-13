@@ -1,14 +1,29 @@
+#managementHeader {
+    tr > th {
+        
+        font-size: 1.1em;
+        font-weight: bold;
+        &:not(:first-child) {
+            text-align: center;
+        }
+    }
+}
 #managementlist{
+
     .managementVal[disabled]{
         background: inherit;
         border: none;
         margin: 2px; 
+    }
+    .managementVal:not([disabled]){
+        max-width: 250px;
     }
     .managementEdit{
     }
     & > tr{
         height: 43px;
         background-color: transparent;
+        text-align: center;
 
             &.zebra {
                 background-color: #f9f9f9;
@@ -32,8 +47,8 @@
     .edit-row {
         display: none;
     }
-
 }
+
 #managementAddContainer{
    min-width: 265px;
     .btn{

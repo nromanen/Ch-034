@@ -13,7 +13,9 @@ define(function(require) {
         serialize: function() {
             return {
                 collection: this.collection,
-                name      : this.name
+                name      : this.name,
+                listPath  : this.listPath,
+                editView  : !!this.editView
             };
         },
 

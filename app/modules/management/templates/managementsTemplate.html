@@ -15,7 +15,24 @@
             <h2><%= this.name %></h2>
             <div class="table-responsive">
             <table class="table table-striped">
-               <tbody id="managementlist"></tbody>
+                <thead id="managementHeader">
+                    <tr>
+                        <th width=*;"> Назва </th>
+                        <% if (editView) { %>
+                                <th width="60px;"> Опублікувати </th>
+                        <% } %>
+                        <% if (listPath) { %>
+                                <th width="60px;"> Перегляд </th>
+                        <% } %>
+
+
+                                <th colspan="2" width="60px;">Редагувати</th>
+
+                    </tr>
+                </thead>
+               <tbody id="managementlist">
+
+               </tbody>
             </table>
             <% if (!(this.type === "variant-list" && this.collection.models[0].get("_question").typeVariant == 1 && !_.isUndefined(this.collection.length))) { %>
                         <div id="managementAddContainer">
