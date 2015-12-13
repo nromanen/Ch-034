@@ -21,6 +21,9 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(this.collection, "sync request change", this.render, this);
+            if (this.collection.courseId) {
+                this.courseId = this.collection.courseId;
+            }
         },
 
         beforeRender: function(){
@@ -51,7 +54,7 @@ define(function(require) {
                 var _this = this;
                 this.$el.find(".add-row").fadeToggle("slow");
                 if (!(this.subView instanceof this.editView)) {
-                    this.subView = new this.editView();
+                    this.subView = new this.editView({courseId: this.courseId});
                     this.subView.render().then(function(view){
                         _this.$collapsable.html(view.el);
 
