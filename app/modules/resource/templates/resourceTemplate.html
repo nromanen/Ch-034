@@ -1,7 +1,7 @@
-<tr>
-    <td id="resourceName"><%= resource.get('name') %></td>
+<tr class="table-responsive">
+    <td ><input id="resourceName" type="text" name="name" value="<%= resource.get('name') %>" disabled></td>
     <td id="resourceType"><%= resource.get('type') %></td>
     <td id="resourceUrl"><%= resource.get('url') %></td>    
-    <td><span id="editResource"class="glyphicon glyphicon-pencil"></span></td>
-    <td><span id="deleteResource" class="glyphicon glyphicon-trash"></span></td>
+    <td><span id="editResource" class="glyphicon glyphicon-pencil" title="Редагувати"</span></td>
+    <td><span id="deleteResource" class="glyphicon glyphicon-trash" title="Видалити"></span></td>
 </tr>

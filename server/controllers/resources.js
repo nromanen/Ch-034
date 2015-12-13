@@ -14,7 +14,7 @@ router.get("/", function(req, res) {
         });
 });
 
-router.get("/resourceId", function(req, res) {
+router.get("/:resourceId", function(req, res) {
     Resource
         .findOne({"_id": req.params.resourceId})
         .exec(function(error, resources) {
@@ -28,6 +28,9 @@ router.delete('/:resourceId', function(req, res) {
         .findByIdAndRemove({_id: req.params.resourceId})
         .exec(function(error) {
             if (error) throw error
+            Module.findOneAndUpdate({_id: req.params.moduleId}, {$pull: {_resources: req.params.resourceId}}, function(error) {
+                if (error) throw error
+            });
             return res.json({success: true, message: "Resource is deleted successfully"});
         });
 });
@@ -51,8 +54,7 @@ router.post("/", function(req, res) {
 
 router.put('/:resourceId', function(req, res) {
     Resource
-        .findByIdAndUpdate({_id: req.params.resourceId}, req.body)
-        .exac(function(error, resource) {
+        .findByIdAndUpdate({_id: req.params.resourceId}, req.body, function(error, resource) {
             if (error) throw error
             return res.json(resource);
         });

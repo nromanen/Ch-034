@@ -61,12 +61,4 @@ a.module-item-title {
     width: 100%;
     height: 300px;
 }
-#resource-container {
-    margin-bottom: $defaultMarginBottom;
-    background-color: $courseBgColor;
-    padding: $modulePadding;
-    .glyphicon {
-         font-size: 1.3em;
-         cursor: pointer;
-    }
-}
+

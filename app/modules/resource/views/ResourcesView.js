@@ -14,12 +14,15 @@ define(function(require) {
             "click #save-module-resources": "",
             "click #cancel-rosources": "backToEditModule",
             "click #addResource" : "addResource",
-            "change #addResourceType" : "onTypeSelected"
+            "click #cancelAddResource" : "clearAddResource",
+            "change #addResourceType" : "onTypeSelected",
+            "click #addResourceUrl input" : "chooseResourceClick"
         },
 
-        initialize: function(options) {
+        initialize: function(collection, options) {
+            this.model = new Resource();
+            this.listenTo(this.model, "invalid", this.errorMessage);
             this.listenTo(this.collection, "reset sync request", this.render);
-            this.courseId = options.courseId;
             this.moduleId = options.moduleId;
         },
         serialize: function() {
@@ -36,7 +39,7 @@ define(function(require) {
             this.insertView("#resources", new ResourceView({
                 model: model,
                 moduleId: this.moduleId
-            }));
+            })).render();
         },
         afterRender: function() {
             this.fillingSelect();
@@ -61,75 +64,95 @@ define(function(require) {
         },
         onTypeSelected: function() {
             var tag;
-            if (CMS.externalLink.indexOf($('#addResourceType option:selected').text()) !== -1) {
-                tag = "<input type='text'></input>";
+            if (CMS.externalLink.indexOf($('#addResourceType option:selected').text()) === -1) {
+                tag = "<input type='file' id='addResourceFile' accept='application/" + $('#addResourceType option:selected').text() + "'></input>";
             } else {
-                tag = "<input type='file'></input>";
+                tag = "<input type='text'></input>";
             }
             $("#addResourceUrl").html(tag);
         },
-        backToEditModule: function() {
-            var that = this;
-            Backbone.history.navigate("#courses/" + that.courseId + "/modules/" + that.moduleId + "/edit", {
-                trigger: true
-            });
-        },
         addResource: function() {
-            var that = this;
+            var _this = this;
             if (CMS.externalLink.indexOf($('#addResourceType option:selected').text()) === -1) {
-                $.ajaxSetup({
-                    beforeSend: function(jqXHR){
-                        jqXHR.setRequestHeader("x-access-token", CMS.SessionModel.getItem("UserSession").token);
-                        jqXHR.setRequestHeader("Access-Control-Allow-Origin", "*");
-                        //jqXHR.setRequestHeader("Content-Type", "multipart/form-data");
-                    },
-                });
-                var data = new FormData();
-                data.append("key", $("#addResourceUrl").find('input')[0].files[0]);
-                $.ajax({
-                    url: CMS.api + "upload/resource",
-                    type: 'POST',
-                    data: data,
-                    //cache: false,
-                    //dataType: 'json',
-                    processData: false,
-                    contentType: false,
-                    success: function( respond, textStatus, jqXHR ){
-                        if( typeof respond.error === 'undefined' ){
-                            var files_path = respond.url;
-                            var resource = new Resource();
-                            resource.set({
-                                name: $("#addResourceName").val(),
-                                moduleId: that.moduleId,
-                                type: $("#addResourceType").val(),
-                                url: files_path
-                            });
-                            resource.save(null, {
-                                success: function(resource, response){
-                                    that.collection.fetch({reset:true});
-                                }
-                            });
+                if ($("#addResourceUrl").find('input')[0].files[0]) {
+                    $.ajaxSetup({
+                        beforeSend: function(jqXHR){
+                            jqXHR.setRequestHeader("x-access-token", CMS.SessionModel.getItem("UserSession").token);
+                            jqXHR.setRequestHeader("Access-Control-Allow-Origin", "*");
+                        },
+                    });
+                    var data = new FormData();
+                    data.append("key", $("#addResourceUrl").find('input')[0].files[0]);
+                    $.ajax({
+                        url: CMS.api + "upload/resource",
+                        type: 'POST',
+                        data: data,
+                        processData: false,
+                        contentType: false,
+                        success: function( respond, textStatus, jqXHR ){
+                            if( typeof respond.error === 'undefined' ){
+                                var files_path = respond.url;
+                                _this.model.set({
+                                    name: $("#addResourceName").val(),
+                                    moduleId: _this.moduleId,
+                                    type: $("#addResourceType").val(),
+                                    url: files_path
+                                });
+                                _this.model.save(null, {
+                                    success: function(resource, response){
+                                        _this.collection.fetch({reset:true});
+                                    }
+                                });
+                            }
+                        },
+                        error: function( jqXHR, textStatus, errorThrown ){
+                            console.log('ОШИБКИ AJAX запроса: ' + textStatus );
                         }
-                    },
-                    error: function( jqXHR, textStatus, errorThrown ){
-                        console.log('ОШИБКИ AJAX запроса: ' + textStatus );
-                    }
-                });
-            } else {
-                var resource = new Resource();
-                resource.set({
+                    });
+                } else {
+                    this.model.save();
+                }
+           } else {
+                this.model.set({
                     name: $("#addResourceName").val(),
                     moduleId: this.moduleId,
                     type: $("#addResourceType").val(),
                     url: $("#addResourceUrl").find('input').val()
                 });
-                resource.save(null, {
+                this.model.save(null, {
                     success: function(resource, response){
-                        that.collection.fetch({reset:true});
+                        _this.collection.fetch({reset:true});
                     }
                 });
             }
-        }
+        },
+        chooseResourceClick: function() {
+            this.$el.find('#addResourceUrl input').removeClass("error");
+            this.$el.find('#addResourceUrl input').popover("destroy");
+        },
+        clearAddResource: function() {
+            this.$el.find('#addResourceName')
+                    .val("")
+                    .removeClass("error")
+                    .popover("destroy");
+            this.$el.find('#addResourceType option:selected').text(CMS.downloadable[0]);
+            var control = this.$el.find('#addResourceUrl input');
+            control.replaceWith( control = control.clone( true ) );
+            this.chooseResourceClick();
+        },
+        errorMessage: function (model, errors) {
+            _.forEach(errors, function (error) {
+                this.$el.find('#addResource' + error.inputName).addClass("error");
+                this.$el.find('#addResource' + error.inputName).popover({
+                    container: "body",
+                    name: error.title,
+                    content: error.message,
+                    placement: "right",
+                    trigger: "focus, hover"
+                });
+                this.$el.find('#addResource' + errors.inputName).popover("toggle");
+            }, this );
+        },
     });
     return View;
 });

@@ -89,3 +89,18 @@
 #module-form {
     margin: 10px 8px;
 }
+#resourceСontainer {
+    padding: 0 15px;
+    .glyphicon {
+         font-size: 1.3em;
+         cursor: pointer;
+    }
+}
+#resourceName[disabled]{
+    background: inherit;
+    border: none;
+    margin: 2px; 
+}
+#resourceUrl {
+    word-break: break-all;
+}
