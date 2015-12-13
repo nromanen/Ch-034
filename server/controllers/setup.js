@@ -161,7 +161,7 @@ router.get("/", function(req, res) {
         "name": "Sergiy",
         "surname": "Diak",
         "password": "Diak540910",
-        "role": 1
+        "role": 2
     });
     
     var profile = new UserProfile({

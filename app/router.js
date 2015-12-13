@@ -229,28 +229,32 @@ define(function(require) {
         },
 
         showManagement: function(mainPage, idParent, extPage) {
+            if (!this.containerView.getView(".sidebar-a")) {
+                this.containerView.setView(".sidebar-a", new ManagementModule.Views.menu());
+                this.containerView.getView(".sidebar-a").render();
+            }
             switch (mainPage) {
                 case "areas":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
+                    this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Areas(), title: "Напрямки", name: "areas"}));
                     break;
                 case "groups":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
+                    this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Groups(), title: "Групи", name: "groups"}));
                     this.containerView.hrefPath = "management/groups";
                     break;
                 case "courses":
                     switch (extPage) {
                         case "modules":
-                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules([],{id: idParent}), title: "Модулі", name: "modules"}));
+                            this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Modules([],{id: idParent}), title: "Модулі", name: "modules"}));
                             this.containerView.hrefPath = "management/modules";
                             break;
                         default:
-                            this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
+                            this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Courses(), title: "Курси", name: "courses"}));
                             this.containerView.hrefPath = "management/courses";
                             break;
                     }
                     break;
                 case "modules":
-                    this.containerView.setView(".wrapper", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests([],{id: idParent}), title: "Тести", name: "tests"}));
+                    this.containerView.setView(".content", new ManagementModule.Views.managements({collection: new ManagementModule.Collections.Tests([],{id: idParent}), title: "Тести", name: "tests"}));
                     this.containerView.hrefPath = "management/tests";
                     break;
             }

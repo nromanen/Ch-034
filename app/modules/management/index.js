@@ -4,6 +4,7 @@ define(function(require) {
         Views: {
             management: require("./views/managementView"),
             managements: require("./views/managementsView"),
+            menu: require("./views/managementMenuView")
         },
         Model: require("./models/managementModel"),
         Collections: {

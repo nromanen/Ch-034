@@ -46,8 +46,6 @@ define(function(require) {
                 _this.$el.find(".modal-dialog").html(_this.successTemplate({successMessage: mess }));
                 return this;
             }, 200);
-
-
         }
 
     });

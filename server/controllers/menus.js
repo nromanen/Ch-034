@@ -36,6 +36,7 @@ router.get("/:slug", function(req, res) {
             match: {access: req.authUser.role}
         })
         .exec(function(err, menu) {
+            if (err) throw err;
             return res.json(menu);
         });
 });

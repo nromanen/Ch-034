@@ -19,7 +19,6 @@ router.post("/", function(req, res) {
         fstream.on('close', function () {
             reportMessage.file = req.serverUrl + "/reports/"+filename;
             var message = new ReportForm(reportMessage);
-            
                 message.save(function(err) {
                     if (err) throw err;
                     return res.json({ success: true });
