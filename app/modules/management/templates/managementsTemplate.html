@@ -19,7 +19,24 @@
             </div>
             <div class="table-responsive">
             <table class="table table-striped">
-               <tbody id="managementlist"></tbody>
+                <thead id="managementHeader">
+                    <tr>
+                        <th width=*;"> Назва </th>
+                        <% if (editView) { %>
+                                <th width="60px;"> Опублікувати </th>
+                        <% } %>
+                        <% if (listPath) { %>
+                                <th width="60px;"> Перегляд </th>
+                        <% } %>
+
+
+                                <th colspan="2" width="60px;">Редагувати</th>
+
+                    </tr>
+                </thead>
+               <tbody id="managementlist">
+
+               </tbody>
             </table>
             <% if (this.type === "list" || this.type === "variant-list") { %>
                         <div id="managementAddContainer">
