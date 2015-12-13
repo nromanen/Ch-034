@@ -26,12 +26,10 @@ QuestionSchema = new Schema({
         type: Number,
         default: 0
     },
-    variants: {
-        type: Object
-    },
-    answer: {
-        type: String
-    }
+    _variants: [{
+        type: Schema.Types.ObjectId,
+        ref: "Variant"
+    }]
 });
 
 module.exports = mongoose.model("Question", QuestionSchema);
