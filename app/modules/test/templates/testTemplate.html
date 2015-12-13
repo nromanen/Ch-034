@@ -3,8 +3,8 @@
         <p class="variant">
         <select class="form-control" name="answer<%= test.get('num') %>">
                 <option value=""></option>
-            <% _.each(test.get('variants'), function(variants, index){ %>
-                <option value="<%= index %>" <% if (index == answer) {%>selected<% } %> ><%= variants[0] %></option>
+            <% _.each(test.get('_variants'), function(variants, index){ %>
+                <option value="<%= variants._id %>" <% if (variants._id == answer) {%>selected<% } %> ><%= variants.name %></option>
             <% }); %>
         </select>
         </p>
@@ -13,10 +13,10 @@
         <p class="variant"><input type="text" class="form-control" name="answer<%= test.get('num') %>" placeholder="Input answer" value="<%= answer %>"></p>
     <% } %>
     <% if (test.get('typeVariant')  === typeTest.few){ %>
-        <div class="checkboxes variant"> 
-            <% _.each(test.get('variants'), function(variants, index) {%>  
-                <div class="inline"><input type="checkbox" class="form-checkbox" id="<%= index %><%= test.get('num') %>" name="answer<%= test.get('num') %>[]" value="<%= index %>" <% if (_.indexOf(answer, index) != -1) {%>checked<% } %> />
-                    <label for="<%= index %><%= test.get('num') %>"><%= variants[0] %></label>
+        <div class="checkboxes variant">
+            <% _.each(test.get('_variants'), function(variants, index) { %>
+                <div class="inline"><input type="checkbox" class="form-checkbox" id="variant<%= variants.num %><%= test.get('num') %>" name="answer<%= test.get('num') %>[]" value="<%= variants._id %>" <% if (_.indexOf(answer, variants._id) != -1) {%>checked<% } %> />
+                    <label for="variant<%= variants.num %><%= test.get('num') %>"><%= variants.name %></label>
                 </div>
             <% }); %>
         </div>

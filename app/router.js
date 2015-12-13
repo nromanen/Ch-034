@@ -233,13 +233,14 @@ define(function(require) {
                 this.containerView.setView(".sidebar-a", new ManagementModule.Views.menu());
                 this.containerView.getView(".sidebar-a").render();
             }
-            var type, name, child, collection, editView, subItems, listPath,
+            var type, name, instance, child, collection, editView, subItems, listPath,
                 rootPath = this.getCurrentRootPath();
 
             switch (mainPage) {
                 case "areas":
                     type  = "list";
                     name  = "Напрямки";
+                    instance  = "areas";
                     child = false;
                     collection = new ManagementModule.Collections.Areas();
                     editView = false;
@@ -248,6 +249,7 @@ define(function(require) {
                 case "groups":
                     type = "list";
                     name = "Типи груп";
+                    instance  = "groups";
                     child = false;
                     collection = new ManagementModule.Collections.Groups();
                     editView = false;
@@ -258,6 +260,7 @@ define(function(require) {
                         case "modules":
                             type  = "extended";
                             name  = "Модулі";
+                            instance  = "modules";
                             child = "тести";
                             collection = new ManagementModule.Collections.Modules([],{id: idParent});
                             editView = ManagementModule.Views.EditViews.Course;
@@ -267,6 +270,7 @@ define(function(require) {
                         default:
                             type  = "extended";
                             name  = "Курси";
+                            instance  = "courses";
                             child = "модулі";
                             collection = new ManagementModule.Collections.Courses();
                             editView = ManagementModule.Views.EditViews.Course;
@@ -280,6 +284,7 @@ define(function(require) {
                         case "tests":
                             type  = "extended";
                             name  = "Тести";
+                            instance  = "tests";
                             child = "питання";
                             collection = new ManagementModule.Collections.Tests([],{id: idParent});
                             editView = ManagementModule.Views.EditViews.Test;
@@ -293,6 +298,7 @@ define(function(require) {
                         case "questions":
                             type  = "extended";
                             name  = "Питання";
+                            instance  = "questions";
                             child = "варіанти відповіді";
                             collection = new ManagementModule.Collections.Questions([],{id: idParent});
                             editView = ManagementModule.Views.EditViews.Question;
@@ -306,6 +312,7 @@ define(function(require) {
                         case "variants":
                             type  = "variant-list";
                             name  = "Варіанти відповіді";
+                            instance  = "variants";
                             child = false;
                             collection = new ManagementModule.Collections.Variants([],{id: idParent});
                             listPath = false;
@@ -355,6 +362,7 @@ define(function(require) {
             var options = {
                 type: type,
                 name: name,
+                instance: instance,
                 child: child,
                 collection: collection,
                 editView: editView,

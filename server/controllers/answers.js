@@ -22,20 +22,21 @@ router.post("/", function(req, res) {
             answer.save(function(err) {
                 if (err) throw err;
                 Question.findOne({"_course": answer._course, "_module": answer._module,"num": answer.num})
+                .populate("_variants")
                 .exec(function(error, question) {
                     if (error) throw error;  
-                    var questions = question.variants;
+                    var questions = question._variants;
                  // estimate of answer on close question with one right variant  
                     if (question.typeVariant == 0) {
-                        for(variant in questions) {
-                            if(questions[variant][1]){
-                                mark = (variant == answer.userAnswer)?(mark+1):mark;
+                        for(variant in questions) { 
+                            if(questions[variant].isCorrect){
+                                mark = (questions[variant]._id == answer.userAnswer)?(mark+1):mark;
                             }
                         }
                     }
-                 // estimate of answer on open question    
+                 // estimate of answer on open question
                     else if (question.typeVariant == 1) {
-                        mark = (question.answer == answer.userAnswer)?(mark+1):mark;
+                        mark = (questions[0].name == answer.userAnswer)?(mark+1):mark;
                     }
                  // estimate of answer on close question with few right variants
                     else {
@@ -47,16 +48,16 @@ router.post("/", function(req, res) {
                                     rightCounter = 0;
                              // for all three methods: simple, proportional and gravimetric
                                 for(variant in questions) {
-                                    if(questions[variant][1]){
-                                        rightAnswers.push(variant); 
+                                    if(questions[variant].isCorrect){
+                                        rightAnswers.push(String(questions[variant]._id)); 
                                     }
-                                    countVariants++;
+                                    countVariants = (questions[variant]._id)?(countVariants + 1):(countVariants);
                                 }
                                 for(answer in rightAnswers) {
                                     if(userAnswers.indexOf(rightAnswers[answer]) > -1) {
                                         rightCounter++; 
                                     }
-                                }
+                                } 
                              // only for proportional and gravimetric methods
                                 if(req.body.estimateMethod == "proportional" || req.body.estimateMethod =="gravimetric"){
                                     var wrongAnswers = [],
@@ -64,19 +65,21 @@ router.post("/", function(req, res) {
                                         countRightVariants = 0,
                                         countWrongVariants = 0;
                                     for(variant in questions) {
-                                        if(!questions[variant][1]){
-                                            wrongAnswers.push(variant);
-                                            countWrongVariants++;
+                                        if(!questions[variant].isCorrect) {
+                                            if (questions[variant]._id) {
+                                                wrongAnswers.push(String(questions[variant]._id));
+                                                countWrongVariants++; // = (questions[variant]._id)?(countWrongVariants + 1):(countWrongVariants);
+                                            }
                                         }
                                         else {
-                                            countRightVariants++;
+                                            countRightVariants = (questions[variant]._id)?(countRightVariants + 1):(countRightVariants);
                                         }
                                     }
-                                    for(answer in wrongAnswers) {
+                                    for(answer in wrongAnswers) { 
                                         if(req.body.estimateMethod == "proportional" &&
                                            userAnswers.indexOf(wrongAnswers[answer]) == -1) 
                                         {
-                                            wrongCounter++; 
+                                            wrongCounter++;
                                         }
                                         else if(req.body.estimateMethod == "gravimetric" &&
                                                 userAnswers.indexOf(wrongAnswers[answer]) > -1) 

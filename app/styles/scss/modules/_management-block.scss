@@ -1,6 +1,5 @@
 #managementHeader {
-    tr > th {
-        
+    & > tr > th {
         font-size: 1.1em;
         font-weight: bold;
         &:not(:first-child) {
@@ -9,7 +8,6 @@
     }
 }
 #managementlist{
-
     .managementVal[disabled]{
         background: inherit;
         border: none;
@@ -18,25 +16,23 @@
     .managementVal:not([disabled]){
         max-width: 250px;
     }
-    .managementEdit{
-    }
     & > tr{
         height: 43px;
         background-color: transparent;
-        text-align: center;
-
-            &.zebra {
-                background-color: #f9f9f9;
+            & > td:not(:first-child) {
+                text-align: center;
             }
-            .glyphicon {
-                 font-size: 1.3em;
-                 cursor: pointer;
-            }
-            .glyphicon-list-alt{
-                text-decoration: none;
-                color: #333;
-            }
-
+        &.zebra {
+            background-color: #f9f9f9;
+        }
+        .glyphicon {
+             font-size: 1.3em;
+             cursor: pointer;
+        }
+        .glyphicon-list-alt{
+            text-decoration: none;
+            color: #333;
+        }
     }
     .editForm{
         display: none;
@@ -44,8 +40,9 @@
     .bold{
         font-size: 15px;
     }
-    .edit-row {
+    .edit-row, .add-row {
         display: none;
+        text-align: left;
     }
 }
 
@@ -90,6 +87,15 @@
 .create-area {
     background: #fff;
     min-height: 350px;
+}
+.management-title{
+    margin: 20px 18px 20px 0;
+}
+.management-title h2{
+    display: inline;
+}
+.management-title .glyphicon {
+    cursor: pointer;
 }
 .tab-area .active {
     text-decoration: none;
