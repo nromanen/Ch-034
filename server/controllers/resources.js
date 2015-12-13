@@ -2,7 +2,7 @@ var express = require("express"),
     router = express.Router({mergeParams: true}),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    Resource = require("../models/resource");
+    Resource = require("../models/resource"),
     Module = require("../models/module");
 
 router.get("/", function(req, res) {

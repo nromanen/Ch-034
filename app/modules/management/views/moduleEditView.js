@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     require('ckeditor-jquery');
 
     var CMS = require("CMS"),
+    ModuleModel = require("../models/managementModuleModel"),
     ResourcesView = require("../../resource/views/ResourcesView"),
     ResourcesCollection = require("../../resource/collections/ResourcesCollection"),
 
@@ -13,10 +14,15 @@ define(function(require, exports, module) {
 
         events: {
             "click #save_module": "saveModuleHandler",
+            "click #discard": "cancelAddModule"
         },
 
         initialize: function(options) {
-            this.model = options.model;
+            console.log(options.courseId);
+            if (!options.model) {
+                this.model = new ModuleModel({courseId: options.courseId});
+                console.log(this.model);
+            }
             this.listenTo(this.model, "invalid", this.errorMessage);
         },
 
@@ -52,17 +58,22 @@ define(function(require, exports, module) {
                 }, 300);
 
             });
-            var Resources = new ResourcesCollection([], {moduleId: this.model.id});
-            Resources.fetch();
-            this.insertView("#module_resources", new ResourcesView({collection: Resources}, {moduleId: this.model.id})).render();
+            if (this.model.id !== undefined ) {
+                var Resources = new ResourcesCollection([], {moduleId: this.model.id});
+                Resources.fetch();
+                this.insertView("#module_resources", new ResourcesView({collection: Resources}, {moduleId: this.model.id})).render();
+            }
         },
 
         saveModuleHandler: function () {
             this.$el.find("#module_name").removeClass("error");
             this.$el.find("#module_name").popover("destroy");
             var _this = this;
-            var serialized = this.$el.serializeObject();
-            this.model.set(serialized, {validate: true});
+            this.model.set({
+                name: this.$el.find("#module_name").val(),
+                description: this.$el.find('#module_description').val(),
+                available: this.$el.find("#test_available").is(':checked')
+            }, {validate: true});
             if(!this.model.validationError) {
                 this.model.save(null, {
                     success: function() {
@@ -84,8 +95,12 @@ define(function(require, exports, module) {
                 trigger: "focus, hover"
             });
             this.$el.find("#module_name").popover("toggle");
+        },
+
+        cancelAddModule: function () {
         }
 
     });
+
     return View;
 });
