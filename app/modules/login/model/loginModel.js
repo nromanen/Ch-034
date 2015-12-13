@@ -10,10 +10,10 @@ define(function(require){
 	    validate: function(attr, options) {
 	      var errors = [];
 	      if ( !attr.email) {
-	        errors.push({inputName: "email", title: "Email should not be blank.", message: "Please fill email field with valid email address"});
+	        errors.push({inputName: "email", title: "Введіть Email.", message: "Будьласка, перевірте правильність написання електронної пошти"});
 	      }
 	      if ( !attr.password ) {
-	        errors.push({inputName: "password", title: "Password should not be blank.", message: "Password should contain min 8 characters"});
+	        errors.push({inputName: "password", title: "Введіть пароль.", message: "Пароль повинен містити велику та маленьку літери, мінімум одну цифру з мінімальною довжиною 8 символів"});
 	      }
 	      return errors.length > 0 ? errors : false;
 	    }

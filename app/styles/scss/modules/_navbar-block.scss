@@ -40,3 +40,14 @@
 .navbar-centered>.navbar-brand {
     float: none;
 }
+.sidebar-a .panel-flat .panel-body H4 {
+    margin-bottom: 0;
+}
+.sidebar-a .panel-flat .panel-body H4 a {
+    display: inline-block;
+    width: 100%;
+}
+.sidebar-a .panel-flat .panel-body ul{
+    list-style-type: none;
+    padding-bottom: 10px;
+}

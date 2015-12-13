@@ -20,6 +20,9 @@ router.post('/', function(req, res) {
                     if (err || !match) {
                         res.status(401);
                         return res.json({ success: false, message: "Помилка аутентифікації. Неправильний пароль." });
+                    } 
+                    if (user.isConfirmed === false) {
+                        res.json({success: false, message: "Активуйте ваш обліковий запис!"});
                     } else {
                         var token = jwt.sign({name: user.email}, req.app.get("superSecret"), { expiresIn: 60000 });
                         res.status(200);

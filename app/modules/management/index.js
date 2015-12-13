@@ -4,15 +4,26 @@ define(function(require) {
         Views: {
             management: require("./views/managementView"),
             managements: require("./views/managementsView"),
-            menu: require("./views/managementMenuView")
+            menu: require("./views/managementMenuView"),
+            EditViews: {
+                Course   : require("./views/courseEditView"),
+                Test     : require("./views/testEditView"),
+                Question : require("./views/questionEditView"),
+                Menu     : require("./views/menuEditView"),
+                MenuLink : require("./views/menuLinkEditView")
+            }
         },
         Model: require("./models/managementModel"),
         Collections: {
-            Areas  : require("./collections/areasCollection"),
-            Groups : require("./collections/groupsCollection"),
-            Courses: require("./collections/coursesCollection"),
-            Modules: require("./collections/modulesCollection"),
-            Tests  : require("./collections/testsCollection")
+            Areas     : require("./collections/areasCollection"),
+            Groups    : require("./collections/groupsCollection"),
+            Courses   : require("./collections/coursesCollection"),
+            Modules   : require("./collections/modulesCollection"),
+            Tests     : require("./collections/testsCollection"),
+            Questions : require("./collections/questionsCollection"),
+            Variants  : require("./collections/variantsCollection"),
+            Menus     : require("./collections/menusCollection"),
+            MenuLinks : require("./collections/menuLinksCollection")
         }
     };
 });

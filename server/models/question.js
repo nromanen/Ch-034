@@ -14,9 +14,13 @@ QuestionSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Module"
     },
-    question: {
+    _test: {
+        type: Schema.Types.ObjectId,
+        ref: "Test"
+    },    
+    name: {
         type: String,
-        required: "Будьласка перевірте запитання"
+        required: "Будь ласка перевірте запитання"
     },
     typeVariant: {
         type: Number,

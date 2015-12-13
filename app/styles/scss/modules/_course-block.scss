@@ -199,3 +199,10 @@
 .alignment {
     text-align: justify;
 }
+#edit-course {
+    .course-schedule {
+        .checkbox {
+            display: inline;
+        }
+    }
+}

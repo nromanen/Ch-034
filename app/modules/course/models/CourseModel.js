@@ -37,9 +37,6 @@ define(function(require){
         },
 
         urlRoot: CMS.api+'courses',
-        url: function() {
-            return this.urlRoot + '/' + this.id;
-        },
 
     });
     return Model;

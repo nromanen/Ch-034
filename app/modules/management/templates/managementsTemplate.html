@@ -1,11 +1,30 @@
+<div class="col-md-8 create-area">
+    <h2><%= this.title %></h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead id="managementHeader">
+                <tr>
+                    <th width=*;"> Назва </th>
+                    <% if (editView) { %>
+                            <th width="60px;"> Опублікувати </th>
+                    <% } %>
+                    <% if (listPath) { %>
+                            <th width="60px;"> Перегляд </th>
+                    <% } %>
 
-        <div class="col-md-8 create-area">
-            <h2><%= this.title %></h2>
-            <div class="table-responsive">
-            <table class="table table-striped">
-               <tbody id="managementlist"></tbody>
-            </table>
-            <div id="managementAddContainer">
-                <input id="managementAddInput" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
-            </div>
-        </div>
+
+                            <th colspan="2" width="60px;">Редагувати</th>
+
+                </tr>
+            </thead>
+           <tbody id="managementlist">
+
+           </tbody>
+        </table>
+        <% if (!(this.type === "variant-list" && this.collection.models[0].get("_question").typeVariant == 1 && !_.isUndefined(this.collection.length))) { %>
+                    <div id="managementAddContainer">
+                        <input id="managementAddInput" class="addFor<%= this.name %>" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
+                    </div>
+        <% } %>
+    </div>
+</div>

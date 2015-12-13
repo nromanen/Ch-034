@@ -1,13 +1,33 @@
+#managementHeader {
+    tr > th {
+        
+        font-size: 1.1em;
+        font-weight: bold;
+        &:not(:first-child) {
+            text-align: center;
+        }
+    }
+}
 #managementlist{
+
     .managementVal[disabled]{
         background: inherit;
         border: none;
         margin: 2px; 
     }
+    .managementVal:not([disabled]){
+        max-width: 250px;
+    }
     .managementEdit{
     }
-    > tr{
+    & > tr{
         height: 43px;
+        background-color: transparent;
+        text-align: center;
+
+            &.zebra {
+                background-color: #f9f9f9;
+            }
             .glyphicon {
                  font-size: 1.3em;
                  cursor: pointer;
@@ -16,6 +36,7 @@
                 text-decoration: none;
                 color: #333;
             }
+
     }
     .editForm{
         display: none;
@@ -23,8 +44,11 @@
     .bold{
         font-size: 15px;
     }
-
+    .edit-row {
+        display: none;
+    }
 }
+
 #managementAddContainer{
    min-width: 265px;
     .btn{
@@ -41,6 +65,10 @@
         margin-right: 0px;
         border-radius: 0;
     }
+}
+
+.addFortests {
+    width: 70%;
 }
 
 .managementVal {
