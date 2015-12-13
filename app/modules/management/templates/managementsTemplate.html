@@ -12,14 +12,21 @@
             </ul>
         </div>
         <div class="col-md-10 create-area">
-            <h2><%= this.name %></h2>
+            <div class="management-title"><h2><%= this.name %></h2>
+                <% if (this.type === "extended") { %>
+                <span class="managementAddButton glyphicon glyphicon-plus pull-right" id="managementAddButton" title="Додати"></span>
+                <% } %>
+            </div>
             <div class="table-responsive">
             <table class="table table-striped">
                 <thead id="managementHeader">
                     <tr>
                         <th width=*;"> Назва </th>
-                        <% if (editView) { %>
+                        <% if (this.instance === "courses") { %>
                                 <th width="60px;"> Опублікувати </th>
+                        <% } %>
+                        <% if (this.instance === "variants") { %>
+                                <th width="60px;"> Вірність</th>
                         <% } %>
                         <% if (listPath) { %>
                                 <th width="60px;"> Перегляд </th>
@@ -34,7 +41,7 @@
 
                </tbody>
             </table>
-            <% if (!(this.type === "variant-list" && this.collection.models[0].get("_question").typeVariant == 1 && !_.isUndefined(this.collection.length))) { %>
+            <% if (this.type === "list" || this.type === "variant-list") { %>
                         <div id="managementAddContainer">
                             <input id="managementAddInput" class="addFor<%= this.name %>" type="text" maxlength="20"/> <input id="managementAddButton" type="submit" class="btn btn-success" id="btnCancel" value="Додати"/>
                         </div>

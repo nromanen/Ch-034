@@ -7,11 +7,11 @@ define(function(require){
         idAttribute: '_id',
         defaults: {
             num         : null,
-            courseId    : null,
-            moduleId    : null,
+            _course     : null,
+            _module     : null,
             name        : null,
             typeVariant : null,
-            variants    : {}
+            _variants   : {}
         }
     });
 
