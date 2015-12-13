@@ -14,6 +14,7 @@ var pageAble = function(req, res, next) {
 
     Question
         .find({"_id": {$in: data}})
+        .populate("_variants")
         .skip(req.query._start)
         .limit(req.query._limit)
         .exec(function(err, question) {

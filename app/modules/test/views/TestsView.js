@@ -48,8 +48,7 @@ define(function(require) {
                 var sentData = {
                     _user         : CMS.SessionModel.getItem("UserSession").profile._user,
                     numberOfTests : thisView.countQuestions,
-                 // in future: get method of estimate from DB <Tests>
-                    estimateMethod: "simple",
+                    estimateMethod: thisView.test.get("estimateMethod"),
                     data          : thisView.userAnswers.toJSON()
                 };
                 $.ajax({
