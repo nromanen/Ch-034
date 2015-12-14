@@ -24,9 +24,6 @@ define(function(require) {
             CMS.Event.on("model:created", function() {
                 this.collection.fetch({reset: true});
             }, this);
-            if (this.collection.courseId) {
-                this.courseId = this.collection.courseId;
-            }
         },
 
         beforeRender: function(){
@@ -59,14 +56,14 @@ define(function(require) {
                 if (!(this.subView instanceof this.editView)) {
                     this.subView = new this.editView({type: "addNewInstance", idParent: this.idParent});
                     this.subView.render().then(function(view){
+
                         _this.$collapsable.html(view.el);
 
                         $("#discard").on("click", function(e) {
-                            _this.$el.next().fadeToggle("slow", function() {
+                            _this.$el.find(".add-row").fadeToggle("slow", function() {
                                 _this.subView.remove();
                                 delete _this.subView;
                             });
-
                         });
                     });
                 }

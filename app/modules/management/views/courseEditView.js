@@ -27,7 +27,7 @@ define(function(require) {
                     xhr.setRequestHeader("x-access-token", CMS.SessionModel.getItem('UserSession').token);
                 }
             });
-            if (!options) {
+            if (!options.model) {
                 this.model = new CourseModel();
             }
             this.listenTo(this.model, "reset", this.render, this);
