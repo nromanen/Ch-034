@@ -219,7 +219,7 @@ define(function(require) {
             if (this.containerView.getView(".sidebar-a")) {
                 this.containerView.getView(".sidebar-a").remove();
             }
-            var type, name, instance, child, collection, editView, subItems, listPath,
+            var type, name, instance, child, idParent, collection, editView, subItems, listPath,
                 rootPath = this.getCurrentRootPath();
 
             switch (mainPage) {
@@ -350,6 +350,7 @@ define(function(require) {
                 name: name,
                 instance: instance,
                 child: child,
+                idParent: idParent,
                 collection: collection,
                 editView: editView,
                 listPath: listPath,
