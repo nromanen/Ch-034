@@ -133,6 +133,33 @@ router.get("/:id", function(req, res, next) {
             res.json(course.toObject());
         });
 });
+router.delete("/:id", function(req, res, next) {
+    Course.findByIdAndRemove({_id: req.params.id}, function(err) {
+        if (err) throw err;
+        return res.json({success: true, message: "Course deleted successfully"});
+    });
+});
+router.post("/", function(req, res, next) {
+    var data = {
+        area: req.body.area,
+        description: req.body.description,
+        duration: req.body.duration,
+        groups: req.body.groups,
+        isPublished: req.body.isPublished,
+        minStudents: req.body.minStudents,
+        name: req.body.name,
+        publish_at: new Date(req.body.publish_at),
+        schedule: req.body.schedule,
+        startDate: new Date(req.body.startDate),
+        unpublish_at: new Date(req.body.unpublish_at)
+    };
+    
+    var course = new Course(data);
+        course.save(function(err, course) {
+            if (err) next(err)
+            res.json({success: true, message: "Зміни збережено"});
+        })
+});
 router.put("/:id", function(req, res, next) {
     var data = {
         area: req.body.area,

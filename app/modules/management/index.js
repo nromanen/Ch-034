@@ -10,7 +10,8 @@ define(function(require) {
                 Test     : require("./views/testEditView"),
                 Question : require("./views/questionEditView"),
                 Menu     : require("./views/menuEditView"),
-                MenuLink : require("./views/menuLinkEditView")
+                MenuLink : require("./views/menuLinkEditView"),
+                Module   : require("./views/moduleEditView")
             }
         },
         Model: require("./models/managementModel"),

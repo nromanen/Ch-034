@@ -21,6 +21,9 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(this.collection, "sync request change", this.render, this);
+            CMS.Event.on("model:created", function() {
+                this.collection.fetch({reset: true});
+            }, this);
         },
 
         beforeRender: function(){
@@ -51,16 +54,16 @@ define(function(require) {
                 var _this = this;
                 this.$el.find(".add-row").fadeToggle("slow");
                 if (!(this.subView instanceof this.editView)) {
-                    this.subView = new this.editView();
+                    this.subView = new this.editView({type: "addNewInstance", idParent: this.idParent});
                     this.subView.render().then(function(view){
+
                         _this.$collapsable.html(view.el);
 
                         $("#discard").on("click", function(e) {
-                            _this.$el.next().fadeToggle("slow", function() {
+                            _this.$el.find(".add-row").fadeToggle("slow", function() {
                                 _this.subView.remove();
                                 delete _this.subView;
                             });
-
                         });
                     });
                 }

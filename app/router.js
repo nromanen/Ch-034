@@ -89,11 +89,8 @@ define(function(require) {
             "courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "my-courses(/)(/page/:pageNumber)(?*queryParams)": "showCoursesList",
             "courses/:id": "showCourseDetails",
-            "courses/:courseId/modules/create": "createCourseModuleDetails",
             "courses/:courseId/modules/:id": "showCourseModuleDetails",
-            "courses/:courseId/modules/:id/edit": "editCourseModuleDetails",
             "courses/:courseId/modules/:moduleId/tests/:mode(/:QuestionId)": "showTestModule",
-            "courses/:courseId/modules/:id/edit/resources" : "showResourcesList",
             "management(/:mainPage)(/:id)(/:extPage)" : "showManagement",
         },
         showLoginPage: function() {
@@ -198,16 +195,6 @@ define(function(require) {
             this.containerView.setView(".content", new ModulesModule.Views.Module({model: this.module, courseId: courseId}));
             this.module.fetch();
         },
-        createCourseModuleDetails: function(courseId) {
-            this.module = new ModulesModule.Model([], {courseId: courseId});
-            this.containerView.setView(".content", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId}));
-            this.containerView.render();
-        },
-        editCourseModuleDetails: function(courseId, id) {
-            this.module = new ModulesModule.Model({_id: id}, {courseId: courseId});
-            this.module.fetch();
-            this.containerView.setView(".content", new ModulesModule.Views.CreateModule({model: this.module, courseId: courseId, edit: true}));
-        },
         showTestModule: function(courseId, moduleId, modeTest, currentQuestion) {
             this.userAnswers   = new TestsModule.Collection.Answers();
             if (this.containerView.getView(".sidebar-a")) {
@@ -233,7 +220,7 @@ define(function(require) {
                 this.containerView.setView(".sidebar-a", new ManagementModule.Views.menu());
                 this.containerView.getView(".sidebar-a").render();
             }
-            var type, name, instance, child, collection, editView, subItems, listPath,
+            var type, name, instance, child, idParent, collection, editView, subItems, listPath,
                 rootPath = this.getCurrentRootPath();
 
             switch (mainPage) {
@@ -263,7 +250,7 @@ define(function(require) {
                             instance  = "modules";
                             child = "тести";
                             collection = new ManagementModule.Collections.Modules([],{id: idParent});
-                            editView = ManagementModule.Views.EditViews.Course;
+                            editView = ManagementModule.Views.EditViews.Module;
                             listPath = rootPath+"/modules/:id/tests";
                             break;
 
@@ -364,6 +351,7 @@ define(function(require) {
                 name: name,
                 instance: instance,
                 child: child,
+                idParent: idParent,
                 collection: collection,
                 editView: editView,
                 listPath: listPath,
@@ -381,12 +369,6 @@ define(function(require) {
                 path = "#courses";
             }
             return path;
-        },
-
-        showResourcesList: function(courseId, id) {
-            this.resources = new ResourcesModule.Collection();
-            this.resources.fetch();
-            this.containerView.setView(".content", new ResourcesModule.Views.Resources({collection: this.resources, courseId: courseId, moduleId: id}));
         },
 
         parseQueryString: function(queryString) {

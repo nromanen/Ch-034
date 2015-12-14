@@ -50,9 +50,10 @@
    min-width: 265px;
     .btn{
         width: 75px;
+        margin: 9px 0;
     }
     #managementAddInput{
-        margin: 9px 13px 0 9px;
+        margin: 0px 12px 0 9px;
     }
 }
 
@@ -87,6 +88,7 @@
 .create-area {
     background: #fff;
     min-height: 350px;
+    padding-bottom: 20px;
 }
 .management-title{
     margin: 20px 18px 20px 0;
@@ -104,4 +106,22 @@
 .nav-tabs {
     border-bottom: none;
     border-top: none;
+}
+#module-form {
+    margin: 10px 8px;
+}
+#resourceСontainer {
+    padding: 0 15px;
+    .glyphicon {
+         font-size: 1.3em;
+         cursor: pointer;
+    }
+}
+#resourceName[disabled]{
+    background: inherit;
+    border: none;
+    margin: 2px; 
+}
+#resourceUrl {
+    word-break: break-all;
 }
