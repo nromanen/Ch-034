@@ -8,6 +8,9 @@
     }
 }
 #managementlist{
+    input[type="checkbox"] {
+        opacity: 100;
+    }
     .managementVal[disabled]{
         background: inherit;
         border: none;

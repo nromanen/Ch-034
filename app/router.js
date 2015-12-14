@@ -216,13 +216,12 @@ define(function(require) {
         },
 
         showManagement: function(mainPage, idParent, extPage){
-            if (!this.containerView.getView(".sidebar-a")) {
-                this.containerView.setView(".sidebar-a", new ManagementModule.Views.menu());
-                this.containerView.getView(".sidebar-a").render();
+            if (this.containerView.getView(".sidebar-a")) {
+                this.containerView.getView(".sidebar-a").remove();
             }
             var type, name, instance, child, idParent, collection, editView, subItems, listPath,
                 rootPath = this.getCurrentRootPath();
-
+            
             switch (mainPage) {
                 case "areas":
                     type  = "list";

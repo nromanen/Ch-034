@@ -133,12 +133,7 @@ router.get("/:id", function(req, res, next) {
             res.json(course.toObject());
         });
 });
-router.delete("/:id", function(req, res, next) {
-    Course.findByIdAndRemove({_id: req.params.id}, function(err) {
-        if (err) throw err;
-        return res.json({success: true, message: "Course deleted successfully"});
-    });
-});
+
 router.post("/", function(req, res, next) {
     var data = {
         area: req.body.area,
@@ -219,6 +214,12 @@ router.delete('/subscribe', function(req, res, next){
             });
     });
     
+});
+router.delete("/:id", function(req, res, next) {
+    Course.findByIdAndRemove({_id: req.params.id}, function(err) {
+        if (err) throw err;
+        return res.json({success: true, message: "Course deleted successfully"});
+    });
 });
 
 module.exports = router;

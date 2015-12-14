@@ -58,7 +58,7 @@ define(function(require) {
                 $.ajax({
                         url: _this.subscribeUrl,
                         method: this.model.ajaxMethod.DELETE,
-                        data: {id: this.model.id, name: this.model.get("name")},
+                        data: {id: _this.model.id, name: this.model.get("name")},
                         success: function(data){
                             _this.subscribeModal.showSuccessMesasage(data.message);
                         }
