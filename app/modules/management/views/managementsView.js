@@ -21,6 +21,9 @@ define(function(require) {
 
         initialize: function() {
             this.listenTo(this.collection, "sync request change", this.render, this);
+            CMS.Event.on("model:created", function() {
+                this.collection.fetch({reset: true});
+            }, this);
             if (this.collection.courseId) {
                 this.courseId = this.collection.courseId;
             }
