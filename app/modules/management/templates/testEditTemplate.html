@@ -1,18 +1,18 @@
 <form class="form-horizontal" id="edit-test">
     <div class="form-group">
       <label for="name">Назва тесту</label>
-      <input id="test_name" name="name" type="text" class="form-control input-md" required="" value="<%= model.get('name') %>">
+      <input id="test_name" name="name" type="text" class="form-control input-md" required="" <% if (!_.isUndefined(model)) { %>value="<%= model.get('name')%>"<% } %>>
     </div>
     <div class="form-group">
       <label for="method">Метод оцінювання</label>
       <select class="form-control" name="estimateMethod">
-          <option value="simple" <% if (model.get("estimateMethod") === estimateMethod[0]) { %>selected<% } %> >простий</option>
-          <option value="proportional" <% if (model.get("estimateMethod") === estimateMethod[1]) { %>selected<% } %> >пропорційний</option>
-          <option value="gravimetric" <% if (model.get("estimateMethod") === estimateMethod[2]) { %>selected<% } %> >ваговий</option>
+          <option value="simple" <% if (!_.isUndefined(model) && model.get("estimateMethod") === estimateMethod[0]) { %>selected<% } %> >простий</option>
+          <option value="proportional" <% if (!_.isUndefined(model) && model.get("estimateMethod") === estimateMethod[1]) { %>selected<% } %> >пропорційний</option>
+          <option value="gravimetric" <% if (!_.isUndefined(model) && model.get("estimateMethod") === estimateMethod[2]) { %>selected<% } %> >ваговий</option>
       </select>
     </div>
     <div class="form-group">
         <button type="button" id="save_test" name="save_test" class="btn btn-success">Зберегти</button>
-        <button type="button" id="discard" name="discard" class="btn btn-danger">Відминити зміни</button>
+        <button type="button" id="discard" name="discard" class="btn btn-danger">Відмінити зміни</button>
     </div>
 </form>

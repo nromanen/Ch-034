@@ -32,29 +32,38 @@ router.get("/:moduleId", function(req, res) {
         .exec(function(error, module) {
             if (error) throw error
             return res.json(module);
-        })
+        });
 });
 
 router.post("/", function(req, res) {
     var module = new Module({ 
-        title: req.body.title,
+        name: req.body.name,
         description: req.body.description,
         _course: req.body.courseId,
         available: req.body.available
     });
 
-    module.save(function(err) {
-        if (err) throw err;
-        return res.json({ success: true });
+    module.save(function(error) {
+        if (error) throw error
+        return res.json({ success: true, message: "Module is saved successfully"});
     });
 });
 
 router.put('/:moduleId', function(req, res) {
-    Module.findByIdAndUpdate({_id: req.params.moduleId}, req.body, function(err, module) {
-        if (err) throw err;
-        return res.json(module);
-    });
+    Module
+        .findByIdAndUpdate({_id: req.params.moduleId}, req.body, function(error, module) {
+            if (error) throw error
+            return res.json(module);
+        });
+});
 
+router.delete('/:moduleId', function(req, res) {
+    Module
+        .findByIdAndRemove({_id: req.params.moduleId})
+        .exec(function(error) {
+            if (error) throw error
+            return res.json({success: true, message: "Module is deleted successfully"});
+        });
 });
 
 module.exports = router;

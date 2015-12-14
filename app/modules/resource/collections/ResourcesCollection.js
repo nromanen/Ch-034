@@ -9,8 +9,12 @@ define(function(require) {
         api: CMS.api,
 
         url: function() {
-            return this.api + "resources";
-        }
+            return this.api + "modules/" + this.moduleId + "/resources";
+        },
+
+        initialize: function(models, options) {
+            this.moduleId = options.moduleId;
+        },
 
     });
 

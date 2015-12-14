@@ -7,6 +7,7 @@ define(function(require) {
 
     var CMS = require("CMS"),
         moment = require('moment'),
+        CourseModel = require('../models/courseModel'),
     View = CMS.View.extend({
         el: false,
         template: _.template(require("text!../templates/courseEditTemplate.html")),
@@ -20,12 +21,16 @@ define(function(require) {
             };
         },
 
-        initialize: function() {
+        initialize: function(options) {
             $.ajaxSetup({
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("x-access-token", CMS.SessionModel.getItem('UserSession').token);
                 }
             });
+            if (!options.model) {
+                this.model = new CourseModel();
+            }
+            this.listenTo(this.model, "reset", this.render, this);
         },
         getList: function(name) {
             var promise = $.ajax({
@@ -39,7 +44,6 @@ define(function(require) {
         },
         beforeRender: function() {
             var _this = this;
-
             this.getList("areas").done(function(data) {
                 _.each(data, function(item) {
                     var option = $(document.createElement("option")).val(item._id).text(item.name);
@@ -93,17 +97,17 @@ define(function(require) {
                 }
             });
 
-            this.$el.find('#course-'+this.model.id+'_start_picker').datetimepicker({
+            this.$el.find('#course-'+this.model.cid+'_start_picker').datetimepicker({
                 defaultDate: this.model.get('startDate'),
                 format: 'MM/DD/YYYY',
                 locale: 'uk'
             });
-            this.$el.find('#course-'+this.model.id+'_publishAt_picker').datetimepicker({
+            this.$el.find('#course-'+this.model.cid+'_publishAt_picker').datetimepicker({
                 defaultDate: this.model.get('publish_at'),
                 format: 'MM/DD/YYYY HH:mm',
                 locale: 'uk'
             });
-            this.$el.find('#course-'+this.model.id+'_unpublishAt_picker').datetimepicker({
+            this.$el.find('#course-'+this.model.cid+'_unpublishAt_picker').datetimepicker({
                 defaultDate: this.model.get('unpublish_at') ? this.model.get('unpublish_at'): false,
                 format: 'MM/DD/YYYY HH:mm',
                 locale: 'uk'
@@ -114,8 +118,13 @@ define(function(require) {
             var serialized = this.$el.serializeObject();
             this.model.set(serialized);
             this.model.save(null, {
-                success: function() {
-                    _this.model.fetch({reset: true});
+                success: function(xhr) {
+                    if (_this.model.isNew()) {
+                        CMS.Event.trigger("model:created");
+                    } else {
+                        _this.model.fetch({reset: true});
+                    }
+
                 },
                 error: function() {
                 }

@@ -24,6 +24,9 @@
     .modal-footer {
         text-align: center;
         border: none;
+        .btn-success{
+            min-width: 80px;
+        }
     }
 
     .modal-content{
