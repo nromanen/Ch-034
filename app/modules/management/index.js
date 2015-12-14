@@ -23,7 +23,8 @@ define(function(require) {
             Questions : require("./collections/questionsCollection"),
             Variants  : require("./collections/variantsCollection"),
             Menus     : require("./collections/menusCollection"),
-            MenuLinks : require("./collections/menuLinksCollection")
+            MenuLinks : require("./collections/menuLinksCollection"),
+            Users     : require("./collections/usersCollection")
         }
     };
 });

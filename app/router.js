@@ -347,7 +347,7 @@ define(function(require) {
                     name = "Користувачі";
                     child = false;
                     collection = new ManagementModule.Collections.Users();
-                    editView = new ManagementModule.Views.EditViews.User();
+                    editView = false;
                     listPath = false;
                     break;
                 default:
