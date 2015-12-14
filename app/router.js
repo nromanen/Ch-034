@@ -160,7 +160,7 @@ define(function(require) {
                 parsedParams.area = !_.isEmpty(parsedParams.area) ? parsedParams.area : [];
                 parsedParams.group = !_.isEmpty(parsedParams.group) ? parsedParams.group : [];
             }
-
+//tut
             if (!this.containerView.getView(".sidebar-a")) {
                 this.containerView.setView(".sidebar-a", new SidebarModule.View({filterParams: parsedParams}));
                 this.containerView.getView(".sidebar-a").render();
@@ -216,8 +216,9 @@ define(function(require) {
         },
 
         showManagement: function(mainPage, idParent, extPage){
-            if (this.containerView.getView(".sidebar-a")) {
-                this.containerView.getView(".sidebar-a").remove();
+            if (!this.containerView.getView(".sidebar-a")) {
+                this.containerView.setView(".sidebar-a", new ManagementModule.Views.menu());
+                this.containerView.getView(".sidebar-a").render();
             }
             var type, name, instance, child, idParent, collection, editView, subItems, listPath,
                 rootPath = this.getCurrentRootPath();
@@ -333,7 +334,7 @@ define(function(require) {
                     name = "Користувачі";
                     child = false;
                     collection = new ManagementModule.Collections.Users();
-                    editView = new ManagementModule.Views.EditViews.User();
+                    editView = false;
                     listPath = false;
                     break;
                 default:

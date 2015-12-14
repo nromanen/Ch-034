@@ -5,14 +5,13 @@ define(function(require) {
 
     Model = CMS.Model.extend({
 
-        defaults: {
-            name: null,
-            published: null,
-            succes: null,
-            url: null
-        },
         url: function() {
             return CMS.api + "menus/" + this.getSlug();
+        },
+        initialize: function(attrs, options) {
+            if (options && options.slug) {
+                this.setSlug(options.slug);
+            }
         },
         setSlug: function(slug) {
             this.slug = slug;

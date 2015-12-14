@@ -13,7 +13,8 @@ var express = require("express"),
     Module = require("../models/module"),
     Menu = require("../models/menu"),
     MenuLink = require("../models/menuLink"),
-    Resource = require("../models/resource");
+    Resource = require("../models/resource"),
+    ReportForm = require("../models/reportmessage");
 
 router.get("/", function(req, res) {
     var mainMenu = new Menu({
@@ -92,7 +93,7 @@ router.get("/", function(req, res) {
         name: "Список курсів",
         published: true,
         access: [1,2],
-        url: "#management/courses(/)"
+        url: "#management/courses"
     });
     var coursesMenuLink2 = new MenuLink({
         name: "Додати курс",
@@ -104,7 +105,7 @@ router.get("/", function(req, res) {
         name: "Список тестів",
         published: true,
         access: [1,2],
-        url: "#management/tests(/)"
+        url: "#management/tests"
     });
     var testsMenuLink2 = new MenuLink({
         name: "Додати тест",
@@ -116,19 +117,19 @@ router.get("/", function(req, res) {
         name: "Напрямки",
         published: true,
         access: [2],
-        url: "#management/areas(/)"
+        url: "#management/areas"
     });
     var listsMenuLink2 = new MenuLink({
         name: "Типи груп",
         published: true,
         access: [2],
-        url: "#management/groups(/)"
+        url: "#management/groups"
     });
     var menusMenuLink1 = new MenuLink({
         name: "Список меню",
         published: true,
         access: [2],
-        url: "#management/menus(/)"
+        url: "#management/menus"
     });
     var menusMenuLink2 = new MenuLink({
         name: "Додати меню",
@@ -140,13 +141,18 @@ router.get("/", function(req, res) {
         name: "Список користувачів",
         published: true,
         access: [2],
-        url: "#management/users(/)"
+        url: "#management/users"
     });
     var usersMenuLink2 = new MenuLink({
         name: "Додати користувача",
         published: true,
         access: [2],
         url: "#management/users/new"
+    });
+    var ReportForm2 = new ReportForm({
+        email: "test@te.tes",
+        name: "",
+        text: ""
     });
     mainMenuLink1.save();
     mainMenuLink2.save();
@@ -163,6 +169,7 @@ router.get("/", function(req, res) {
     menusMenuLink2.save();
     usersMenuLink1.save();
     usersMenuLink2.save();
+    ReportForm2.save();
 
     var user1 = new User({
         "email": "buispr@gmail.com",
