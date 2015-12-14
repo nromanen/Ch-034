@@ -13,14 +13,16 @@ define(function(require, exports, module) {
         el: false,
 
         events: {
-            "click #save_module": "saveModuleHandler",
-            "click #discard": "cancelAddModule"
+            "click #save_module": "saveModuleHandler"
         },
 
         initialize: function(options) {
-            if (!options) {
+            if (!options.model) {
                 this.model = new ModuleModel();
+                this.model.courseId = options.idParent;
             }
+            this.type = options.type;
+            this.idParent = options.idParent;
             this.listenTo(this.model, "invalid", this.errorMessage);
         },
 
@@ -75,7 +77,15 @@ define(function(require, exports, module) {
             if(!this.model.validationError) {
                 this.model.save(null, {
                     success: function() {
-                        _this.model.fetch({reset: true});
+                        if(_this.type == "addNewInstance") {
+                            $(".add-row").fadeToggle("slow");
+                            Backbone.history.navigate("#management/courses/" + _this.idParent + "/modules", {
+                                trigger: true
+                            });
+                        }
+                        else {
+                            _this.model.fetch({reset: true});
+                        }
                     },
                     error: function() {
                     }
@@ -93,9 +103,6 @@ define(function(require, exports, module) {
                 trigger: "focus, hover"
             });
             this.$el.find("#module_name").popover("toggle");
-        },
-
-        cancelAddModule: function () {
         }
 
     });
