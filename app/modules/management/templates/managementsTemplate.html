@@ -14,7 +14,9 @@
         <div class="col-md-10 create-area">
             <div class="management-title"><h2><%= this.name %></h2>
                 <% if (this.type === "extended") { %>
-                <span class="managementAddButton glyphicon glyphicon-plus pull-right" id="managementAddButton" title="Додати"></span>
+                    <% if (!(this.instance == "tests" && this.collection.length)) { %>
+                        <span class="managementAddButton glyphicon glyphicon-plus pull-right" id="managementAddButton" title="Додати"></span>
+                    <% } %>
                 <% } %>
             </div>
             <div class="table-responsive">
