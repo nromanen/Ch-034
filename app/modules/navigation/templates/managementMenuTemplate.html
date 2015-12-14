@@ -1,0 +1,16 @@
+  <div class="panel panel-default">
+    <div class="panel-heading"  role="tab" id="heading<%= menu.cid %>">
+    <h4 class="panel-title">
+      <a data-bypass="true" role="button" data-toggle="collapse" data-parent="#menus" href="#collapse-<%= menu.cid %>" aria-expanded="true" aria-controls="collapse-<%= menu.cid %>"><% print(menu.get("name")); %>
+       </a></h4>
+    </div>
+    <div id="collapse-<%= menu.cid %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= menu.cid %>">
+      <div class="panel-body">
+          <ul>
+            <% _.each(menu.get("_menuLinks"), function(link) { %>
+                <li><a href="<%= link.url %>"><%= link.name %></a></li>
+            <% }) %>
+          </ul>
+    </div>
+    </div>
+  </div>
