@@ -49,7 +49,7 @@ router.get("/", function (req, res, next) {
       User.findOne({email: decoded.name}, function (err, user) {
         if (err) return next(err);
         if (user) {
-          if (user.resetPassword === token) {
+          if (user.token === token) {
             user
               .set("password", Math.random())
               .set("token", "")
