@@ -4,6 +4,7 @@ define(function(require) {
     require("jquery-serialize-object");
 
     var CMS = require("CMS"),
+        questionModel = require("../models/managementModel"),
 
     View = CMS.View.extend({
         el: false,
@@ -13,6 +14,8 @@ define(function(require) {
         },
 
         initialize: function(options) {
+            this.type = options.type;
+            this.idParent = options.idParent;
             this.listenTo(this.model, "invalid", this.errorMessage);
         },
         serialize: function() {
@@ -21,16 +24,30 @@ define(function(require) {
                 typeTest: CMS.typeTest
             };
         },
-        saveQuestionHandler: function() {  console.log("quest");
+        saveQuestionHandler: function() {
             this.$el.find("#question_name").removeClass("error");
             this.$el.find("#question_name").popover("destroy");
-            var _this = this;  console.log(this.$el);
+            var _this = this;
             var serialized = this.$el.serializeObject();
-            this.model.set(serialized, {validate: true});
-            if(!this.model.validationError) {
-                this.model.save(null, {
+            if(this.type == "addNewInstance"){
+                var newTest = new questionModel();
+                newTest.urlRoot = CMS.api + "tests/" + this.idParent + "/questions";
+            }
+            else {
+                var newTest = this.model;
+            }
+            newTest.set(serialized, {validate: true});
+            if(!newTest.validationError) {
+                newTest.save(null, {
                     success: function() {
-                        _this.model.fetch({reset: true});
+                        if(_this.type == "addNewInstance") {
+                            Backbone.history.navigate("#management/tests/" + _this.idParent + "/questions", {
+                                trigger: true
+                            });
+                        }
+                        else {
+                            newTest.fetch({reset: true});
+                        }
                     },
                     error: function() {
                     }
