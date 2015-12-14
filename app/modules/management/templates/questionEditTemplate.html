@@ -1,8 +1,7 @@
-<div>
 <form class="form-horizontal" id="edit-test">
     <div class="form-group">
       <label for="name">Питання</label>
-      <input id="test_name" name="name" type="text" class="form-control input-md" required="" <% if (!_.isUndefined(model)) { %>value="<%= model.get('name')%>"<% } %>>
+      <input id="question_name" name="name" type="text" class="form-control input-md" required="" <% if (!_.isUndefined(model)) { %>value="<%= model.get('name')%>"<% } %>>
     </div>
     <div class="form-group">
       <label for="typeVariant">Тип питання</label><br/>
@@ -21,4 +20,3 @@
         <button type="button" id="discard" name="discard" class="btn btn-danger">Відмінити зміни</button>
     </div>
 </form>
-</div>

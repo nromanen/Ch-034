@@ -41,7 +41,8 @@ define(function(require) {
         },
         estimateMethod: ["simple", "proportional", "gravimetric"],
         embeddable: ['avi', 'mp4', 'video'],
-        downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx']
+        downloadable: ['zip', 'pdf', 'rar', 'doc', 'docx'],
+        externalLink: ['video']
     });
 
     return CMS;

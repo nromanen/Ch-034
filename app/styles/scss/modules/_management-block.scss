@@ -1,6 +1,5 @@
 #managementHeader {
-    tr > th {
-        
+    & > tr > th {
         font-size: 1.1em;
         font-weight: bold;
         &:not(:first-child) {
@@ -9,7 +8,6 @@
     }
 }
 #managementlist{
-
     .managementVal[disabled]{
         background: inherit;
         border: none;
@@ -18,25 +16,23 @@
     .managementVal:not([disabled]){
         max-width: 250px;
     }
-    .managementEdit{
-    }
     & > tr{
         height: 43px;
         background-color: transparent;
-        text-align: center;
-
-            &.zebra {
-                background-color: #f9f9f9;
+            & > td:not(:first-child) {
+                text-align: center;
             }
-            .glyphicon {
-                 font-size: 1.3em;
-                 cursor: pointer;
-            }
-            .glyphicon-list-alt{
-                text-decoration: none;
-                color: #333;
-            }
-
+        &.zebra {
+            background-color: #f9f9f9;
+        }
+        .glyphicon {
+             font-size: 1.3em;
+             cursor: pointer;
+        }
+        .glyphicon-list-alt{
+            text-decoration: none;
+            color: #333;
+        }
     }
     .editForm{
         display: none;
@@ -54,9 +50,10 @@
    min-width: 265px;
     .btn{
         width: 75px;
+        margin: 9px 0;
     }
     #managementAddInput{
-        margin: 9px 13px 0 9px;
+        margin: 0px 12px 0 9px;
     }
 }
 
@@ -91,6 +88,7 @@
 .create-area {
     background: #fff;
     min-height: 350px;
+    padding-bottom: 20px;
 }
 .management-title{
     margin: 20px 18px 20px 0;
@@ -108,4 +106,22 @@
 .nav-tabs {
     border-bottom: none;
     border-top: none;
+}
+#module-form {
+    margin: 10px 8px;
+}
+#resourceСontainer {
+    padding: 0 15px;
+    .glyphicon {
+         font-size: 1.3em;
+         cursor: pointer;
+    }
+}
+#resourceName[disabled]{
+    background: inherit;
+    border: none;
+    margin: 2px; 
+}
+#resourceUrl {
+    word-break: break-all;
 }

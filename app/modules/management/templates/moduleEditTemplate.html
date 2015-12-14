@@ -1,0 +1,33 @@
+<form id="edit_module" class="form-horizontal">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label class="col-md-12 " for="module-name">Назва модуля</label>
+                <div class="col-md-12">
+                    <input id="module_name" type="text" name="name" placeholder="Введіть назву модуля ..." class="form-control input-md" value="<%= module.get('name') %>" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-12 " for="description">Опис модуля</label>
+                <div class="col-md-12">
+                    <textarea id="module_description" rows="10" name="description" placeholder="Введіть зміст модуля ..." class="form-control" ><%= module.get('description') %></textarea>
+                </div>
+            </div>
+            <% if (module.get('description') !== "") { %> <div class="form-group">
+                <label class="col-md-12 " for="module_resources">Ресурси модуля</label>
+                <div id="module_resources" class="col-md-12"></div>
+            </div> <% } %>
+            <div class="form-group col-md-12">
+                <input id="test_available" type="checkbox" <% if (module.attributes.available) {%> checked <%} %> ><label><strong>Зробити тест модуля доступним</strong></label>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-12 " for="save_course"></label>
+      <div class="col-md-12 pull-right">
+        <button type="button" id="save_module" name="save_course" class="btn btn-success">Зберегти</button>
+        <button type="button" id="discard" name="discard" class="btn btn-danger">Відмінити зміни</button>
+      </div>
+    </div>
+</form>
+

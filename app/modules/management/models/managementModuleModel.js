@@ -6,17 +6,13 @@ define(function(require, extend, module) {
     Model = CMS.Model.extend({
         idAttribute: '_id',
         defaults: {
-            courseId: null,
-            name: null,
-            description: null,
-            available: null,
-            numberOfTests: null,
-            result: null,
+            courseId: 123,
+            name: "",
+            description: "",
+            available: false,
+            numberOfTests: 0,
+            result: 0,
             resources: {}
-        },
-        initialize: function(attributes, options) {
-            this.courseId = options.courseId;
-            this.subscribed = options.subscribed;
         },
         urlRoot: function() {
             return CMS.api + "courses/"+this.courseId+"/modules/";

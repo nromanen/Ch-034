@@ -45,7 +45,6 @@ define(function(require) {
         },
         declinePopup: function(){
             this.$el.modal("hide");
-            this.remove();
         },
         showSuccessMesasage: function(mess){
             $(".modal-dialog").html(this.successTemplate({successMessage: mess }));

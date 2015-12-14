@@ -21,7 +21,10 @@ app.set("superSecret", config.secret); // secret variable
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(busboy());
+app.use(busboy({
+    limits: {
+        fileSize: 10 * 1024 * 1024 * 1024
+  }}));
 // use morgan to log requests to the console
 app.use(morgan("dev"));
 
